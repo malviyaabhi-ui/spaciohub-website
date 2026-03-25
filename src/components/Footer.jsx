@@ -52,7 +52,7 @@ export default function Footer() {
             <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" style={{ display: 'block', fontSize: 13, color: '#64748b', textDecoration: 'none', padding: '4px 0' }}>Sign in</a>
             <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" style={{ display: 'block', fontSize: 13, color: '#64748b', textDecoration: 'none', padding: '4px 0' }}>Free Trial</a>
             <a href="mailto:contact@spaciohub.com" style={{ display: 'block', fontSize: 13, color: '#64748b', textDecoration: 'none', padding: '4px 0' }}>contact@spaciohub.com</a>
-            <a href="https://wa.me/971585889306" target="_blank" rel="noreferrer" style={{ display: 'block', fontSize: 13, color: '#64748b', textDecoration: 'none', padding: '4px 0' }}>+971 58 589 9306</a>
+            <a href="https://wa.me/971585889306" target="_blank" rel="noreferrer" style={{ display: 'block', fontSize: 13, color: '#64748b', textDecoration: 'none', padding: '4px 0' }}>+971 58 588 9306</a>
           </div>
         </div>
       </div>
