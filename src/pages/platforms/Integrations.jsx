@@ -1,3 +1,5 @@
+import SEO from '../../components/SEO'
+import { PAGE_SEO } from '../../components/pageSEO'
 import React, { useState, useEffect, useRef } from 'react'
 import { useModal } from '../../components/ModalContext'
 
@@ -235,7 +237,9 @@ export default function Integrations() {
   const { openModal } = useModal()
 
   return (
-    <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
+    <>
+      <SEO {...PAGE_SEO.platformIntegrations} />
+      <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
 
       {/* ══ HERO — falling logos ════════════════════════════════ */}
       <section style={{ position: 'relative', overflow: 'hidden', borderBottom: '1px solid #e2e8f0', background: '#fff', minHeight: 580 }}>
@@ -375,5 +379,6 @@ export default function Integrations() {
         @media(max-width:768px){ .int-fall-row{ display:none !important } }
       `}</style>
     </main>
+  </>
   )
 }

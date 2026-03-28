@@ -1,3 +1,5 @@
+import SEO from '../components/SEO'
+import { PAGE_SEO } from '../components/pageSEO'
 import React, { useState } from 'react'
 import { useModal } from '../components/ModalContext'
 
@@ -224,7 +226,9 @@ export default function Pricing() {
   const { openModal } = useModal()
 
   return (
-    <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
+    <>
+      <SEO {...PAGE_SEO.pricing} />
+      <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
 
       {/* ══ HERO ══════════════════════════════════════════ */}
       <section style={{ background: 'linear-gradient(170deg,#f0fdf8 0%,#ffffff 60%,#f8fafc 100%)', borderBottom: '1px solid #e2e8f0', padding: '80px 0 64px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
@@ -456,5 +460,6 @@ export default function Pricing() {
         </div>
       </section>
     </main>
+  </>
   )
 }

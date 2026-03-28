@@ -1,3 +1,5 @@
+import SEO from '../../components/SEO'
+import { PAGE_SEO } from '../../components/pageSEO'
 import React from 'react'
 import UseCasePage from './UseCasePage'
 
@@ -26,7 +28,7 @@ const IcoPlan = <svg viewBox="0 0 36 36" width="20" height="20" fill="none"><rec
 const IcoLicense = <svg viewBox="0 0 36 36" width="20" height="20" fill="none"><rect width="36" height="36" rx="9" fill={AL}/><rect x="8" y="11" width="20" height="14" rx="2" fill={AC} opacity="0.1"/><rect x="8" y="11" width="20" height="14" rx="2" stroke={AC} strokeWidth="1.5"/><rect x="11" y="14" width="8" height="2" rx="1" fill={AC} opacity="0.5"/><rect x="11" y="18" width="12" height="2" rx="1" fill={AC} opacity="0.35"/><rect x="11" y="22" width="6" height="1.5" rx="0.75" fill={AC} opacity="0.25"/></svg>
 
 export default function Resellers() {
-  return <UseCasePage
+  return (<><SEO {...PAGE_SEO.useCaseResellers} /><UseCasePage
     icon={<svg viewBox="0 0 80 80" width="72" height="72" fill="none"><rect width="80" height="80" rx="20" fill="#fdf2f8"/><rect x="14" y="24" width="30" height="22" rx="6" fill="#ec4899" opacity="0.7"/><rect x="36" y="34" width="30" height="22" rx="6" fill="#ec4899" opacity="0.35" stroke="#ec4899" strokeWidth="2.5"/><circle cx="51" cy="45" r="6" fill="#ec4899"/><path d="M48 45h6M51 42v6" stroke="#fff" strokeWidth="2.5" strokeLinecap="round"/></svg>}
     subtitle="Use Case"
     title="SpacioHub for SaaS Resellers"
@@ -89,4 +91,6 @@ export default function Resellers() {
       { title: 'Hotels & Hospitality',desc: 'Conference booking with catering tags.',        href: '/use-cases/hotels' },
     ]}
   />
+    </>
+  )
 }

@@ -1,3 +1,5 @@
+import SEO from '../../components/SEO'
+import { PAGE_SEO } from '../../components/pageSEO'
 import React, { useState, useEffect, useRef } from 'react'
 import { useModal } from '../../components/ModalContext'
 
@@ -99,7 +101,9 @@ function AIDemo() {
 export default function AIBooker() {
   const { openModal } = useModal()
   return (
-    <main style={{ paddingTop:64, fontFamily:'Inter,sans-serif' }}>
+    <>
+      <SEO {...PAGE_SEO.platformAIBooker} />
+      <main style={{ paddingTop:64, fontFamily:'Inter,sans-serif' }}>
       <section style={{ background:'linear-gradient(170deg,#fefce8,#fff 60%,#f8fafc)', borderBottom:'1px solid #e2e8f0', padding:'88px 0 72px', overflow:'hidden', position:'relative' }}>
         <div style={{ position:'absolute',top:-80,right:-80,width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(245,158,11,0.08),transparent 65%)',pointerEvents:'none' }}/>
         <div className="container" style={{ position:'relative' }}>
@@ -180,5 +184,6 @@ export default function AIBooker() {
         </div>
       </section>
     </main>
+  </>
   )
 }

@@ -1,3 +1,5 @@
+import SEO from '../../components/SEO'
+import { PAGE_SEO } from '../../components/pageSEO'
 import React from 'react'
 import UseCasePage from './UseCasePage'
 
@@ -26,7 +28,7 @@ const IcoEmail = <svg viewBox="0 0 36 36" width="20" height="20" fill="none"><re
 const IcoLog = <svg viewBox="0 0 36 36" width="20" height="20" fill="none"><rect width="36" height="36" rx="9" fill={AL}/><rect x="10" y="7" width="16" height="22" rx="2" fill={AC} opacity="0.1"/><rect x="10" y="7" width="16" height="22" rx="2" stroke={AC} strokeWidth="1.5"/><rect x="13" y="5" width="10" height="4" rx="1.5" fill={AC}/><rect x="13" y="14" width="10" height="1.5" rx="0.75" fill={AC} opacity="0.5"/><rect x="13" y="18" width="7" height="1.5" rx="0.75" fill={AC} opacity="0.4"/><rect x="13" y="22" width="9" height="1.5" rx="0.75" fill={AC} opacity="0.35"/></svg>
 
 export default function Hotels() {
-  return <UseCasePage
+  return (<><SEO {...PAGE_SEO.useCaseHotels} /><UseCasePage
     icon={<svg viewBox="0 0 80 80" width="72" height="72" fill="none"><rect width="80" height="80" rx="20" fill="#fff7ed"/><path d="M40 12l5 15h16l-13 9.5 5 15L40 43l-13 8.5 5-15L19 27h16z" fill="#f59e0b"/><rect x="22" y="54" width="36" height="16" rx="3" fill="#f59e0b" opacity="0.3"/><rect x="22" y="54" width="36" height="7" rx="2" fill="#f59e0b" opacity="0.5"/><rect x="32" y="61" width="8" height="9" rx="2" fill="#f59e0b" opacity="0.7"/><rect x="44" y="61" width="9" height="6" rx="2" fill="#f59e0b" opacity="0.4"/></svg>}
     subtitle="Use Case"
     title="SpacioHub for Hotels & Hospitality"
@@ -89,4 +91,6 @@ export default function Hotels() {
       { title: 'SaaS Resellers',     desc: 'White-label SpacioHub for your clients.',       href: '/use-cases/resellers' },
     ]}
   />
+    </>
+  )
 }

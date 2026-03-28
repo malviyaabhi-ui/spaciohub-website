@@ -1,3 +1,5 @@
+import SEO from '../../components/SEO'
+import { PAGE_SEO } from '../../components/pageSEO'
 import React, { useState, useEffect, useRef } from 'react'
 import { useModal } from '../../components/ModalContext'
 
@@ -356,7 +358,9 @@ export default function PlatformBooking() {
   const { openModal } = useModal()
 
   return (
-    <main style={{ paddingTop:64, fontFamily:'Inter,sans-serif' }}>
+    <>
+      <SEO {...PAGE_SEO.platformBooking} />
+      <main style={{ paddingTop:64, fontFamily:'Inter,sans-serif' }}>
 
       {/* ══ HERO ══════════════════════════════════════════ */}
       <section style={{ background:'linear-gradient(170deg,#f0fdf8,#ffffff 55%,#f8fafc)', borderBottom:'1px solid #e2e8f0', padding:'88px 0 72px', overflow:'hidden', position:'relative' }}>
@@ -634,5 +638,6 @@ export default function PlatformBooking() {
         </div>
       </section>
     </main>
+  </>
   )
 }

@@ -1,3 +1,5 @@
+import SEO from '../../components/SEO'
+import { PAGE_SEO } from '../../components/pageSEO'
 import React, { useState, useEffect, useRef } from 'react'
 import { useModal } from '../../components/ModalContext'
 
@@ -137,7 +139,9 @@ export default function DoorDisplay() {
   useEffect(() => { startProgress(0); return ()=>{ clearInterval(intervalRef.current); clearInterval(progressRef.current) } }, [])
 
   return (
-    <main style={{ paddingTop:64, fontFamily:'Inter,sans-serif' }}>
+    <>
+      <SEO {...PAGE_SEO.platformDoorDisplay} />
+      <main style={{ paddingTop:64, fontFamily:'Inter,sans-serif' }}>
 
       {/* HERO */}
       <section style={{ background:'linear-gradient(170deg,#eff6ff,#fff 60%,#f8fafc)', borderBottom:'1px solid #e2e8f0', padding:'88px 0 72px', overflow:'hidden', position:'relative' }}>
@@ -266,5 +270,6 @@ export default function DoorDisplay() {
       </section>
       <style>{`@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}} @keyframes fadeIn{from{opacity:0}to{opacity:1}}`}</style>
     </main>
+  </>
   )
 }

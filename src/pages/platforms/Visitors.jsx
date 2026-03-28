@@ -1,3 +1,5 @@
+import SEO from '../../components/SEO'
+import { PAGE_SEO } from '../../components/pageSEO'
 import React, { useState } from 'react'
 import { useModal } from '../../components/ModalContext'
 
@@ -180,7 +182,9 @@ export default function PlatformVisitors() {
   const { openModal } = useModal()
 
   return (
-    <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
+    <>
+      <SEO {...PAGE_SEO.platformVisitors} />
+      <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
 
       {/* HERO */}
       <section style={{ background: 'linear-gradient(170deg,#fff7ed,#ffffff 60%,#f8fafc)', borderBottom: '1px solid #e2e8f0', padding: '88px 0 72px', overflow: 'hidden', position: 'relative' }}>
@@ -314,5 +318,6 @@ export default function PlatformVisitors() {
         </div>
       </section>
     </main>
+  </>
   )
 }

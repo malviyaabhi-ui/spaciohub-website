@@ -1,3 +1,5 @@
+import SEO from '../components/SEO'
+import { PAGE_SEO } from '../components/pageSEO'
 import React, { useState } from 'react'
 import { useModal } from '../components/ModalContext'
 
@@ -84,7 +86,9 @@ export default function Roles() {
   const role = ROLES.find(r => r.id === active)
 
   return (
-    <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
+    <>
+      <SEO {...PAGE_SEO.roles} />
+      <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
 
       {/* HERO */}
       <section style={{ background: 'linear-gradient(180deg,#f0fdf8,#fff)', borderBottom: '1px solid #e2e8f0', padding: '72px 0 56px', textAlign: 'center' }}>
@@ -198,5 +202,6 @@ export default function Roles() {
         </div>
       </section>
     </main>
+  </>
   )
 }

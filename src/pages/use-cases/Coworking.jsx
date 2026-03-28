@@ -1,3 +1,5 @@
+import SEO from '../../components/SEO'
+import { PAGE_SEO } from '../../components/pageSEO'
 import React from 'react'
 import UseCasePage from './UseCasePage'
 
@@ -26,7 +28,7 @@ const IcoTrendDown = <svg viewBox="0 0 36 36" width="20" height="20" fill="none"
 const IcoClock = <svg viewBox="0 0 36 36" width="20" height="20" fill="none"><rect width="36" height="36" rx="9" fill={AL}/><circle cx="18" cy="18" r="9" fill={AC} opacity="0.1"/><circle cx="18" cy="18" r="9" stroke={AC} strokeWidth="1.5"/><path d="M18 12v6l4 3" stroke={AC} strokeWidth="1.5" strokeLinecap="round"/></svg>
 
 export default function Coworking() {
-  return <UseCasePage
+  return (<><SEO {...PAGE_SEO.useCaseCoworking} /><UseCasePage
     icon={<svg viewBox="0 0 80 80" width="72" height="72" fill="none"><rect width="80" height="80" rx="20" fill="#ecfdf5"/><circle cx="30" cy="30" r="11" fill="#00c07a" opacity="0.8"/><circle cx="52" cy="30" r="11" fill="#00c07a" opacity="0.4"/><path d="M10 66c0-11 9-20 20-20h20c11 0 20 9 20 20" stroke="#00c07a" strokeWidth="4" strokeLinecap="round" fill="none"/><circle cx="40" cy="58" r="6" fill="#00c07a"/></svg>}
     subtitle="Use Case"
     title="SpacioHub for Coworking Spaces"
@@ -89,4 +91,6 @@ export default function Coworking() {
       { title: 'SaaS Resellers',       desc: 'White-label SpacioHub for your clients.',            href: '/use-cases/resellers' },
     ]}
   />
+    </>
+  )
 }

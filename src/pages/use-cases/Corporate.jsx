@@ -1,3 +1,5 @@
+import SEO from '../../components/SEO'
+import { PAGE_SEO } from '../../components/pageSEO'
 import React from 'react'
 import UseCasePage from './UseCasePage'
 
@@ -32,7 +34,7 @@ const IcoBadge = <svg viewBox="0 0 36 36" width="20" height="20" fill="none"><re
 const IcoEmail = <svg viewBox="0 0 36 36" width="20" height="20" fill="none"><rect width="36" height="36" rx="9" fill={AL}/><rect x="7" y="11" width="22" height="16" rx="2" fill={AC} opacity="0.15"/><rect x="7" y="11" width="22" height="16" rx="2" stroke={AC} strokeWidth="1.5"/><path d="M7 13l11 9 11-9" stroke={AC} strokeWidth="1.5" strokeLinecap="round"/></svg>
 
 export default function Corporate() {
-  return <UseCasePage
+  return (<><SEO {...PAGE_SEO.useCaseCorporate} /><UseCasePage
     icon={<svg viewBox="0 0 80 80" width="72" height="72" fill="none"><rect width="80" height="80" rx="20" fill="#eff6ff"/><rect x="18" y="28" width="44" height="38" rx="3" fill="#3b82f6" opacity="0.15"/><rect x="18" y="28" width="44" height="9" rx="3" fill="#3b82f6"/><rect x="25" y="42" width="9" height="9" rx="2" fill="#3b82f6" opacity="0.7"/><rect x="37" y="42" width="9" height="9" rx="2" fill="#3b82f6" opacity="0.7"/><rect x="49" y="42" width="8" height="9" rx="2" fill="#3b82f6" opacity="0.7"/><rect x="25" y="55" width="9" height="8" rx="2" fill="#3b82f6" opacity="0.7"/><rect x="37" y="55" width="9" height="8" rx="2" fill="#3b82f6" opacity="0.7"/><rect x="34" y="63" width="12" height="9" rx="2" fill="#3b82f6"/></svg>}
     subtitle="Use Case"
     title="SpacioHub for Corporate Offices"
@@ -113,4 +115,6 @@ export default function Corporate() {
       { title: 'SaaS Resellers',      desc: 'White-label for your clients.',                      href: '/use-cases/resellers' },
     ]}
   />
+    </>
+  )
 }

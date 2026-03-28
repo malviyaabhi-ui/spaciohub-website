@@ -1,3 +1,5 @@
+import SEO from '../components/SEO'
+import { PAGE_SEO } from '../components/pageSEO'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useModal } from '../components/ModalContext'
@@ -232,7 +234,9 @@ export default function Home() {
   }, [])
 
   return (
-    <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
+    <>
+      <SEO {...PAGE_SEO.home} />
+      <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
 
       {/* HERO */}
       <section ref={heroRef} style={{ background: 'linear-gradient(180deg,#f0fdf8 0%,#ffffff 70%)', borderBottom: '1px solid #e2e8f0', padding: '100px 0 80px', textAlign: 'center', overflow: 'hidden', position: 'relative' }}>
@@ -588,5 +592,6 @@ export default function Home() {
         </div>
       </section>
     </main>
+  </>
   )
 }
