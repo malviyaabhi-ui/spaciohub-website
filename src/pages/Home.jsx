@@ -1,75 +1,355 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useModal } from '../components/ModalContext'
+
+const LOGO = 'https://svksiwnalmrjjnskycqb.supabase.co/storage/v1/object/public/assets/logo-no-background.png'
 
 const FEATURES = [
   { icon: '📅', color: '#ecfdf5', border: '#a7f3d0', title: 'Smart Room Booking', desc: 'Visual time grid, 15-min buffer, AI suggestions, booking tags, and Zoom auto-links on every booking.', tag: 'CORE', link: '/platform/booking' },
   { icon: '🖥️', color: '#eff6ff', border: '#bfdbfe', title: 'Door Display Panel', desc: 'Real-time status on any tablet. Quick book, check-in, and guest booking — no login required.', tag: 'HARDWARE', link: '/platform/booking#door-display' },
   { icon: '📊', color: '#f5f3ff', border: '#ddd6fe', title: 'Analytics & Reports', desc: 'Peak hours, utilisation, no-show tracking, tag breakdowns, and full CSV export.', tag: 'INSIGHTS', link: '/platform/booking#analytics' },
   { icon: '👥', color: '#fff7ed', border: '#fed7aa', title: 'Visitor Management', desc: 'Pre-register guests, self-service check-in kiosk, custom badges, and instant host notifications.', tag: 'ENTERPRISE', link: '/platform/visitors' },
-  { icon: '🔗', color: '#fdf2f8', border: '#fbcfe8', title: 'Calendar & iCal', desc: 'Subscribe to any room\'s live calendar in Google or Outlook. Always in sync, automatically.', tag: 'INTEGRATION', link: '/platform/booking#integrations' },
-  { icon: '🤖', color: '#fefce8', border: '#fde68a', title: 'AI Room Booker', desc: 'Describe what you need in plain language and AI finds and books the best available room.', tag: 'AI', link: '/platform/booking' },
+  { icon: '🔗', color: '#fdf2f8', border: '#fbcfe8', title: 'Calendar & iCal', desc: "Subscribe to any room's live calendar in Google or Outlook. Always in sync, automatically.", tag: 'INTEGRATION', link: '/platform/booking#integrations' },
+  { icon: '✨', color: '#fefce8', border: '#fde68a', title: 'AI Room Booker', desc: 'Describe what you need in plain language and AI finds and books the best available room.', tag: 'AI', link: '/platform/booking' },
 ]
+
+const UC_ICONS = {
+  corporate: (
+    <svg viewBox="0 0 48 48" width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="12" fill="#eff6ff"/>
+      <rect x="10" y="14" width="28" height="26" rx="2" fill="#3b82f6" opacity="0.15"/>
+      <rect x="10" y="14" width="28" height="4" rx="2" fill="#3b82f6"/>
+      <rect x="14" y="22" width="5" height="5" rx="1" fill="#3b82f6" opacity="0.7"/>
+      <rect x="22" y="22" width="5" height="5" rx="1" fill="#3b82f6" opacity="0.7"/>
+      <rect x="30" y="22" width="5" height="5" rx="1" fill="#3b82f6" opacity="0.7"/>
+      <rect x="14" y="30" width="5" height="5" rx="1" fill="#3b82f6" opacity="0.7"/>
+      <rect x="22" y="30" width="5" height="5" rx="1" fill="#3b82f6" opacity="0.7"/>
+      <rect x="30" y="30" width="5" height="5" rx="1" fill="#3b82f6" opacity="0.7"/>
+      <rect x="20" y="35" width="8" height="5" rx="1" fill="#3b82f6"/>
+    </svg>
+  ),
+  coworking: (
+    <svg viewBox="0 0 48 48" width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="12" fill="#ecfdf5"/>
+      <circle cx="18" cy="19" r="5" fill="#00c07a" opacity="0.8"/>
+      <circle cx="30" cy="19" r="5" fill="#00c07a" opacity="0.5"/>
+      <path d="M8 36c0-5.5 4.5-10 10-10h12c5.5 0 10 4.5 10 10" stroke="#00c07a" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+      <circle cx="24" cy="32" r="3" fill="#00c07a"/>
+    </svg>
+  ),
+  hotels: (
+    <svg viewBox="0 0 48 48" width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="12" fill="#fff7ed"/>
+      <path d="M24 10l2.5 7h7.5l-6 4.5 2.5 7L24 25l-6.5 3.5 2.5-7L14 17h7.5z" fill="#f59e0b"/>
+      <rect x="14" y="30" width="20" height="10" rx="2" fill="#f59e0b" opacity="0.3"/>
+      <rect x="14" y="30" width="20" height="3" rx="1" fill="#f59e0b" opacity="0.6"/>
+      <rect x="20" y="33" width="4" height="7" rx="1" fill="#f59e0b" opacity="0.7"/>
+      <rect x="26" y="33" width="5" height="4" rx="1" fill="#f59e0b" opacity="0.5"/>
+    </svg>
+  ),
+  resellers: (
+    <svg viewBox="0 0 48 48" width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="12" fill="#fdf2f8"/>
+      <rect x="10" y="14" width="18" height="14" rx="3" fill="#ec4899" opacity="0.7"/>
+      <rect x="20" y="20" width="18" height="14" rx="3" fill="#ec4899" opacity="0.4" stroke="#ec4899" strokeWidth="1.5"/>
+      <circle cx="29" cy="27" r="3" fill="#ec4899"/>
+      <path d="M27 27h4M29 25v4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  ),
+}
 
 const USE_CASES = [
-  { icon: '🏢', title: 'Corporate Offices', desc: 'Multi-floor room management with SSO, floor plans, and enterprise controls.', href: '/use-cases/corporate' },
-  { icon: '🤝', title: 'Coworking Spaces', desc: 'Member self-booking, guest kiosk, and utilisation tracking to maximise revenue.', href: '/use-cases/coworking' },
-  { icon: '🏨', title: 'Hotels & Hospitality', desc: 'Conference booking, catering tags, and five-star guest check-in experience.', href: '/use-cases/hotels' },
-  { icon: '🛒', title: 'SaaS Resellers', desc: 'White-label for your clients with custom domains and super admin control.', href: '/use-cases/resellers' },
+  { icon: UC_ICONS.corporate, title: 'Corporate Offices', desc: 'Multi-floor room management with SSO, floor plans, and enterprise controls.', href: '/use-cases/corporate', accent: '#3b82f6' },
+  { icon: UC_ICONS.coworking, title: 'Coworking Spaces', desc: 'Member self-booking, guest kiosk, and utilisation tracking to maximise revenue.', href: '/use-cases/coworking', accent: '#00c07a' },
+  { icon: UC_ICONS.hotels, title: 'Hotels & Hospitality', desc: 'Conference booking, catering tags, and five-star guest check-in experience.', href: '/use-cases/hotels', accent: '#f59e0b' },
+  { icon: UC_ICONS.resellers, title: 'SaaS Resellers', desc: 'White-label for your clients with custom domains and super admin control.', href: '/use-cases/resellers', accent: '#ec4899' },
 ]
 
-const INTEGRATIONS = ['📅 Google Calendar', '📆 Outlook / M365', '🎥 Zoom', '🔑 Google SSO', '🔑 Microsoft SSO', '📱 PWA / Tablet', '🔗 iCal Feed', '📧 Email Notifications']
+const TESTIMONIALS = [
+  { quote: "SpacioHub completely eliminated the 'is this room free?' confusion in our office. Setup took less than a day — everyone loves it.", name: 'Aarav Mehta', role: 'Head of Operations, Nexum Technologies', avatar: 'AM', color: '#00c07a' },
+  { quote: "The door display panels are a game-changer. Our clients see a professional check-in experience from the moment they walk in.", name: 'Fatima Al Rashidi', role: 'Facilities Manager, Dubai Coworking Hub', avatar: 'FA', color: '#3b82f6' },
+  { quote: "Analytics revealed we were overbooked on two floors and underusing three others. We reconfigured within a week. Incredible ROI.", name: 'James Okonkwo', role: 'CTO, Meridian Group', avatar: 'JO', color: '#8b5cf6' },
+]
+
+const STEPS = [
+  { num: '01', icon: '🏗️', title: 'Add your spaces', desc: 'Upload your floor plan, add rooms, desks, and resources. Assign rules and capacities in minutes.' },
+  { num: '02', icon: '✉️', title: 'Invite your team', desc: 'Send invite links or connect via Google / Microsoft SSO. Permissions auto-apply by role.' },
+  { num: '03', icon: '✅', title: 'Book from anywhere', desc: 'Web, mobile, door panel, or AI chat — confirm a room in seconds from any device.' },
+  { num: '04', icon: '📈', title: 'Track & optimise', desc: 'Live analytics reveal peak hours, no-shows, and underused spaces to right-size your real estate.' },
+]
+
+// Integration hub data
+const INTEGRATIONS = [
+  { name: 'Google Calendar', action: 'Event synced', color: '#4285F4', bg: '#eff6ff', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#fff"/><rect x="6" y="8" width="20" height="18" rx="2" fill="#4285F4"/><rect x="6" y="8" width="20" height="6" rx="2" fill="#1a73e8"/><rect x="10" y="4" width="3" height="7" rx="1.5" fill="#1a73e8"/><rect x="19" y="4" width="3" height="7" rx="1.5" fill="#1a73e8"/><rect x="9" y="18" width="4" height="4" rx="1" fill="#fff"/><rect x="14" y="18" width="4" height="4" rx="1" fill="#fff"/></svg> },
+  { name: 'Microsoft 365', action: 'Meeting created', color: '#0078D4', bg: '#eff6ff', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#fff"/><rect x="5" y="5" width="10" height="10" rx="1" fill="#F25022"/><rect x="17" y="5" width="10" height="10" rx="1" fill="#7FBA00"/><rect x="5" y="17" width="10" height="10" rx="1" fill="#00A4EF"/><rect x="17" y="17" width="10" height="10" rx="1" fill="#FFB900"/></svg> },
+  { name: 'Zoom', action: 'Meeting link sent', color: '#2D8CFF', bg: '#eff6ff', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#2D8CFF"/><rect x="5" y="10" width="16" height="12" rx="2" fill="#fff"/><path d="M23 13l5-3v12l-5-3V13z" fill="#fff"/></svg> },
+  { name: 'Google SSO', action: 'User signed in', color: '#34A853', bg: '#ecfdf5', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#fff"/><path fill="#4285F4" d="M28 16.3c0-.9-.1-1.7-.2-2.5H16v4.7h6.7c-.3 1.5-1.2 2.8-2.5 3.6v3h4c2.3-2.2 3.8-5.3 3.8-8.8z"/><path fill="#34A853" d="M16 28c3.2 0 5.9-1.1 7.9-2.9l-4-3.1c-1.1.7-2.4 1.2-3.9 1.2-3 0-5.6-2-6.5-4.8H3.4v3.2C5.4 25.3 10.4 28 16 28z"/><path fill="#FBBC05" d="M9.5 18.4c-.2-.7-.4-1.5-.4-2.4 0-.9.1-1.7.4-2.4V10.4H3.4C2.5 12.2 2 14.1 2 16s.5 3.8 1.4 5.6l6.1-3.2z"/><path fill="#EA4335" d="M16 9.2c1.7 0 3.2.6 4.4 1.7l3.3-3.3C21.8 5.7 19.1 4.5 16 4.5c-5.6 0-10.6 3.2-12.6 7.9l6.1 3.2c.9-2.8 3.5-4.8 6.5-4.8z"/></svg> },
+  { name: 'Microsoft SSO', action: 'SSO login success', color: '#0078D4', bg: '#eff6ff', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#0078D4"/><rect x="7" y="7" width="8" height="8" rx="1" fill="#fff" opacity=".9"/><rect x="17" y="7" width="8" height="8" rx="1" fill="#fff" opacity=".9"/><rect x="7" y="17" width="8" height="8" rx="1" fill="#fff" opacity=".9"/><rect x="17" y="17" width="8" height="8" rx="1" fill="#fff" opacity=".9"/></svg> },
+  { name: 'iCal Feed', action: 'Calendar subscribed', color: '#FF3B30', bg: '#fff1f2', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#FF3B30"/><rect x="5" y="10" width="22" height="16" rx="2" fill="#fff"/><rect x="5" y="10" width="22" height="6" rx="2" fill="#FF3B30"/><rect x="10" y="5" width="3" height="6" rx="1.5" fill="#CC2D26"/><rect x="19" y="5" width="3" height="6" rx="1.5" fill="#CC2D26"/><text x="16" y="23" textAnchor="middle" fontSize="7" fontWeight="800" fill="#FF3B30">iCal</text></svg> },
+  { name: 'Door Display', action: 'Panel connected', color: '#00c07a', bg: '#ecfdf5', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#ecfdf5"/><rect x="8" y="5" width="16" height="22" rx="2" fill="#0f172a"/><rect x="10" y="7" width="12" height="16" rx="1" fill="#1e293b"/><circle cx="16" cy="25" r="1" fill="#475569"/><rect x="11" y="8" width="10" height="2" rx="1" fill="#00c07a"/><rect x="11" y="12" width="7" height="1.5" rx="0.75" fill="#334155"/><rect x="11" y="15" width="9" height="1.5" rx="0.75" fill="#334155"/></svg> },
+  { name: 'Email Alerts', action: 'Notification sent', color: '#00c07a', bg: '#ecfdf5', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#ecfdf5"/><rect x="5" y="9" width="22" height="15" rx="2" fill="#00c07a"/><path d="M5 11l11 8 11-8" stroke="#fff" strokeWidth="1.5" fill="none"/></svg> },
+]
+
+const CX = 370, CY = 270, W = 800, H = 560, CARD_W = 138, CARD_H = 70
+const HUB_NODES = [
+  { idx: 0, x: 320, y: 10 }, { idx: 1, x: 590, y: 55 }, { idx: 2, x: 650, y: 230 },
+  { idx: 3, x: 560, y: 430 }, { idx: 4, x: 270, y: 480 }, { idx: 5, x: 20, y: 430 },
+  { idx: 6, x: -20, y: 230 }, { idx: 7, x: 70, y: 55 },
+]
+
+function IntegrationHub() {
+  const [activeIdx, setActiveIdx] = useState(-1)
+  const [doneSet, setDoneSet] = useState(new Set())
+  const [visible, setVisible] = useState(false)
+  const ref = useRef(null)
+  const timer = useRef(null)
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true) }, { threshold: 0.2 })
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!visible) return
+    let i = 0
+    const run = () => {
+      setActiveIdx(i)
+      timer.current = setTimeout(() => {
+        const ci = i
+        setDoneSet(prev => new Set([...prev, ci]))
+        i++
+        if (i < INTEGRATIONS.length) { timer.current = setTimeout(run, 400) }
+        else {
+          timer.current = setTimeout(() => {
+            setActiveIdx(-1); setDoneSet(new Set()); i = 0
+            timer.current = setTimeout(run, 800)
+          }, 3500)
+        }
+      }, 900)
+    }
+    timer.current = setTimeout(run, 600)
+    return () => clearTimeout(timer.current)
+  }, [visible])
+
+  return (
+    <div ref={ref} style={{ maxWidth: 820, margin: '0 auto', position: 'relative' }}>
+      <div style={{ position: 'relative', width: '100%', paddingBottom: `${(H/W)*100}%` }}>
+        <div style={{ position: 'absolute', inset: 0 }}>
+          <svg style={{ position:'absolute', inset:0, width:'100%', height:'100%', overflow:'visible' }}
+            viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
+            <defs>
+              {INTEGRATIONS.map((item, i) => (
+                <marker key={i} id={`arr-${i}`} markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto">
+                  <path d="M0,0 L0,7 L7,3.5 z" fill={doneSet.has(i) ? item.color : activeIdx===i ? item.color : '#d1d5db'} />
+                </marker>
+              ))}
+            </defs>
+            {HUB_NODES.map(({ idx, x, y }) => {
+              const item = INTEGRATIONS[idx]
+              const isDone = doneSet.has(idx), isActive = activeIdx === idx
+              const cx2 = x+CARD_W/2, cy2 = y+CARD_H/2
+              const dx = cx2-CX, dy = cy2-CY, dist = Math.sqrt(dx*dx+dy*dy)
+              const sx = CX+(dx/dist)*115, sy = CY+(dy/dist)*115
+              const ex = cx2-(dx/dist)*14, ey = cy2-(dy/dist)*14
+              return <line key={idx} x1={sx} y1={sy} x2={ex} y2={ey}
+                stroke={isDone ? item.color : isActive ? item.color : '#e2e8f0'}
+                strokeWidth={isDone ? 2 : isActive ? 1.5 : 1}
+                strokeDasharray={isDone ? 'none' : isActive ? '5 3' : '4 4'}
+                markerEnd={`url(#arr-${idx})`}
+                style={{ transition: 'stroke 0.4s, stroke-width 0.3s' }} />
+            })}
+          </svg>
+
+          <div style={{ position:'absolute', left:`${(CX/W)*100}%`, top:`${(CY/H)*100}%`, transform:'translate(-50%,-50%)', zIndex:10, display:'flex', alignItems:'center', justifyContent:'center' }}>
+            <div style={{ position:'absolute', width:200, height:200, borderRadius:'50%', background:'radial-gradient(circle, rgba(0,192,122,0.14) 0%, rgba(0,192,122,0.05) 50%, transparent 70%)', animation:'pulseRing 2.5s ease-in-out infinite' }}/>
+            <img src={LOGO} alt="SpacioHub" style={{ width:200, height:200, objectFit:'contain', position:'relative', zIndex:2, filter:'drop-shadow(0 8px 32px rgba(0,192,122,0.5))' }}/>
+          </div>
+
+          {HUB_NODES.map(({ idx, x, y }) => {
+            const item = INTEGRATIONS[idx]
+            const isDone = doneSet.has(idx), isActive = activeIdx === idx
+            return (
+              <div key={idx} style={{ position:'absolute', left:`${(x/W)*100}%`, top:`${(y/H)*100}%`, width:CARD_W, height:CARD_H, background:isDone?item.bg:'#fff', border:`2px solid ${isDone?item.color:isActive?item.color+'99':'#e2e8f0'}`, borderRadius:14, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:3, boxShadow:isDone?`0 6px 24px ${item.color}30`:isActive?`0 4px 16px ${item.color}20`:'0 2px 8px rgba(0,0,0,0.06)', transition:'all 0.4s cubic-bezier(.16,1,.3,1)', transform:isDone?'scale(1.05)':isActive?'scale(1.02)':'scale(1)', opacity:visible?1:0, zIndex:5 }}>
+                {item.logo}
+                <div style={{ fontSize:10, fontWeight:700, color:isDone?'#0f172a':'#94a3b8', textAlign:'center', lineHeight:1.2, padding:'0 6px' }}>{item.name}</div>
+                {(isDone||isActive) && <div style={{ fontSize:8, fontWeight:700, color:item.color, background:`${item.color}15`, padding:'1px 7px', borderRadius:100, whiteSpace:'nowrap' }}>{isDone?`✓ ${item.action}`:'⟳ Connecting...'}</div>}
+              </div>
+            )
+          })}
+        </div>
+      </div>
+      <div style={{ textAlign:'center', marginTop:12, fontSize:13, color:'#64748b', fontWeight:500 }}>
+        {doneSet.size === INTEGRATIONS.length ? <span style={{ color:'#00c07a', fontWeight:700 }}>✓ All {INTEGRATIONS.length} integrations connected</span>
+          : doneSet.size > 0 ? <span>{doneSet.size} of {INTEGRATIONS.length} connected...</span>
+          : <span style={{ opacity:0.5 }}>Initialising connections...</span>}
+      </div>
+      <style>{`@keyframes pulseRing{0%,100%{box-shadow:0 0 0 10px rgba(0,192,122,0.10),0 8px 32px rgba(0,192,122,0.35);}50%{box-shadow:0 0 0 16px rgba(0,192,122,0.06),0 8px 40px rgba(0,192,122,0.45);}}`}</style>
+    </div>
+  )
+}
+
+function useCountUp(target, duration = 1200, start = false) {
+  const [val, setVal] = useState(0)
+  useEffect(() => {
+    if (!start || target === '∞' || target === '$0' || isNaN(parseInt(target))) { setVal(target); return }
+    const n = parseInt(target)
+    const step = Math.ceil(n / (duration / 16))
+    let cur = 0
+    const t = setInterval(() => {
+      cur = Math.min(cur + step, n)
+      setVal(cur)
+      if (cur >= n) clearInterval(t)
+    }, 16)
+    return () => clearInterval(t)
+  }, [start, target])
+  return val
+}
+
+function StatPill({ n, label, col, bg, border, started }) {
+  const val = useCountUp(n, 1000, started)
+  return (
+    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', background:bg, border:`1.5px solid ${border}`, borderRadius:16, padding:'18px 28px', minWidth:120, transition:'transform 0.3s', cursor:'default' }}
+      onMouseEnter={e => e.currentTarget.style.transform='translateY(-4px) scale(1.04)'}
+      onMouseLeave={e => e.currentTarget.style.transform='translateY(0) scale(1)'}>
+      <div style={{ fontSize:32, fontWeight:900, letterSpacing:-1.5, background:`linear-gradient(135deg,${col},${col}99)`, WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', lineHeight:1 }}>
+        {n === '∞' ? '∞' : n === '$0' ? '$0' : n.includes('min') ? `${val} min` : val}
+      </div>
+      <div style={{ fontSize:11, color:'#64748b', marginTop:5, fontWeight:600, textAlign:'center' }}>{label}</div>
+    </div>
+  )
+}
 
 export default function Home() {
   const { openModal } = useModal()
+  const heroRef = useRef(null)
+  const [statsStarted, setStatsStarted] = useState(false)
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setStatsStarted(true) }, { threshold: 0.3 })
+    if (heroRef.current) obs.observe(heroRef.current)
+    return () => obs.disconnect()
+  }, [])
 
   return (
     <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
 
       {/* HERO */}
-      <section style={{ background: 'linear-gradient(180deg,#f0fdf8 0%,#ffffff 70%)', borderBottom: '1px solid #e2e8f0', padding: '100px 0 80px', textAlign: 'center', overflow: 'hidden', position: 'relative' }}>
-        <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 800, height: 400, background: 'radial-gradient(ellipse,rgba(0,192,122,0.09),transparent 70%)', pointerEvents: 'none' }} />
-        <div className="container">
-          <div className="badge animate-fade-up" style={{ marginBottom: 28 }}>
-            <div className="badge-dot" />
-            Now live at go.spaciohub.com
+      <section ref={heroRef} style={{ background: 'linear-gradient(180deg,#f0fdf8 0%,#ffffff 70%)', borderBottom: '1px solid #e2e8f0', padding: '100px 0 80px', textAlign: 'center', overflow: 'hidden', position: 'relative' }}>
+
+        {/* Background glow */}
+        <div style={{ position:'absolute', top:0, left:'50%', transform:'translateX(-50%)', width:900, height:500, background:'radial-gradient(ellipse,rgba(0,192,122,0.09),transparent 70%)', pointerEvents:'none' }} />
+        {/* Subtle grid */}
+        <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(0,192,122,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,192,122,0.03) 1px,transparent 1px)', backgroundSize:'50px 50px', pointerEvents:'none' }} />
+
+        {/* Floating card — top left */}
+        <div style={{ position:'absolute', left:'6%', top:'18%', animation:'heroFloat1 5s ease-in-out infinite', animationDelay:'0.6s', zIndex:2 }}>
+          <div style={{ background:'#fff', border:'1px solid #a7f3d0', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 28px rgba(0,192,122,0.15)', display:'flex', alignItems:'center', gap:10, whiteSpace:'nowrap', animation:'heroBounceIn 0.5s cubic-bezier(.16,1,.3,1) 0.4s both' }}>
+            <div style={{ width:30, height:30, borderRadius:8, background:'#ecfdf5', display:'flex', alignItems:'center', justifyContent:'center' }}>
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="none"><rect x="3" y="4" width="14" height="13" rx="2" fill="#00c07a" opacity="0.15"/><rect x="3" y="4" width="14" height="4" rx="2" fill="#00c07a"/><rect x="5" y="11" width="3" height="3" rx="0.5" fill="#00c07a" opacity="0.6"/><rect x="9" y="11" width="3" height="3" rx="0.5" fill="#00c07a" opacity="0.6"/></svg>
+            </div>
+            <div style={{ textAlign:'left' }}>
+              <div style={{ fontSize:11, fontWeight:700, color:'#0f172a' }}>Board Room booked</div>
+              <div style={{ fontSize:10, color:'#94a3b8' }}>2:00 – 3:00 PM · Sarah J.</div>
+            </div>
+            <div style={{ width:7, height:7, borderRadius:'50%', background:'#00c07a', animation:'pulse 2s infinite', flexShrink:0 }} />
           </div>
-          <h1 className="h1 animate-fade-up delay-1" style={{ marginBottom: 20 }}>
-            The smartest way to<br />manage your <span className="accent">workspace</span>
+        </div>
+
+        {/* Floating card — top right */}
+        <div style={{ position:'absolute', right:'6%', top:'14%', animation:'heroFloat2 6s ease-in-out infinite', animationDelay:'1s', zIndex:2 }}>
+          <div style={{ background:'#fff', border:'1px solid #bfdbfe', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 28px rgba(59,130,246,0.12)', display:'flex', alignItems:'center', gap:10, whiteSpace:'nowrap', animation:'heroBounceIn 0.5s cubic-bezier(.16,1,.3,1) 0.7s both' }}>
+            <div style={{ width:30, height:30, borderRadius:8, background:'#eff6ff', display:'flex', alignItems:'center', justifyContent:'center' }}>
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="none"><circle cx="8" cy="8" r="4" fill="#3b82f6" opacity="0.6"/><path d="M3 16c0-3 2.2-5 5-5h4c2.8 0 5 2 5 5" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" fill="none"/></svg>
+            </div>
+            <div style={{ textAlign:'left' }}>
+              <div style={{ fontSize:11, fontWeight:700, color:'#0f172a' }}>James Wilson arrived</div>
+              <div style={{ fontSize:10, color:'#94a3b8' }}>Visitor · Host: Emily K.</div>
+            </div>
+            <div style={{ background:'#eff6ff', color:'#3b82f6', fontSize:9, fontWeight:700, padding:'2px 7px', borderRadius:100 }}>Checked in</div>
+          </div>
+        </div>
+
+        {/* Floating card — bottom left */}
+        <div style={{ position:'absolute', left:'8%', bottom:'22%', animation:'heroFloat3 7s ease-in-out infinite', animationDelay:'1.4s', zIndex:2 }}>
+          <div style={{ background:'#fff', border:'1px solid #ddd6fe', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 28px rgba(139,92,246,0.12)', display:'flex', alignItems:'center', gap:10, whiteSpace:'nowrap', animation:'heroBounceIn 0.5s cubic-bezier(.16,1,.3,1) 1.0s both' }}>
+            <div style={{ width:30, height:30, borderRadius:8, background:'#f5f3ff', display:'flex', alignItems:'center', justifyContent:'center' }}>
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="none"><rect x="3" y="12" width="3" height="5" rx="1" fill="#8b5cf6" opacity="0.4"/><rect x="8" y="8" width="3" height="9" rx="1" fill="#8b5cf6" opacity="0.65"/><rect x="13" y="5" width="3" height="12" rx="1" fill="#8b5cf6"/></svg>
+            </div>
+            <div style={{ textAlign:'left' }}>
+              <div style={{ fontSize:11, fontWeight:700, color:'#0f172a' }}>94% utilisation</div>
+              <div style={{ fontSize:10, color:'#94a3b8' }}>This week · +12% vs last</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating card — bottom right */}
+        <div style={{ position:'absolute', right:'7%', bottom:'25%', animation:'heroFloat1 5.5s ease-in-out infinite 1s', zIndex:2 }}>
+          <div style={{ background:'#fff', border:'1px solid #fde68a', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 28px rgba(245,158,11,0.12)', display:'flex', alignItems:'center', gap:10, whiteSpace:'nowrap', animation:'heroBounceIn 0.5s cubic-bezier(.16,1,.3,1) 1.2s both' }}>
+            <div style={{ width:30, height:30, borderRadius:8, background:'#fefce8', display:'flex', alignItems:'center', justifyContent:'center' }}>
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="none"><rect x="7" y="8" width="6" height="9" rx="1" fill="#f59e0b" opacity="0.2"/><rect x="7" y="8" width="6" height="9" rx="1" stroke="#f59e0b" strokeWidth="1.2"/><circle cx="10" cy="12" r="1.5" fill="#f59e0b"/><rect x="9" y="4" width="2" height="4" rx="1" fill="#f59e0b"/></svg>
+            </div>
+            <div style={{ textAlign:'left' }}>
+              <div style={{ fontSize:11, fontWeight:700, color:'#0f172a' }}>AI booked Focus Room</div>
+              <div style={{ fontSize:10, color:'#94a3b8' }}>"Quiet space for 2hrs"</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="container" style={{ position:'relative', zIndex:3 }}>
+          <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="badge animate-fade-up" style={{ marginBottom:28, textDecoration:'none', display:'inline-flex' }}>
+            <div className="badge-dot" />
+            Now live at go.spaciohub.com →
+          </a>
+          <h1 className="h1 animate-fade-up delay-1" style={{ marginBottom:20, textAlign:'center' }}>
+            The smartest way to<br />manage your <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>workspace</span>
           </h1>
-          <p className="lead animate-fade-up delay-2" style={{ maxWidth: 540, margin: '0 auto 44px' }}>
+          <p className="lead animate-fade-up delay-2" style={{ maxWidth:540, margin:'0 auto 44px' }}>
             SpacioHub replaces chaotic email chains and spreadsheets with intelligent room booking, live door displays, visitor management, and real-time analytics.
           </p>
-          <div className="animate-fade-up delay-3" style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 64 }}>
+          <div className="animate-fade-up delay-3" style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap', marginBottom:64, textAlign:'center' }}>
             <button className="btn btn-primary btn-lg" onClick={openModal}>Request a Demo →</button>
             <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="btn btn-outline btn-lg">Try free for 14 days</a>
           </div>
-          <div className="animate-fade-up delay-4" style={{ display: 'flex', gap: 0, justifyContent: 'center', border: '1px solid #e2e8f0', borderRadius: 12, background: '#fff', overflow: 'hidden', maxWidth: 560, margin: '0 auto', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
-            {[['14', 'Day free trial'], ['5 min', 'Setup time'], ['$0', 'Setup cost'], ['∞', 'Scalability']].map(([n, l], i) => (
-              <div key={l} style={{ flex: 1, padding: '20px 16px', textAlign: 'center', borderRight: i < 3 ? '1px solid #e2e8f0' : 'none' }}>
-                <div style={{ fontSize: 28, fontWeight: 800, letterSpacing: -1, color: '#0f172a' }}>{n}</div>
-                <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 3, fontWeight: 500 }}>{l}</div>
-              </div>
-            ))}
+          {/* Stats pills with count-up */}
+          <div className="animate-fade-up delay-4" style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap', marginBottom:8 }}>
+            <StatPill n="14"  label="Day free trial" col="#00c07a" bg="#ecfdf5" border="#a7f3d0" started={statsStarted} />
+            <StatPill n="5 min" label="Setup time"   col="#0F799B" bg="#eff6ff" border="#bfdbfe" started={statsStarted} />
+            <StatPill n="$0"  label="Setup cost"     col="#8b5cf6" bg="#f5f3ff" border="#ddd6fe" started={statsStarted} />
+            <StatPill n="∞"   label="Scalability"    col="#f59e0b" bg="#fff7ed" border="#fed7aa" started={statsStarted} />
           </div>
         </div>
       </section>
+      <style>{`
+        @keyframes heroFloat1    { 0%,100%{transform:translateY(0)}   50%{transform:translateY(-12px)} }
+        @keyframes heroFloat2    { 0%,100%{transform:translateY(0)}   50%{transform:translateY(-16px)} }
+        @keyframes heroFloat3    { 0%,100%{transform:translateY(0)}   50%{transform:translateY(-10px)} }
+        @keyframes heroBounceIn  { from{opacity:0;transform:scale(0.7) translateY(16px)} to{opacity:1;transform:scale(1) translateY(0)} }
+      `}</style>
 
-      {/* SOCIAL PROOF */}
+      {/* SOCIAL PROOF — exact from live site */}
       <section style={{ padding: '28px 0', borderBottom: '1px solid #e2e8f0', background: '#f8fafc' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <p style={{ fontSize: 12, color: '#94a3b8', fontWeight: 500, letterSpacing: '0.5px', textTransform: 'uppercase', marginBottom: 16 }}>Trusted by modern workplaces</p>
           <div style={{ display: 'flex', gap: 32, justifyContent: 'center', flexWrap: 'wrap' }}>
-            {['Corporate Offices', 'Coworking Spaces', 'Hotels & Events', 'Universities', 'Healthcare'].map(t => (
+            {['Corporate Offices', 'Coworking Spaces', 'Hotels & Events', 'Healthcare'].map(t => (
               <span key={t} style={{ fontSize: 14, fontWeight: 600, color: '#94a3b8' }}>{t}</span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* SCREEN MOCKUP */}
+      {/* SCREEN MOCKUP — exact from live site */}
       <section style={{ padding: '64px 0', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
+          <div style={{ position:'relative' }}>
+            <div className="float-badge animate-fade-up delay-5" style={{ position:'absolute', top:-18, right:20, zIndex:20, animation:'float 4s ease-in-out infinite', boxShadow:'0 8px 24px rgba(0,192,122,0.2)' }}>
+              <span style={{ width:20,height:20,borderRadius:'50%',background:'#00c07a',display:'flex',alignItems:'center',justifyContent:'center',fontSize:10,color:'#fff',fontWeight:800 }}>✓</span>
+              Board Room booked!
+            </div>
+            <div className="float-badge animate-fade-up delay-6" style={{ position:'absolute', bottom:40, left:-10, zIndex:20, animation:'float 5s ease-in-out infinite 1.5s', fontSize:11 }}>
+              <span style={{ width:8,height:8,borderRadius:'50%',background:'#00c07a',display:'inline-block',animation:'pulse 2s infinite' }}/> Live · 94% utilised
+            </div>
           <div className="reveal" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 14, overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.07)' }}>
             <div style={{ background: '#fff', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 7, borderBottom: '1px solid #f1f5f9' }}>
               {['#ff5f57','#febc2e','#28c840'].map(c => <div key={c} style={{ width: 11, height: 11, borderRadius: '50%', background: c }} />)}
@@ -78,10 +358,10 @@ export default function Home() {
             <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', minHeight: 360 }}>
               <div style={{ background: '#fff', borderRight: '1px solid #f1f5f9', padding: 16 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px', borderRadius: 8, background: '#f8fafc', marginBottom: 16 }}>
-                  <div style={{ width: 26, height: 26, background: '#00c07a', borderRadius: 7, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 13, fontWeight: 700 }}>S</div>
+                  <img src={LOGO} alt="S" style={{ width: 26, height: 26, objectFit: 'contain' }} />
                   <div><div style={{ fontSize: 12, fontWeight: 600, color: '#334155' }}>SpacioHub</div><div style={{ fontSize: 10, color: '#94a3b8' }}>Acme Corp</div></div>
                 </div>
-                {[['📊', 'Dashboard', true], ['📅', 'Book a Room'], ['🚪', 'Rooms'], ['📋', 'My Bookings'], ['🖥️', 'Door Display'], ['👥', 'Visitors'], ['📈', 'Analytics'], ['🤖', 'AI Booker']].map(([ic, label, active]) => (
+                {[['📊','Dashboard',true],['📅','Book a Room'],['🚪','Rooms'],['📋','My Bookings'],['🖥️','Door Display'],['👥','Visitors'],['📈','Analytics'],['💡','AI Booker']].map(([ic, label, active]) => (
                   <div key={label} style={{ padding: '7px 10px', borderRadius: 6, fontSize: 12, color: active ? '#00c07a' : '#94a3b8', background: active ? '#f0fdf8' : 'transparent', fontWeight: active ? 600 : 400, marginBottom: 1, display: 'flex', alignItems: 'center', gap: 7 }}>
                     <span>{ic}</span>{label}
                   </div>
@@ -89,7 +369,7 @@ export default function Home() {
               </div>
               <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 14, background: '#f8fafc' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10 }}>
-                  {[['12', 'Active Rooms', true], ['38', "Today's Bookings"], ['4', 'In Use Now'], ['94%', 'Utilization']].map(([n, l, hi]) => (
+                  {[['12','Active Rooms',true],['38',"Today's Bookings"],['4','In Use Now'],['94%','Utilization']].map(([n, l, hi]) => (
                     <div key={l} style={{ background: hi ? '#f0fdf8' : '#fff', border: `1px solid ${hi ? '#d1fae5' : '#f1f5f9'}`, borderRadius: 10, padding: 14, boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
                       <div style={{ fontSize: 22, fontWeight: 700, color: hi ? '#00c07a' : '#0f172a' }}>{n}</div>
                       <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2, textTransform: 'uppercase', letterSpacing: '0.3px' }}>{l}</div>
@@ -106,75 +386,200 @@ export default function Home() {
                         <div style={{ width: 6, height: 6, borderRadius: '50%', background: r.c, flexShrink: 0 }} />
                         <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.n}</span>
                       </div>
-                      {r.s.map((bk, i) => <div key={i} style={{ height: 24, borderRadius: 3, background: bk ? r.c + '22' : '#f8fafc', borderLeft: bk ? `2px solid ${r.c}` : 'none' }} />)}
+                      {r.s.map((bk, i) => <div key={i} style={{ height: 24, borderRadius: 3, background: bk ? r.c+'22' : '#f8fafc', borderLeft: bk ? `2px solid ${r.c}` : 'none' }} />)}
                     </div>
                   ))}
                 </div>
               </div>
             </div>
           </div>
+          </div>
         </div>
       </section>
 
-      {/* FEATURES */}
+      {/* FEATURES — bento grid */}
       <section style={{ padding: '80px 0', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
           <div style={{ marginBottom: 48 }}>
             <span className="tag reveal">Features</span>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 20 }}>
-              <h2 className="h2 reveal">Everything your workspace needs,<br />nothing it doesn't</h2>
+              <h2 className="h2 reveal">Everything your <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>workspace needs</span>,<br />nothing it doesn't</h2>
               <p className="body reveal" style={{ maxWidth: 360 }}>Built for modern teams. Every feature designed to reduce admin work and improve how your space gets used.</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 1, background: '#e2e8f0', border: '1px solid #e2e8f0', borderRadius: 16, overflow: 'hidden' }}>
-            {FEATURES.map((f, i) => (
-              <Link key={f.title} to={f.link} style={{ background: '#fff', padding: 32, textDecoration: 'none', transition: 'background 0.2s', display: 'block', animationDelay: `${i * 0.08}s` }}
-                onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'}
-                onMouseLeave={e => e.currentTarget.style.background = '#fff'}>
-                <div style={{ width: 44, height: 44, background: f.color, border: `1px solid ${f.border}`, borderRadius: 11, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, marginBottom: 18 }}>{f.icon}</div>
-                <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 8, color: '#0f172a' }}>{f.title}</h3>
-                <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.65 }}>{f.desc}</p>
-                <span style={{ display: 'inline-block', marginTop: 12, fontSize: 10, fontWeight: 700, color: '#94a3b8', background: '#f1f5f9', padding: '2px 8px', borderRadius: 100, letterSpacing: '0.5px' }}>{f.tag}</span>
-              </Link>
-            ))}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12,1fr)', gap: 16 }}>
+
+            {/* Card 1 — Large green: Smart Room Booking */}
+            <Link to="/platform/booking" className="reveal" style={{ gridColumn:'span 5', textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#f0fdf8,#dcfce7)', border:'1px solid #a7f3d0', padding:'36px 32px', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:260 }}
+              onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(0,192,122,0.15)'}}
+              onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
+              <div style={{ position:'absolute',top:-30,right:-30,width:160,height:160,borderRadius:'50%',background:'radial-gradient(circle,rgba(0,192,122,0.15),transparent 70%)' }}/>
+              <div style={{ fontSize:36,marginBottom:20 }}>📅</div>
+              <span style={{ fontSize:10,fontWeight:700,color:'#009960',letterSpacing:'1px',textTransform:'uppercase',marginBottom:10,background:'rgba(0,192,122,0.15)',padding:'3px 10px',borderRadius:100,display:'inline-block',width:'fit-content' }}>CORE</span>
+              <h3 style={{ fontSize:20,fontWeight:800,color:'#0f172a',marginBottom:12,letterSpacing:-0.5 }}>Smart Room Booking</h3>
+              <p style={{ fontSize:14,color:'#374151',lineHeight:1.7,flex:1 }}>Visual time grid, 15-min buffer, AI suggestions, booking tags, and Zoom auto-links on every booking.</p>
+              <div style={{ marginTop:20,fontSize:13,fontWeight:700,color:'#009960' }}>Explore feature →</div>
+            </Link>
+
+            {/* Card 2 — Blue: Door Display */}
+            <Link to="/platform/booking#door-display" className="reveal" style={{ gridColumn:'span 4', textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#eff6ff,#dbeafe)', border:'1px solid #bfdbfe', padding:'36px 32px', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:260 }}
+              onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(59,130,246,0.15)'}}
+              onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
+              <div style={{ position:'absolute',top:-20,right:-20,width:130,height:130,borderRadius:'50%',background:'radial-gradient(circle,rgba(59,130,246,0.12),transparent 70%)' }}/>
+              <div style={{ fontSize:36,marginBottom:20 }}>🖥️</div>
+              <span style={{ fontSize:10,fontWeight:700,color:'#2563eb',letterSpacing:'1px',textTransform:'uppercase',marginBottom:10,background:'rgba(59,130,246,0.12)',padding:'3px 10px',borderRadius:100,display:'inline-block',width:'fit-content' }}>HARDWARE</span>
+              <h3 style={{ fontSize:20,fontWeight:800,color:'#0f172a',marginBottom:12,letterSpacing:-0.5 }}>Door Display Panel</h3>
+              <p style={{ fontSize:14,color:'#374151',lineHeight:1.7,flex:1 }}>Real-time status on any tablet. Quick book, check-in, and guest booking — no login required.</p>
+              <div style={{ marginTop:20,fontSize:13,fontWeight:700,color:'#2563eb' }}>Explore feature →</div>
+            </Link>
+
+            {/* Card 3 — Dark: AI */}
+            <Link to="/platform/booking" className="reveal" style={{ gridColumn:'span 3', textDecoration:'none', borderRadius:20, background:'linear-gradient(160deg,#0f172a,#1e293b)', border:'1px solid #334155', padding:'32px 28px', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:260 }}
+              onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(0,0,0,0.25)'}}
+              onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
+              <div style={{ position:'absolute',top:-40,right:-40,width:180,height:180,borderRadius:'50%',background:'radial-gradient(circle,rgba(0,192,122,0.15),transparent 70%)' }}/>
+              <div style={{ fontSize:36,marginBottom:20 }}>✨</div>
+              <span style={{ fontSize:10,fontWeight:700,color:'#00c07a',letterSpacing:'1px',textTransform:'uppercase',marginBottom:10,background:'rgba(0,192,122,0.15)',padding:'3px 10px',borderRadius:100,display:'inline-block',width:'fit-content' }}>AI</span>
+              <h3 style={{ fontSize:18,fontWeight:800,color:'#fff',marginBottom:10,letterSpacing:-0.5 }}>AI Room Booker</h3>
+              <p style={{ fontSize:13,color:'#94a3b8',lineHeight:1.7,flex:1 }}>Describe what you need in plain language — AI finds and books the perfect room instantly.</p>
+              <div style={{ marginTop:20,fontSize:13,fontWeight:700,color:'#00c07a' }}>Try it →</div>
+            </Link>
+
+            {/* Card 4 — Purple: Analytics */}
+            <Link to="/platform/booking#analytics" className="reveal" style={{ gridColumn:'span 4', textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#f5f3ff,#ede9fe)', border:'1px solid #ddd6fe', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220 }}
+              onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(139,92,246,0.15)'}}
+              onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
+              <div style={{ display:'flex',alignItems:'flex-end',gap:5,marginBottom:20,height:40 }}>
+                {[60,80,45,90,65,100,72].map((h,i)=><div key={i} style={{ flex:1,height:`${h}%`,borderRadius:4,background:i===5?'#8b5cf6':'rgba(139,92,246,0.25)' }}/>)}
+              </div>
+              <span style={{ fontSize:10,fontWeight:700,color:'#7c3aed',letterSpacing:'1px',textTransform:'uppercase',marginBottom:10,background:'rgba(139,92,246,0.12)',padding:'3px 10px',borderRadius:100,display:'inline-block',width:'fit-content' }}>INSIGHTS</span>
+              <h3 style={{ fontSize:18,fontWeight:800,color:'#0f172a',marginBottom:8,letterSpacing:-0.5 }}>Analytics & Reports</h3>
+              <p style={{ fontSize:13,color:'#374151',lineHeight:1.65,flex:1 }}>Peak hours, utilisation, no-show tracking, and full CSV export.</p>
+            </Link>
+
+            {/* Card 5 — Orange: Visitor Management */}
+            <Link to="/platform/visitors" className="reveal" style={{ gridColumn:'span 4', textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#fff7ed,#ffedd5)', border:'1px solid #fed7aa', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220 }}
+              onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(249,115,22,0.12)'}}
+              onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
+              <div style={{ display:'flex',gap:6,marginBottom:20 }}>
+                {['Sarah K.','John D.','Maria L.'].map((n,i)=>(
+                  <div key={n} style={{ flex:1,background:'#fff',borderRadius:8,padding:'6px 8px',border:'1px solid #fed7aa' }}>
+                    <div style={{ width:20,height:20,borderRadius:'50%',background:['#f97316','#22c55e','#3b82f6'][i],display:'flex',alignItems:'center',justifyContent:'center',fontSize:8,color:'#fff',fontWeight:800,margin:'0 auto 4px' }}>{n[0]}</div>
+                    <div style={{ fontSize:7,color:'#64748b',textAlign:'center',fontWeight:600 }}>{n}</div>
+                    <div style={{ fontSize:7,color:['#f97316','#22c55e','#3b82f6'][i],textAlign:'center',marginTop:2 }}>{['Expected','In ✓','Expected'][i]}</div>
+                  </div>
+                ))}
+              </div>
+              <span style={{ fontSize:10,fontWeight:700,color:'#ea580c',letterSpacing:'1px',textTransform:'uppercase',marginBottom:10,background:'rgba(249,115,22,0.12)',padding:'3px 10px',borderRadius:100,display:'inline-block',width:'fit-content' }}>ENTERPRISE</span>
+              <h3 style={{ fontSize:18,fontWeight:800,color:'#0f172a',marginBottom:8,letterSpacing:-0.5 }}>Visitor Management</h3>
+              <p style={{ fontSize:13,color:'#374151',lineHeight:1.65,flex:1 }}>Pre-register guests, self-service kiosk, custom badges, and instant host notifications.</p>
+            </Link>
+
+            {/* Card 6 — Pink: Calendar */}
+            <Link to="/platform/booking#integrations" className="reveal" style={{ gridColumn:'span 4', textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#fdf2f8,#fce7f3)', border:'1px solid #fbcfe8', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220 }}
+              onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(236,72,153,0.12)'}}
+              onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
+              <div style={{ display:'flex',alignItems:'center',gap:8,marginBottom:20 }}>
+                <div style={{ width:32,height:32,borderRadius:8,background:'#fff',border:'1px solid #fbcfe8',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18 }}>📅</div>
+                <div style={{ display:'flex',gap:3 }}>{[0,1,2].map(i=><div key={i} style={{ width:5,height:5,borderRadius:'50%',background:'#ec4899',opacity:0.3+i*0.3,animation:`pulse ${1+i*0.3}s infinite` }}/>)}</div>
+                <div style={{ width:32,height:32,borderRadius:8,background:'#fff',border:'1px solid #fbcfe8',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18 }}>📆</div>
+              </div>
+              <span style={{ fontSize:10,fontWeight:700,color:'#be185d',letterSpacing:'1px',textTransform:'uppercase',marginBottom:10,background:'rgba(236,72,153,0.1)',padding:'3px 10px',borderRadius:100,display:'inline-block',width:'fit-content' }}>INTEGRATION</span>
+              <h3 style={{ fontSize:18,fontWeight:800,color:'#0f172a',marginBottom:8,letterSpacing:-0.5 }}>Calendar & iCal</h3>
+              <p style={{ fontSize:13,color:'#374151',lineHeight:1.65,flex:1 }}>Subscribe to any room's live calendar in Google or Outlook. Always in sync, automatically.</p>
+            </Link>
+
           </div>
         </div>
       </section>
 
-      {/* USE CASES */}
+      {/* HOW IT WORKS — new */}
       <section style={{ padding: '80px 0', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: 56 }}>
+            <span className="tag reveal">How it works</span>
+            <h2 className="h2 reveal">Up and running <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>in minutes</span>, not months</h2>
+            <p className="body reveal" style={{ maxWidth: 400, margin: '12px auto 0', color: '#64748b' }}>No complex onboarding. Sign up and your team is booking rooms today.</p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16 }}>
+            {STEPS.map((step, i) => (
+              <div key={step.num} className="card reveal" style={{ animationDelay: `${i*0.1}s` }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+                  <div style={{ width: 40, height: 40, borderRadius: 10, background: '#00c07a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, color: '#fff', fontFamily: 'DM Mono,monospace', flexShrink: 0 }}>{step.num}</div>
+                  <span style={{ fontSize: 22 }}>{step.icon}</span>
+                </div>
+                <h4 style={{ fontSize: 14, fontWeight: 700, color: '#0f172a', marginBottom: 8 }}>{step.title}</h4>
+                <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.65 }}>{step.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center', marginTop: 36 }}>
+            <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="btn btn-primary btn-lg reveal">Start your free 14-day trial →</a>
+          </div>
+        </div>
+      </section>
+
+      {/* USE CASES — exact from live site */}
+      <section style={{ padding: '80px 0', borderBottom: '1px solid #e2e8f0' }}>
+        <div className="container">
           <span className="tag reveal">Use Cases</span>
-          <h2 className="h2 reveal" style={{ marginBottom: 48 }}>Built for every kind of workspace</h2>
+          <h2 className="h2 reveal" style={{ marginBottom: 48 }}>Built for every kind of <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>workspace</span></h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16 }}>
             {USE_CASES.map((uc, i) => (
               <Link key={uc.title} to={uc.href} className="card reveal" style={{ textDecoration: 'none', animationDelay: `${i * 0.1}s` }}>
-                <div style={{ fontSize: 32, marginBottom: 14 }}>{uc.icon}</div>
+                <div style={{ marginBottom: 14 }}>{uc.icon}</div>
                 <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 8, color: '#0f172a' }}>{uc.title}</h3>
                 <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6 }}>{uc.desc}</p>
-                <div style={{ marginTop: 16, fontSize: 13, fontWeight: 600, color: '#00c07a' }}>Learn more →</div>
+                <div style={{ marginTop: 16, fontSize: 13, fontWeight: 600, color: uc.accent || '#00c07a' }}>Learn more →</div>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* INTEGRATIONS */}
-      <section style={{ padding: '56px 0', borderBottom: '1px solid #e2e8f0' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <p className="reveal" style={{ fontSize: 13, color: '#94a3b8', fontWeight: 500, marginBottom: 24, letterSpacing: '0.3px' }}>Works seamlessly with your existing tools</p>
-          <div className="reveal" style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            {INTEGRATIONS.map(i => (
-              <div key={i} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 8, padding: '10px 18px', fontSize: 13, fontWeight: 600, color: '#374151', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>{i}</div>
+      {/* TESTIMONIALS — new */}
+      <section style={{ padding: '80px 0', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: 48 }}>
+            <span className="tag reveal">Customer Stories</span>
+            <h2 className="h2 reveal">Loved by <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>workplace teams</span></h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
+            {TESTIMONIALS.map((t, i) => (
+              <div key={t.name} className="card reveal" style={{ animationDelay: `${i*0.12}s`, display: 'flex', flexDirection: 'column' }}>
+                <div style={{ display: 'flex', gap: 2, marginBottom: 16 }}>
+                  {[...Array(5)].map((_,si) => <span key={si} style={{ color: '#fbbf24', fontSize: 14 }}>★</span>)}
+                </div>
+                <p style={{ fontSize: 14, color: '#374151', lineHeight: 1.75, fontStyle: 'italic', flex: 1, marginBottom: 20 }}>"{t.quote}"</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingTop: 16, borderTop: '1px solid #f1f5f9' }}>
+                  <div style={{ width: 38, height: 38, borderRadius: '50%', background: t.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{t.avatar}</div>
+                  <div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#0f172a' }}>{t.name}</div>
+                    <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 1 }}>{t.role}</div>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
+      {/* INTEGRATIONS HUB — new hub-and-spoke */}
+      <section style={{ padding: '80px 0', borderBottom: '1px solid #e2e8f0', overflow: 'hidden' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: 48 }}>
+            <span className="tag reveal">Integrations</span>
+            <h2 className="h2 reveal">Connects with <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>everything</span><br />your team already uses</h2>
+            <p className="body reveal" style={{ color: '#64748b', maxWidth: 380, margin: '12px auto 0' }}>Watch SpacioHub connect to your entire stack — one integration at a time.</p>
+          </div>
+          <div className="reveal"><IntegrationHub /></div>
+        </div>
+      </section>
+
+      {/* CTA — exact from live site */}
       <section style={{ background: 'linear-gradient(135deg,#0f172a,#1e293b)', padding: '96px 0', textAlign: 'center' }}>
         <div className="container">
-          <h2 className="h2 reveal" style={{ color: '#fff', marginBottom: 16 }}>Ready to transform your workspace?</h2>
+          <h2 className="h2 reveal" style={{ marginBottom: 16, color: '#fff' }}>Ready to <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>transform your workspace?</span></h2>
           <p className="lead reveal" style={{ color: '#94a3b8', marginBottom: 36 }}>14-day free trial. No credit card required. Up and running in 5 minutes.</p>
           <div className="reveal" style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <button className="btn btn-primary btn-lg" onClick={openModal}>Request a Demo →</button>

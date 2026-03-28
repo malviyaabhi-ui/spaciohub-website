@@ -14,6 +14,10 @@ import RolesHotels from './pages/use-cases/Hotels'
 import RolesResellers from './pages/use-cases/Resellers'
 import PlatformBooking from './pages/platforms/Booking'
 import PlatformVisitors from './pages/platforms/Visitors'
+import PlatformDoorDisplay from './pages/platforms/DoorDisplay'
+import PlatformAnalytics from './pages/platforms/Analytics'
+import PlatformAIBooker from './pages/platforms/AIBooker'
+import PlatformIntegrations from './pages/platforms/Integrations'
 import Roles from './pages/Roles'
 
 function ScrollTop() {
@@ -28,7 +32,7 @@ function RevealObserver() {
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }),
       { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     )
-    const observe = () => document.querySelectorAll('.reveal').forEach(el => obs.observe(el))
+    const observe = () => document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => obs.observe(el))
     observe()
     const mo = new MutationObserver(observe)
     mo.observe(document.body, { childList: true, subtree: true })
@@ -53,6 +57,10 @@ export default function App() {
           <Route path="/use-cases/resellers" element={<RolesResellers />} />
           <Route path="/platform/booking" element={<PlatformBooking />} />
           <Route path="/platform/visitors" element={<PlatformVisitors />} />
+          <Route path="/platform/door-display" element={<PlatformDoorDisplay />} />
+          <Route path="/platform/analytics" element={<PlatformAnalytics />} />
+          <Route path="/platform/ai-booker" element={<PlatformAIBooker />} />
+          <Route path="/platform/integrations" element={<PlatformIntegrations />} />
           <Route path="/roles" element={<Roles />} />
         </Routes>
         <Footer />

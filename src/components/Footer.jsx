@@ -58,7 +58,7 @@ export default function Footer() {
       </div>
       <div style={{ background: '#f8fafc', borderTop: '1px solid #e2e8f0', padding: '16px 48px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
         <p style={{ fontSize: 12, color: '#94a3b8' }}>© 2026 SpacioHub by Riser Technologies. All rights reserved.</p>
-        <p style={{ fontSize: 12, color: '#94a3b8' }}>go.spaciohub.com</p>
+        <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" style={{ fontSize: 12, color: "#94a3b8", textDecoration: "none" }} onMouseEnter={e => e.target.style.color="#00c07a"} onMouseLeave={e => e.target.style.color="#94a3b8"}>go.spaciohub.com →</a>
       </div>
     </footer>
   )

@@ -91,7 +91,7 @@ export default function Roles() {
         <div className="container">
           <span className="tag animate-fade-up">Roles & Permissions</span>
           <h1 className="h1 animate-fade-up delay-1" style={{ fontSize: 'clamp(32px,4.5vw,56px)', marginBottom: 20 }}>
-            The right access<br />for every person
+            The right access<br />for <span style={{ background: 'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: 900 }}>every person</span>
           </h1>
           <p className="lead animate-fade-up delay-2" style={{ maxWidth: 520, margin: '0 auto' }}>
             SpacioHub has four distinct roles. Each person gets exactly the access they need — no more, no less.
@@ -149,7 +149,7 @@ export default function Roles() {
       {/* COMPARISON TABLE */}
       <section style={{ padding: '64px 0', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
-          <h2 className="h2 reveal" style={{ marginBottom: 32 }}>Role comparison at a glance</h2>
+          <h2 className="h2 reveal" style={{ marginBottom: 32 }}>Role comparison <span style={{ background: 'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: 900 }}>at a glance</span></h2>
           <div style={{ border: '1px solid #e2e8f0', borderRadius: 14, overflow: 'hidden', background: '#fff' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1.5fr repeat(4,1fr)', background: '#f8fafc', borderBottom: '1px solid #e2e8f0', padding: '12px 20px' }}>
               <div style={{ fontSize: 12, fontWeight: 700, color: '#94a3b8' }}>CAPABILITY</div>
@@ -189,7 +189,7 @@ export default function Roles() {
       {/* CTA */}
       <section style={{ background: 'linear-gradient(135deg,#0f172a,#1e293b)', padding: '80px 0', textAlign: 'center' }}>
         <div className="container">
-          <h2 className="h2" style={{ color: '#fff', marginBottom: 14 }}>Set up your team in minutes</h2>
+          <h2 className="h2" style={{ color: '#fff', marginBottom: 14 }}>Set up your team <span style={{ background: 'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: 900 }}>in minutes</span></h2>
           <p className="lead" style={{ color: '#94a3b8', marginBottom: 32 }}>Invite your team, assign roles, and you're ready to go.</p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <button className="btn btn-primary btn-lg" onClick={openModal}>Request a Demo →</button>
