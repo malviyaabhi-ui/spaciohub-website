@@ -246,12 +246,18 @@ export default function Home() {
       <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
 
       {/* HERO */}
-      <section ref={heroRef} style={{ background: 'linear-gradient(180deg,#f0fdf8 0%,#ffffff 70%)', borderBottom: '1px solid #e2e8f0', padding: '100px 0 80px', textAlign: 'center', overflow: 'hidden', position: 'relative' }}>
+      <section ref={heroRef} style={{ position: 'relative', overflow: 'hidden', borderBottom: '1px solid #1e293b', padding: '120px 0 96px', textAlign: 'center', background: '#060d1a' }}>
 
-        {/* Background glow */}
-        <div style={{ position:'absolute', top:0, left:'50%', transform:'translateX(-50%)', width:900, height:500, background:'radial-gradient(ellipse,rgba(0,192,122,0.09),transparent 70%)', pointerEvents:'none' }} />
-        {/* Subtle grid */}
-        <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(0,192,122,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,192,122,0.03) 1px,transparent 1px)', backgroundSize:'50px 50px', pointerEvents:'none' }} />
+        {/* Animated mesh gradient bg */}
+        <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 80% 60% at 20% 40%, rgba(0,192,122,0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 80% at 80% 20%, rgba(15,121,155,0.12) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 50% 80%, rgba(59,130,246,0.08) 0%, transparent 60%)', animation:'meshMove 12s ease-in-out infinite', pointerEvents:'none' }} />
+        {/* Animated orbs */}
+        <div style={{ position:'absolute', top:'10%', left:'15%', width:500, height:500, borderRadius:'50%', background:'radial-gradient(circle,rgba(0,192,122,0.08),transparent 70%)', animation:'orbFloat1 8s ease-in-out infinite', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', bottom:'10%', right:'10%', width:400, height:400, borderRadius:'50%', background:'radial-gradient(circle,rgba(15,121,155,0.1),transparent 70%)', animation:'orbFloat2 10s ease-in-out infinite 2s', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', top:'40%', right:'25%', width:300, height:300, borderRadius:'50%', background:'radial-gradient(circle,rgba(59,130,246,0.07),transparent 70%)', animation:'orbFloat1 14s ease-in-out infinite 4s', pointerEvents:'none' }} />
+        {/* Grid lines */}
+        <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)', backgroundSize:'60px 60px', pointerEvents:'none' }} />
+        {/* Bottom fade */}
+        <div style={{ position:'absolute', bottom:0, left:0, right:0, height:200, background:'linear-gradient(0deg,#060d1a,transparent)', pointerEvents:'none' }} />
 
         {/* Floating card — top left */}
         {!isMobile && <div className='hero-float-card' style={{ position:'absolute', left:'6%', top:'18%', animation:'heroFloat1 5s ease-in-out infinite', animationDelay:'0.6s', zIndex:2 }}>
@@ -308,43 +314,63 @@ export default function Home() {
         </div>}
 
         <div className="container" style={{ position:'relative', zIndex:3 }}>
-          <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="badge animate-fade-up" style={{ marginBottom:28, textDecoration:'none', display:'inline-flex' }}>
-            <div className="badge-dot" />
+          <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="animate-fade-up" style={{ marginBottom:28, textDecoration:'none', display:'inline-flex', alignItems:'center', gap:8, background:'rgba(0,192,122,0.12)', border:'1px solid rgba(0,192,122,0.3)', color:'#4ade80', padding:'5px 14px', borderRadius:100, fontSize:12, fontWeight:600, backdropFilter:'blur(8px)' }}>
+            <div style={{ width:7, height:7, borderRadius:'50%', background:'#00c07a', animation:'pulse 2s infinite' }} />
             Now live at go.spaciohub.com →
           </a>
-          <h1 className="h1 animate-fade-up delay-1" style={{ marginBottom:20, textAlign:'center' }}>
-            The smartest way to<br />manage your <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>workspace</span>
+          <h1 className="animate-fade-up delay-1" style={{ fontSize:'clamp(42px,6vw,80px)', fontWeight:900, letterSpacing:'-3px', lineHeight:1.0, color:'#fff', marginBottom:24, textAlign:'center' }}>
+            Your workspace,<br />
+            <span style={{ background:'linear-gradient(135deg,#00c07a 0%,#0cb8b6 50%,#3b82f6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>finally intelligent</span>
           </h1>
-          <p className="lead animate-fade-up delay-2" style={{ maxWidth:540, margin:'0 auto 44px' }}>
+          {/* Animated rotating descriptor */}
+          <div className="animate-fade-up delay-2" style={{ height:32, overflow:'hidden', marginBottom:28 }}>
+            <div style={{ animation:'rotateWords 9s infinite', display:'flex', flexDirection:'column', gap:8 }}>
+              {['Book rooms in seconds. No emails.','Visitors check in — hosts get notified.','See exactly how your space is used.'].map(t=>(
+                <div key={t} style={{ height:32, display:'flex', alignItems:'center', justifyContent:'center' }}>
+                  <span style={{ fontSize:16, color:'rgba(255,255,255,0.6)', fontWeight:500, letterSpacing:'-0.2px' }}>{t}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <p className="animate-fade-up delay-3" style={{ maxWidth:520, margin:'0 auto 44px', fontSize:17, color:'rgba(255,255,255,0.55)', lineHeight:1.7, fontWeight:400 }}>
             SpacioHub replaces chaotic email chains and spreadsheets with intelligent room booking, live door displays, visitor management, and real-time analytics.
           </p>
-          <div className="animate-fade-up delay-3 hero-cta-row" style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap', marginBottom:64, textAlign:'center' }}>
-            <button className="btn btn-primary btn-lg" onClick={openModal}>Request a Demo →</button>
-            <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="btn btn-outline btn-lg">Try free for 14 days</a>
-          </div>
-          {/* Stats pills with count-up */}
-          <div className="animate-fade-up delay-4 hero-stats-row" style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap', marginBottom:8 }}>
-            <StatPill n="14"  label="Day free trial" col="#00c07a" bg="#ecfdf5" border="#a7f3d0" started={statsStarted} />
-            <StatPill n="5 min" label="Setup time"   col="#0F799B" bg="#eff6ff" border="#bfdbfe" started={statsStarted} />
-            <StatPill n="$0"  label="Setup cost"     col="#8b5cf6" bg="#f5f3ff" border="#ddd6fe" started={statsStarted} />
-            <StatPill n="∞"   label="Scalability"    col="#f59e0b" bg="#fff7ed" border="#fed7aa" started={statsStarted} />
+          <div className="animate-fade-up delay-4 hero-cta-row" style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap', marginBottom:56, textAlign:'center' }}>
+            <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 0 40px rgba(0,192,122,0.35)' }}>Request a Demo →</button>
+            <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'14px 28px', borderRadius:8, fontSize:15, fontWeight:600, border:'1.5px solid rgba(255,255,255,0.2)', color:'#fff', textDecoration:'none', background:'rgba(255,255,255,0.06)', backdropFilter:'blur(8px)', transition:'all 0.2s' }}
+              onMouseEnter={e=>{ e.currentTarget.style.background='rgba(255,255,255,0.12)'; e.currentTarget.style.borderColor='rgba(255,255,255,0.35)' }}
+              onMouseLeave={e=>{ e.currentTarget.style.background='rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor='rgba(255,255,255,0.2)' }}>
+              Try free for 14 days
+            </a>
           </div>
         </div>
       </section>
       <style>{`
         @keyframes heroFloat1    { 0%,100%{transform:translateY(0)}   50%{transform:translateY(-12px)} }
+        @keyframes meshMove    { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.7;transform:scale(1.05)} }
+        @keyframes orbFloat1   { 0%,100%{transform:translate(0,0)} 33%{transform:translate(30px,-20px)} 66%{transform:translate(-20px,15px)} }
+        @keyframes orbFloat2   { 0%,100%{transform:translate(0,0)} 33%{transform:translate(-25px,20px)} 66%{transform:translate(20px,-15px)} }
+        @keyframes rotateWords   { 0%{transform:translateY(0)} 30%{transform:translateY(0)} 33%{transform:translateY(-40px)} 63%{transform:translateY(-40px)} 66%{transform:translateY(-80px)} 96%{transform:translateY(-80px)} 100%{transform:translateY(0)} }
         @keyframes heroFloat2    { 0%,100%{transform:translateY(0)}   50%{transform:translateY(-16px)} }
         @keyframes heroFloat3    { 0%,100%{transform:translateY(0)}   50%{transform:translateY(-10px)} }
         @keyframes heroBounceIn  { from{opacity:0;transform:scale(0.7) translateY(16px)} to{opacity:1;transform:scale(1) translateY(0)} }
       `}</style>
 
-      {/* SOCIAL PROOF — exact from live site */}
-      <section style={{ padding: '28px 0', borderBottom: '1px solid #e2e8f0', background: '#f8fafc' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <p style={{ fontSize: 12, color: '#94a3b8', fontWeight: 500, letterSpacing: '0.5px', textTransform: 'uppercase', marginBottom: 16 }}>Trusted by modern workplaces</p>
-          <div style={{ display: 'flex', gap: 32, justifyContent: 'center', flexWrap: 'wrap' }}>
-            {['Corporate Offices', 'Coworking Spaces', 'Hotels & Events', 'Healthcare'].map(t => (
-              <span key={t} style={{ fontSize: 14, fontWeight: 600, color: '#94a3b8' }}>{t}</span>
+      {/* STATS STRIP */}
+      <section style={{ background: 'linear-gradient(135deg,#0f172a,#1e293b)', padding: '56px 0', borderBottom: '1px solid #334155' }}>
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6" style={{ textAlign: 'center' }}>
+            {[
+              { num: '500+',   label: 'Rooms managed',     sub: 'across all workspaces',  color: '#00c07a' },
+              { num: '50K+',   label: 'Bookings made',     sub: 'and counting every day', color: '#3b82f6' },
+              { num: '99.9%',  label: 'Uptime SLA',        sub: 'guaranteed on all plans', color: '#8b5cf6' },
+              { num: '5 min',  label: 'Average setup',     sub: 'from signup to live',     color: '#f59e0b' },
+            ].map(s => (
+              <div key={s.label} className="reveal">
+                <div style={{ fontSize:'clamp(32px,4vw,52px)', fontWeight:900, color:s.color, letterSpacing:'-2px', lineHeight:1, marginBottom:8 }}>{s.num}</div>
+                <div style={{ fontSize:14, fontWeight:700, color:'#fff', marginBottom:3 }}>{s.label}</div>
+                <div style={{ fontSize:11, color:'#64748b' }}>{s.sub}</div>
+              </div>
             ))}
           </div>
         </div>
@@ -504,28 +530,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HOW IT WORKS — new */}
-      <section style={{ padding: '80px 0', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+      {/* HOW IT WORKS */}
+      <section style={{ padding: '96px 0', background: '#fff', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: 56 }}>
+          <div style={{ textAlign: 'center', marginBottom: 64 }}>
             <span className="tag reveal">How it works</span>
-            <h2 className="h2 reveal">Up and running <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>in minutes</span>, not months</h2>
-            <p className="body reveal" style={{ maxWidth: 400, margin: '12px auto 0', color: '#64748b' }}>No complex onboarding. Sign up and your team is booking rooms today.</p>
+            <h2 className="h2 reveal">Up and running in <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>5 minutes</span></h2>
+            <p className="lead reveal" style={{ maxWidth: 440, margin: '12px auto 0' }}>No IT department needed. No complex setup. Just add your rooms and go.</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4" style={{gap: 16}}>
-            {STEPS.map((step, i) => (
-              <div key={step.num} className="card reveal" style={{ animationDelay: `${i*0.1}s` }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 10, background: '#00c07a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, color: '#fff', fontFamily: 'DM Mono,monospace', flexShrink: 0 }}>{step.num}</div>
-                  <span style={{ fontSize: 22 }}>{step.icon}</span>
+          <div style={{ position: 'relative' }}>
+            {/* Connecting line — desktop only */}
+            <div className="hidden md:block" style={{ position:'absolute', top:36, left:'12.5%', right:'12.5%', height:2, background:'linear-gradient(90deg,#00c07a,#0F799B,#3b82f6,#8b5cf6)', borderRadius:2, opacity:0.25 }} />
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {[
+                { num:'01', icon:'🏗️', color:'#00c07a', bg:'#ecfdf5', border:'#a7f3d0', title:'Add your spaces', desc:'Upload your floor plan, name your rooms, set capacities and rules. Takes about 2 minutes.' },
+                { num:'02', icon:'✉️', color:'#0F799B', bg:'#eff6ff', border:'#bfdbfe', title:'Invite your team', desc:'Send invite links or connect via Google or Microsoft SSO. Permissions auto-apply by role.' },
+                { num:'03', icon:'✅', color:'#8b5cf6', bg:'#f5f3ff', border:'#ddd6fe', title:'Book from anywhere', desc:'Web, mobile, door panel, or AI chat — confirm a room in seconds from any device.' },
+                { num:'04', icon:'📈', color:'#f59e0b', bg:'#fefce8', border:'#fde68a', title:'Track and optimise', desc:'Live analytics reveal peak hours, no-shows, and underused spaces to right-size your real estate.' },
+              ].map((step, i) => (
+                <div key={step.num} className="reveal" style={{ textAlign:'center', animationDelay:`${i*0.1}s` }}>
+                  <div style={{ position:'relative', display:'inline-flex', marginBottom:20 }}>
+                    <div style={{ width:72, height:72, borderRadius:20, background:step.bg, border:`2px solid ${step.border}`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:30 }}>
+                      {step.icon}
+                    </div>
+                    <div style={{ position:'absolute', top:-8, right:-8, width:22, height:22, borderRadius:'50%', background:step.color, color:'#fff', fontSize:9, fontWeight:800, display:'flex', alignItems:'center', justifyContent:'center', border:'2px solid #fff' }}>
+                      {step.num}
+                    </div>
+                  </div>
+                  <h3 style={{ fontSize:16, fontWeight:700, color:'#0f172a', marginBottom:8 }}>{step.title}</h3>
+                  <p style={{ fontSize:13, color:'#64748b', lineHeight:1.7 }}>{step.desc}</p>
                 </div>
-                <h4 style={{ fontSize: 14, fontWeight: 700, color: '#0f172a', marginBottom: 8 }}>{step.title}</h4>
-                <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.65 }}>{step.desc}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-          <div style={{ textAlign: 'center', marginTop: 36 }}>
-            <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="btn btn-primary btn-lg reveal">Start your free 14-day trial →</a>
+          <div style={{ textAlign:'center', marginTop:48 }}>
+            <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="btn btn-primary btn-lg reveal">
+              Start your free trial — no card needed →
+            </a>
           </div>
         </div>
       </section>
@@ -606,7 +647,53 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA — exact from live site */}
+      {/* PRICING TEASER */}
+      <section style={{ padding: '96px 0', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: 56 }}>
+            <span className="tag reveal">Pricing</span>
+            <h2 className="h2 reveal">Simple, <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>honest pricing</span></h2>
+            <p className="lead reveal" style={{ maxWidth:400, margin:'12px auto 0' }}>Start free. Upgrade when you're ready. No hidden fees.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 reveal" style={{ maxWidth:860, margin:'0 auto' }}>
+            {[
+              { name:'Basic',      price:'$30',    period:'/year',  color:'#64748b', bg:'#fff',    border:'#e2e8f0', features:['2 rooms', '5 users', '1 door display', 'Core booking', 'iCal feed'] },
+              { name:'Pro',        price:'$4.99',  period:'/mo',    color:'#3b82f6', bg:'#fff',    border:'#bfdbfe', features:['5 rooms + add-ons', '25 users', 'Visitor management', 'Google & Outlook sync', 'Advanced analytics'], pop:false },
+              { name:'Max',        price:'$8.99',  period:'/mo',    color:'#00c07a', bg:'#0f172a', border:'#00c07a', features:['Unlimited rooms', 'Unlimited users', 'AI Room Booker', 'Google & Microsoft SSO', 'White-label'], pop:true, dark:true },
+            ].map(p => (
+              <div key={p.name} style={{ background:p.bg, border:`2px solid ${p.border}`, borderRadius:20, padding:'32px 28px', position:'relative', transition:'all 0.25s' }}
+                onMouseEnter={e=>{ e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow=`0 20px 48px ${p.color}20` }}
+                onMouseLeave={e=>{ e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='none' }}>
+                {p.pop && <div style={{ position:'absolute', top:-14, left:'50%', transform:'translateX(-50%)', background:p.color, color:'#fff', fontSize:10, fontWeight:800, padding:'4px 14px', borderRadius:100, whiteSpace:'nowrap', letterSpacing:'0.5px' }}>MOST POPULAR</div>}
+                <div style={{ marginBottom:20 }}>
+                  <div style={{ fontSize:13, fontWeight:700, color:p.dark?'#94a3b8':'#64748b', textTransform:'uppercase', letterSpacing:'1px', marginBottom:8 }}>{p.name}</div>
+                  <div style={{ display:'flex', alignItems:'baseline', gap:4 }}>
+                    <span style={{ fontSize:40, fontWeight:900, color:p.dark?'#fff':p.color, letterSpacing:'-2px' }}>{p.price}</span>
+                    <span style={{ fontSize:13, color:p.dark?'#64748b':'#94a3b8' }}>{p.period} · billed annually</span>
+                  </div>
+                </div>
+                <div style={{ display:'flex', flexDirection:'column', gap:8, marginBottom:28 }}>
+                  {p.features.map(f => (
+                    <div key={f} style={{ display:'flex', alignItems:'center', gap:8, fontSize:13, color:p.dark?'#cbd5e1':'#374151' }}>
+                      <span style={{ color:p.color, flexShrink:0 }}>✓</span> {f}
+                    </div>
+                  ))}
+                </div>
+                <Link to="/pricing" style={{ display:'block', textAlign:'center', padding:'11px', borderRadius:10, background: p.dark ? p.color : 'transparent', border:`1.5px solid ${p.dark ? p.color : p.color+'55'}`, color: p.dark ? '#fff' : p.color, textDecoration:'none', fontSize:13, fontWeight:700, transition:'all 0.2s' }}
+                  onMouseEnter={e=>{ if(!p.dark){ e.currentTarget.style.background=p.color; e.currentTarget.style.color='#fff' }}}
+                  onMouseLeave={e=>{ if(!p.dark){ e.currentTarget.style.background='transparent'; e.currentTarget.style.color=p.color }}}>
+                  {p.dark ? 'Start free trial →' : 'See plan details'}
+                </Link>
+              </div>
+            ))}
+          </div>
+          <p className="reveal" style={{ textAlign:'center', fontSize:13, color:'#94a3b8', marginTop:24 }}>
+            All plans include a 14-day free trial. <Link to="/pricing" style={{ color:'#00c07a', textDecoration:'none', fontWeight:600 }}>Compare all features →</Link>
+          </p>
+        </div>
+      </section>
+
+            {/* CTA — exact from live site */}
       <section style={{ background: 'linear-gradient(135deg,#0f172a,#1e293b)', padding: '96px 0', textAlign: 'center' }}>
         <div className="container">
           <h2 className="h2 reveal" style={{ marginBottom: 16, color: '#fff' }}>Ready to <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>transform your workspace?</span></h2>
