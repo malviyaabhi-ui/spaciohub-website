@@ -362,48 +362,54 @@ export default function PlatformBooking() {
       <SEO {...PAGE_SEO.platformBooking} />
       <main style={{ paddingTop:64, fontFamily:'Inter,sans-serif' }}>
 
-      {/* ══ HERO ══════════════════════════════════════════ */}
-      <section style={{ background:'linear-gradient(170deg,#f0fdf8,#ffffff 55%,#f8fafc)', borderBottom:'1px solid #e2e8f0', padding:'88px 0 72px', overflow:'hidden', position:'relative' }}>
-        <div style={{ position:'absolute', top:-80, right:-80, width:500, height:500, borderRadius:'50%', background:'radial-gradient(circle,rgba(0,192,122,0.10),transparent 65%)', pointerEvents:'none' }}/>
-        <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(0,192,122,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,192,122,0.03) 1px,transparent 1px)', backgroundSize:'50px 50px', pointerEvents:'none' }}/>
+      {/* HERO */}
+      <section style={{ background:'#060d1a', borderBottom:'1px solid #1e293b', padding:'100px 0 72px', overflow:'hidden', position:'relative' }}>
+        <div style={{ position:'absolute', top:'10%', left:'10%', width:600, height:600, borderRadius:'50%', background:'radial-gradient(circle,rgba(0,192,122,0.10),transparent 70%)', animation:'orbFloat1 8s ease-in-out infinite', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', bottom:'5%', right:'5%', width:400, height:400, borderRadius:'50%', background:'radial-gradient(circle,rgba(15,121,155,0.10),transparent 70%)', animation:'orbFloat2 10s ease-in-out infinite 2s', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)', backgroundSize:'60px 60px', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', bottom:0, left:0, right:0, height:200, background:'linear-gradient(0deg,#060d1a,transparent)', pointerEvents:'none' }} />
         <div className="container" style={{ position:'relative', textAlign:'center' }}>
-          <span className="tag animate-fade-up">Platform</span>
-          <h1 className="h1 animate-fade-up delay-1" style={{ fontSize:'clamp(30px,4vw,52px)', marginBottom:20, maxWidth:600, margin:'0 auto 20px' }}>
-            Room Booking <span style={{ background:'linear-gradient(135deg,#00c07a,#0090ff)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>System</span>
+          <span className="tag animate-fade-up" style={{ color:'#00c07a' }}>Platform</span>
+          <h1 className="animate-fade-up delay-1" style={{ fontSize:'clamp(36px,5vw,64px)', fontWeight:900, letterSpacing:'-2.5px', lineHeight:1.05, color:'#fff', marginBottom:20, maxWidth:700, margin:'0 auto 20px' }}>
+            Room Booking <span style={{ background:'linear-gradient(135deg,#00c07a,#0cb8b6)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>System</span>
           </h1>
-          <p className="lead animate-fade-up delay-2" style={{ marginBottom:36, maxWidth:520, margin:'0 auto 36px' }}>The complete meeting room booking platform. Visual time grid, smart suggestions, Zoom integration, door displays, and analytics — all in one place.</p>
-          <div className="animate-fade-up delay-3" style={{ display:'flex', gap:12, flexWrap:'wrap', justifyContent:'center' }}>
-            <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 8px 28px rgba(0,192,122,0.3)' }}>Request a Demo →</button>
-            <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="btn btn-outline btn-lg">Try free</a>
+          <p className="animate-fade-up delay-2" style={{ maxWidth:520, margin:'0 auto 40px', fontSize:17, color:'rgba(255,255,255,0.55)', lineHeight:1.7 }}>The complete meeting room booking platform. Visual time grid, smart suggestions, Zoom integration, door displays, and analytics — all in one place.</p>
+          <div className="animate-fade-up delay-3" style={{ display:'flex', gap:12, flexWrap:'wrap', justifyContent:'center', marginBottom:48 }}>
+            <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 0 40px rgba(0,192,122,0.40)' }}>Request a Demo →</button>
+            <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'14px 28px', borderRadius:8, fontSize:15, fontWeight:600, border:'1.5px solid rgba(255,255,255,0.2)', color:'#fff', textDecoration:'none', background:'rgba(255,255,255,0.06)', backdropFilter:'blur(8px)', transition:'all 0.2s' }}
+              onMouseEnter={e=>{ e.currentTarget.style.background='rgba(255,255,255,0.12)'; e.currentTarget.style.borderColor='rgba(255,255,255,0.35)' }}
+              onMouseLeave={e=>{ e.currentTarget.style.background='rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor='rgba(255,255,255,0.2)' }}>
+              Try free for 14 days
+            </a>
           </div>
-          <div className="animate-fade-up delay-5" style={{ maxWidth:760, margin:'48px auto 0', background:'#fff', border:'1px solid #e2e8f0', borderRadius:16, overflow:'hidden', boxShadow:'0 24px 64px rgba(0,0,0,0.09)' }}>
-            <div style={{ background:'#f8fafc', padding:'11px 16px', borderBottom:'1px solid #e2e8f0', display:'flex', alignItems:'center', gap:6 }}>
+          <div className="animate-fade-up delay-5" style={{ maxWidth:760, margin:'0 auto', background:'#0d1929', border:'1px solid #1e293b', borderRadius:16, overflow:'hidden', boxShadow:'0 24px 64px rgba(0,0,0,0.4)' }}>
+            <div style={{ background:'#111827', padding:'11px 16px', borderBottom:'1px solid #1e293b', display:'flex', alignItems:'center', gap:6 }}>
               {['#ff5f57','#febc2e','#28c840'].map(c=><div key={c} style={{ width:9, height:9, borderRadius:'50%', background:c }}/>)}
-              <span style={{ fontSize:10, color:'#94a3b8', fontFamily:'DM Mono,monospace', marginLeft:8 }}>Book a Room · go.spaciohub.com</span>
+              <span style={{ fontSize:10, color:'#475569', fontFamily:'DM Mono,monospace', marginLeft:8 }}>Book a Room · go.spaciohub.com</span>
               <div style={{ marginLeft:'auto', fontSize:10, color:'#00c07a', fontWeight:600 }}>● Live</div>
             </div>
             <div style={{ padding:18 }}>
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12 }}>
-                <div style={{ fontSize:12, fontWeight:700, color:'#0f172a' }}>Today's Availability</div>
+                <div style={{ fontSize:12, fontWeight:700, color:'#e2e8f0' }}>Today's Availability</div>
                 <div style={{ display:'flex', gap:6 }}>
-                  <div style={{ padding:'4px 10px', borderRadius:6, background:'#f0fdf8', border:'1px solid #d1fae5', fontSize:10, color:'#00c07a', fontWeight:600 }}>✨ AI Book</div>
-                  <div style={{ padding:'4px 10px', borderRadius:6, background:'#f8fafc', border:'1px solid #e2e8f0', fontSize:10, color:'#64748b', fontWeight:600 }}>Today ▾</div>
+                  <div style={{ padding:'4px 10px', borderRadius:6, background:'rgba(0,192,122,0.15)', border:'1px solid rgba(0,192,122,0.3)', fontSize:10, color:'#00c07a', fontWeight:600 }}>✨ AI Book</div>
+                  <div style={{ padding:'4px 10px', borderRadius:6, background:'rgba(255,255,255,0.05)', border:'1px solid #1e293b', fontSize:10, color:'#64748b', fontWeight:600 }}>Today ▾</div>
                 </div>
               </div>
               <div style={{ display:'grid', gridTemplateColumns:'80px repeat(8,1fr)', gap:3, marginBottom:6 }}>
-                <div/>{['9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM'].map(h=><div key={h} style={{ fontSize:9, color:'#cbd5e1', fontFamily:'DM Mono,monospace', textAlign:'center' }}>{h}</div>)}
+                <div/>{['9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM'].map(h=><div key={h} style={{ fontSize:9, color:'#334155', fontFamily:'DM Mono,monospace', textAlign:'center' }}>{h}</div>)}
               </div>
               {[{n:'Board Rm',c:'#8b5cf6',s:[0,1,1,0,0,1,0,0]},{n:'Team Rm',c:'#10b981',s:[1,0,0,1,1,0,0,1]},{n:'Focus Rm',c:'#3b82f6',s:[0,0,1,0,0,0,1,0]},{n:'Conf Rm',c:'#f59e0b',s:[1,1,0,0,1,1,0,0]}].map(r=>(
                 <div key={r.n} style={{ display:'grid', gridTemplateColumns:'80px repeat(8,1fr)', gap:3, marginBottom:4 }}>
-                  <div style={{ fontSize:10, color:'#94a3b8', display:'flex', alignItems:'center', gap:4 }}>
+                  <div style={{ fontSize:10, color:'#64748b', display:'flex', alignItems:'center', gap:4 }}>
                     <div style={{ width:6, height:6, borderRadius:'50%', background:r.c, boxShadow:`0 0 4px ${r.c}` }}/>{r.n}
                   </div>
-                  {r.s.map((bk,i)=><div key={i} style={{ height:26, borderRadius:4, background:bk?r.c+'22':'#f8fafc', borderLeft:bk?`2.5px solid ${r.c}`:'none' }}/>)}
+                  {r.s.map((bk,i)=><div key={i} style={{ height:26, borderRadius:4, background:bk?r.c+'22':'rgba(255,255,255,0.03)', borderLeft:bk?`2.5px solid ${r.c}`:'none' }}/>)}
                 </div>
               ))}
-              <div style={{ marginTop:12, padding:'10px 12px', background:'linear-gradient(135deg,#f0fdf8,#e8faf3)', borderRadius:10, border:'1px solid #d1fae5', display:'flex', alignItems:'center', gap:8 }}>
+              <div style={{ marginTop:12, padding:'10px 12px', background:'rgba(0,192,122,0.08)', borderRadius:10, border:'1px solid rgba(0,192,122,0.2)', display:'flex', alignItems:'center', gap:8 }}>
                 <span style={{ fontSize:16 }}>✨</span>
-                <div style={{ fontSize:12, color:'#374151' }}><strong style={{ color:'#009960' }}>AI Suggestion:</strong> "Focus Room is free for your 1hr slot at 11AM — no conflicts"</div>
+                <div style={{ fontSize:12, color:'#94a3b8' }}><strong style={{ color:'#00c07a' }}>AI Suggestion:</strong> "Focus Room is free for your 1hr slot at 11AM — no conflicts"</div>
                 <div style={{ marginLeft:'auto', padding:'4px 10px', background:'#00c07a', borderRadius:6, fontSize:10, fontWeight:700, color:'#fff', cursor:'pointer' }}>Book →</div>
               </div>
             </div>

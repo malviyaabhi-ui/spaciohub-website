@@ -187,22 +187,24 @@ export default function PlatformVisitors() {
       <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
 
       {/* HERO */}
-      <section style={{ background: 'linear-gradient(170deg,#fff7ed,#ffffff 60%,#f8fafc)', borderBottom: '1px solid #e2e8f0', padding: '88px 0 72px', overflow: 'hidden', position: 'relative' }}>
-        <div style={{ position: 'absolute', top: -80, right: -80, width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle,rgba(249,115,22,0.08),transparent 65%)', pointerEvents: 'none' }} />
-        <div className="container" style={{ position: 'relative' }}>
-          <div className="grid grid-cols-1 md:grid-cols-2" style={{gap: 64, alignItems: 'center'}}>
-            <div>
-              <span className="tag animate-fade-up">Platform</span>
-              <h1 className="h1 animate-fade-up delay-1" style={{ fontSize: 'clamp(30px,4vw,52px)', marginBottom: 20 }}>
-                Visitor<br /><span style={{ background: 'linear-gradient(135deg,#f97316,#ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: 900 }}>Management</span>
-              </h1>
-              <p className="lead animate-fade-up delay-2" style={{ marginBottom: 36 }}>Create a professional, seamless visitor experience. Pre-register guests, enable self-service check-in, print custom badges, and keep hosts informed — automatically.</p>
-              <div className="animate-fade-up delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-                <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow: '0 8px 28px rgba(0,192,122,0.3)' }}>Request a Demo →</button>
-                <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="btn btn-outline btn-lg">Try free</a>
-              </div>
-            </div>
-            <div className="animate-fade-up delay-2"><VisitorMockup /></div>
+      <section style={{ background:'#060d1a', borderBottom:'1px solid #1e293b', padding:'100px 0 80px', overflow:'hidden', position:'relative' }}>
+        <div style={{ position:'absolute', top:'10%', left:'10%', width:500, height:500, borderRadius:'50%', background:'radial-gradient(circle,rgba(249,115,22,0.10),transparent 70%)', animation:'orbFloat1 8s ease-in-out infinite', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', bottom:'5%', right:'5%', width:400, height:400, borderRadius:'50%', background:'radial-gradient(circle,rgba(236,72,153,0.08),transparent 70%)', animation:'orbFloat2 10s ease-in-out infinite 2s', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)', backgroundSize:'60px 60px', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', bottom:0, left:0, right:0, height:200, background:'linear-gradient(0deg,#060d1a,transparent)', pointerEvents:'none' }} />
+        <div className="container" style={{ position:'relative', textAlign:'center' }}>
+          <span className="tag animate-fade-up" style={{ color:'#f97316' }}>Platform</span>
+          <h1 className="animate-fade-up delay-1" style={{ fontSize:'clamp(36px,5vw,64px)', fontWeight:900, letterSpacing:'-2.5px', lineHeight:1.05, color:'#fff', marginBottom:20, maxWidth:680, margin:'0 auto 20px' }}>
+            Visitor Management <span style={{ background:'linear-gradient(135deg,#f97316,#ec4899)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>that wows</span>
+          </h1>
+          <p className="animate-fade-up delay-2" style={{ maxWidth:520, margin:'0 auto 40px', fontSize:17, color:'rgba(255,255,255,0.55)', lineHeight:1.7 }}>Pre-register guests, self-service check-in, instant host notifications, and printed badges — your visitors feel like VIPs from the moment they arrive.</p>
+          <div className="animate-fade-up delay-3" style={{ display:'flex', gap:12, flexWrap:'wrap', justifyContent:'center' }}>
+            <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 0 40px rgba(249,115,22,0.35)' }}>Request a Demo →</button>
+            <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'14px 28px', borderRadius:8, fontSize:15, fontWeight:600, border:'1.5px solid rgba(255,255,255,0.2)', color:'#fff', textDecoration:'none', background:'rgba(255,255,255,0.06)', backdropFilter:'blur(8px)', transition:'all 0.2s' }}
+              onMouseEnter={e=>{ e.currentTarget.style.background='rgba(255,255,255,0.12)'; e.currentTarget.style.borderColor='rgba(255,255,255,0.35)' }}
+              onMouseLeave={e=>{ e.currentTarget.style.background='rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor='rgba(255,255,255,0.2)' }}>
+              Try free for 14 days
+            </a>
           </div>
         </div>
       </section>

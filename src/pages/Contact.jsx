@@ -6,8 +6,8 @@ import { useModal } from '../components/ModalContext'
 // TODO: Replace with your actual Zoho CRM Web-to-Lead URL
 // Get it from: Zoho CRM → Setup → Developer Space → Web Forms
 const ZOHO_ENDPOINT = 'https://crm.zoho.com/crm/WebToLeadForm'
-const ZOHO_OWNER    = 'YOUR_OWNER_ID'    // from Zoho form config
-const ZOHO_FORM_ID  = 'YOUR_FORM_ID'     // from Zoho form config
+const ZOHO_OWNER    = 'f50286470ec29985ecf20548fce7796304c10dc30b2fb8d7e31dc8272a48931e9dc92aa6a167a2430dbd788c52659e90'
+const ZOHO_FORM_ID  = 'af29bad243ed773e55de31855ccd9b688e5d89e5bcc7a8aec633359f355c049f'
 
 const PLANS    = ['Not sure yet', 'Basic', 'Pro', 'Max', 'Enterprise']
 const SOURCES  = ['Google Search', 'LinkedIn', 'Referral', 'Social Media', 'Product Hunt', 'Other']
@@ -38,13 +38,11 @@ export default function Contact() {
     data.append('Description', form.message)
     data.append('Lead Source', form.source)
     data.append('LEADCF1', form.plan) // custom field: Plan Interest
+    data.append('aG9uZXlwb3Q', '') // honeypot anti-spam
 
     try {
-      // When Zoho endpoint is configured, uncomment this:
-      // await fetch(ZOHO_ENDPOINT, { method: 'POST', body: data, mode: 'no-cors' })
-
-      // Simulated success for now
-      await new Promise(r => setTimeout(r, 800))
+      // Submit to Zoho CRM
+      await fetch(ZOHO_ENDPOINT, { method: 'POST', body: data, mode: 'no-cors' })
       setSent(true)
     } catch {
       setError('Something went wrong. Please email us directly at contact@spaciohub.com')

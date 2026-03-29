@@ -104,19 +104,26 @@ export default function AIBooker() {
     <>
       <SEO {...PAGE_SEO.platformAIBooker} />
       <main style={{ paddingTop:64, fontFamily:'Inter,sans-serif' }}>
-      <section style={{ background:'linear-gradient(170deg,#fefce8,#fff 60%,#f8fafc)', borderBottom:'1px solid #e2e8f0', padding:'88px 0 72px', overflow:'hidden', position:'relative' }}>
-        <div style={{ position:'absolute',top:-80,right:-80,width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(245,158,11,0.08),transparent 65%)',pointerEvents:'none' }}/>
+      <section style={{ background:'#060d1a', borderBottom:'1px solid #1e293b', padding:'100px 0 80px', overflow:'hidden', position:'relative' }}>
+        <div style={{ position:'absolute', top:'10%', left:'10%', width:500, height:500, borderRadius:'50%', background:'radial-gradient(circle,rgba(245,158,11,0.10),transparent 70%)', animation:'orbFloat1 8s ease-in-out infinite', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', bottom:'5%', right:'5%', width:400, height:400, borderRadius:'50%', background:'radial-gradient(circle,rgba(234,88,12,0.08),transparent 70%)', animation:'orbFloat2 10s ease-in-out infinite 2s', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)', backgroundSize:'60px 60px', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', bottom:0, left:0, right:0, height:200, background:'linear-gradient(0deg,#060d1a,transparent)', pointerEvents:'none' }} />
         <div className="container" style={{ position:'relative' }}>
           <div className="grid grid-cols-1 md:grid-cols-2" style={{gap:64, alignItems:'center'}}>
             <div>
-              <span className="tag animate-fade-up">Platform · AI</span>
-              <h1 className="h1 animate-fade-up delay-1" style={{ fontSize:'clamp(30px,4vw,52px)', marginBottom:20 }}>
-                AI Room <span style={{ background:'linear-gradient(135deg,#f59e0b,#ea580c)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>Booker</span>
+              <span className="tag animate-fade-up" style={{ color:'#f59e0b' }}>Platform · AI</span>
+              <h1 className="animate-fade-up delay-1" style={{ fontSize:'clamp(36px,5vw,56px)', fontWeight:900, letterSpacing:'-2px', lineHeight:1.05, color:'#fff', marginBottom:20 }}>
+                AI Room <span style={{ background:'linear-gradient(135deg,#f59e0b,#ea580c)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Booker</span>
               </h1>
-              <p className="lead animate-fade-up delay-2" style={{ marginBottom:36 }}>Describe what you need in plain language. SpacioHub AI finds and books the perfect available room in seconds — no clicking required.</p>
+              <p className="animate-fade-up delay-2" style={{ marginBottom:36, fontSize:17, color:'rgba(255,255,255,0.55)', lineHeight:1.7 }}>Describe what you need in plain language. SpacioHub AI finds and books the perfect available room in seconds — no clicking required.</p>
               <div className="animate-fade-up delay-3" style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
-                <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 8px 28px rgba(0,192,122,0.3)' }}>Request a Demo</button>
-                <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="btn btn-outline btn-lg">Try free</a>
+                <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 0 40px rgba(245,158,11,0.35)' }}>Request a Demo →</button>
+                <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'14px 28px', borderRadius:8, fontSize:15, fontWeight:600, border:'1.5px solid rgba(255,255,255,0.2)', color:'#fff', textDecoration:'none', background:'rgba(255,255,255,0.06)', backdropFilter:'blur(8px)', transition:'all 0.2s' }}
+                  onMouseEnter={e=>{ e.currentTarget.style.background='rgba(255,255,255,0.12)'; e.currentTarget.style.borderColor='rgba(255,255,255,0.35)' }}
+                  onMouseLeave={e=>{ e.currentTarget.style.background='rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor='rgba(255,255,255,0.2)' }}>
+                  Try free for 14 days
+                </a>
               </div>
             </div>
             <div className="animate-fade-up delay-2"><AIDemo /></div>
@@ -171,7 +178,7 @@ export default function AIBooker() {
         </div>
       </section>
 
-      <section style={{ background:'linear-gradient(135deg,#fefce8,#fff)', borderTop:'1px solid #fde68a', padding:'80px 0', textAlign:'center', position:'relative', overflow:'hidden' }}>
+      <section style={{ background:'linear-gradient(135deg,#0a1628,#0f172a)', borderTop:'1px solid #1e293b', padding:'80px 0', textAlign:'center', position:'relative', overflow:'hidden' }}>
         <div style={{ position:'absolute',top:-80,left:'50%',transform:'translateX(-50%)',width:600,height:300,background:'radial-gradient(ellipse,rgba(245,158,11,0.08),transparent 65%)',pointerEvents:'none' }}/>
         <div className="container" style={{ position:'relative' }}>
           <div style={{ fontSize:56, marginBottom:16 }}>✨</div>

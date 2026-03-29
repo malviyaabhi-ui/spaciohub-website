@@ -144,6 +144,27 @@ export default function DoorDisplay() {
       <main style={{ paddingTop:64, fontFamily:'Inter,sans-serif' }}>
 
       {/* HERO */}
+      <section style={{ background:'#060d1a', borderBottom:'1px solid #1e293b', padding:'100px 0 80px', overflow:'hidden', position:'relative' }}>
+        <div style={{ position:'absolute', top:'10%', left:'10%', width:500, height:500, borderRadius:'50%', background:'radial-gradient(circle,rgba(59,130,246,0.10),transparent 70%)', animation:'orbFloat1 8s ease-in-out infinite', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', bottom:'5%', right:'5%', width:400, height:400, borderRadius:'50%', background:'radial-gradient(circle,rgba(15,121,155,0.10),transparent 70%)', animation:'orbFloat2 10s ease-in-out infinite 2s', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)', backgroundSize:'60px 60px', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', bottom:0, left:0, right:0, height:200, background:'linear-gradient(0deg,#060d1a,transparent)', pointerEvents:'none' }} />
+        <div className="container" style={{ position:'relative', textAlign:'center' }}>
+          <span className="tag animate-fade-up" style={{ color:'#3b82f6' }}>Platform</span>
+          <h1 className="animate-fade-up delay-1" style={{ fontSize:'clamp(36px,5vw,64px)', fontWeight:900, letterSpacing:'-2.5px', lineHeight:1.05, color:'#fff', marginBottom:20, maxWidth:680, margin:'0 auto 20px' }}>
+            Door Display <span style={{ background:'linear-gradient(135deg,#3b82f6,#0cb8b6)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Panel</span>
+          </h1>
+          <p className="animate-fade-up delay-2" style={{ maxWidth:520, margin:'0 auto 40px', fontSize:17, color:'rgba(255,255,255,0.55)', lineHeight:1.7 }}>Real-time room status on any tablet. Let anyone book, check in, or extend a meeting — right from the door. No logins, no apps.</p>
+          <div className="animate-fade-up delay-3" style={{ display:'flex', gap:12, flexWrap:'wrap', justifyContent:'center' }}>
+            <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 0 40px rgba(59,130,246,0.35)' }}>Request a Demo →</button>
+            <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'14px 28px', borderRadius:8, fontSize:15, fontWeight:600, border:'1.5px solid rgba(255,255,255,0.2)', color:'#fff', textDecoration:'none', background:'rgba(255,255,255,0.06)', backdropFilter:'blur(8px)', transition:'all 0.2s' }}
+              onMouseEnter={e=>{ e.currentTarget.style.background='rgba(255,255,255,0.12)'; e.currentTarget.style.borderColor='rgba(255,255,255,0.35)' }}
+              onMouseLeave={e=>{ e.currentTarget.style.background='rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor='rgba(255,255,255,0.2)' }}>
+              Try free for 14 days
+            </a>
+          </div>
+        </div>
+      </section>
       <section style={{ background:'linear-gradient(170deg,#eff6ff,#fff 60%,#f8fafc)', borderBottom:'1px solid #e2e8f0', padding:'88px 0 72px', overflow:'hidden', position:'relative' }}>
         <div style={{ position:'absolute',top:-80,right:-80,width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(59,130,246,0.08),transparent 65%)',pointerEvents:'none' }}/>
         <div className="container" style={{ position:'relative' }}>
@@ -254,7 +275,7 @@ export default function DoorDisplay() {
       </section>
 
       {/* CTA */}
-      <section style={{ background:'linear-gradient(135deg,#eff6ff,#fff)', borderTop:'1px solid #bfdbfe', padding:'80px 0', textAlign:'center', position:'relative', overflow:'hidden' }}>
+      <section style={{ background:'linear-gradient(135deg,#0a1628,#0f172a)', borderTop:'1px solid #1e293b', padding:'80px 0', textAlign:'center', position:'relative', overflow:'hidden' }}>
         <div style={{ position:'absolute',top:-80,left:'50%',transform:'translateX(-50%)',width:600,height:300,background:'radial-gradient(ellipse,rgba(59,130,246,0.08),transparent 65%)',pointerEvents:'none' }}/>
         <div className="container" style={{ position:'relative' }}>
           <div style={{ marginBottom:16, display:'flex', justifyContent:'center' }}>
