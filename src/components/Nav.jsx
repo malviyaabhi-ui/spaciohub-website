@@ -118,6 +118,35 @@ const MENUS = {
     ],
     footer: { label: 'See the full integration list →', href: '/platform/integrations' }
   },
+
+  resources: {
+    spotlight: {
+      label: 'Help and Resources',
+      desc: 'Everything you need to get the most out of SpacioHub - articles, updates, and support.',
+      cta: 'Visit Help Centre →',
+      href: '/help',
+      bg: 'linear-gradient(135deg,#f0fdf8,#ecfdf5)',
+      accent: '#00c07a',
+    },
+    groups: [
+      {
+        label: 'Learn', color: '#00c07a', bg: '#ecfdf5',
+        items: [
+          { label: 'Help Centre',  desc: 'Guides & how-tos',        href: '/help',       icon: I.analytics },
+          { label: 'Blog',         desc: 'Tips & workspace insights', href: '/blog',      icon: I.booking },
+          { label: 'Changelog',    desc: 'Latest updates',           href: '/changelog',  icon: I.visitors },
+        ]
+      },
+      {
+        label: 'Support', color: '#3b82f6', bg: '#eff6ff',
+        items: [
+          { label: 'Contact Us',   desc: 'Talk to our team',         href: '/contact',    icon: I.door },
+          { label: 'Pricing',      desc: 'Plans & billing',          href: '/pricing',    icon: I.ai },
+        ]
+      },
+    ],
+    footer: { label: 'Go to Help Centre →', href: '/help' }
+  },
 }
 
 // ─── MEGA MENU PANEL ──────────────────────────────────────────
@@ -249,6 +278,7 @@ export default function Nav() {
     { label: 'Solutions', key: 'solutions', groups: MENUS.solutions.groups },
     { label: 'Use Cases', key: 'usecases', groups: MENUS.usecases.groups },
     { label: 'Integrations', key: 'integrations', groups: MENUS.integrations.groups },
+    { label: 'Resources', key: 'resources', groups: MENUS.resources.groups },
     { label: 'Roles', href: '/roles' },
     { label: 'Pricing', href: '/pricing' },
   ]
@@ -275,7 +305,8 @@ export default function Nav() {
               <NavDropdown label="Solutions"    menuKey="solutions"    active={menu === 'solutions'}    config={MENUS.solutions}    onEnter={handleEnter} onLeave={handleLeave} onClose={handleClose} openModal={openModal} />
               <NavDropdown label="Use Cases"    menuKey="usecases"     active={menu === 'usecases'}     config={MENUS.usecases}     onEnter={handleEnter} onLeave={handleLeave} onClose={handleClose} openModal={openModal} />
               <NavDropdown label="Integrations" menuKey="integrations" active={menu === 'integrations'} config={MENUS.integrations} onEnter={handleEnter} onLeave={handleLeave} onClose={handleClose} openModal={openModal} />
-              {[{ label: 'Roles', href: '/roles' }, { label: 'Pricing', href: '/pricing' }].map(item => (
+              <NavDropdown label="Resources"    menuKey="resources"    active={menu === 'resources'}    config={MENUS.resources}    onEnter={handleEnter} onLeave={handleLeave} onClose={handleClose} openModal={openModal} />
+              {[{ label: 'Pricing', href: '/pricing' }].map(item => (
                 <Link key={item.label} to={item.href}
                   style={{ padding: '8px 14px', fontSize: 14, fontWeight: 500, color: '#64748b', textDecoration: 'none', borderRadius: 7, transition: 'all 0.15s', background: location.pathname === item.href ? '#f1f5f9' : 'transparent' }}
                   onMouseEnter={e => { e.currentTarget.style.background = '#f1f5f9'; e.currentTarget.style.color = '#0f172a'; setMenu(null) }}
