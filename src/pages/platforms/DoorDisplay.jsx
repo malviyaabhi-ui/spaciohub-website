@@ -21,7 +21,7 @@ function TabletScreen({ feature, settingsTab, setSettingsTab }) {
       <div style={{ display:'flex',gap:10,marginBottom:22 }}>
         {[1,2,3,4].map(i=><div key={i} style={{ width:12,height:12,borderRadius:'50%',background:i<=2?'#3b82f6':'#1e293b',border:'1px solid #334155' }}/>)}
       </div>
-      <div style={{ display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8,width:'100%',maxWidth:230 }}>
+      <div className="grid grid-cols-1 md:grid-cols-3" style={{gap:8,width:'100%',maxWidth:230}}>
         {[1,2,3,4,5,6,7,8,9,'',0,'DEL'].map((k,i)=>(
           <div key={i} style={{ background:k===''?'transparent':'#1e293b',border:k===''?'none':'1px solid #334155',borderRadius:10,padding:'11px 8px',textAlign:'center',fontSize:15,fontWeight:700,color:k==='DEL'?'#64748b':'#fff',cursor:k===''?'default':'pointer' }}>{k}</div>
         ))}
@@ -147,7 +147,7 @@ export default function DoorDisplay() {
       <section style={{ background:'linear-gradient(170deg,#eff6ff,#fff 60%,#f8fafc)', borderBottom:'1px solid #e2e8f0', padding:'88px 0 72px', overflow:'hidden', position:'relative' }}>
         <div style={{ position:'absolute',top:-80,right:-80,width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(59,130,246,0.08),transparent 65%)',pointerEvents:'none' }}/>
         <div className="container" style={{ position:'relative' }}>
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'center' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{gap:64, alignItems:'center'}}>
             <div>
               <span className="tag animate-fade-up">Platform</span>
               <h1 className="h1 animate-fade-up delay-1" style={{ fontSize:'clamp(30px,4vw,52px)', marginBottom:20 }}>
@@ -192,7 +192,7 @@ export default function DoorDisplay() {
             <h2 className="h2 reveal">Every state, <span style={{ background:'linear-gradient(135deg,#3b82f6,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>purpose-built</span></h2>
             <p className="body reveal" style={{ color:'#64748b', maxWidth:400, margin:'12px auto 0' }}>Click each state to see exactly what your team sees outside every room.</p>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'center' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{gap:64, alignItems:'center'}}>
             <div>
               {DOOR_FEATURES.map((f,i)=>(
                 <div key={i} onClick={()=>{ setActive(i); if(i===4)setSettingsTab('Room'); startProgress(i) }}
@@ -234,7 +234,7 @@ export default function DoorDisplay() {
             <span className="tag reveal">Features</span>
             <h2 className="h2 reveal">Everything a <span style={{ background:'linear-gradient(135deg,#3b82f6,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>door panel needs</span></h2>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:16 }}>
+          <div className="grid grid-cols-1 md:grid-cols-3" style={{gap:16}}>
             {[
               { title:'Works on any tablet',   desc:'iPad, Android, Amazon Fire — any modern tablet. No special hardware.', icon:<svg viewBox="0 0 40 40" width="22" height="22" fill="none"><rect width="40" height="40" rx="10" fill="#eff6ff"/><rect x="11" y="5" width="18" height="30" rx="3" fill="#3b82f6" opacity="0.15"/><rect x="11" y="5" width="18" height="30" rx="3" stroke="#3b82f6" strokeWidth="1.5"/><rect x="13" y="8" width="14" height="3" rx="0.5" fill="#3b82f6" opacity="0.4"/><circle cx="20" cy="30" r="2" fill="#3b82f6" opacity="0.5"/></svg> },
               { title:'No login required',      desc:'Anyone can book, check in, or extend a meeting directly from the panel.', icon:<svg viewBox="0 0 40 40" width="22" height="22" fill="none"><rect width="40" height="40" rx="10" fill="#ecfdf5"/><circle cx="20" cy="18" r="6" fill="#00c07a" opacity="0.2"/><circle cx="20" cy="18" r="6" stroke="#00c07a" strokeWidth="1.5"/><path d="M14 30c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#00c07a" strokeWidth="1.5" strokeLinecap="round" fill="none"/><path d="M16 18l3 3 5-5" stroke="#00c07a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg> },

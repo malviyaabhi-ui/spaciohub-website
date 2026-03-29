@@ -226,11 +226,18 @@ export default function Home() {
   const { openModal } = useModal()
   const heroRef = useRef(null)
   const [statsStarted, setStatsStarted] = useState(false)
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 900)
 
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setStatsStarted(true) }, { threshold: 0.3 })
     if (heroRef.current) obs.observe(heroRef.current)
     return () => obs.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 900)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
   }, [])
 
   return (
@@ -247,7 +254,7 @@ export default function Home() {
         <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(0,192,122,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,192,122,0.03) 1px,transparent 1px)', backgroundSize:'50px 50px', pointerEvents:'none' }} />
 
         {/* Floating card — top left */}
-        <div style={{ position:'absolute', left:'6%', top:'18%', animation:'heroFloat1 5s ease-in-out infinite', animationDelay:'0.6s', zIndex:2 }}>
+        {!isMobile && <div className='hero-float-card' style={{ position:'absolute', left:'6%', top:'18%', animation:'heroFloat1 5s ease-in-out infinite', animationDelay:'0.6s', zIndex:2 }}>
           <div style={{ background:'#fff', border:'1px solid #a7f3d0', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 28px rgba(0,192,122,0.15)', display:'flex', alignItems:'center', gap:10, whiteSpace:'nowrap', animation:'heroBounceIn 0.5s cubic-bezier(.16,1,.3,1) 0.4s both' }}>
             <div style={{ width:30, height:30, borderRadius:8, background:'#ecfdf5', display:'flex', alignItems:'center', justifyContent:'center' }}>
               <svg viewBox="0 0 20 20" width="14" height="14" fill="none"><rect x="3" y="4" width="14" height="13" rx="2" fill="#00c07a" opacity="0.15"/><rect x="3" y="4" width="14" height="4" rx="2" fill="#00c07a"/><rect x="5" y="11" width="3" height="3" rx="0.5" fill="#00c07a" opacity="0.6"/><rect x="9" y="11" width="3" height="3" rx="0.5" fill="#00c07a" opacity="0.6"/></svg>
@@ -258,10 +265,10 @@ export default function Home() {
             </div>
             <div style={{ width:7, height:7, borderRadius:'50%', background:'#00c07a', animation:'pulse 2s infinite', flexShrink:0 }} />
           </div>
-        </div>
+        </div>}
 
         {/* Floating card — top right */}
-        <div style={{ position:'absolute', right:'6%', top:'14%', animation:'heroFloat2 6s ease-in-out infinite', animationDelay:'1s', zIndex:2 }}>
+        {!isMobile && <div className='hero-float-card' style={{ position:'absolute', right:'6%', top:'14%', animation:'heroFloat2 6s ease-in-out infinite', animationDelay:'1s', zIndex:2 }}>
           <div style={{ background:'#fff', border:'1px solid #bfdbfe', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 28px rgba(59,130,246,0.12)', display:'flex', alignItems:'center', gap:10, whiteSpace:'nowrap', animation:'heroBounceIn 0.5s cubic-bezier(.16,1,.3,1) 0.7s both' }}>
             <div style={{ width:30, height:30, borderRadius:8, background:'#eff6ff', display:'flex', alignItems:'center', justifyContent:'center' }}>
               <svg viewBox="0 0 20 20" width="14" height="14" fill="none"><circle cx="8" cy="8" r="4" fill="#3b82f6" opacity="0.6"/><path d="M3 16c0-3 2.2-5 5-5h4c2.8 0 5 2 5 5" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" fill="none"/></svg>
@@ -272,10 +279,10 @@ export default function Home() {
             </div>
             <div style={{ background:'#eff6ff', color:'#3b82f6', fontSize:9, fontWeight:700, padding:'2px 7px', borderRadius:100 }}>Checked in</div>
           </div>
-        </div>
+        </div>}
 
         {/* Floating card — bottom left */}
-        <div style={{ position:'absolute', left:'8%', bottom:'22%', animation:'heroFloat3 7s ease-in-out infinite', animationDelay:'1.4s', zIndex:2 }}>
+        {!isMobile && <div className='hero-float-card' style={{ position:'absolute', left:'8%', bottom:'22%', animation:'heroFloat3 7s ease-in-out infinite', animationDelay:'1.4s', zIndex:2 }}>
           <div style={{ background:'#fff', border:'1px solid #ddd6fe', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 28px rgba(139,92,246,0.12)', display:'flex', alignItems:'center', gap:10, whiteSpace:'nowrap', animation:'heroBounceIn 0.5s cubic-bezier(.16,1,.3,1) 1.0s both' }}>
             <div style={{ width:30, height:30, borderRadius:8, background:'#f5f3ff', display:'flex', alignItems:'center', justifyContent:'center' }}>
               <svg viewBox="0 0 20 20" width="14" height="14" fill="none"><rect x="3" y="12" width="3" height="5" rx="1" fill="#8b5cf6" opacity="0.4"/><rect x="8" y="8" width="3" height="9" rx="1" fill="#8b5cf6" opacity="0.65"/><rect x="13" y="5" width="3" height="12" rx="1" fill="#8b5cf6"/></svg>
@@ -285,10 +292,10 @@ export default function Home() {
               <div style={{ fontSize:10, color:'#94a3b8' }}>This week · +12% vs last</div>
             </div>
           </div>
-        </div>
+        </div>}
 
         {/* Floating card — bottom right */}
-        <div style={{ position:'absolute', right:'7%', bottom:'25%', animation:'heroFloat1 5.5s ease-in-out infinite 1s', zIndex:2 }}>
+        {!isMobile && <div className='hero-float-card' style={{ position:'absolute', right:'7%', bottom:'25%', animation:'heroFloat1 5.5s ease-in-out infinite 1s', zIndex:2 }}>
           <div style={{ background:'#fff', border:'1px solid #fde68a', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 28px rgba(245,158,11,0.12)', display:'flex', alignItems:'center', gap:10, whiteSpace:'nowrap', animation:'heroBounceIn 0.5s cubic-bezier(.16,1,.3,1) 1.2s both' }}>
             <div style={{ width:30, height:30, borderRadius:8, background:'#fefce8', display:'flex', alignItems:'center', justifyContent:'center' }}>
               <svg viewBox="0 0 20 20" width="14" height="14" fill="none"><rect x="7" y="8" width="6" height="9" rx="1" fill="#f59e0b" opacity="0.2"/><rect x="7" y="8" width="6" height="9" rx="1" stroke="#f59e0b" strokeWidth="1.2"/><circle cx="10" cy="12" r="1.5" fill="#f59e0b"/><rect x="9" y="4" width="2" height="4" rx="1" fill="#f59e0b"/></svg>
@@ -298,7 +305,7 @@ export default function Home() {
               <div style={{ fontSize:10, color:'#94a3b8' }}>"Quiet space for 2hrs"</div>
             </div>
           </div>
-        </div>
+        </div>}
 
         <div className="container" style={{ position:'relative', zIndex:3 }}>
           <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="badge animate-fade-up" style={{ marginBottom:28, textDecoration:'none', display:'inline-flex' }}>
@@ -311,12 +318,12 @@ export default function Home() {
           <p className="lead animate-fade-up delay-2" style={{ maxWidth:540, margin:'0 auto 44px' }}>
             SpacioHub replaces chaotic email chains and spreadsheets with intelligent room booking, live door displays, visitor management, and real-time analytics.
           </p>
-          <div className="animate-fade-up delay-3" style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap', marginBottom:64, textAlign:'center' }}>
+          <div className="animate-fade-up delay-3 hero-cta-row" style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap', marginBottom:64, textAlign:'center' }}>
             <button className="btn btn-primary btn-lg" onClick={openModal}>Request a Demo →</button>
             <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="btn btn-outline btn-lg">Try free for 14 days</a>
           </div>
           {/* Stats pills with count-up */}
-          <div className="animate-fade-up delay-4" style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap', marginBottom:8 }}>
+          <div className="animate-fade-up delay-4 hero-stats-row" style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap', marginBottom:8 }}>
             <StatPill n="14"  label="Day free trial" col="#00c07a" bg="#ecfdf5" border="#a7f3d0" started={statsStarted} />
             <StatPill n="5 min" label="Setup time"   col="#0F799B" bg="#eff6ff" border="#bfdbfe" started={statsStarted} />
             <StatPill n="$0"  label="Setup cost"     col="#8b5cf6" bg="#f5f3ff" border="#ddd6fe" started={statsStarted} />
@@ -372,7 +379,7 @@ export default function Home() {
                 ))}
               </div>
               <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 14, background: '#f8fafc' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10 }}>
+                <div className="grid grid-cols-2 md:grid-cols-4" style={{gap: 10}}>
                   {[['12','Active Rooms',true],['38',"Today's Bookings"],['4','In Use Now'],['94%','Utilization']].map(([n, l, hi]) => (
                     <div key={l} style={{ background: hi ? '#f0fdf8' : '#fff', border: `1px solid ${hi ? '#d1fae5' : '#f1f5f9'}`, borderRadius: 10, padding: 14, boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
                       <div style={{ fontSize: 22, fontWeight: 700, color: hi ? '#00c07a' : '#0f172a' }}>{n}</div>
@@ -411,10 +418,10 @@ export default function Home() {
               <p className="body reveal" style={{ maxWidth: 360 }}>Built for modern teams. Every feature designed to reduce admin work and improve how your space gets used.</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12,1fr)', gap: 16 }}>
+          <div className="bento-grid grid grid-cols-12 gap-4">
 
             {/* Card 1 — Large green: Smart Room Booking */}
-            <Link to="/platform/booking" className="reveal" style={{ gridColumn:'span 5', textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#f0fdf8,#dcfce7)', border:'1px solid #a7f3d0', padding:'36px 32px', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:260 }}
+            <Link to="/platform/booking" className="reveal col-span-12 md:col-span-5" style={{  textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#f0fdf8,#dcfce7)', border:'1px solid #a7f3d0', padding:'36px 32px', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:260 }}
               onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(0,192,122,0.15)'}}
               onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
               <div style={{ position:'absolute',top:-30,right:-30,width:160,height:160,borderRadius:'50%',background:'radial-gradient(circle,rgba(0,192,122,0.15),transparent 70%)' }}/>
@@ -426,7 +433,7 @@ export default function Home() {
             </Link>
 
             {/* Card 2 — Blue: Door Display */}
-            <Link to="/platform/booking#door-display" className="reveal" style={{ gridColumn:'span 4', textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#eff6ff,#dbeafe)', border:'1px solid #bfdbfe', padding:'36px 32px', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:260 }}
+            <Link to="/platform/booking#door-display" className="reveal col-span-12 md:col-span-4" style={{  textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#eff6ff,#dbeafe)', border:'1px solid #bfdbfe', padding:'36px 32px', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:260 }}
               onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(59,130,246,0.15)'}}
               onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
               <div style={{ position:'absolute',top:-20,right:-20,width:130,height:130,borderRadius:'50%',background:'radial-gradient(circle,rgba(59,130,246,0.12),transparent 70%)' }}/>
@@ -438,7 +445,7 @@ export default function Home() {
             </Link>
 
             {/* Card 3 — Dark: AI */}
-            <Link to="/platform/booking" className="reveal" style={{ gridColumn:'span 3', textDecoration:'none', borderRadius:20, background:'linear-gradient(160deg,#0f172a,#1e293b)', border:'1px solid #334155', padding:'32px 28px', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:260 }}
+            <Link to="/platform/booking" className="reveal col-span-12 md:col-span-3" style={{  textDecoration:'none', borderRadius:20, background:'linear-gradient(160deg,#0f172a,#1e293b)', border:'1px solid #334155', padding:'32px 28px', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:260 }}
               onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(0,0,0,0.25)'}}
               onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
               <div style={{ position:'absolute',top:-40,right:-40,width:180,height:180,borderRadius:'50%',background:'radial-gradient(circle,rgba(0,192,122,0.15),transparent 70%)' }}/>
@@ -450,7 +457,7 @@ export default function Home() {
             </Link>
 
             {/* Card 4 — Purple: Analytics */}
-            <Link to="/platform/booking#analytics" className="reveal" style={{ gridColumn:'span 4', textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#f5f3ff,#ede9fe)', border:'1px solid #ddd6fe', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220 }}
+            <Link to="/platform/booking#analytics" className="reveal col-span-12 md:col-span-4" style={{  textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#f5f3ff,#ede9fe)', border:'1px solid #ddd6fe', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220 }}
               onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(139,92,246,0.15)'}}
               onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
               <div style={{ display:'flex',alignItems:'flex-end',gap:5,marginBottom:20,height:40 }}>
@@ -462,7 +469,7 @@ export default function Home() {
             </Link>
 
             {/* Card 5 — Orange: Visitor Management */}
-            <Link to="/platform/visitors" className="reveal" style={{ gridColumn:'span 4', textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#fff7ed,#ffedd5)', border:'1px solid #fed7aa', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220 }}
+            <Link to="/platform/visitors" className="reveal col-span-12 md:col-span-4" style={{  textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#fff7ed,#ffedd5)', border:'1px solid #fed7aa', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220 }}
               onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(249,115,22,0.12)'}}
               onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
               <div style={{ display:'flex',gap:6,marginBottom:20 }}>
@@ -480,7 +487,7 @@ export default function Home() {
             </Link>
 
             {/* Card 6 — Pink: Calendar */}
-            <Link to="/platform/booking#integrations" className="reveal" style={{ gridColumn:'span 4', textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#fdf2f8,#fce7f3)', border:'1px solid #fbcfe8', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220 }}
+            <Link to="/platform/booking#integrations" className="reveal col-span-12 md:col-span-4" style={{  textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#fdf2f8,#fce7f3)', border:'1px solid #fbcfe8', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220 }}
               onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(236,72,153,0.12)'}}
               onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
               <div style={{ display:'flex',alignItems:'center',gap:8,marginBottom:20 }}>
@@ -505,7 +512,7 @@ export default function Home() {
             <h2 className="h2 reveal">Up and running <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>in minutes</span>, not months</h2>
             <p className="body reveal" style={{ maxWidth: 400, margin: '12px auto 0', color: '#64748b' }}>No complex onboarding. Sign up and your team is booking rooms today.</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16 }}>
+          <div className="grid grid-cols-2 md:grid-cols-4" style={{gap: 16}}>
             {STEPS.map((step, i) => (
               <div key={step.num} className="card reveal" style={{ animationDelay: `${i*0.1}s` }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
@@ -528,7 +535,7 @@ export default function Home() {
         <div className="container">
           <span className="tag reveal">Use Cases</span>
           <h2 className="h2 reveal" style={{ marginBottom: 48 }}>Built for every kind of <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>workspace</span></h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16 }}>
+          <div className="grid grid-cols-2 md:grid-cols-4" style={{gap: 16}}>
             {USE_CASES.map((uc, i) => (
               <Link key={uc.title} to={uc.href} className="card reveal" style={{ textDecoration: 'none', animationDelay: `${i * 0.1}s` }}>
                 <div style={{ marginBottom: 14 }}>{uc.icon}</div>
@@ -548,7 +555,7 @@ export default function Home() {
             <span className="tag reveal">Customer Stories</span>
             <h2 className="h2 reveal">Loved by <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>workplace teams</span></h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
+          <div className="grid grid-cols-1 md:grid-cols-3" style={{gap: 20}}>
             {TESTIMONIALS.map((t, i) => (
               <div key={t.name} className="card reveal" style={{ animationDelay: `${i*0.12}s`, display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'flex', gap: 2, marginBottom: 16 }}>
@@ -568,7 +575,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* INTEGRATIONS HUB — new hub-and-spoke */}
+      {/* INTEGRATIONS HUB */}
       <section style={{ padding: '80px 0', borderBottom: '1px solid #e2e8f0', overflow: 'hidden' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
@@ -576,7 +583,26 @@ export default function Home() {
             <h2 className="h2 reveal">Connects with <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>everything</span><br />your team already uses</h2>
             <p className="body reveal" style={{ color: '#64748b', maxWidth: 380, margin: '12px auto 0' }}>Watch SpacioHub connect to your entire stack — one integration at a time.</p>
           </div>
-          <div className="reveal"><IntegrationHub /></div>
+          {/* Desktop: animated hub */}
+          <div className="reveal hidden md:block"><IntegrationHub /></div>
+          {/* Mobile: simple logo grid */}
+          <div className="grid grid-cols-2 gap-3 md:hidden mt-8">
+            {[
+              { name: 'Google Calendar', color: '#4285F4', bg: '#eff6ff' },
+              { name: 'Microsoft 365',   color: '#0078D4', bg: '#eff6ff' },
+              { name: 'Zoom',            color: '#2D8CFF', bg: '#eff6ff' },
+              { name: 'MS Teams',        color: '#5558AF', bg: '#f0f0ff' },
+              { name: 'Google SSO',      color: '#34A853', bg: '#ecfdf5' },
+              { name: 'Microsoft SSO',   color: '#0078D4', bg: '#eff6ff' },
+              { name: 'iCal Feed',       color: '#FF3B30', bg: '#fff1f2' },
+              { name: 'Door Display',    color: '#00c07a', bg: '#ecfdf5' },
+            ].map(item => (
+              <div key={item.name} style={{ background: item.bg, borderRadius: 14, padding: '16px', textAlign: 'center', border: `1px solid ${item.color}25` }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: item.color }}>{item.name}</div>
+                <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 4 }}>✓ Connected</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

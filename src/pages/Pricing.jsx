@@ -169,7 +169,7 @@ function PlanFinder({ openModal }) {
               </div>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#0f172a' }}>{q.q}</div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '4px 8px', paddingLeft: 32 }}>
+            <div className="grid grid-cols-2 md:grid-cols-4" style={{gap: '4px 8px', paddingLeft: 32}}>
               {q.options.map(opt => {
                 const selected = answers[q.id] === opt.value
                 return (
@@ -253,7 +253,7 @@ export default function Pricing() {
       {/* ══ PLAN CARDS ════════════════════════════════════ */}
       <section style={{ padding: '56px 0', borderBottom: '1px solid #e2e8f0', background: '#fff' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16, alignItems: 'start' }}>
+          <div className="grid grid-cols-2 md:grid-cols-4" style={{gap: 16, alignItems: 'start'}}>
             {PLAN_CONFIGS.map((p, idx) => {
               const price = p.name === 'Enterprise' ? 'Custom' : annual ? p.annualPrice : p.monthlyPrice || p.annualPrice
               const subline = p.name === 'Enterprise' ? 'Talk to our team' : p.name === 'Basic' ? (annual ? 'billed annually' : 'per year') : annual ? 'per month, billed annually' : 'per month'
@@ -330,7 +330,8 @@ export default function Pricing() {
             <p className="body reveal" style={{ color: '#64748b', marginTop: 10 }}>Everything you need to choose the right plan.</p>
           </div>
 
-          <div className="reveal" style={{ background: '#fff', borderRadius: 20, overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', border: '1px solid #e2e8f0' }}>
+          <div className="pricing-table-wrap reveal">
+          <div style={{ background: '#fff', borderRadius: 20, overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', border: '1px solid #e2e8f0', minWidth: 620 }}>
 
             {/* Sticky header */}
             <div style={{ display: 'grid', gridTemplateColumns: '2fr repeat(4,1fr)', padding: '0 24px', background: '#fff', borderBottom: '2px solid #e2e8f0', position: 'sticky', top: 64, zIndex: 10, boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }}>
@@ -420,10 +421,10 @@ export default function Pricing() {
               ))}
             </div>
           </div>
+          </div>
         </div>
       </section>
-
-      {/* ══ FAQs ══════════════════════════════════════════ */}
+      {/* ══════════════════════════════════════════ */}
       <section style={{ padding: '80px 0', background: '#fff', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container" style={{ maxWidth: 760, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 48 }}>

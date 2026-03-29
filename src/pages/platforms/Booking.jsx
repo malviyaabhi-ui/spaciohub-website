@@ -88,7 +88,7 @@ function TabletScreen({ feature, settingsTab, setSettingsTab }) {
         <div style={{ display: 'flex', gap: 10, marginBottom: 22 }}>
           {[1,2,3,4].map(i => <div key={i} style={{ width: 12, height: 12, borderRadius: '50%', background: i <= 2 ? '#3b82f6' : '#1e293b', border: '1px solid #334155', transition: 'background 0.2s' }} />)}
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 8, width: '100%', maxWidth: 230 }}>
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{gap: 8, width: '100%', maxWidth: 230}}>
           {[1,2,3,4,5,6,7,8,9,'',0,'DEL'].map((k,i) => (
             <div key={i} style={{ background: k==='' ? 'transparent' : '#1e293b', border: k==='' ? 'none' : '1px solid #334155', borderRadius: 10, padding: '11px 8px', textAlign: 'center', fontSize: 15, fontWeight: 700, color: k==='DEL'?'#64748b':'#fff', cursor: k===''?'default':'pointer', transition: 'background 0.15s' }}>{k}</div>
           ))}
@@ -256,7 +256,7 @@ function DoorDisplaySection() {
   }
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
+    <div className="grid grid-cols-1 md:grid-cols-2" style={{gap: 64, alignItems: 'center'}}>
       {/* LEFT — feature list */}
       <div>
         <span className="tag reveal">Door Display</span>
@@ -331,7 +331,7 @@ function AnalyticsVisual() {
           </div>
         ))}
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:10, marginTop:16 }}>
+      <div className="grid grid-cols-1 md:grid-cols-3" style={{gap:10, marginTop:16}}>
         {[['72%','Avg Usage','#00c07a'],['340','Bookings','#3b82f6'],['18','No-shows','#f59e0b']].map(([v,l,c])=>(
           <div key={l} style={{ background:'rgba(255,255,255,0.04)', border:'1px solid rgba(255,255,255,0.06)', borderRadius:12, padding:'12px 10px', textAlign:'center' }}>
             <div style={{ fontSize:22, fontWeight:900, color:c, letterSpacing:-0.5, lineHeight:1 }}>{v}</div>
@@ -418,7 +418,7 @@ export default function PlatformBooking() {
             <span className="tag reveal">Features</span>
             <h2 className="h2 reveal">Everything in the <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>booking system</span></h2>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:14 }}>
+          <div className="grid grid-cols-2 md:grid-cols-4" style={{gap:14}}>
             {FEATURES.map((f,i)=>(
               <div key={f.title} className="reveal" style={{ animationDelay:`${i*0.06}s`, background:f.color, border:`1px solid ${f.border}`, borderRadius:16, padding:'24px 22px', transition:'transform 0.25s, box-shadow 0.25s' }}
                 onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow=`0 16px 40px ${f.border}80`}}
@@ -442,7 +442,7 @@ export default function PlatformBooking() {
       {/* ══ ANALYTICS ═════════════════════════════════════ */}
       <section id="analytics" style={{ padding:'80px 0', borderBottom:'1px solid #e2e8f0', background:'#fff' }}>
         <div className="container">
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'center' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{gap:64, alignItems:'center'}}>
             <div>
               <span className="tag reveal">Analytics</span>
               <h2 className="h2 reveal" style={{ marginBottom:16 }}>Data-driven <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>space decisions</span></h2>
@@ -467,7 +467,7 @@ export default function PlatformBooking() {
       {/* ══ 1. CONFLICT PREVENTION ════════════════════════ */}
       <section style={{ padding:'80px 0', background:'#f8fafc', borderBottom:'1px solid #e2e8f0' }}>
         <div className="container">
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'center' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{gap:64, alignItems:'center'}}>
             <div>
               <span className="tag reveal">Zero Double Bookings</span>
               <h2 className="h2 reveal" style={{ marginBottom:16 }}>
@@ -518,7 +518,7 @@ export default function PlatformBooking() {
       {/* ══ 2. CHECK-IN / QR / AUTO-RELEASE ══════════════ */}
       <section style={{ padding:'80px 0', borderBottom:'1px solid #e2e8f0', background:'#fff' }}>
         <div className="container">
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'center' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{gap:64, alignItems:'center'}}>
             <div className="reveal">
               <div style={{ background:'linear-gradient(160deg,#0f172a,#1a2744)', borderRadius:20, padding:28, boxShadow:'0 24px 60px rgba(0,0,0,0.2)' }}>
                 <div style={{ fontSize:11, fontWeight:700, color:'#475569', letterSpacing:'1px', textTransform:'uppercase', marginBottom:16 }}>Check-in Flow</div>
@@ -566,7 +566,7 @@ export default function PlatformBooking() {
       {/* ══ 3. APPROVAL WORKFLOWS ═════════════════════════ */}
       <section style={{ padding:'80px 0', background:'#f8fafc', borderBottom:'1px solid #e2e8f0' }}>
         <div className="container">
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'center' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{gap:64, alignItems:'center'}}>
             <div>
               <span className="tag reveal">Rules & Approvals</span>
               <h2 className="h2 reveal" style={{ marginBottom:16 }}>Your rooms, your <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>rules</span></h2>

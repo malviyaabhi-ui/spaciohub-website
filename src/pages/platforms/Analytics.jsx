@@ -28,7 +28,7 @@ function AnalyticsVisual() {
           </div>
         ))}
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:10, marginTop:16 }}>
+      <div className="grid grid-cols-1 md:grid-cols-3" style={{gap:10, marginTop:16}}>
         {[['72%','Avg Usage','#00c07a'],['340','Bookings','#3b82f6'],['18','No-shows','#f59e0b']].map(([v,l,c])=>(
           <div key={l} style={{ background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.06)',borderRadius:12,padding:'12px 10px',textAlign:'center' }}>
             <div style={{ fontSize:22,fontWeight:900,color:c,letterSpacing:-0.5,lineHeight:1 }}>{v}</div>
@@ -62,7 +62,7 @@ export default function Analytics() {
       <section style={{ background:'linear-gradient(170deg,#f5f3ff,#fff 60%,#f8fafc)', borderBottom:'1px solid #e2e8f0', padding:'88px 0 72px', overflow:'hidden', position:'relative' }}>
         <div style={{ position:'absolute',top:-80,right:-80,width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(139,92,246,0.08),transparent 65%)',pointerEvents:'none' }}/>
         <div className="container" style={{ position:'relative' }}>
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'center' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{gap:64, alignItems:'center'}}>
             <div>
               <span className="tag animate-fade-up">Platform</span>
               <h1 className="h1 animate-fade-up delay-1" style={{ fontSize:'clamp(30px,4vw,52px)', marginBottom:20 }}>
@@ -86,7 +86,7 @@ export default function Analytics() {
             <span className="tag reveal">What you can measure</span>
             <h2 className="h2 reveal">Data that drives <span style={{ background:'linear-gradient(135deg,#8b5cf6,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>real decisions</span></h2>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:16 }}>
+          <div className="grid grid-cols-1 md:grid-cols-3" style={{gap:16}}>
             {[
               { title:'Peak hour heatmaps',    desc:'See your busiest times at a glance — by hour, day, and room. Know exactly when demand spikes.',        icon:<svg viewBox="0 0 40 40" width="22" height="22" fill="none"><rect width="40" height="40" rx="10" fill="#f5f3ff"/><rect x="7" y="20" width="5" height="13" rx="1" fill="#8b5cf6" opacity="0.4"/><rect x="14" y="14" width="5" height="19" rx="1" fill="#8b5cf6" opacity="0.65"/><rect x="21" y="9" width="5" height="24" rx="1" fill="#8b5cf6"/><path d="M8 19l7-6 6-4 6-3" stroke="#8b5cf6" strokeWidth="1.5" strokeLinecap="round" fill="none"/></svg> },
               { title:'Room utilisation rates',desc:'Per room, per floor, per week. Instantly identify your over-booked and under-used spaces.',              icon:<svg viewBox="0 0 40 40" width="22" height="22" fill="none"><rect width="40" height="40" rx="10" fill="#f5f3ff"/><circle cx="20" cy="20" r="11" fill="#8b5cf6" opacity="0.1"/><circle cx="20" cy="20" r="11" stroke="#8b5cf6" strokeWidth="1.5" strokeDasharray="45 25"/><circle cx="20" cy="20" r="5" fill="#8b5cf6" opacity="0.3"/></svg> },
@@ -108,7 +108,7 @@ export default function Analytics() {
       {/* DEEP DIVE VISUAL */}
       <section style={{ padding:'80px 0', background:'#f8fafc', borderBottom:'1px solid #e2e8f0' }}>
         <div className="container">
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'center' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{gap:64, alignItems:'center'}}>
             <div>
               <span className="tag reveal">ROI</span>
               <h2 className="h2 reveal" style={{ marginBottom:16 }}>Cut real estate costs with <span style={{ background:'linear-gradient(135deg,#8b5cf6,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>real data</span></h2>

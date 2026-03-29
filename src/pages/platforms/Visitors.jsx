@@ -190,7 +190,7 @@ export default function PlatformVisitors() {
       <section style={{ background: 'linear-gradient(170deg,#fff7ed,#ffffff 60%,#f8fafc)', borderBottom: '1px solid #e2e8f0', padding: '88px 0 72px', overflow: 'hidden', position: 'relative' }}>
         <div style={{ position: 'absolute', top: -80, right: -80, width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle,rgba(249,115,22,0.08),transparent 65%)', pointerEvents: 'none' }} />
         <div className="container" style={{ position: 'relative' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{gap: 64, alignItems: 'center'}}>
             <div>
               <span className="tag animate-fade-up">Platform</span>
               <h1 className="h1 animate-fade-up delay-1" style={{ fontSize: 'clamp(30px,4vw,52px)', marginBottom: 20 }}>
@@ -215,7 +215,7 @@ export default function PlatformVisitors() {
             <h2 className="h2 reveal">Seamless from <span style={{ background:'linear-gradient(135deg,#f97316,#ec4899)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>invite to check-in</span></h2>
             <p className="body reveal" style={{ color: '#64748b', maxWidth: 420, margin: '12px auto 0' }}>Four simple steps. Zero friction. Your guests feel like VIPs from the moment they arrive.</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16, position: 'relative' }}>
+          <div className="grid grid-cols-2 md:grid-cols-4" style={{gap: 16, position: 'relative'}}>
             <div style={{ position: 'absolute', top: 28, left: '12.5%', right: '12.5%', height: 1, background: 'repeating-linear-gradient(90deg,#d1fae5 0,#d1fae5 8px,transparent 8px,transparent 16px)', zIndex: 0 }} />
             {STEPS.map((s, i) => (
               <div key={s.num} className="card reveal" style={{ animationDelay: `${i*0.1}s`, position: 'relative', zIndex: 1 }}>
@@ -235,7 +235,7 @@ export default function PlatformVisitors() {
             <span className="tag reveal">Features</span>
             <h2 className="h2 reveal">Everything <span style={{ background:'linear-gradient(135deg,#f97316,#ec4899)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>visitor management</span> needs</h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16 }}>
+          <div className="grid grid-cols-1 md:grid-cols-3" style={{gap: 16}}>
             {FEATURES.map((f, i) => (
               <div key={f.title} className="card reveal" style={{ animationDelay: `${i*0.08}s`, background: '#fff' }}>
                 <div style={{ width: 44, height: 44, borderRadius: 12, background: '#fff7ed', border: '1px solid #fed7aa', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>{f.icon}</div>
@@ -250,7 +250,7 @@ export default function PlatformVisitors() {
       {/* BADGE VISUAL */}
       <section style={{ padding: '80px 0', borderBottom: '1px solid #e2e8f0', background: '#fff' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{gap: 64, alignItems: 'center'}}>
             <div>
               <span className="tag reveal">Visitor Badges</span>
               <h2 className="h2 reveal" style={{ marginBottom: 16 }}>Professional <span style={{ background:'linear-gradient(135deg,#f97316,#ec4899)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>badges</span>, printed in seconds</h2>

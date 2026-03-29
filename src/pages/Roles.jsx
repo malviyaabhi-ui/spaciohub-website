@@ -137,7 +137,7 @@ export default function Roles() {
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 12 }}>
+            <div className="grid grid-cols-1 md:grid-cols-2" style={{gap: 12}}>
               {role.capabilities.map((cap, i) => (
                 <div key={cap.title} className="card" style={{ animationDelay: `${i*0.06}s` }}>
                   <div style={{ fontSize: 24, marginBottom: 10 }}>{cap.icon}</div>

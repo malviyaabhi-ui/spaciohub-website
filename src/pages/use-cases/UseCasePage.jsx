@@ -92,7 +92,7 @@ export default function UseCasePage({ icon, title, subtitle, desc, hero_features
         <div style={{ position: 'absolute', top: -100, right: -100, width: 500, height: 500, borderRadius: '50%', background: `radial-gradient(circle, ${accentColor}18, transparent 65%)`, pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', inset: 0, backgroundImage: `linear-gradient(${accentColor}08 1px,transparent 1px),linear-gradient(90deg,${accentColor}08 1px,transparent 1px)`, backgroundSize: '50px 50px', pointerEvents: 'none' }} />
         <div className="container" style={{ position: 'relative' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
               <span className="tag animate-fade-up">{subtitle}</span>
               <div style={{ marginBottom: 16, animation: 'fadeIn 0.4s ease' }}>{typeof icon === 'string' ? <span style={{ fontSize: 56, filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.1))' }}>{icon}</span> : icon}</div>
@@ -130,7 +130,7 @@ export default function UseCasePage({ icon, title, subtitle, desc, hero_features
         <section key={si} style={{ padding: '80px 0', borderBottom: '1px solid #e2e8f0', background: si % 2 === 1 ? '#f8fafc' : '#fff', position: 'relative', overflow: 'hidden' }}>
           {si % 2 === 0 && <div style={{ position: 'absolute', bottom: -150, left: -100, width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle,${accentColor}06,transparent 70%)`, pointerEvents: 'none' }} />}
           <div className="container" style={{ position: 'relative' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
               {/* Text side */}
               <div style={{ order: si % 2 === 1 ? 1 : 0 }}>
                 <span className="tag reveal">{sec.tag}</span>
@@ -201,7 +201,7 @@ export default function UseCasePage({ icon, title, subtitle, desc, hero_features
         <div className="container">
           <h2 className="h2 reveal" style={{ marginBottom: 8 }}>Explore more <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>use cases</span></h2>
           <p className="body reveal" style={{ marginBottom: 40, color: '#64748b' }}>SpacioHub works for every kind of space.</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16 }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {related.map((r, i) => (
               <Link key={r.title} to={r.href} className="glow-card reveal" style={{ textDecoration: 'none', padding: 28, animationDelay: `${i*0.1}s` }}>
                 <div style={{ marginBottom: 14 }}>{UC_ICONS[r.title] || <span style={{ fontSize: 32 }}>{r.icon}</span>}</div>

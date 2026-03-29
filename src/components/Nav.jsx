@@ -220,9 +220,16 @@ export default function Nav() {
   const [menu, setMenu] = useState(null)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileExpanded, setMobileExpanded] = useState(null)
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 960)
   const { openModal } = useModal()
   const location = useLocation()
   const leaveTimer = useRef(null)
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 960)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -232,11 +239,7 @@ export default function Nav() {
 
   useEffect(() => { setMenu(null); setMobileOpen(false); setMobileExpanded(null) }, [location])
 
-  // Lock body scroll when mobile menu open
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [mobileOpen])
+  // Note: no body scroll lock — Zoho SalesIQ sets overflow:hidden on body which conflicts
 
   const handleEnter = (key) => { clearTimeout(leaveTimer.current); setMenu(key) }
   const handleLeave = () => { leaveTimer.current = setTimeout(() => setMenu(null), 120) }
@@ -253,7 +256,7 @@ export default function Nav() {
   return (
     <>
       <nav style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 700,
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 9000,
         background: scrolled ? 'rgba(255,255,255,0.97)' : '#fff',
         backdropFilter: 'blur(12px)',
         borderBottom: '1px solid #e2e8f0',
@@ -268,7 +271,7 @@ export default function Nav() {
             </Link>
 
             {/* Desktop nav */}
-            <div style={{ display: 'flex', gap: 2, alignItems: 'center' }} className="nav-desktop">
+            <div className="hidden lg:flex" style={{ gap: 2, alignItems: 'center' }}>
               <NavDropdown label="Solutions"    menuKey="solutions"    active={menu === 'solutions'}    config={MENUS.solutions}    onEnter={handleEnter} onLeave={handleLeave} onClose={handleClose} openModal={openModal} />
               <NavDropdown label="Use Cases"    menuKey="usecases"     active={menu === 'usecases'}     config={MENUS.usecases}     onEnter={handleEnter} onLeave={handleLeave} onClose={handleClose} openModal={openModal} />
               <NavDropdown label="Integrations" menuKey="integrations" active={menu === 'integrations'} config={MENUS.integrations} onEnter={handleEnter} onLeave={handleLeave} onClose={handleClose} openModal={openModal} />
@@ -283,26 +286,27 @@ export default function Nav() {
             </div>
           </div>
 
-          {/* Desktop right side */}
+          {/* Right side */}
           <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+            {/* Desktop items */}
             <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer"
+              className="hidden lg:flex items-center"
               style={{ fontSize: 14, fontWeight: 500, color: '#64748b', textDecoration: 'none', padding: '8px 14px', borderRadius: 7, transition: 'all 0.15s' }}
-              className="nav-desktop"
               onMouseEnter={e => { e.currentTarget.style.background = '#f1f5f9'; e.currentTarget.style.color = '#0f172a' }}
               onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#64748b' }}>
               Sign in
             </a>
             <button onClick={openModal}
+              className="hidden lg:flex"
               style={{ background: '#00c07a', color: '#fff', padding: '9px 20px', borderRadius: 7, fontSize: 14, fontWeight: 600, border: 'none', cursor: 'pointer', fontFamily: 'Inter,sans-serif', transition: 'all 0.2s' }}
-              className="nav-desktop"
               onMouseEnter={e => { e.currentTarget.style.background = '#009960'; e.currentTarget.style.transform = 'translateY(-1px)' }}
               onMouseLeave={e => { e.currentTarget.style.background = '#00c07a'; e.currentTarget.style.transform = 'translateY(0)' }}>
               Request Demo
             </button>
 
-            {/* Hamburger — mobile only */}
-            <button className="nav-mobile-only" onClick={() => setMobileOpen(o => !o)}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, display: 'flex', flexDirection: 'column', gap: 5, alignItems: 'center', justifyContent: 'center' }}>
+            {/* Hamburger — CSS controls visibility */}
+            <button className="flex lg:hidden" onClick={() => setMobileOpen(o => !o)}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, flexDirection: 'column', gap: 5, alignItems: 'center', justifyContent: 'center' }}>
               <span style={{ display: 'block', width: 22, height: 2, background: '#0f172a', borderRadius: 2, transition: 'all 0.25s', transform: mobileOpen ? 'translateY(7px) rotate(45deg)' : 'none' }} />
               <span style={{ display: 'block', width: 22, height: 2, background: '#0f172a', borderRadius: 2, transition: 'all 0.25s', opacity: mobileOpen ? 0 : 1 }} />
               <span style={{ display: 'block', width: 22, height: 2, background: '#0f172a', borderRadius: 2, transition: 'all 0.25s', transform: mobileOpen ? 'translateY(-7px) rotate(-45deg)' : 'none' }} />
@@ -310,75 +314,74 @@ export default function Nav() {
           </div>
         </div>
 
-        {/* Mobile menu panel */}
-        {mobileOpen && (
-          <div style={{ position: 'fixed', top: 64, left: 0, right: 0, bottom: 0, background: '#fff', zIndex: 699, overflowY: 'auto', borderTop: '1px solid #e2e8f0', animation: 'slideDown 0.2s ease' }}>
-            <div style={{ padding: '12px 20px 32px' }}>
+      </nav>
 
-              {mobileMenuItems.map(item => (
-                <div key={item.label}>
-                  {item.href ? (
-                    <Link to={item.href}
-                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 4px', borderBottom: '1px solid #f1f5f9', textDecoration: 'none', fontSize: 16, fontWeight: 600, color: '#0f172a' }}>
+      {/* Mobile menu panel — outside nav so nav overflow:visible doesn't clip it */}
+      {mobileOpen && (
+        <div style={{ position: 'fixed', top: 64, left: 0, right: 0, bottom: 0, background: '#fff', zIndex: 9999, overflowY: 'auto', borderTop: '1px solid #e2e8f0', animation: 'slideDown 0.2s ease' }}>
+          <div style={{ padding: '12px 20px 32px' }}>
+
+            {mobileMenuItems.map(item => (
+              <div key={item.label}>
+                {item.href ? (
+                  <Link to={item.href} onClick={() => setMobileOpen(false)}
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 4px', borderBottom: '1px solid #f1f5f9', textDecoration: 'none', fontSize: 16, fontWeight: 600, color: '#0f172a' }}>
+                    {item.label}
+                  </Link>
+                ) : (
+                  <>
+                    <button onClick={() => setMobileExpanded(mobileExpanded === item.key ? null : item.key)}
+                      style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 4px', borderBottom: '1px solid #f1f5f9', background: 'none', border: 'none', borderBottomWidth: 1, borderBottomStyle: 'solid', borderBottomColor: '#f1f5f9', cursor: 'pointer', fontFamily: 'Inter,sans-serif', fontSize: 16, fontWeight: 600, color: '#0f172a', textAlign: 'left' }}>
                       {item.label}
-                    </Link>
-                  ) : (
-                    <>
-                      <button onClick={() => setMobileExpanded(mobileExpanded === item.key ? null : item.key)}
-                        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 4px', borderBottom: '1px solid #f1f5f9', background: 'none', border: 'none', borderBottomWidth: 1, borderBottomStyle: 'solid', borderBottomColor: '#f1f5f9', cursor: 'pointer', fontFamily: 'Inter,sans-serif', fontSize: 16, fontWeight: 600, color: '#0f172a', textAlign: 'left' }}>
-                        {item.label}
-                        <span style={{ fontSize: 12, color: '#94a3b8', transition: 'transform 0.2s', display: 'inline-block', transform: mobileExpanded === item.key ? 'rotate(180deg)' : 'none' }}>▾</span>
-                      </button>
-                      {mobileExpanded === item.key && (
-                        <div style={{ padding: '8px 0 12px 8px', animation: 'slideDown 0.15s ease' }}>
-                          {item.groups.map(group => (
-                            <div key={group.label} style={{ marginBottom: 12 }}>
-                              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: group.bg, border: `1px solid ${group.color}22`, borderRadius: 100, padding: '2px 8px 2px 5px', marginBottom: 6 }}>
-                                <div style={{ width: 5, height: 5, borderRadius: '50%', background: group.color }} />
-                                <span style={{ fontSize: 10, fontWeight: 700, color: group.color }}>{group.label}</span>
-                              </div>
-                              {group.items.map(gitem => (
-                                <Link key={gitem.label} to={gitem.href}
-                                  style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 10px', borderRadius: 9, textDecoration: 'none', marginBottom: 2 }}
-                                  onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'}
-                                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
-                                  <span style={{ flexShrink: 0 }}>{gitem.icon}</span>
-                                  <div>
-                                    <div style={{ fontSize: 14, fontWeight: 600, color: '#0f172a' }}>{gitem.label}</div>
-                                    {gitem.desc && <div style={{ fontSize: 11, color: '#94a3b8' }}>{gitem.desc}</div>}
-                                  </div>
-                                </Link>
-                              ))}
+                      <span style={{ fontSize: 12, color: '#94a3b8', transition: 'transform 0.2s', display: 'inline-block', transform: mobileExpanded === item.key ? 'rotate(180deg)' : 'none' }}>▾</span>
+                    </button>
+                    {mobileExpanded === item.key && (
+                      <div style={{ padding: '8px 0 12px 8px', animation: 'slideDown 0.15s ease' }}>
+                        {item.groups.map(group => (
+                          <div key={group.label} style={{ marginBottom: 12 }}>
+                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: group.bg, border: `1px solid ${group.color}22`, borderRadius: 100, padding: '2px 8px 2px 5px', marginBottom: 6 }}>
+                              <div style={{ width: 5, height: 5, borderRadius: '50%', background: group.color }} />
+                              <span style={{ fontSize: 10, fontWeight: 700, color: group.color }}>{group.label}</span>
                             </div>
-                          ))}
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
-              ))}
-
-              {/* Mobile CTAs */}
-              <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 10 }}>
-                <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer"
-                  style={{ display: 'block', textAlign: 'center', padding: '13px', borderRadius: 10, border: '1.5px solid #e2e8f0', fontSize: 15, fontWeight: 600, color: '#0f172a', textDecoration: 'none' }}>
-                  Sign in
-                </a>
-                <button onClick={() => { openModal(); setMobileOpen(false) }}
-                  style={{ background: '#00c07a', color: '#fff', padding: '13px', borderRadius: 10, fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer', fontFamily: 'Inter,sans-serif' }}>
-                  Request Demo →
-                </button>
+                            {group.items.map(gitem => (
+                              <Link key={gitem.label} to={gitem.href} onClick={() => setMobileOpen(false)}
+                                style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 10px', borderRadius: 9, textDecoration: 'none', marginBottom: 2 }}
+                                onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'}
+                                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                                <span style={{ flexShrink: 0 }}>{gitem.icon}</span>
+                                <div>
+                                  <div style={{ fontSize: 14, fontWeight: 600, color: '#0f172a' }}>{gitem.label}</div>
+                                  {gitem.desc && <div style={{ fontSize: 11, color: '#94a3b8' }}>{gitem.desc}</div>}
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
+            ))}
+
+            {/* Mobile CTAs */}
+            <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer"
+                style={{ display: 'block', textAlign: 'center', padding: '13px', borderRadius: 10, border: '1.5px solid #e2e8f0', fontSize: 15, fontWeight: 600, color: '#0f172a', textDecoration: 'none' }}>
+                Sign in
+              </a>
+              <button onClick={() => { openModal(); setMobileOpen(false) }}
+                style={{ background: '#00c07a', color: '#fff', padding: '13px', borderRadius: 10, fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer', fontFamily: 'Inter,sans-serif' }}>
+                Request Demo →
+              </button>
             </div>
           </div>
-        )}
-      </nav>
+        </div>
+      )}
 
       <style>{`
         @keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
         @keyframes slideDown { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
-        @media (min-width: 961px) { .nav-mobile-only { display: none !important; } }
-        @media (max-width: 960px) { .nav-desktop { display: none !important; } }
       `}</style>
     </>
   )

@@ -108,6 +108,12 @@ function FallingLogo({ logoKey, label, delay, settleY, floatDur, floatPhase }) {
 
 // ── Auto-advancing integration section ──────────────────────────────────────
 function IntegrationShowcase() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
   const [activeTab, setActiveTab] = useState(0)
   const [activeItem, setActiveItem] = useState(0)
   const [progress, setProgress] = useState(0)
@@ -157,7 +163,7 @@ function IntegrationShowcase() {
   }
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 32 : 64, alignItems: 'start' }}>
       {/* LEFT */}
       <div>
         {/* Category tabs */}
@@ -235,6 +241,12 @@ function IntegrationShowcase() {
 
 export default function Integrations() {
   const { openModal } = useModal()
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 
   return (
     <>
@@ -242,25 +254,25 @@ export default function Integrations() {
       <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
 
       {/* ══ HERO — falling logos ════════════════════════════════ */}
-      <section style={{ position: 'relative', overflow: 'hidden', borderBottom: '1px solid #e2e8f0', background: '#fff', minHeight: 580 }}>
+      <section style={{ position: 'relative', overflow: 'hidden', borderBottom: '1px solid #e2e8f0', background: '#fff', minHeight: isMobile ? 'auto' : 580 }}>
         {/* Grid background */}
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(0,192,122,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(0,192,122,0.045) 1px,transparent 1px)', backgroundSize: '64px 64px', pointerEvents: 'none' }} />
         {/* Centre glow */}
         <div style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%,-50%)', width: 700, height: 500, background: 'radial-gradient(ellipse,rgba(0,192,122,0.07),transparent 65%)', pointerEvents: 'none' }} />
 
-        {/* LEFT logos — 4 logos confined to left side */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, width: '22%', height: 440, display: 'flex', justifyContent: 'space-around', alignItems: 'flex-end', padding: '0 8px', pointerEvents: 'none', zIndex: 2 }}>
+        {/* LEFT logos — hidden on mobile */}
+        {!isMobile && <div style={{ position: 'absolute', bottom: 0, left: 0, width: '22%', height: 440, display: 'flex', justifyContent: 'space-around', alignItems: 'flex-end', padding: '0 8px', pointerEvents: 'none', zIndex: 2 }}>
           {FALLING.slice(0, 4).map(item => (
             <FallingLogo key={item.key} logoKey={item.key} label={item.label} delay={item.delay} settleY={item.settleY} floatDur={item.floatDur} floatPhase={item.floatPhase} />
           ))}
-        </div>
+        </div>}
 
-        {/* RIGHT logos — 4 logos confined to right side */}
-        <div style={{ position: 'absolute', bottom: 0, right: 0, width: '22%', height: 440, display: 'flex', justifyContent: 'space-around', alignItems: 'flex-end', padding: '0 8px', pointerEvents: 'none', zIndex: 2 }}>
+        {/* RIGHT logos — hidden on mobile */}
+        {!isMobile && <div style={{ position: 'absolute', bottom: 0, right: 0, width: '22%', height: 440, display: 'flex', justifyContent: 'space-around', alignItems: 'flex-end', padding: '0 8px', pointerEvents: 'none', zIndex: 2 }}>
           {FALLING.slice(4).map(item => (
             <FallingLogo key={item.key} logoKey={item.key} label={item.label} delay={item.delay} settleY={item.settleY} floatDur={item.floatDur} floatPhase={item.floatPhase} />
           ))}
-        </div>
+        </div>}
 
         {/* Centre content */}
         <div style={{ position: 'relative', zIndex: 6, textAlign: 'center', padding: '80px 24px 200px' }}>
@@ -304,7 +316,7 @@ export default function Integrations() {
             <span className="tag reveal">Full list</span>
             <h2 className="h2 reveal">All <span style={{ background: 'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: 900 }}>integrations</span> at a glance</h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 12 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: window.innerWidth <= 768 ? 'repeat(2,1fr)' : 'repeat(4,1fr)', gap: 12 }}>
             {[
               { name: 'Google Calendar', sub: 'Two-way sync',       logo: 'gcal',    color: '#4285F4', bg: '#eff6ff', border: '#bfdbfe', plan: 'Pro',     planColor: '#0F799B' },
               { name: 'Microsoft 365',   sub: 'Outlook & Exchange', logo: 'outlook', color: '#0078D4', bg: '#eff6ff', border: '#bfdbfe', plan: 'Pro',     planColor: '#0F799B' },
@@ -344,7 +356,7 @@ export default function Integrations() {
             <span className="tag reveal">Setup</span>
             <h2 className="h2 reveal">Connected in <span style={{ background: 'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: 900 }}>minutes</span>, not days</h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : 'repeat(3,1fr)', gap: 24 }}>
             {[
               { num: '01', accent: '#00c07a', title: 'Connect your apps',        desc: 'Go to Settings → Integrations and connect Google or Microsoft with one click. No developer needed.' },
               { num: '02', accent: '#3b82f6', title: 'Rooms sync automatically', desc: 'SpacioHub pulls your existing rooms and calendars. Bookings flow both ways — nothing gets missed.' },

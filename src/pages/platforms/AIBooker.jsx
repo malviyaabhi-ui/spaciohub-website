@@ -78,7 +78,7 @@ function AIDemo() {
           <div style={{ background:'rgba(255,255,255,0.04)',borderRadius:12,padding:'14px 16px',border:'1px solid rgba(255,255,255,0.06)' }}>
             <div style={{ fontSize:16,fontWeight:800,color:'#fff',marginBottom:4 }}>{result.room}</div>
             <div style={{ fontSize:12,color:'#00c07a',fontWeight:600,marginBottom:12 }}>{result.time}</div>
-            <div style={{ display:'grid',gridTemplateColumns:'1fr 1fr',gap:8,marginBottom:12 }}>
+            <div className="grid grid-cols-1 md:grid-cols-2" style={{gap:8,marginBottom:12}}>
               {[['Floor',result.floor],['Capacity',result.cap]].map(([k,v]) => (
                 <div key={k} style={{ background:'rgba(255,255,255,0.04)',borderRadius:8,padding:'8px 10px' }}>
                   <div style={{ fontSize:9,color:'#475569',fontWeight:600,letterSpacing:'0.5px',textTransform:'uppercase' }}>{k}</div>
@@ -107,7 +107,7 @@ export default function AIBooker() {
       <section style={{ background:'linear-gradient(170deg,#fefce8,#fff 60%,#f8fafc)', borderBottom:'1px solid #e2e8f0', padding:'88px 0 72px', overflow:'hidden', position:'relative' }}>
         <div style={{ position:'absolute',top:-80,right:-80,width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(245,158,11,0.08),transparent 65%)',pointerEvents:'none' }}/>
         <div className="container" style={{ position:'relative' }}>
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'center' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{gap:64, alignItems:'center'}}>
             <div>
               <span className="tag animate-fade-up">Platform · AI</span>
               <h1 className="h1 animate-fade-up delay-1" style={{ fontSize:'clamp(30px,4vw,52px)', marginBottom:20 }}>
@@ -130,7 +130,7 @@ export default function AIBooker() {
             <span className="tag reveal">How it works</span>
             <h2 className="h2 reveal">Three steps to <span style={{ background:'linear-gradient(135deg,#f59e0b,#ea580c)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>the right room</span></h2>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:24 }}>
+          <div className="grid grid-cols-1 md:grid-cols-3" style={{gap:24}}>
             {[
               { num:'01', title:'Describe your need',       desc:'Just type what you need — "quiet room for 2 hours", "space for 10 with a projector", "call booth this afternoon". Anything works.', accent:'#f59e0b', bg:'#fefce8', border:'#fde68a' },
               { num:'02', title:'AI finds the best match',  desc:"SpacioHub checks availability, capacity, amenities, and your team's booking patterns to suggest the best room for your request.", accent:'#f97316', bg:'#fff7ed', border:'#fed7aa' },
@@ -152,7 +152,7 @@ export default function AIBooker() {
             <span className="tag reveal">Capabilities</span>
             <h2 className="h2 reveal">What the AI <span style={{ background:'linear-gradient(135deg,#f59e0b,#ea580c)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>understands</span></h2>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:16 }}>
+          <div className="grid grid-cols-1 md:grid-cols-3" style={{gap:16}}>
             {[
               { title:'Natural language',      desc:'No rigid forms — type what you need and the AI parses your intent, time, duration, and preferences.' },
               { title:'Live availability',     desc:'Checks real-time room availability, buffer times, and existing bookings before making a suggestion.' },
