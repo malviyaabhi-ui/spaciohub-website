@@ -62,9 +62,10 @@ body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--b
 .test-card::before { content:'"'; position:absolute; top:-10px; right:20px; font-size:120px; font-weight:900; color:rgba(0,192,122,.05); line-height:1; font-family:Georgia,serif; }
 .test-card:hover { box-shadow:0 16px 40px rgba(0,0,0,.07); transform:translateY(-3px); }
 
-#waFloat { position:fixed; bottom:24px; right:24px; z-index:900; width:52px; height:52px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.4); transition:all .2s; text-decoration:none; animation:waPulse 3s infinite; }
+#waFloat { position:fixed; bottom:24px; left:24px; z-index:900; width:52px; height:52px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.4); transition:all .2s; text-decoration:none; animation:waPulse 3s infinite; }
 #waFloat:hover { transform:scale(1.1); }
-#waTip { position:fixed; bottom:32px; right:84px; z-index:899; background:#1f2937; color:#fff; padding:6px 12px; border-radius:7px; font-size:12px; pointer-events:none; opacity:0; transition:opacity .2s; font-family:'Inter',sans-serif; white-space:nowrap; }
+#waTip { position:fixed; bottom:24px; right:84px; z-index:899; background:#1f2937; color:#fff; padding:8px 14px; border-radius:10px; font-size:12px; pointer-events:none; opacity:0; transition:opacity .2s; font-family:'Inter',sans-serif; white-space:nowrap; line-height:1.4; }
+#waTip::after { content:''; position:absolute; left:-6px; top:50%; transform:translateY(-50%); border-right:6px solid #1f2937; border-top:5px solid transparent; border-bottom:5px solid transparent; }
 
 .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.45); backdrop-filter:blur(6px); z-index:800; display:flex; align-items:center; justify-content:center; padding:20px; }
 .modal-box { background:#fff; border-radius:20px; width:100%; max-width:520px; padding:40px; position:relative; max-height:90vh; overflow-y:auto; box-shadow:0 24px 64px rgba(0,0,0,.15); animation:fadeUp .25s ease; }
