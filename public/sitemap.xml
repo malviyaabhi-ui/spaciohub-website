@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main pages -->
+  <url><loc>https://spaciohub.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://spaciohub.com/pricing</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://spaciohub.com/roles</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://spaciohub.com/contact</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Platform pages -->
+  <url><loc>https://spaciohub.com/platform/booking</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://spaciohub.com/platform/visitors</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://spaciohub.com/platform/door-display</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://spaciohub.com/platform/analytics</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://spaciohub.com/platform/ai-booker</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://spaciohub.com/platform/integrations</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Use case pages -->
+  <url><loc>https://spaciohub.com/use-cases/corporate</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://spaciohub.com/use-cases/coworking</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://spaciohub.com/use-cases/hotels</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://spaciohub.com/use-cases/resellers</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Resources -->
+  <url><loc>https://spaciohub.com/help</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://spaciohub.com/blog</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://spaciohub.com/changelog</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+
+  <!-- Blog posts -->
+  <url><loc>https://spaciohub.com/blog#reduce-no-shows-meeting-room-bookings</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://spaciohub.com/blog#5-signs-office-needs-room-booking-system</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://spaciohub.com/blog#set-up-door-display-panel-5-minutes</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://spaciohub.com/blog#hot-desking-vs-assigned-seating</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://spaciohub.com/blog#spaciohub-google-calendar-outlook-integration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://spaciohub.com/blog#real-cost-of-wasted-meeting-rooms</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Legal -->
+  <url><loc>https://spaciohub.com/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://spaciohub.com/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://spaciohub.com/cookies</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+
+</urlset>
