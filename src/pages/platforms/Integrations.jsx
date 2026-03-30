@@ -1,4 +1,5 @@
 import SEO from '../../components/SEO'
+import NetworkViz from '../../components/NetworkViz'
 import { PAGE_SEO } from '../../components/pageSEO'
 import React, { useState, useEffect, useRef } from 'react'
 import { useModal } from '../../components/ModalContext'
@@ -346,6 +347,35 @@ export default function Integrations() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+
+      {/* ══ NETWORK VISUALISATION ══════════════════════════════ */}
+      <section style={{ background: '#080c18', padding: '80px 0 0' }}>
+        <div style={{ textAlign: 'center', marginBottom: 48, padding: '0 24px' }}>
+          <span className="tag reveal" style={{ background: 'rgba(0,192,122,.15)', color: '#00c07a', border: '1px solid rgba(0,192,122,.25)' }}>Platform ecosystem</span>
+          <h2 className="h2 reveal" style={{ color: '#f1f5f9' }}>See how <span style={{ background: 'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: 900 }}>everything connects</span></h2>
+          <p className="lead reveal" style={{ color: '#94a3b8', maxWidth: 480, margin: '0 auto' }}>
+            SpacioHub sits at the centre of your workspace stack.
+          </p>
+          <p className="reveal" style={{ marginTop: 16, display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 14, fontWeight: 600, color: '#00c07a', animation: 'vizHintPulse 2.5s ease-in-out infinite' }}>
+            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#00c07a', display: 'inline-block', animation: 'vizDotPulse 2.5s ease-in-out infinite' }} />
+            Click any node to explore
+          </p>
+          <style>{`
+            @keyframes vizHintPulse {
+              0%,100% { opacity: 1; }
+              50%      { opacity: 0.4; }
+            }
+            @keyframes vizDotPulse {
+              0%,100% { box-shadow: 0 0 0 0 rgba(0,192,122,0.5); }
+              50%      { box-shadow: 0 0 0 6px rgba(0,192,122,0); }
+            }
+          `}</style>
+        </div>
+        <div className="reveal">
+          <NetworkViz />
         </div>
       </section>
 
