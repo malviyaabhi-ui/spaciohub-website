@@ -1,5 +1,6 @@
 import SEO from '../components/SEO'
 import { PAGE_SEO } from '../components/pageSEO'
+import PlatformShowcase from '../components/PlatformShowcase'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useModal } from '../components/ModalContext'
@@ -570,6 +571,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* PLATFORM SHOWCASE */}
+      <PlatformShowcase />
 
       {/* USE CASES — exact from live site */}
       <section style={{ padding: '80px 0', borderBottom: '1px solid #e2e8f0' }}>
