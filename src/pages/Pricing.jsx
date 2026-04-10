@@ -1,6 +1,6 @@
 import SEO from '../components/SEO'
 import { PAGE_SEO } from '../components/pageSEO'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useModal } from '../components/ModalContext'
 
 const FEATURES_TABLE = [
@@ -221,6 +221,56 @@ function PlanFinder({ openModal }) {
 }
 
 export default function Pricing() {
+  const [geoAllowed, setGeoAllowed] = useState(null); // null=loading, true=show, false=hide
+
+  useEffect(() => {
+    const MIDDLE_EAST = ['AE','SA','QA','KW','BH','OM','JO','EG','LB','IQ','YE','SY','IR','PS','TR'];
+    fetch('https://ipapi.co/json/')
+      .then(r => r.json())
+      .then(data => {
+        if (MIDDLE_EAST.includes(data.country_code)) {
+          setGeoAllowed(false); // hide pricing
+        } else {
+          setGeoAllowed(true); // show pricing
+        }
+      })
+      .catch(() => setGeoAllowed(false)); // on error, hide pricing
+  }, []);
+
+  // Show loading spinner while detecting location
+  if (geoAllowed === null) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f8fafc' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ width: 40, height: 40, borderRadius: '50%', border: '3px solid #e2e8f0', borderTopColor: '#0d9488', animation: 'spin 0.8s linear infinite', margin: '0 auto 16px' }} />
+          <p style={{ color: '#94a3b8', fontSize: 14 }}>Loading...</p>
+        </div>
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
+    );
+  }
+
+  // Hide pricing for Middle East — show contact page instead
+  if (geoAllowed === false) {
+    return (
+      <>
+        <SEO {...PAGE_SEO.pricing} />
+        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#f8fafc', padding: '48px 24px', textAlign: 'center' }}>
+          <div style={{ fontSize: 56, marginBottom: 24 }}>🌍</div>
+          <h1 style={{ fontSize: 32, fontWeight: 800, color: '#0f172a', marginBottom: 12 }}>Tailored Pricing for Your Region</h1>
+          <p style={{ fontSize: 16, color: '#64748b', maxWidth: 480, lineHeight: 1.7, marginBottom: 32 }}>
+            We offer custom pricing and packages for organisations in the Middle East. Get in touch and we'll put together the right plan for you.
+          </p>
+          <a href="mailto:contact@spaciohub.com"
+            style={{ background: '#0d9488', color: '#fff', padding: '14px 32px', borderRadius: 12, textDecoration: 'none', fontWeight: 700, fontSize: 16, display: 'inline-block', marginBottom: 16 }}>
+            Contact Us →
+          </a>
+          <p style={{ fontSize: 13, color: '#94a3b8' }}>Or email us at <strong>contact@spaciohub.com</strong></p>
+        </div>
+      </>
+    );
+  }
+
   const [annual, setAnnual] = useState(true)
   const [openFaq, setOpenFaq] = useState(null)
   const { openModal } = useModal()
