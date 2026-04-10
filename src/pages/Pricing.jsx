@@ -253,22 +253,159 @@ export default function Pricing() {
     );
   }
 
-  // Hide pricing for Middle East — show contact page instead
+  const ME_STEPS = [
+    {id:'size',label:'Rooms',q:'How many meeting rooms?',multi:false,opts:['1–3 rooms','4–10 rooms','11–30 rooms','30+ rooms']},
+    {id:'team',label:'Team',q:'How big is your team?',multi:false,opts:['1–10 people','11–50 people','51–200 people','200+ people']},
+    {id:'need',label:'Solutions',q:'What solutions do you need?',multi:true,opts:['Room booking','Door displays','Visitor management','Digital signage','Analytics','Room service']},
+    {id:'timeline',label:'Timeline',q:'When to get started?',multi:false,opts:['Immediately','Within a month','1–3 months','Just exploring']},
+  ]
+  const [meStep, setMeStep] = useState(0)
+  const [meAns, setMeAns] = useState({})
+  const [meSel, setMeSel] = useState({})
+  const [meName, setMeName] = useState('')
+  const [meEmail, setMeEmail] = useState('')
+  const [meCompany, setMeCompany] = useState('')
+  const [meSubmitted, setMeSubmitted] = useState(false)
+  const [meSubmitting, setMeSubmitting] = useState(false)
+
+  function meSelectOpt(id, val, isMulti) {
+    if (isMulti) {
+      const prev = meSel[id] || []
+      const next = prev.includes(val) ? prev.filter(v => v !== val) : [...prev, val]
+      setMeSel(s => ({...s, [id]: next}))
+      setMeAns(a => ({...a, [id]: next}))
+    } else {
+      setMeAns(a => ({...a, [id]: val}))
+    }
+  }
+
+  function meGoNext(id, isMulti) {
+    if (isMulti && (!meSel[id] || !meSel[id].length)) return
+    if (!isMulti && !meAns[id]) return
+    setMeStep(s => s + 1)
+  }
+
+  async function meSubmit() {
+    if (!meName || !meEmail) return
+    setMeSubmitting(true)
+    try {
+      await fetch('https://formello.app/api/submit/REPLACE_WITH_FORM_ID', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: meName, email: meEmail, company: meCompany, ...meAns, source: 'Middle East Pricing Page' })
+      })
+    } catch(e) {}
+    setMeSubmitting(false)
+    setMeSubmitted(true)
+  }
+
   if (geoAllowed === false) {
+    const CSS = `
+      @keyframes fadeSlide{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
+      @keyframes popIn{0%{transform:scale(0);opacity:0}70%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
+      @keyframes lineGrow{from{height:0}to{height:26px}}
+      @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(13,148,136,0.35)}50%{box-shadow:0 0 0 6px rgba(13,148,136,0)}}
+      @keyframes successBounce{0%{transform:scale(0) rotate(-15deg);opacity:0}60%{transform:scale(1.2) rotate(5deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+      .me-q{animation:fadeSlide 0.28s ease both}
+    `
+    const isSel = (id, val) => meAns[id] === val || (Array.isArray(meAns[id]) && meAns[id].includes(val))
+    const curStep = ME_STEPS[meStep]
+    const selArr = meSel[curStep?.id] || []
+    const canNext = curStep?.multi ? selArr.length > 0 : !!meAns[curStep?.id]
+
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#f8fafc', padding: '48px 24px', textAlign: 'center' }}>
-        <div style={{ fontSize: 56, marginBottom: 24 }}>🌍</div>
-        <h1 style={{ fontSize: 32, fontWeight: 800, color: '#0f172a', marginBottom: 12 }}>Tailored Pricing for Your Region</h1>
-        <p style={{ fontSize: 16, color: '#64748b', maxWidth: 480, lineHeight: 1.7, marginBottom: 32 }}>
-          We offer custom pricing and packages for organisations in the Middle East. Get in touch and we'll put together the right plan for you.
-        </p>
-        <a href="mailto:contact@spaciohub.com"
-          style={{ background: '#0d9488', color: '#fff', padding: '14px 32px', borderRadius: 12, textDecoration: 'none', fontWeight: 700, fontSize: 16, display: 'inline-block', marginBottom: 16 }}>
-          Contact Us →
-        </a>
-        <p style={{ fontSize: 13, color: '#94a3b8' }}>Or email us at <strong style={{color:'#0f172a'}}>contact@spaciohub.com</strong></p>
+      <div style={{minHeight:'100vh',background:'#f8fafc',display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 20px',fontFamily:'system-ui,sans-serif'}}>
+        <style>{CSS}</style>
+        <div style={{maxWidth:660,width:'100%'}}>
+          <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:28,justifyContent:'center'}}>
+            <svg width="26" height="26" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#0d9488"/><path d="M20 8l12 6v10c0 8-12 12-12 12S8 30 8 24V14l12-6z" fill="white" opacity="0.9"/></svg>
+            <span style={{fontSize:15,fontWeight:700,color:'#0f172a'}}>SpacioHub</span>
+            <span style={{fontSize:12,color:'#94a3b8',marginLeft:2}}>· Middle East</span>
+          </div>
+          {meSubmitted ? (
+            <div className="me-q" style={{textAlign:'center',padding:'32px 0'}}>
+              <div style={{width:56,height:56,borderRadius:'50%',background:'#ccfbf1',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 16px',animation:'successBounce 0.5s ease'}}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><polyline points="4,12 9,17 20,6" stroke="#0d9488" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </div>
+              <h2 style={{fontSize:22,fontWeight:800,color:'#0f172a',marginBottom:8}}>We'll be in touch!</h2>
+              <p style={{fontSize:14,color:'#64748b',lineHeight:1.7}}>Thanks <strong>{meName}</strong>! Our team will reach out to <strong>{meEmail}</strong> within 24 hours.</p>
+            </div>
+          ) : (
+            <div style={{display:'flex',gap:24,alignItems:'flex-start'}}>
+              {/* Flow panel */}
+              <div style={{width:155,flexShrink:0}}>
+                {ME_STEPS.map((s,i) => {
+                  const d=i<meStep, a=i===meStep
+                  const nc=d||a?'#0d9488':'#e2e8f0'
+                  const av=meAns[s.id]?(Array.isArray(meAns[s.id])?meAns[s.id].slice(0,2).join(', ')+(meAns[s.id].length>2?'…':''):meAns[s.id]):''
+                  return (
+                    <div key={s.id} style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
+                      <div style={{display:'flex',alignItems:'center',gap:9}}>
+                        <div style={{width:26,height:26,borderRadius:'50%',background:nc,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,animation:a?'pulse 2s infinite':d?'popIn 0.3s ease':'none'}}>
+                          {d ? <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                             : a ? <span style={{width:7,height:7,borderRadius:'50%',background:'white',display:'block'}}/>
+                             : <span style={{width:6,height:6,borderRadius:'50%',background:'#cbd5e1',display:'block'}}/>}
+                        </div>
+                        <div>
+                          <div style={{fontSize:11,fontWeight:a?700:500,color:a?'#0d9488':'#94a3b8'}}>{s.label}</div>
+                          {d&&av&&<div style={{fontSize:10,color:'#0d9488',maxWidth:90,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{av}</div>}
+                        </div>
+                      </div>
+                      {i<ME_STEPS.length-1&&<div style={{marginLeft:12,width:2,background:d?'#0d9488':'#e2e8f0',height:26,animation:d?'lineGrow 0.3s ease':'none',transition:'background 0.4s'}}/>}
+                    </div>
+                  )
+                })}
+              </div>
+              {/* Question panel */}
+              <div style={{flex:1}}>
+                {meStep < ME_STEPS.length ? (
+                  <div className="me-q">
+                    <h3 style={{fontSize:16,fontWeight:800,color:'#0f172a',marginBottom:4}}>{curStep.q}</h3>
+                    <p style={{fontSize:12,color:'#94a3b8',marginBottom:12}}>{curStep.multi?'Select all that apply':'Choose one'}</p>
+                    <div style={{display:'flex',flexDirection:'column',gap:6,marginBottom:12}}>
+                      {curStep.opts.map((opt,oi) => (
+                        <button key={opt} onClick={() => meSelectOpt(curStep.id, opt, curStep.multi)}
+                          style={{padding:'10px 13px',borderRadius:10,border:`2px solid ${isSel(curStep.id,opt)?'#0d9488':'#e2e8f0'}`,background:isSel(curStep.id,opt)?'#f0fdfa':'#fff',cursor:'pointer',fontSize:13,fontWeight:500,color:'#0f172a',textAlign:'left',display:'flex',alignItems:'center',gap:10,transition:'all 0.15s',animation:`fadeSlide ${0.1+oi*0.045}s ease both`}}>
+                          <span style={{width:15,height:15,borderRadius:curStep.multi?4:'50%',border:`2px solid ${isSel(curStep.id,opt)?'#0d9488':'#cbd5e1'}`,background:isSel(curStep.id,opt)?'#0d9488':'transparent',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,animation:isSel(curStep.id,opt)?'popIn 0.2s ease':'none'}}>
+                            {isSel(curStep.id,opt)&&<svg width="8" height="8" viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,8 8,2" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+                          </span>
+                          {opt}
+                        </button>
+                      ))}
+                    </div>
+                    <div style={{display:'flex',gap:8}}>
+                      {meStep>0&&<button onClick={()=>setMeStep(s=>s-1)} style={{padding:'10px 15px',borderRadius:10,border:'1px solid #e2e8f0',background:'#fff',cursor:'pointer',fontSize:13,fontWeight:600,color:'#64748b'}}>← Back</button>}
+                      <button onClick={()=>meGoNext(curStep.id,curStep.multi)} disabled={!canNext}
+                        style={{flex:1,padding:'10px 15px',borderRadius:10,border:'none',background:canNext?'#0d9488':'#e2e8f0',color:canNext?'#fff':'#94a3b8',cursor:canNext?'pointer':'not-allowed',fontSize:13,fontWeight:700,transition:'all 0.15s'}}>
+                        {curStep.multi&&selArr.length>0?`Next (${selArr.length} selected)`:'Next →'}
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="me-q" style={{background:'#fff',borderRadius:14,border:'1px solid #e2e8f0',padding:18}}>
+                    <p style={{fontSize:12,color:'#64748b',lineHeight:1.6,marginBottom:14}}>We work closely with our Middle East clients — let's talk!</p>
+                    <label style={{fontSize:11,fontWeight:700,color:'#64748b',display:'block',marginBottom:4,textTransform:'uppercase',letterSpacing:0.5}}>Name *</label>
+                    <input value={meName} onChange={e=>setMeName(e.target.value)} placeholder="Ahmed Al Mansouri" style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1px solid #e2e8f0',fontSize:13,color:'#0f172a',outline:'none',boxSizing:'border-box',marginBottom:10}}/>
+                    <label style={{fontSize:11,fontWeight:700,color:'#64748b',display:'block',marginBottom:4,textTransform:'uppercase',letterSpacing:0.5}}>Company</label>
+                    <input value={meCompany} onChange={e=>setMeCompany(e.target.value)} placeholder="Acme Corp" style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1px solid #e2e8f0',fontSize:13,color:'#0f172a',outline:'none',boxSizing:'border-box',marginBottom:10}}/>
+                    <label style={{fontSize:11,fontWeight:700,color:'#64748b',display:'block',marginBottom:4,textTransform:'uppercase',letterSpacing:0.5}}>Work email *</label>
+                    <input value={meEmail} onChange={e=>setMeEmail(e.target.value)} type="email" placeholder="ahmed@company.ae" style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1px solid #e2e8f0',fontSize:13,color:'#0f172a',outline:'none',boxSizing:'border-box',marginBottom:14}}/>
+                    <button onClick={meSubmit} disabled={!meName||!meEmail||meSubmitting}
+                      style={{width:'100%',padding:12,borderRadius:10,border:'none',background:meName&&meEmail?'#0d9488':'#e2e8f0',color:meName&&meEmail?'#fff':'#94a3b8',cursor:meName&&meEmail?'pointer':'not-allowed',fontSize:14,fontWeight:700,marginBottom:10}}>
+                      {meSubmitting?'Sending…':'Book a call →'}
+                    </button>
+                    <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                      <button onClick={()=>setMeStep(s=>s-1)} style={{background:'none',border:'none',cursor:'pointer',fontSize:12,color:'#94a3b8',padding:0}}>← Back</button>
+                      <a href="mailto:contact@spaciohub.com" style={{fontSize:12,color:'#0d9488',textDecoration:'none'}}>contact@spaciohub.com</a>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    );
+    )
   }
 
   return (
