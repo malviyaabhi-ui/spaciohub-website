@@ -226,6 +226,16 @@ export default function Pricing() {
   const [openFaq, setOpenFaq] = useState(null)
   const { openModal } = useModal()
 
+  // ME questionnaire states — must be at top level
+  const [meStep, setMeStep] = useState(0)
+  const [meAns, setMeAns] = useState({})
+  const [meSel, setMeSel] = useState({})
+  const [meName, setMeName] = useState('')
+  const [meEmail, setMeEmail] = useState('')
+  const [meCompany, setMeCompany] = useState('')
+  const [meSubmitted, setMeSubmitted] = useState(false)
+  const [meSubmitting, setMeSubmitting] = useState(false)
+
   useEffect(() => {
     const MIDDLE_EAST = ['AE','SA','QA','KW','BH','OM','JO','EG','LB','IQ','YE','SY','IR','PS','TR'];
     fetch('https://ipapi.co/json/')
@@ -259,14 +269,6 @@ export default function Pricing() {
     {id:'need',label:'Solutions',q:'What solutions do you need?',multi:true,opts:['Room booking','Door displays','Visitor management','Digital signage','Analytics','Room service']},
     {id:'timeline',label:'Timeline',q:'When to get started?',multi:false,opts:['Immediately','Within a month','1–3 months','Just exploring']},
   ]
-  const [meStep, setMeStep] = useState(0)
-  const [meAns, setMeAns] = useState({})
-  const [meSel, setMeSel] = useState({})
-  const [meName, setMeName] = useState('')
-  const [meEmail, setMeEmail] = useState('')
-  const [meCompany, setMeCompany] = useState('')
-  const [meSubmitted, setMeSubmitted] = useState(false)
-  const [meSubmitting, setMeSubmitting] = useState(false)
 
   function meSelectOpt(id, val, isMulti) {
     if (isMulti) {
