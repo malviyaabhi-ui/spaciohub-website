@@ -304,6 +304,8 @@ export default function Pricing() {
   if (geoAllowed === false) {
     const CSS = `
       @keyframes fadeSlide{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
+      @keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+      @keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
       @keyframes popIn{0%{transform:scale(0);opacity:0}70%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
       @keyframes lineGrow{from{height:0}to{height:26px}}
       @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(13,148,136,0.35)}50%{box-shadow:0 0 0 6px rgba(13,148,136,0)}}
@@ -316,8 +318,59 @@ export default function Pricing() {
     const canNext = curStep?.multi ? selArr.length > 0 : !!meAns[curStep?.id]
 
     return (
-      <div style={{minHeight:'100vh',background:'#f8fafc',display:'flex',alignItems:'center',justifyContent:'center',padding:'40px 20px',fontFamily:'system-ui,sans-serif'}}>
+      <div style={{fontFamily:'system-ui,sans-serif'}}>
         <style>{CSS}</style>
+
+        {/* HERO SECTION */}
+        <div style={{position:'relative',overflow:'hidden',background:'#060d1a',padding:'80px 24px 64px',textAlign:'center'}}>
+          <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 70% 60% at 20% 40%,rgba(13,148,136,0.15) 0%,transparent 60%),radial-gradient(ellipse 60% 60% at 80% 20%,rgba(15,121,155,0.12) 0%,transparent 60%)',pointerEvents:'none'}}/>
+          <div style={{position:'absolute',inset:0,backgroundImage:'linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)',backgroundSize:'60px 60px',pointerEvents:'none'}}/>
+          <div style={{position:'absolute',bottom:0,left:0,right:0,height:120,background:'linear-gradient(0deg,#f8fafc,transparent)',pointerEvents:'none'}}/>
+
+          {/* Floating cards */}
+          <div style={{position:'absolute',left:'5%',top:'20%',animation:'float1 5s ease-in-out infinite',display:'flex',alignItems:'center',gap:10,background:'#fff',border:'1px solid #a7f3d0',borderRadius:12,padding:'10px 14px',boxShadow:'0 8px 28px rgba(13,148,136,0.15)',whiteSpace:'nowrap'}}>
+            <div style={{width:28,height:28,borderRadius:8,background:'#ecfdf5',display:'flex',alignItems:'center',justifyContent:'center',fontSize:14}}>📅</div>
+            <div style={{textAlign:'left'}}>
+              <div style={{fontSize:11,fontWeight:700,color:'#0f172a'}}>Board Room booked</div>
+              <div style={{fontSize:10,color:'#94a3b8'}}>2:00–3:00 PM · Ahmed K.</div>
+            </div>
+            <div style={{width:7,height:7,borderRadius:'50%',background:'#0d9488'}}/>
+          </div>
+
+          <div style={{position:'absolute',right:'5%',top:'15%',animation:'float2 6s ease-in-out infinite 1s',display:'flex',alignItems:'center',gap:10,background:'#fff',border:'1px solid #bfdbfe',borderRadius:12,padding:'10px 14px',boxShadow:'0 8px 28px rgba(59,130,246,0.12)',whiteSpace:'nowrap'}}>
+            <div style={{width:28,height:28,borderRadius:8,background:'#eff6ff',display:'flex',alignItems:'center',justifyContent:'center',fontSize:14}}>👤</div>
+            <div style={{textAlign:'left'}}>
+              <div style={{fontSize:11,fontWeight:700,color:'#0f172a'}}>Guest checked in</div>
+              <div style={{fontSize:10,color:'#94a3b8'}}>Visitor · Host: Sara M.</div>
+            </div>
+            <div style={{background:'#eff6ff',color:'#3b82f6',fontSize:9,fontWeight:700,padding:'2px 7px',borderRadius:100}}>✓ Done</div>
+          </div>
+
+          {/* Hero content */}
+          <div style={{position:'relative',maxWidth:600,margin:'0 auto'}}>
+            <div style={{display:'inline-flex',alignItems:'center',gap:8,background:'rgba(13,148,136,0.15)',border:'1px solid rgba(13,148,136,0.3)',borderRadius:100,padding:'6px 16px',marginBottom:24}}>
+              <div style={{width:6,height:6,borderRadius:'50%',background:'#0d9488'}}/>
+              <span style={{fontSize:12,fontWeight:600,color:'#0d9488',letterSpacing:0.5}}>Middle East — Custom Onboarding</span>
+            </div>
+            <h1 style={{fontSize:'clamp(28px,5vw,44px)',fontWeight:800,color:'#fff',lineHeight:1.15,marginBottom:16}}>
+              Let's build something<br/><span style={{color:'#0d9488'}}>together</span>
+            </h1>
+            <p style={{fontSize:16,color:'rgba(255,255,255,0.55)',lineHeight:1.7,marginBottom:8,maxWidth:480,marginLeft:'auto',marginRight:'auto'}}>
+              We don't do one-size-fits-all for the Middle East. Tell us about your space and we'll personally onboard you with the right setup, pricing, and support.
+            </p>
+            <div style={{display:'flex',justifyContent:'center',gap:24,marginTop:20,flexWrap:'wrap'}}>
+              {['No credit card needed','Dedicated onboarding','Arabic support available'].map(t=>(
+                <div key={t} style={{display:'flex',alignItems:'center',gap:6,color:'rgba(255,255,255,0.4)',fontSize:13}}>
+                  <span style={{color:'#0d9488',fontWeight:700}}>✓</span>{t}
+                </div>
+              ))}
+            </div>
+            <div style={{marginTop:28,color:'rgba(255,255,255,0.3)',fontSize:13}}>Answer 4 quick questions below ↓</div>
+          </div>
+        </div>
+
+        {/* QUESTIONNAIRE */}
+        <div style={{background:'#f8fafc',padding:'48px 20px',display:'flex',justifyContent:'center'}}>
         <div style={{maxWidth:660,width:'100%'}}>
           <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:28,justifyContent:'center'}}>
             <svg width="26" height="26" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#0d9488"/><path d="M20 8l12 6v10c0 8-12 12-12 12S8 30 8 24V14l12-6z" fill="white" opacity="0.9"/></svg>
@@ -406,6 +459,8 @@ export default function Pricing() {
             </div>
           )}
         </div>
+      </div>
+      </div>
       </div>
     )
   }
