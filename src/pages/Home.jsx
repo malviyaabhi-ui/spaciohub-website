@@ -226,6 +226,15 @@ function StatPill({ n, label, col, bg, border, started }) {
 export default function Home() {
   const { openModal } = useModal()
   const heroRef = useRef(null)
+  const [geoHidePricing, setGeoHidePricing] = useState(false)
+
+  useEffect(() => {
+    const ME = ['AE','SA','QA','KW','BH','OM','JO','EG','LB','IQ','YE','SY','IR','PS','TR']
+    fetch('https://ipapi.co/json/')
+      .then(r => r.json())
+      .then(d => { if (ME.includes(d.country_code)) setGeoHidePricing(true) })
+      .catch(() => {})
+  }, [])
   const [statsStarted, setStatsStarted] = useState(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 900)
 
@@ -652,7 +661,7 @@ export default function Home() {
       </section>
 
       {/* PRICING TEASER */}
-      <section style={{ padding: '96px 0', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+      {!geoHidePricing && <section style={{ padding: '96px 0', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="tag reveal">Pricing</span>
@@ -695,7 +704,7 @@ export default function Home() {
             All plans include a 14-day free trial. <Link to="/pricing" style={{ color:'#00c07a', textDecoration:'none', fontWeight:600 }}>Compare all features →</Link>
           </p>
         </div>
-      </section>
+      </section>}
 
             {/* CTA — exact from live site */}
       <section style={{ background: 'linear-gradient(135deg,#0f172a,#1e293b)', padding: '96px 0', textAlign: 'center' }}>
