@@ -222,6 +222,9 @@ function PlanFinder({ openModal }) {
 
 export default function Pricing() {
   const [geoAllowed, setGeoAllowed] = useState(null); // null=loading, true=show, false=hide
+  const [annual, setAnnual] = useState(true)
+  const [openFaq, setOpenFaq] = useState(null)
+  const { openModal } = useModal()
 
   useEffect(() => {
     const MIDDLE_EAST = ['AE','SA','QA','KW','BH','OM','JO','EG','LB','IQ','YE','SY','IR','PS','TR'];
@@ -267,10 +270,6 @@ export default function Pricing() {
       </div>
     );
   }
-
-  const [annual, setAnnual] = useState(true)
-  const [openFaq, setOpenFaq] = useState(null)
-  const { openModal } = useModal()
 
   return (
     <>
