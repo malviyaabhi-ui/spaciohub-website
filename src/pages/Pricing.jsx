@@ -322,29 +322,9 @@ export default function Pricing() {
         <style>{CSS}</style>
 
         {/* HERO SECTION */}
-        <div style={{position:'relative',overflow:'hidden',background:'#060d1a',padding:'100px 24px 120px',textAlign:'center'}}>
-          <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 80% 60% at 20% 40%,rgba(0,192,122,0.12) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 80% 20%,rgba(15,121,155,0.1) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 50% 80%,rgba(59,130,246,0.06) 0%,transparent 60%)',pointerEvents:'none'}}/>
+        <div style={{position:'relative',overflow:'hidden',background:'linear-gradient(180deg,#060d1a 0%,#0a1628 60%,#f8fafc 100%)',padding:'80px 24px 100px',textAlign:'center'}}>
+          <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 80% 60% at 50% 30%,rgba(0,192,122,0.12) 0%,transparent 60%)',pointerEvents:'none'}}/>
           <div style={{position:'absolute',inset:0,backgroundImage:'linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)',backgroundSize:'60px 60px',pointerEvents:'none'}}/>
-          <div style={{position:'absolute',bottom:0,left:0,right:0,height:200,background:'linear-gradient(to top,#f8fafc 0%,rgba(248,250,252,0.8) 30%,transparent 100%)',pointerEvents:'none'}}/>
-
-          {/* Floating cards */}
-          <div style={{position:'absolute',left:'3%',top:'25%',animation:'float1 5s ease-in-out infinite',display:'flex',alignItems:'center',gap:10,background:'#fff',border:'1px solid #a7f3d0',borderRadius:12,padding:'10px 14px',boxShadow:'0 8px 28px rgba(13,148,136,0.15)',whiteSpace:'nowrap'}}>
-            <div style={{width:28,height:28,borderRadius:8,background:'#ecfdf5',display:'flex',alignItems:'center',justifyContent:'center',fontSize:14}}>📅</div>
-            <div style={{textAlign:'left'}}>
-              <div style={{fontSize:11,fontWeight:700,color:'#0f172a'}}>Board Room booked</div>
-              <div style={{fontSize:10,color:'#94a3b8'}}>2:00–3:00 PM · Ahmed K.</div>
-            </div>
-            <div style={{width:7,height:7,borderRadius:'50%',background:'#0d9488'}}/>
-          </div>
-
-          <div style={{position:'absolute',right:'3%',top:'22%',animation:'float2 6s ease-in-out infinite 1s',display:'flex',alignItems:'center',gap:10,background:'#fff',border:'1px solid #bfdbfe',borderRadius:12,padding:'10px 14px',boxShadow:'0 8px 28px rgba(59,130,246,0.12)',whiteSpace:'nowrap'}}>
-            <div style={{width:28,height:28,borderRadius:8,background:'#eff6ff',display:'flex',alignItems:'center',justifyContent:'center',fontSize:14}}>👤</div>
-            <div style={{textAlign:'left'}}>
-              <div style={{fontSize:11,fontWeight:700,color:'#0f172a'}}>Guest checked in</div>
-              <div style={{fontSize:10,color:'#94a3b8'}}>Visitor · Host: Sara M.</div>
-            </div>
-            <div style={{background:'#eff6ff',color:'#3b82f6',fontSize:9,fontWeight:700,padding:'2px 7px',borderRadius:100}}>✓ Done</div>
-          </div>
 
           {/* Hero content */}
           <div style={{position:'relative',maxWidth:600,margin:'0 auto'}}>
