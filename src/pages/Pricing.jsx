@@ -322,8 +322,8 @@ export default function Pricing() {
         <style>{CSS}</style>
 
         {/* HERO SECTION */}
-        <div style={{position:'relative',overflow:'hidden',background:'linear-gradient(180deg,#060d1a 0%,#0a1628 60%,#f8fafc 100%)',padding:'80px 24px 100px',textAlign:'center'}}>
-          <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 80% 60% at 50% 30%,rgba(0,192,122,0.12) 0%,transparent 60%)',pointerEvents:'none'}}/>
+        <div style={{position:'relative',overflow:'hidden',background:'#060d1a',padding:'80px 24px 96px',textAlign:'center',borderBottom:'1px solid #1e293b'}}>
+          <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 80% 60% at 20% 40%,rgba(0,192,122,0.15) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 80% 20%,rgba(15,121,155,0.12) 0%,transparent 60%)',pointerEvents:'none'}}/>
           <div style={{position:'absolute',inset:0,backgroundImage:'linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)',backgroundSize:'60px 60px',pointerEvents:'none'}}/>
 
           {/* Hero content */}
