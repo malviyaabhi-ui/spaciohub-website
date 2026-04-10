@@ -253,21 +253,18 @@ export default function Pricing() {
   // Hide pricing for Middle East — show contact page instead
   if (geoAllowed === false) {
     return (
-      <>
-        <SEO {...PAGE_SEO.pricing} />
-        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#f8fafc', padding: '48px 24px', textAlign: 'center' }}>
-          <div style={{ fontSize: 56, marginBottom: 24 }}>🌍</div>
-          <h1 style={{ fontSize: 32, fontWeight: 800, color: '#0f172a', marginBottom: 12 }}>Tailored Pricing for Your Region</h1>
-          <p style={{ fontSize: 16, color: '#64748b', maxWidth: 480, lineHeight: 1.7, marginBottom: 32 }}>
-            We offer custom pricing and packages for organisations in the Middle East. Get in touch and we'll put together the right plan for you.
-          </p>
-          <a href="mailto:contact@spaciohub.com"
-            style={{ background: '#0d9488', color: '#fff', padding: '14px 32px', borderRadius: 12, textDecoration: 'none', fontWeight: 700, fontSize: 16, display: 'inline-block', marginBottom: 16 }}>
-            Contact Us →
-          </a>
-          <p style={{ fontSize: 13, color: '#94a3b8' }}>Or email us at <strong>contact@spaciohub.com</strong></p>
-        </div>
-      </>
+      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#f8fafc', padding: '48px 24px', textAlign: 'center' }}>
+        <div style={{ fontSize: 56, marginBottom: 24 }}>🌍</div>
+        <h1 style={{ fontSize: 32, fontWeight: 800, color: '#0f172a', marginBottom: 12 }}>Tailored Pricing for Your Region</h1>
+        <p style={{ fontSize: 16, color: '#64748b', maxWidth: 480, lineHeight: 1.7, marginBottom: 32 }}>
+          We offer custom pricing and packages for organisations in the Middle East. Get in touch and we'll put together the right plan for you.
+        </p>
+        <a href="mailto:contact@spaciohub.com"
+          style={{ background: '#0d9488', color: '#fff', padding: '14px 32px', borderRadius: 12, textDecoration: 'none', fontWeight: 700, fontSize: 16, display: 'inline-block', marginBottom: 16 }}>
+          Contact Us →
+        </a>
+        <p style={{ fontSize: 13, color: '#94a3b8' }}>Or email us at <strong style={{color:'#0f172a'}}>contact@spaciohub.com</strong></p>
+      </div>
     );
   }
 
