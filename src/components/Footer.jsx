@@ -94,6 +94,7 @@ export default function Footer() {
               <FL to="/help">Help Centre</FL>
               <FL to="/blog">Blog</FL>
               <FL to="/changelog">Changelog</FL>
+              <FL to="/security">Security</FL>
               <div style={{ marginTop:20 }}>
                 <ColHead>Legal</ColHead>
                 <FL to="/privacy">Privacy Policy</FL>

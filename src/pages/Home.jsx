@@ -226,15 +226,6 @@ function StatPill({ n, label, col, bg, border, started }) {
 export default function Home() {
   const { openModal } = useModal()
   const heroRef = useRef(null)
-  const [geoHidePricing, setGeoHidePricing] = useState(false)
-
-  useEffect(() => {
-    const ME = ['AE','SA','QA','KW','BH','OM','JO','EG','LB','IQ','YE','SY','IR','PS','TR']
-    fetch('https://ipapi.co/json/')
-      .then(r => r.json())
-      .then(d => { if (ME.includes(d.country_code)) setGeoHidePricing(true) })
-      .catch(() => {})
-  }, [])
   const [statsStarted, setStatsStarted] = useState(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 900)
 
@@ -660,8 +651,87 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* SECURITY SECTION */}
+      <section style={{ padding: '96px 0', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
+            <div>
+              <span className="tag reveal">Security & trust</span>
+              <h2 className="h2 reveal" style={{ marginTop: 12, marginBottom: 16 }}>
+                We take security <span style={{ background: 'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: 900 }}>seriously.</span>
+              </h2>
+              <p className="body reveal" style={{ maxWidth: 420, marginBottom: 28 }}>
+                SpacioHub is built for organisations that can't afford to compromise. Your data is encrypted, your access is controlled, and your license is cryptographically protected.
+              </p>
+              <div className="reveal" style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 32 }}>
+                {[
+                  { color: '#00c07a', bg: '#ecfdf5', label: 'TLS 1.3 + AES-256 encryption', desc: 'All data encrypted in transit and at rest' },
+                  { color: '#8b5cf6', bg: '#f5f3ff', label: 'Role-based access control', desc: 'Four permission levels — everyone sees only what they need' },
+                  { color: '#0F799B', bg: '#e0f2fe', label: 'Cryptographic license protection', desc: 'Server-side validation — keys cannot be forged or shared' },
+                  { color: '#f59e0b', bg: '#fefce8', label: '99.9% uptime SLA', desc: 'Automatic failover and daily backups included' },
+                ].map((item, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                    <div style={{ width: 36, height: 36, borderRadius: 10, background: item.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <div style={{ width: 8, height: 8, borderRadius: '50%', background: item.color }} />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: '#0f172a' }}>{item.label}</div>
+                      <div style={{ fontSize: 12, color: '#64748b' }}>{item.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <Link to="/security" className="reveal" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#00c07a', fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>
+                Read our full security overview →
+              </Link>
+            </div>
+
+            {/* Visual */}
+            <div className="reveal" style={{ background: '#0f172a', borderRadius: 20, padding: 28 }}>
+              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 16, fontWeight: 600, letterSpacing: 1 }}>LICENSE VALIDATION</div>
+              {[
+                { label: 'Organisation match', ok: true },
+                { label: 'Signature verified', ok: true },
+                { label: 'Contract not expired', ok: true },
+                { label: 'Key not revoked', ok: true },
+                { label: 'Shared with another org', ok: false },
+              ].map((row, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                  <div style={{ width: 20, height: 20, borderRadius: '50%', background: row.ok ? 'rgba(0,192,122,0.15)' : 'rgba(239,68,68,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    {row.ok
+                      ? <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#00c07a" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      : <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="3" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    }
+                  </div>
+                  <span style={{ fontSize: 13, color: row.ok ? 'rgba(255,255,255,0.75)' : 'rgba(239,68,68,0.6)', flex: 1 }}>{row.label}</span>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: row.ok ? '#00c07a' : '#ef4444' }}>{row.ok ? 'PASS' : 'BLOCKED'}</span>
+                </div>
+              ))}
+              <div style={{ marginTop: 14, background: 'rgba(0,192,122,0.08)', border: '1px solid rgba(0,192,122,0.2)', borderRadius: 10, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00c07a" strokeWidth="2" strokeLinecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span style={{ fontSize: 12, color: '#00c07a', fontWeight: 600 }}>Access granted — app unlocked</span>
+              </div>
+              <div style={{ marginTop: 16, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                {[
+                  { label: 'Encryption', value: 'AES-256' },
+                  { label: 'Protocol', value: 'TLS 1.3' },
+                  { label: 'Signing', value: 'HMAC-SHA256' },
+                  { label: 'Uptime', value: '99.9% SLA' },
+                ].map((s, i) => (
+                  <div key={i} style={{ background: 'rgba(255,255,255,0.04)', borderRadius: 8, padding: '8px 12px' }}>
+                    <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.35)', marginBottom: 2 }}>{s.label}</div>
+                    <div style={{ fontSize: 13, color: '#fff', fontWeight: 600 }}>{s.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* PRICING TEASER */}
-      {!geoHidePricing && <section style={{ padding: '96px 0', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+      <section style={{ padding: '96px 0', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="tag reveal">Pricing</span>
@@ -704,7 +774,7 @@ export default function Home() {
             All plans include a 14-day free trial. <Link to="/pricing" style={{ color:'#00c07a', textDecoration:'none', fontWeight:600 }}>Compare all features →</Link>
           </p>
         </div>
-      </section>}
+      </section>
 
             {/* CTA — exact from live site */}
       <section style={{ background: 'linear-gradient(135deg,#0f172a,#1e293b)', padding: '96px 0', textAlign: 'center' }}>
