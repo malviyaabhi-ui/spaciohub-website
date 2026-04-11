@@ -14,6 +14,7 @@ import HelpCentre from './pages/HelpCentre'
 import Contact from './pages/Contact'
 import Changelog from './pages/Changelog'
 import Privacy from './pages/Privacy'
+import Security from './pages/Security'
 import Terms from './pages/Terms'
 import Cookies from './pages/Cookies'
 
@@ -82,6 +83,8 @@ export default function App() {
           <Route path="/help" element={<HelpCentre />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/changelog" element={<Changelog />} />
+
+          <Route path="/security" element={<Security />} />
 
           {/* Legal */}
           <Route path="/privacy" element={<Privacy />} />

@@ -135,6 +135,7 @@ const MENUS = {
           { label: 'Help Centre',  desc: 'Guides & how-tos',        href: '/help',       icon: I.analytics },
           { label: 'Blog',         desc: 'Tips & workspace insights', href: '/blog',      icon: I.booking },
           { label: 'Changelog',    desc: 'Latest updates',           href: '/changelog',  icon: I.visitors },
+          { label: 'Security',     desc: 'How we protect your data',  href: '/security',   icon: I.door },
         ]
       },
       {
