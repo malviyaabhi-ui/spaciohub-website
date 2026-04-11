@@ -274,46 +274,6 @@ export default function Security() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 reveal" style={{ maxWidth: 860, margin: '0 auto 48px' }}>
-              {LICENSE_CARDS.map((c, i) => (
-                <div key={i} className="card" style={{ display: 'flex', gap: 16, alignItems: 'flex-start', padding: '20px 24px' }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 10, background: c.bg, border: `1px solid ${c.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: c.color, flexShrink: 0 }}>
-                    {c.icon}
-                  </div>
-                  <div>
-                    <h3 style={{ fontSize: 15, fontWeight: 700, color: '#0f172a', marginBottom: 6 }}>{c.title}</h3>
-                    <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6, margin: 0 }}>{c.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* License key visual */}
-            <div className="reveal" style={{ maxWidth: 640, margin: '0 auto', background: '#0f172a', borderRadius: 16, padding: 28 }}>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 16, fontWeight: 600, letterSpacing: 1 }}>SAMPLE LICENSE VALIDATION</div>
-              {[
-                { label: 'Organisation match', ok: true },
-                { label: 'Signature verified (HMAC-SHA256)', ok: true },
-                { label: 'Contract not expired', ok: true },
-                { label: 'Key not revoked', ok: true },
-                { label: 'Shared with another organisation', ok: false },
-              ].map((row, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                  <div style={{ width: 22, height: 22, borderRadius: '50%', background: row.ok ? 'rgba(0,192,122,0.15)' : 'rgba(239,68,68,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    {row.ok
-                      ? <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#00c07a" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                      : <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="3" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                    }
-                  </div>
-                  <span style={{ fontSize: 13, color: row.ok ? 'rgba(255,255,255,0.75)' : 'rgba(239,68,68,0.7)', flex: 1 }}>{row.label}</span>
-                  <span style={{ fontSize: 11, fontWeight: 700, color: row.ok ? '#00c07a' : '#ef4444' }}>{row.ok ? 'PASS' : 'BLOCKED'}</span>
-                </div>
-              ))}
-              <div style={{ marginTop: 16, background: 'rgba(0,192,122,0.08)', border: '1px solid rgba(0,192,122,0.2)', borderRadius: 10, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 10 }}>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00c07a" strokeWidth="2" strokeLinecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span style={{ fontSize: 13, color: '#00c07a', fontWeight: 600 }}>Access granted — app unlocked for this organisation</span>
-              </div>
-            </div>
           </div>
         </section>
 
