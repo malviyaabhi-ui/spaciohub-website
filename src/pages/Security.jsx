@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
 import { useModal } from '../components/ModalContext'
@@ -89,6 +89,12 @@ function FaqItem({ q, a }) {
 
 export default function Security() {
   const { openModal } = useModal()
+  const [activeScene, setActiveScene] = useState(0)
+
+  useEffect(() => {
+    const t = setInterval(() => setActiveScene(s => (s + 1) % LICENSE_CARDS.length), 3000)
+    return () => clearInterval(t)
+  }, [])
 
   return (
     <>
@@ -167,6 +173,107 @@ export default function Security() {
                 SpacioHub on-premise clients get cryptographically signed license keys — the same approach used by enterprise software like Microsoft and Oracle.
               </p>
             </div>
+
+            {/* Interactive benefit cards + dark scene */}
+            <div className="reveal" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, alignItems: 'start', marginBottom: 48 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {LICENSE_CARDS.map((c, i) => (
+                  <div key={i} onClick={() => setActiveScene(i)} className="card" style={{
+                    display: 'flex', gap: 16, alignItems: 'flex-start', padding: '18px 20px',
+                    border: `1.5px solid ${activeScene === i ? c.color : '#e2e8f0'}`,
+                    background: activeScene === i ? c.bg : '#fff',
+                    cursor: 'pointer', transition: 'all 0.2s',
+                  }}>
+                    <div style={{ width: 38, height: 38, borderRadius: 10, background: c.bg, border: `1px solid ${c.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: c.color, flexShrink: 0 }}>
+                      {c.icon}
+                    </div>
+                    <div>
+                      <h3 style={{ fontSize: 14, fontWeight: 700, color: '#0f172a', marginBottom: 4 }}>{c.title}</h3>
+                      <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6, margin: 0 }}>{c.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Dark animated scene */}
+              <div style={{ background: '#0f172a', borderRadius: 16, padding: 24, minHeight: 280 }}>
+                {activeScene === 0 && (
+                  <div>
+                    <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 14, fontWeight: 600, letterSpacing: 1 }}>ORGANISATION CHECK</div>
+                    {[
+                      { label: 'Your company — licensed', ok: true },
+                      { label: 'Another company tries key', ok: false },
+                      { label: 'Copied key on new device', ok: false },
+                    ].map((row, i) => (
+                      <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                        <div style={{ width: 20, height: 20, borderRadius: '50%', background: row.ok ? 'rgba(0,192,122,0.15)' : 'rgba(239,68,68,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                          {row.ok ? <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#00c07a" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            : <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="3" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>}
+                        </div>
+                        <span style={{ fontSize: 13, color: row.ok ? 'rgba(255,255,255,0.75)' : 'rgba(239,68,68,0.6)', flex: 1 }}>{row.label}</span>
+                        <span style={{ fontSize: 10, fontWeight: 700, color: row.ok ? '#00c07a' : '#ef4444' }}>{row.ok ? 'GRANTED' : 'BLOCKED'}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {activeScene === 1 && (
+                  <div>
+                    <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 14, fontWeight: 600, letterSpacing: 1 }}>RENEWAL TIMELINE</div>
+                    {[
+                      { days: '60 days', label: 'First reminder email sent', color: '#00c07a', w: '33%' },
+                      { days: '30 days', label: 'Second reminder — act now', color: '#f59e0b', w: '66%' },
+                      { days: '15 days', label: 'Urgent — renew immediately', color: '#ef4444', w: '92%' },
+                    ].map((item, i) => (
+                      <div key={i} style={{ marginBottom: 16 }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                          <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)' }}>{item.label}</span>
+                          <span style={{ fontSize: 12, color: item.color, fontWeight: 700 }}>{item.days}</span>
+                        </div>
+                        <div style={{ height: 5, background: 'rgba(255,255,255,0.08)', borderRadius: 4, overflow: 'hidden' }}>
+                          <div style={{ height: '100%', width: item.w, background: item.color, borderRadius: 4 }}/>
+                        </div>
+                      </div>
+                    ))}
+                    <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)', marginTop: 8 }}>Emails sent automatically — no manual reminders needed.</div>
+                  </div>
+                )}
+                {activeScene === 2 && (
+                  <div>
+                    <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 14, fontWeight: 600, letterSpacing: 1 }}>REMOTE DEVICE MANAGEMENT</div>
+                    {[
+                      { name: 'Reception screen — Lobby', status: 'active' },
+                      { name: 'Board room display — Floor 2', status: 'active' },
+                      { name: 'Lost device — Unknown location', status: 'revoked' },
+                    ].map((d, i) => (
+                      <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', background: 'rgba(255,255,255,0.04)', border: `1px solid ${d.status === 'revoked' ? 'rgba(239,68,68,0.2)' : 'rgba(255,255,255,0.07)'}`, borderRadius: 10, marginBottom: 8 }}>
+                        <div style={{ width: 7, height: 7, borderRadius: '50%', background: d.status === 'active' ? '#00c07a' : '#ef4444', flexShrink: 0 }}/>
+                        <span style={{ fontSize: 13, color: d.status === 'active' ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,0.35)', flex: 1 }}>{d.name}</span>
+                        <span style={{ fontSize: 10, fontWeight: 700, color: d.status === 'active' ? '#00c07a' : '#ef4444' }}>{d.status === 'active' ? 'Active' : 'Revoked'}</span>
+                      </div>
+                    ))}
+                    <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)', marginTop: 8 }}>Revocation takes effect on next login — no hardware changes needed.</div>
+                  </div>
+                )}
+                {activeScene === 3 && (
+                  <div>
+                    <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginBottom: 14, fontWeight: 600, letterSpacing: 1 }}>LICENSE AUDIT TRAIL</div>
+                    {[
+                      { label: 'Contract number', value: 'AMC-A1B2C3D4-2026' },
+                      { label: 'Licensed to', value: 'Your Organisation' },
+                      { label: 'Screens covered', value: '3 displays' },
+                      { label: 'Users covered', value: 'Up to 20 users' },
+                      { label: 'Valid until', value: '10 April 2027' },
+                    ].map((r, i) => (
+                      <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                        <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)' }}>{r.label}</span>
+                        <span style={{ fontSize: 12, color: '#fff', fontWeight: 500, fontFamily: r.label === 'Contract number' ? 'monospace' : 'inherit' }}>{r.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 reveal" style={{ maxWidth: 860, margin: '0 auto 48px' }}>
               {LICENSE_CARDS.map((c, i) => (
                 <div key={i} className="card" style={{ display: 'flex', gap: 16, alignItems: 'flex-start', padding: '20px 24px' }}>
