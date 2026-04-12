@@ -1,19 +1,19 @@
-import SEO from ‘../components/SEO’
-import { PAGE_SEO } from ‘../components/pageSEO’
-import PlatformShowcase from ‘../components/PlatformShowcase’
-import React, { useEffect, useRef, useState } from ‘react’
-import { Link } from ‘react-router-dom’
-import { useModal } from ‘../components/ModalContext’
+import SEO from '../components/SEO'
+import { PAGE_SEO } from '../components/pageSEO'
+import PlatformShowcase from '../components/PlatformShowcase'
+import React, { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useModal } from '../components/ModalContext'
 
-const LOGO = ‘https://svksiwnalmrjjnskycqb.supabase.co/storage/v1/object/public/assets/logo-no-background.png’
+const LOGO = 'https://svksiwnalmrjjnskycqb.supabase.co/storage/v1/object/public/assets/logo-no-background.png'
 
 const FEATURES = [
-{ icon: ‘📅’, color: ‘#ecfdf5’, border: ‘#a7f3d0’, title: ‘Smart Room Booking’, desc: ‘Visual time grid, 15-min buffer, AI suggestions, booking tags, and Zoom auto-links on every booking.’, tag: ‘CORE’, link: ‘/platform/booking’ },
-{ icon: ‘🖥️’, color: ‘#eff6ff’, border: ‘#bfdbfe’, title: ‘Door Display Panel’, desc: ‘Real-time status on any tablet. Quick book, check-in, and guest booking — no login required.’, tag: ‘HARDWARE’, link: ‘/platform/booking#door-display’ },
-{ icon: ‘📊’, color: ‘#f5f3ff’, border: ‘#ddd6fe’, title: ‘Analytics & Reports’, desc: ‘Peak hours, utilisation, no-show tracking, tag breakdowns, and full CSV export.’, tag: ‘INSIGHTS’, link: ‘/platform/booking#analytics’ },
-{ icon: ‘👥’, color: ‘#fff7ed’, border: ‘#fed7aa’, title: ‘Visitor Management’, desc: ‘Pre-register guests, self-service check-in kiosk, custom badges, and instant host notifications.’, tag: ‘ENTERPRISE’, link: ‘/platform/visitors’ },
-{ icon: ‘🔗’, color: ‘#fdf2f8’, border: ‘#fbcfe8’, title: ‘Calendar & iCal’, desc: “Subscribe to any room’s live calendar in Google or Outlook. Always in sync, automatically.”, tag: ‘INTEGRATION’, link: ‘/platform/booking#integrations’ },
-{ icon: ‘✨’, color: ‘#fefce8’, border: ‘#fde68a’, title: ‘AI Room Booker’, desc: ‘Describe what you need in plain language and AI finds and books the best available room.’, tag: ‘AI’, link: ‘/platform/booking’ },
+{ icon: '📅', color: '#ecfdf5', border: '#a7f3d0', title: 'Smart Room Booking', desc: 'Visual time grid, 15-min buffer, AI suggestions, booking tags, and Zoom auto-links on every booking.', tag: 'CORE', link: '/platform/booking' },
+{ icon: '🖥️', color: '#eff6ff', border: '#bfdbfe', title: 'Door Display Panel', desc: 'Real-time status on any tablet. Quick book, check-in, and guest booking — no login required.', tag: 'HARDWARE', link: '/platform/booking#door-display' },
+{ icon: '📊', color: '#f5f3ff', border: '#ddd6fe', title: 'Analytics & Reports', desc: 'Peak hours, utilisation, no-show tracking, tag breakdowns, and full CSV export.', tag: 'INSIGHTS', link: '/platform/booking#analytics' },
+{ icon: '👥', color: '#fff7ed', border: '#fed7aa', title: 'Visitor Management', desc: 'Pre-register guests, self-service check-in kiosk, custom badges, and instant host notifications.', tag: 'ENTERPRISE', link: '/platform/visitors' },
+{ icon: '🔗', color: '#fdf2f8', border: '#fbcfe8', title: 'Calendar & iCal', desc: "Subscribe to any room's live calendar in Google or Outlook. Always in sync, automatically.", tag: 'INTEGRATION', link: '/platform/booking#integrations' },
+{ icon: '✨', color: '#fefce8', border: '#fde68a', title: 'AI Room Booker', desc: 'Describe what you need in plain language and AI finds and books the best available room.', tag: 'AI', link: '/platform/booking' },
 ]
 
 const UC_ICONS = {
@@ -74,36 +74,36 @@ const UC_ICONS_ENTERPRISE = (
 )
 
 const USE_CASES = [
-{ icon: UC_ICONS.corporate, title: ‘Corporate Offices’, desc: ‘Multi-floor room management with SSO, floor plans, and enterprise controls.’, href: ‘/use-cases/corporate’, accent: ‘#3b82f6’ },
-{ icon: UC_ICONS.coworking, title: ‘Coworking Spaces’, desc: ‘Member self-booking, guest kiosk, and utilisation tracking to maximise revenue.’, href: ‘/use-cases/coworking’, accent: ‘#00c07a’ },
-{ icon: UC_ICONS.hotels, title: ‘Hotels & Hospitality’, desc: ‘Conference booking, catering tags, and five-star guest check-in experience.’, href: ‘/use-cases/hotels’, accent: ‘#f59e0b’ },
-{ icon: UC_ICONS.resellers, title: ‘SaaS Resellers’, desc: ‘White-label for your clients with custom domains and super admin control.’, href: ‘/use-cases/resellers’, accent: ‘#ec4899’ },
-{ icon: UC_ICONS_ENTERPRISE, title: ‘Government & Enterprise’, desc: ‘On-premises deployment — data stays inside your building. UAE PDPL compliant, Riser-managed.’, href: ‘/on-premises’, accent: ‘#00c07a’ },
+{ icon: UC_ICONS.corporate, title: 'Corporate Offices', desc: 'Multi-floor room management with SSO, floor plans, and enterprise controls.', href: '/use-cases/corporate', accent: '#3b82f6' },
+{ icon: UC_ICONS.coworking, title: 'Coworking Spaces', desc: 'Member self-booking, guest kiosk, and utilisation tracking to maximise revenue.', href: '/use-cases/coworking', accent: '#00c07a' },
+{ icon: UC_ICONS.hotels, title: 'Hotels & Hospitality', desc: 'Conference booking, catering tags, and five-star guest check-in experience.', href: '/use-cases/hotels', accent: '#f59e0b' },
+{ icon: UC_ICONS.resellers, title: 'SaaS Resellers', desc: 'White-label for your clients with custom domains and super admin control.', href: '/use-cases/resellers', accent: '#ec4899' },
+{ icon: UC_ICONS_ENTERPRISE, title: 'Government & Enterprise', desc: 'On-premises deployment — data stays inside your building. UAE PDPL compliant, Riser-managed.', href: '/on-premises', accent: '#00c07a' },
 ]
 
 const TESTIMONIALS = [
-{ quote: “SpacioHub completely eliminated the ‘is this room free?’ confusion in our office. Setup took less than a day — everyone loves it.”, name: ‘Aarav Mehta’, role: ‘Head of Operations, Nexum Technologies’, avatar: ‘AM’, color: ‘#00c07a’ },
-{ quote: “The door display panels are a game-changer. Our clients see a professional check-in experience from the moment they walk in.”, name: ‘Fatima Al Rashidi’, role: ‘Facilities Manager, Dubai Coworking Hub’, avatar: ‘FA’, color: ‘#3b82f6’ },
-{ quote: “Analytics revealed we were overbooked on two floors and underusing three others. We reconfigured within a week. Incredible ROI.”, name: ‘James Okonkwo’, role: ‘CTO, Meridian Group’, avatar: ‘JO’, color: ‘#8b5cf6’ },
+{ quote: "SpacioHub completely eliminated the 'is this room free?' confusion in our office. Setup took less than a day — everyone loves it.", name: 'Aarav Mehta', role: 'Head of Operations, Nexum Technologies', avatar: 'AM', color: '#00c07a' },
+{ quote: "The door display panels are a game-changer. Our clients see a professional check-in experience from the moment they walk in.", name: 'Fatima Al Rashidi', role: 'Facilities Manager, Dubai Coworking Hub', avatar: 'FA', color: '#3b82f6' },
+{ quote: "Analytics revealed we were overbooked on two floors and underusing three others. We reconfigured within a week. Incredible ROI.", name: 'James Okonkwo', role: 'CTO, Meridian Group', avatar: 'JO', color: '#8b5cf6' },
 ]
 
 const STEPS = [
-{ num: ‘01’, icon: ‘🏗️’, title: ‘Add your spaces’, desc: ‘Upload your floor plan, add rooms, desks, and resources. Assign rules and capacities in minutes.’ },
-{ num: ‘02’, icon: ‘✉️’, title: ‘Invite your team’, desc: ‘Send invite links or connect via Google / Microsoft SSO. Permissions auto-apply by role.’ },
-{ num: ‘03’, icon: ‘✅’, title: ‘Book from anywhere’, desc: ‘Web, mobile, door panel, or AI chat — confirm a room in seconds from any device.’ },
-{ num: ‘04’, icon: ‘📈’, title: ‘Track & optimise’, desc: ‘Live analytics reveal peak hours, no-shows, and underused spaces to right-size your real estate.’ },
+{ num: '01', icon: '🏗️', title: 'Add your spaces', desc: 'Upload your floor plan, add rooms, desks, and resources. Assign rules and capacities in minutes.' },
+{ num: '02', icon: '✉️', title: 'Invite your team', desc: 'Send invite links or connect via Google / Microsoft SSO. Permissions auto-apply by role.' },
+{ num: '03', icon: '✅', title: 'Book from anywhere', desc: 'Web, mobile, door panel, or AI chat — confirm a room in seconds from any device.' },
+{ num: '04', icon: '📈', title: 'Track & optimise', desc: 'Live analytics reveal peak hours, no-shows, and underused spaces to right-size your real estate.' },
 ]
 
 // Integration hub data
 const INTEGRATIONS = [
-{ name: ‘Google Calendar’, action: ‘Event synced’, color: ‘#4285F4’, bg: ‘#eff6ff’, logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#fff"/><rect x="6" y="8" width="20" height="18" rx="2" fill="#4285F4"/><rect x="6" y="8" width="20" height="6" rx="2" fill="#1a73e8"/><rect x="10" y="4" width="3" height="7" rx="1.5" fill="#1a73e8"/><rect x="19" y="4" width="3" height="7" rx="1.5" fill="#1a73e8"/><rect x="9" y="18" width="4" height="4" rx="1" fill="#fff"/><rect x="14" y="18" width="4" height="4" rx="1" fill="#fff"/></svg> },
-{ name: ‘Microsoft 365’, action: ‘Meeting created’, color: ‘#0078D4’, bg: ‘#eff6ff’, logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#fff"/><rect x="5" y="5" width="10" height="10" rx="1" fill="#F25022"/><rect x="17" y="5" width="10" height="10" rx="1" fill="#7FBA00"/><rect x="5" y="17" width="10" height="10" rx="1" fill="#00A4EF"/><rect x="17" y="17" width="10" height="10" rx="1" fill="#FFB900"/></svg> },
-{ name: ‘Zoom’, action: ‘Meeting link sent’, color: ‘#2D8CFF’, bg: ‘#eff6ff’, logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#2D8CFF"/><rect x="5" y="10" width="16" height="12" rx="2" fill="#fff"/><path d="M23 13l5-3v12l-5-3V13z" fill="#fff"/></svg> },
-{ name: ‘Google SSO’, action: ‘User signed in’, color: ‘#34A853’, bg: ‘#ecfdf5’, logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#fff"/><path fill="#4285F4" d="M28 16.3c0-.9-.1-1.7-.2-2.5H16v4.7h6.7c-.3 1.5-1.2 2.8-2.5 3.6v3h4c2.3-2.2 3.8-5.3 3.8-8.8z"/><path fill="#34A853" d="M16 28c3.2 0 5.9-1.1 7.9-2.9l-4-3.1c-1.1.7-2.4 1.2-3.9 1.2-3 0-5.6-2-6.5-4.8H3.4v3.2C5.4 25.3 10.4 28 16 28z"/><path fill="#FBBC05" d="M9.5 18.4c-.2-.7-.4-1.5-.4-2.4 0-.9.1-1.7.4-2.4V10.4H3.4C2.5 12.2 2 14.1 2 16s.5 3.8 1.4 5.6l6.1-3.2z"/><path fill="#EA4335" d="M16 9.2c1.7 0 3.2.6 4.4 1.7l3.3-3.3C21.8 5.7 19.1 4.5 16 4.5c-5.6 0-10.6 3.2-12.6 7.9l6.1 3.2c.9-2.8 3.5-4.8 6.5-4.8z"/></svg> },
-{ name: ‘Microsoft SSO’, action: ‘SSO login success’, color: ‘#0078D4’, bg: ‘#eff6ff’, logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#0078D4"/><rect x="7" y="7" width="8" height="8" rx="1" fill="#fff" opacity=".9"/><rect x="17" y="7" width="8" height="8" rx="1" fill="#fff" opacity=".9"/><rect x="7" y="17" width="8" height="8" rx="1" fill="#fff" opacity=".9"/><rect x="17" y="17" width="8" height="8" rx="1" fill="#fff" opacity=".9"/></svg> },
-{ name: ‘iCal Feed’, action: ‘Calendar subscribed’, color: ‘#FF3B30’, bg: ‘#fff1f2’, logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#FF3B30"/><rect x="5" y="10" width="22" height="16" rx="2" fill="#fff"/><rect x="5" y="10" width="22" height="6" rx="2" fill="#FF3B30"/><rect x="10" y="5" width="3" height="6" rx="1.5" fill="#CC2D26"/><rect x="19" y="5" width="3" height="6" rx="1.5" fill="#CC2D26"/><text x="16" y="23" textAnchor="middle" fontSize="7" fontWeight="800" fill="#FF3B30">iCal</text></svg> },
-{ name: ‘Door Display’, action: ‘Panel connected’, color: ‘#00c07a’, bg: ‘#ecfdf5’, logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#ecfdf5"/><rect x="8" y="5" width="16" height="22" rx="2" fill="#0f172a"/><rect x="10" y="7" width="12" height="16" rx="1" fill="#1e293b"/><circle cx="16" cy="25" r="1" fill="#475569"/><rect x="11" y="8" width="10" height="2" rx="1" fill="#00c07a"/><rect x="11" y="12" width="7" height="1.5" rx="0.75" fill="#334155"/><rect x="11" y="15" width="9" height="1.5" rx="0.75" fill="#334155"/></svg> },
-{ name: ‘Email Alerts’, action: ‘Notification sent’, color: ‘#00c07a’, bg: ‘#ecfdf5’, logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#ecfdf5"/><rect x="5" y="9" width="22" height="15" rx="2" fill="#00c07a"/><path d="M5 11l11 8 11-8" stroke="#fff" strokeWidth="1.5" fill="none"/></svg> },
+{ name: 'Google Calendar', action: 'Event synced', color: '#4285F4', bg: '#eff6ff', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#fff"/><rect x="6" y="8" width="20" height="18" rx="2" fill="#4285F4"/><rect x="6" y="8" width="20" height="6" rx="2" fill="#1a73e8"/><rect x="10" y="4" width="3" height="7" rx="1.5" fill="#1a73e8"/><rect x="19" y="4" width="3" height="7" rx="1.5" fill="#1a73e8"/><rect x="9" y="18" width="4" height="4" rx="1" fill="#fff"/><rect x="14" y="18" width="4" height="4" rx="1" fill="#fff"/></svg> },
+{ name: 'Microsoft 365', action: 'Meeting created', color: '#0078D4', bg: '#eff6ff', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#fff"/><rect x="5" y="5" width="10" height="10" rx="1" fill="#F25022"/><rect x="17" y="5" width="10" height="10" rx="1" fill="#7FBA00"/><rect x="5" y="17" width="10" height="10" rx="1" fill="#00A4EF"/><rect x="17" y="17" width="10" height="10" rx="1" fill="#FFB900"/></svg> },
+{ name: 'Zoom', action: 'Meeting link sent', color: '#2D8CFF', bg: '#eff6ff', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#2D8CFF"/><rect x="5" y="10" width="16" height="12" rx="2" fill="#fff"/><path d="M23 13l5-3v12l-5-3V13z" fill="#fff"/></svg> },
+{ name: 'Google SSO', action: 'User signed in', color: '#34A853', bg: '#ecfdf5', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#fff"/><path fill="#4285F4" d="M28 16.3c0-.9-.1-1.7-.2-2.5H16v4.7h6.7c-.3 1.5-1.2 2.8-2.5 3.6v3h4c2.3-2.2 3.8-5.3 3.8-8.8z"/><path fill="#34A853" d="M16 28c3.2 0 5.9-1.1 7.9-2.9l-4-3.1c-1.1.7-2.4 1.2-3.9 1.2-3 0-5.6-2-6.5-4.8H3.4v3.2C5.4 25.3 10.4 28 16 28z"/><path fill="#FBBC05" d="M9.5 18.4c-.2-.7-.4-1.5-.4-2.4 0-.9.1-1.7.4-2.4V10.4H3.4C2.5 12.2 2 14.1 2 16s.5 3.8 1.4 5.6l6.1-3.2z"/><path fill="#EA4335" d="M16 9.2c1.7 0 3.2.6 4.4 1.7l3.3-3.3C21.8 5.7 19.1 4.5 16 4.5c-5.6 0-10.6 3.2-12.6 7.9l6.1 3.2c.9-2.8 3.5-4.8 6.5-4.8z"/></svg> },
+{ name: 'Microsoft SSO', action: 'SSO login success', color: '#0078D4', bg: '#eff6ff', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#0078D4"/><rect x="7" y="7" width="8" height="8" rx="1" fill="#fff" opacity=".9"/><rect x="17" y="7" width="8" height="8" rx="1" fill="#fff" opacity=".9"/><rect x="7" y="17" width="8" height="8" rx="1" fill="#fff" opacity=".9"/><rect x="17" y="17" width="8" height="8" rx="1" fill="#fff" opacity=".9"/></svg> },
+{ name: 'iCal Feed', action: 'Calendar subscribed', color: '#FF3B30', bg: '#fff1f2', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#FF3B30"/><rect x="5" y="10" width="22" height="16" rx="2" fill="#fff"/><rect x="5" y="10" width="22" height="6" rx="2" fill="#FF3B30"/><rect x="10" y="5" width="3" height="6" rx="1.5" fill="#CC2D26"/><rect x="19" y="5" width="3" height="6" rx="1.5" fill="#CC2D26"/><text x="16" y="23" textAnchor="middle" fontSize="7" fontWeight="800" fill="#FF3B30">iCal</text></svg> },
+{ name: 'Door Display', action: 'Panel connected', color: '#00c07a', bg: '#ecfdf5', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#ecfdf5"/><rect x="8" y="5" width="16" height="22" rx="2" fill="#0f172a"/><rect x="10" y="7" width="12" height="16" rx="1" fill="#1e293b"/><circle cx="16" cy="25" r="1" fill="#475569"/><rect x="11" y="8" width="10" height="2" rx="1" fill="#00c07a"/><rect x="11" y="12" width="7" height="1.5" rx="0.75" fill="#334155"/><rect x="11" y="15" width="9" height="1.5" rx="0.75" fill="#334155"/></svg> },
+{ name: 'Email Alerts', action: 'Notification sent', color: '#00c07a', bg: '#ecfdf5', logo: <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="6" fill="#ecfdf5"/><rect x="5" y="9" width="22" height="15" rx="2" fill="#00c07a"/><path d="M5 11l11 8 11-8" stroke="#fff" strokeWidth="1.5" fill="none"/></svg> },
 ]
 
 const CX = 370, CY = 270, W = 800, H = 560, CARD_W = 138, CARD_H = 70
@@ -149,15 +149,15 @@ return () => clearTimeout(timer.current)
 }, [visible])
 
 return (
-<div ref={ref} style={{ maxWidth: 820, margin: ‘0 auto’, position: ‘relative’ }}>
-<div style={{ position: ‘relative’, width: ‘100%’, paddingBottom: `${(H/W)*100}%` }}>
-<div style={{ position: ‘absolute’, inset: 0 }}>
-<svg style={{ position:‘absolute’, inset:0, width:‘100%’, height:‘100%’, overflow:‘visible’ }}
-viewBox={`0 0 ${W} ${H}`} preserveAspectRatio=“xMidYMid meet”>
+<div ref={ref} style={{ maxWidth: 820, margin: '0 auto', position: 'relative' }}>
+<div style={{ position: 'relative', width: '100%', paddingBottom: `${(H/W)*100}%` }}>
+<div style={{ position: 'absolute', inset: 0 }}>
+<svg style={{ position:'absolute', inset:0, width:'100%', height:'100%', overflow:'visible' }}
+viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
 <defs>
 {INTEGRATIONS.map((item, i) => (
-<marker key={i} id={`arr-${i}`} markerWidth=“7” markerHeight=“7” refX=“3.5” refY=“3.5” orient=“auto”>
-<path d=“M0,0 L0,7 L7,3.5 z” fill={doneSet.has(i) ? item.color : activeIdx===i ? item.color : ‘#d1d5db’} />
+<marker key={i} id={`arr-${i}`} markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto">
+<path d="M0,0 L0,7 L7,3.5 z" fill={doneSet.has(i) ? item.color : activeIdx===i ? item.color : '#d1d5db'} />
 </marker>
 ))}
 </defs>
@@ -169,11 +169,11 @@ const dx = cx2-CX, dy = cy2-CY, dist = Math.sqrt(dx*dx+dy*dy)
 const sx = CX+(dx/dist)*115, sy = CY+(dy/dist)*115
 const ex = cx2-(dx/dist)*14, ey = cy2-(dy/dist)*14
 return <line key={idx} x1={sx} y1={sy} x2={ex} y2={ey}
-stroke={isDone ? item.color : isActive ? item.color : ‘#e2e8f0’}
+stroke={isDone ? item.color : isActive ? item.color : '#e2e8f0'}
 strokeWidth={isDone ? 2 : isActive ? 1.5 : 1}
-strokeDasharray={isDone ? ‘none’ : isActive ? ‘5 3’ : ‘4 4’}
+strokeDasharray={isDone ? 'none' : isActive ? '5 3' : '4 4'}
 markerEnd={`url(#arr-${idx})`}
-style={{ transition: ‘stroke 0.4s, stroke-width 0.3s’ }} />
+style={{ transition: 'stroke 0.4s, stroke-width 0.3s' }} />
 })}
 </svg>
 
@@ -211,7 +211,7 @@ style={{ transition: ‘stroke 0.4s, stroke-width 0.3s’ }} />
 function useCountUp(target, duration = 1200, start = false) {
 const [val, setVal] = useState(0)
 useEffect(() => {
-if (!start || target === ‘∞’ || target === ‘$0’ || isNaN(parseInt(target))) { setVal(target); return }
+if (!start || target === '∞' || target === '$0' || isNaN(parseInt(target))) { setVal(target); return }
 const n = parseInt(target)
 const step = Math.ceil(n / (duration / 16))
 let cur = 0
@@ -228,13 +228,13 @@ return val
 function StatPill({ n, label, col, bg, border, started }) {
 const val = useCountUp(n, 1000, started)
 return (
-<div style={{ display:‘flex’, flexDirection:‘column’, alignItems:‘center’, background:bg, border:`1.5px solid ${border}`, borderRadius:16, padding:‘18px 28px’, minWidth:120, transition:‘transform 0.3s’, cursor:‘default’ }}
-onMouseEnter={e => e.currentTarget.style.transform=‘translateY(-4px) scale(1.04)’}
-onMouseLeave={e => e.currentTarget.style.transform=‘translateY(0) scale(1)’}>
-<div style={{ fontSize:32, fontWeight:900, letterSpacing:-1.5, background:`linear-gradient(135deg,${col},${col}99)`, WebkitBackgroundClip:‘text’, WebkitTextFillColor:‘transparent’, backgroundClip:‘text’, lineHeight:1 }}>
-{n === ‘∞’ ? ‘∞’ : n === ‘$0’ ? ‘$0’ : n.includes(‘min’) ? `${val} min` : val}
+<div style={{ display:'flex', flexDirection:'column', alignItems:'center', background:bg, border:`1.5px solid ${border}`, borderRadius:16, padding:'18px 28px', minWidth:120, transition:'transform 0.3s', cursor:'default' }}
+onMouseEnter={e => e.currentTarget.style.transform='translateY(-4px) scale(1.04)'}
+onMouseLeave={e => e.currentTarget.style.transform='translateY(0) scale(1)'}>
+<div style={{ fontSize:32, fontWeight:900, letterSpacing:-1.5, background:`linear-gradient(135deg,${col},${col}99)`, WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', lineHeight:1 }}>
+{n === '∞' ? '∞' : n === '$0' ? '$0' : n.includes('min') ? `${val} min` : val}
 </div>
-<div style={{ fontSize:11, color:’#64748b’, marginTop:5, fontWeight:600, textAlign:‘center’ }}>{label}</div>
+<div style={{ fontSize:11, color:'#64748b', marginTop:5, fontWeight:600, textAlign:'center' }}>{label}</div>
 </div>
 )
 }
@@ -253,14 +253,14 @@ return () => obs.disconnect()
 
 useEffect(() => {
 const onResize = () => setIsMobile(window.innerWidth <= 900)
-window.addEventListener(‘resize’, onResize)
-return () => window.removeEventListener(‘resize’, onResize)
+window.addEventListener('resize', onResize)
+return () => window.removeEventListener('resize', onResize)
 }, [])
 
 return (
 <>
 <SEO {…PAGE_SEO.home} />
-<main style={{ paddingTop: 64, fontFamily: ‘Inter,sans-serif’ }}>
+<main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
 
 ```
   {/* HERO */}
