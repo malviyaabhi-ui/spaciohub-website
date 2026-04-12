@@ -66,6 +66,7 @@ const USE_CASES = [
   { icon: UC_ICONS.coworking, title: 'Coworking Spaces', desc: 'Member self-booking, guest kiosk, and utilisation tracking to maximise revenue.', href: '/use-cases/coworking', accent: '#00c07a' },
   { icon: UC_ICONS.hotels, title: 'Hotels & Hospitality', desc: 'Conference booking, catering tags, and five-star guest check-in experience.', href: '/use-cases/hotels', accent: '#f59e0b' },
   { icon: UC_ICONS.resellers, title: 'SaaS Resellers', desc: 'White-label for your clients with custom domains and super admin control.', href: '/use-cases/resellers', accent: '#ec4899' },
+  { icon: UC_ICONS.corporate, title: 'Government & Enterprise', desc: 'On-premises deployment for organisations that need data to stay inside their own walls.', href: '/on-premises', accent: '#00c07a' },
 ]
 
 const TESTIMONIALS = [
@@ -320,13 +321,13 @@ export default function Home() {
             Now live at go.spaciohub.com →
           </a>
           <h1 className="animate-fade-up delay-1" style={{ fontSize:'clamp(42px,6vw,80px)', fontWeight:900, letterSpacing:'-3px', lineHeight:1.0, color:'#fff', marginBottom:24, textAlign:'center' }}>
-            Your workspace,<br />
-            <span style={{ background:'linear-gradient(135deg,#00c07a 0%,#0cb8b6 50%,#3b82f6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>finally intelligent</span>
+            One platform.<br />
+            <span style={{ background:'linear-gradient(135deg,#00c07a 0%,#0cb8b6 50%,#3b82f6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Every corner of your workplace.</span>
           </h1>
           {/* Animated rotating descriptor */}
           <div className="animate-fade-up delay-2" style={{ height:32, overflow:'hidden', marginBottom:28 }}>
             <div style={{ animation:'rotateWords 9s infinite', display:'flex', flexDirection:'column', gap:8 }}>
-              {['Book rooms in seconds. No emails.','Visitors check in -- hosts get notified.','See exactly how your space is used.'].map(t=>(
+              {['Book rooms in seconds. No emails.','Every screen in your building, one dashboard.','Visitors check in -- hosts notified instantly.'].map(t=>(
                 <div key={t} style={{ height:32, display:'flex', alignItems:'center', justifyContent:'center' }}>
                   <span style={{ fontSize:16, color:'rgba(255,255,255,0.6)', fontWeight:500, letterSpacing:'-0.2px' }}>{t}</span>
                 </div>
@@ -334,7 +335,7 @@ export default function Home() {
             </div>
           </div>
           <p className="animate-fade-up delay-3" style={{ maxWidth:520, margin:'0 auto 44px', fontSize:17, color:'rgba(255,255,255,0.55)', lineHeight:1.7, fontWeight:400 }}>
-            SpacioHub replaces chaotic email chains and spreadsheets with intelligent room booking, live door displays, visitor management, and real-time analytics.
+            SpacioHub brings room booking, digital signage, visitor management, door displays, and AI scheduling into one platform -- with the option to run it entirely on your own infrastructure.
           </p>
           <div className="animate-fade-up delay-4 hero-cta-row" style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap', marginBottom:56, textAlign:'center' }}>
             <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 0 40px rgba(0,192,122,0.35)' }}>Request a Demo →</button>
@@ -371,6 +372,31 @@ export default function Home() {
                 <div style={{ fontSize:'clamp(32px,4vw,52px)', fontWeight:900, color:s.color, letterSpacing:'-2px', lineHeight:1, marginBottom:8 }}>{s.num}</div>
                 <div style={{ fontSize:14, fontWeight:700, color:'#fff', marginBottom:3 }}>{s.label}</div>
                 <div style={{ fontSize:11, color:'#64748b' }}>{s.sub}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* PLATFORM PILLARS */}
+      <section style={{ padding: '48px 0', borderBottom: '1px solid #e2e8f0', background: '#fff' }}>
+        <div className="container">
+          <p className="reveal" style={{ textAlign:'center', fontSize:12, fontWeight:700, color:'#94a3b8', textTransform:'uppercase', letterSpacing:'1px', marginBottom:28 }}>One login. Five powerful modules.</p>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {[
+              { bg:'#ecfdf5', col:'#00c07a', name:'Room Booking',       desc:'Visual grid, AI, Zoom links' },
+              { bg:'#fef3c7', col:'#d97706', name:'Digital Signage',    desc:'Playlists, schedules, alerts' },
+              { bg:'#dbeafe', col:'#3b82f6', name:'Visitor Management', desc:'Kiosk, badges, notifications' },
+              { bg:'#fce7f3', col:'#ec4899', name:'Door Displays',      desc:'Live status, no login needed' },
+              { bg:'#ede9fe', col:'#8b5cf6', name:'Mira AI Booker',     desc:'Describe it, AI books it' },
+            ].map(p => (
+              <div key={p.name} className="reveal" style={{ display:'flex', flexDirection:'column', alignItems:'center', textAlign:'center', padding:'20px 16px', borderRadius:16, border:'1px solid #f1f5f9', background:'#fafafa', transition:'all 0.2s' }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = p.col + '44'; e.currentTarget.style.background = '#fff'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = '#f1f5f9'; e.currentTarget.style.background = '#fafafa'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                <div style={{ width:48, height:48, borderRadius:14, background:p.bg, marginBottom:12 }} />
+                <div style={{ fontSize:13, fontWeight:700, color:'#0f172a', marginBottom:4 }}>{p.name}</div>
+                <div style={{ fontSize:11, color:'#94a3b8', lineHeight:1.5 }}>{p.desc}</div>
               </div>
             ))}
           </div>
@@ -527,6 +553,26 @@ export default function Home() {
               <p style={{ fontSize:13,color:'#374151',lineHeight:1.65,flex:1 }}>Subscribe to any room's live calendar in Google or Outlook. Always in sync, automatically.</p>
             </Link>
 
+            {/* Digital Signage */}
+            <Link to="/platform/signage" className="reveal col-span-12 md:col-span-8" style={{ textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#fffbeb,#fef3c7)', border:'1px solid #fde68a', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220, position:'relative' }}
+              onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(245,158,11,0.15)'}}
+              onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
+              <span style={{ fontSize:10,fontWeight:700,color:'#b45309',letterSpacing:'1px',textTransform:'uppercase',marginBottom:10,background:'rgba(245,158,11,0.15)',padding:'3px 10px',borderRadius:100,display:'inline-block',width:'fit-content' }}>DIGITAL SIGNAGE</span>
+              <h3 style={{ fontSize:20,fontWeight:800,color:'#0f172a',marginBottom:10,letterSpacing:-0.5 }}>Every screen. One dashboard.</h3>
+              <p style={{ fontSize:14,color:'#374151',lineHeight:1.7,flex:1 }}>Create playlists, set schedules, push emergency alerts, and manage every display in your building from one admin panel. No hardware box required.</p>
+              <div style={{ marginTop:20,fontSize:13,fontWeight:700,color:'#b45309' }}>Explore signage</div>
+            </Link>
+
+            {/* On-Premises */}
+            <Link to="/on-premises" className="reveal col-span-12 md:col-span-4" style={{ textDecoration:'none', borderRadius:20, background:'linear-gradient(160deg,#0f172a,#1e293b)', border:'1px solid #334155', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220, position:'relative' }}
+              onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(0,0,0,0.3)'}}
+              onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
+              <span style={{ fontSize:10,fontWeight:700,color:'#00c07a',letterSpacing:'1px',textTransform:'uppercase',marginBottom:10,background:'rgba(0,192,122,0.15)',padding:'3px 10px',borderRadius:100,display:'inline-block',width:'fit-content' }}>ON-PREMISES</span>
+              <h3 style={{ fontSize:18,fontWeight:800,color:'#fff',marginBottom:8,letterSpacing:-0.5 }}>Your data. Your building.</h3>
+              <p style={{ fontSize:13,color:'#94a3b8',lineHeight:1.7,flex:1 }}>Run SpacioHub on your own infrastructure. Perfect for government, hospitals, and enterprise.</p>
+              <div style={{ marginTop:20,fontSize:13,fontWeight:700,color:'#00c07a' }}>Learn about on-prem</div>
+            </Link>
+
           </div>
         </div>
       </section>
@@ -580,7 +626,7 @@ export default function Home() {
         <div className="container">
           <span className="tag reveal">Use Cases</span>
           <h2 className="h2 reveal" style={{ marginBottom: 48 }}>Built for every kind of <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>workspace</span></h2>
-          <div className="grid grid-cols-2 md:grid-cols-4" style={{gap: 16}}>
+          <div className="grid grid-cols-2 md:grid-cols-5" style={{gap: 16}}>
             {USE_CASES.map((uc, i) => (
               <Link key={uc.title} to={uc.href} className="card reveal" style={{ textDecoration: 'none', animationDelay: `${i * 0.1}s` }}>
                 <div style={{ marginBottom: 14 }}>{uc.icon}</div>
