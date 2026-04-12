@@ -200,11 +200,11 @@ style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '5px 4px', curs
 ))}
 </div>
 
-```
+"""
   {/* Progress */}
   <div style={{ marginTop: 28, display: 'flex', alignItems: 'center', gap: 12 }}>
     <div style={{ flex: 1, height: 4, borderRadius: 2, background: '#f1f5f9', overflow: 'hidden' }}>
-      <div style={{ height: '100%', width: `${(answered / QUESTIONS.length) * 100}%`, background: 'linear-gradient(90deg,#00c07a,#0F799B)', borderRadius: 2, transition: 'width 0.4s ease' }} />
+      <div style={{ height: '100%', width: "${(answered / QUESTIONS.length) * 100}%", background: 'linear-gradient(90deg,#00c07a,#0F799B)', borderRadius: 2, transition: 'width 0.4s ease' }} />
     </div>
     <span style={{ fontSize: 12, color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>{answered}/{QUESTIONS.length} answered</span>
   </div>
@@ -212,7 +212,7 @@ style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '5px 4px', curs
   {/* Result */}
   {allDone && (
     <div style={{ marginTop: 32, animation: 'finderReveal 0.4s ease' }}>
-      <div style={{ background: `linear-gradient(135deg,${result.bg},#fff)`, border: `2px solid ${result.color}`, borderRadius: 20, padding: '28px 32px', display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap', boxShadow: `0 12px 40px ${result.color}20` }}>
+      <div style={{ background: "linear-gradient(135deg,${result.bg},#fff)", border: "2px solid ${result.color}", borderRadius: 20, padding: '28px 32px', display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap', boxShadow: "0 12px 40px ${result.color}20" }}>
         <div style={{ flex: 1, minWidth: 220 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: 6 }}>We recommend</div>
           <div style={{ fontSize: 28, fontWeight: 900, color: result.color, marginBottom: 8, letterSpacing: -0.5 }}>{result.name} Plan</div>
@@ -220,8 +220,8 @@ style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '5px 4px', curs
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'stretch', minWidth: 180 }}>
           {result.name === 'Enterprise' || result.name === 'Max'
-            ? <button onClick={openModal} style={{ background: result.color, color: '#fff', border: 'none', borderRadius: 10, padding: '13px 24px', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'Inter,sans-serif', transition: 'all 0.2s', boxShadow: `0 6px 20px ${result.color}40` }}>{result.cta} →</button>
-            : <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" style={{ background: result.color, color: '#fff', borderRadius: 10, padding: '13px 24px', fontSize: 14, fontWeight: 700, textDecoration: 'none', textAlign: 'center', transition: 'all 0.2s', boxShadow: `0 6px 20px ${result.color}40` }}>{result.cta} →</a>
+            ? <button onClick={openModal} style={{ background: result.color, color: '#fff', border: 'none', borderRadius: 10, padding: '13px 24px', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'Inter,sans-serif', transition: 'all 0.2s', boxShadow: "0 6px 20px ${result.color}40" }}>{result.cta} →</button>
+            : <a href=\"https://go.spaciohub.com\" target=\"_blank\" rel=\"noreferrer\" style={{ background: result.color, color: '#fff', borderRadius: 10, padding: '13px 24px', fontSize: 14, fontWeight: 700, textDecoration: 'none', textAlign: 'center', transition: 'all 0.2s', boxShadow: "0 6px 20px ${result.color}40" }}>{result.cta} →</a>
           }
           <button onClick={() => setAnswers({})} style={{ background: 'transparent', color: '#94a3b8', border: '1.5px solid #e2e8f0', borderRadius: 10, padding: '10px 24px', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'Inter,sans-serif' }}>Start over</button>
         </div>
@@ -229,9 +229,9 @@ style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '5px 4px', curs
     </div>
   )}
 
-  <style>{`@keyframes finderReveal { from { opacity:0; transform:translateY(12px) } to { opacity:1; transform:none } }`}</style>
+  <style>{"@keyframes finderReveal { from { opacity:0; transform:translateY(12px) } to { opacity:1; transform:none } }"}</style>
 </div>
-```
+"""
 
 )
 }
@@ -274,7 +274,7 @@ return (
 <div style={{ width: 40, height: 40, borderRadius: '50%', border: '3px solid #e2e8f0', borderTopColor: '#0d9488', animation: 'spin 0.8s linear infinite', margin: '0 auto 16px' }} />
 <p style={{ color: '#94a3b8', fontSize: 14 }}>Loading...</p>
 </div>
-<style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+<style>{"@keyframes spin { to { transform: rotate(360deg); } }"}</style>
 </div>
 );
 }
@@ -318,13 +318,13 @@ setMeSubmitted(true)
 }
 
 if (geoAllowed === false) {
-const CSS = `@keyframes fadeSlide{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}} @keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}} @keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}} @keyframes popIn{0%{transform:scale(0);opacity:0}70%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}} @keyframes lineGrow{from{height:0}to{height:26px}} @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(13,148,136,0.35)}50%{box-shadow:0 0 0 6px rgba(13,148,136,0)}} @keyframes successBounce{0%{transform:scale(0) rotate(-15deg);opacity:0}60%{transform:scale(1.2) rotate(5deg)}100%{transform:scale(1) rotate(0);opacity:1}} .me-q{animation:fadeSlide 0.28s ease both}`
+const CSS = "@keyframes fadeSlide{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}} @keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}} @keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}} @keyframes popIn{0%{transform:scale(0);opacity:0}70%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}} @keyframes lineGrow{from{height:0}to{height:26px}} @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(13,148,136,0.35)}50%{box-shadow:0 0 0 6px rgba(13,148,136,0)}} @keyframes successBounce{0%{transform:scale(0) rotate(-15deg);opacity:0}60%{transform:scale(1.2) rotate(5deg)}100%{transform:scale(1) rotate(0);opacity:1}} .me-q{animation:fadeSlide 0.28s ease both}"
 const isSel = (id, val) => meAns[id] === val || (Array.isArray(meAns[id]) && meAns[id].includes(val))
 const curStep = ME_STEPS[meStep]
 const selArr = meSel[curStep?.id] || []
 const canNext = curStep?.multi ? selArr.length > 0 : !!meAns[curStep?.id]
 
-```
+"""
 return (
   <div style={{fontFamily:'system-ui,sans-serif'}}>
     <style>{CSS}</style>
@@ -361,14 +361,14 @@ return (
     <div style={{background:'#f8fafc',padding:'48px 20px',display:'flex',justifyContent:'center'}}>
     <div style={{maxWidth:660,width:'100%'}}>
       <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:28,justifyContent:'center'}}>
-        <svg width="26" height="26" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#0d9488"/><path d="M20 8l12 6v10c0 8-12 12-12 12S8 30 8 24V14l12-6z" fill="white" opacity="0.9"/></svg>
+        <svg width=\"26\" height=\"26\" viewBox=\"0 0 40 40\" fill=\"none\"><rect width=\"40\" height=\"40\" rx=\"10\" fill=\"#0d9488\"/><path d=\"M20 8l12 6v10c0 8-12 12-12 12S8 30 8 24V14l12-6z\" fill=\"white\" opacity=\"0.9\"/></svg>
         <span style={{fontSize:15,fontWeight:700,color:'#0f172a'}}>SpacioHub</span>
         <span style={{fontSize:12,color:'#94a3b8',marginLeft:2}}>· Middle East</span>
       </div>
       {meSubmitted ? (
-        <div className="me-q" style={{textAlign:'center',padding:'32px 0'}}>
+        <div className=\"me-q\" style={{textAlign:'center',padding:'32px 0'}}>
           <div style={{width:56,height:56,borderRadius:'50%',background:'#ccfbf1',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 16px',animation:'successBounce 0.5s ease'}}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><polyline points="4,12 9,17 20,6" stroke="#0d9488" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\"><polyline points=\"4,12 9,17 20,6\" stroke=\"#0d9488\" strokeWidth=\"2.5\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>
           </div>
           <h2 style={{fontSize:22,fontWeight:800,color:'#0f172a',marginBottom:8}}>We'll be in touch!</h2>
           <p style={{fontSize:14,color:'#64748b',lineHeight:1.7}}>Thanks <strong>{meName}</strong>! Our team will reach out to <strong>{meEmail}</strong> within 24 hours.</p>
@@ -385,7 +385,7 @@ return (
                 <div key={s.id} style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
                   <div style={{display:'flex',alignItems:'center',gap:9}}>
                     <div style={{width:26,height:26,borderRadius:'50%',background:nc,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,animation:a?'pulse 2s infinite':d?'popIn 0.3s ease':'none'}}>
-                      {d ? <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      {d ? <svg width=\"11\" height=\"11\" viewBox=\"0 0 12 12\" fill=\"none\"><polyline points=\"2,6 5,9 10,3\" stroke=\"white\" strokeWidth=\"2.2\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>
                          : a ? <span style={{width:7,height:7,borderRadius:'50%',background:'white',display:'block'}}/>
                          : <span style={{width:6,height:6,borderRadius:'50%',background:'#cbd5e1',display:'block'}}/>}
                     </div>
@@ -402,15 +402,15 @@ return (
           {/* Question panel */}
           <div style={{flex:1}}>
             {meStep < ME_STEPS.length ? (
-              <div className="me-q">
+              <div className=\"me-q\">
                 <h3 style={{fontSize:16,fontWeight:800,color:'#0f172a',marginBottom:4}}>{curStep.q}</h3>
                 <p style={{fontSize:12,color:'#94a3b8',marginBottom:12}}>{curStep.multi?'Select all that apply':'Choose one'}</p>
                 <div style={{display:'flex',flexDirection:'column',gap:6,marginBottom:12}}>
                   {curStep.opts.map((opt,oi) => (
                     <button key={opt} onClick={() => meSelectOpt(curStep.id, opt, curStep.multi)}
-                      style={{padding:'10px 13px',borderRadius:10,border:`2px solid ${isSel(curStep.id,opt)?'#0d9488':'#e2e8f0'}`,background:isSel(curStep.id,opt)?'#f0fdfa':'#fff',cursor:'pointer',fontSize:13,fontWeight:500,color:'#0f172a',textAlign:'left',display:'flex',alignItems:'center',gap:10,transition:'all 0.15s',animation:`fadeSlide ${0.1+oi*0.045}s ease both`}}>
-                      <span style={{width:15,height:15,borderRadius:curStep.multi?4:'50%',border:`2px solid ${isSel(curStep.id,opt)?'#0d9488':'#cbd5e1'}`,background:isSel(curStep.id,opt)?'#0d9488':'transparent',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,animation:isSel(curStep.id,opt)?'popIn 0.2s ease':'none'}}>
-                        {isSel(curStep.id,opt)&&<svg width="8" height="8" viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,8 8,2" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+                      style={{padding:'10px 13px',borderRadius:10,border:"2px solid ${isSel(curStep.id,opt)?'#0d9488':'#e2e8f0'}",background:isSel(curStep.id,opt)?'#f0fdfa':'#fff',cursor:'pointer',fontSize:13,fontWeight:500,color:'#0f172a',textAlign:'left',display:'flex',alignItems:'center',gap:10,transition:'all 0.15s',animation:"fadeSlide ${0.1+oi*0.045}s ease both"}}>
+                      <span style={{width:15,height:15,borderRadius:curStep.multi?4:'50%',border:"2px solid ${isSel(curStep.id,opt)?'#0d9488':'#cbd5e1'}",background:isSel(curStep.id,opt)?'#0d9488':'transparent',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,animation:isSel(curStep.id,opt)?'popIn 0.2s ease':'none'}}>
+                        {isSel(curStep.id,opt)&&<svg width=\"8\" height=\"8\" viewBox=\"0 0 10 10\" fill=\"none\"><polyline points=\"2,5 4,8 8,2\" stroke=\"white\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>}
                       </span>
                       {opt}
                     </button>
@@ -420,26 +420,26 @@ return (
                   {meStep>0&&<button onClick={()=>setMeStep(s=>s-1)} style={{padding:'10px 15px',borderRadius:10,border:'1px solid #e2e8f0',background:'#fff',cursor:'pointer',fontSize:13,fontWeight:600,color:'#64748b'}}>← Back</button>}
                   <button onClick={()=>meGoNext(curStep.id,curStep.multi)} disabled={!canNext}
                     style={{flex:1,padding:'10px 15px',borderRadius:10,border:'none',background:canNext?'#0d9488':'#e2e8f0',color:canNext?'#fff':'#94a3b8',cursor:canNext?'pointer':'not-allowed',fontSize:13,fontWeight:700,transition:'all 0.15s'}}>
-                    {curStep.multi&&selArr.length>0?`Next (${selArr.length} selected)`:'Next →'}
+                    {curStep.multi&&selArr.length>0?"Next (${selArr.length} selected)":'Next →'}
                   </button>
                 </div>
               </div>
             ) : (
-              <div className="me-q" style={{background:'#fff',borderRadius:14,border:'1px solid #e2e8f0',padding:18}}>
+              <div className=\"me-q\" style={{background:'#fff',borderRadius:14,border:'1px solid #e2e8f0',padding:18}}>
                 <p style={{fontSize:12,color:'#64748b',lineHeight:1.6,marginBottom:14}}>We work closely with our Middle East clients -- let's talk!</p>
                 <label style={{fontSize:11,fontWeight:700,color:'#64748b',display:'block',marginBottom:4,textTransform:'uppercase',letterSpacing:0.5}}>Name *</label>
-                <input value={meName} onChange={e=>setMeName(e.target.value)} placeholder="Ahmed Al Mansouri" style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1px solid #e2e8f0',fontSize:13,color:'#0f172a',outline:'none',boxSizing:'border-box',marginBottom:10}}/>
+                <input value={meName} onChange={e=>setMeName(e.target.value)} placeholder=\"Ahmed Al Mansouri\" style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1px solid #e2e8f0',fontSize:13,color:'#0f172a',outline:'none',boxSizing:'border-box',marginBottom:10}}/>
                 <label style={{fontSize:11,fontWeight:700,color:'#64748b',display:'block',marginBottom:4,textTransform:'uppercase',letterSpacing:0.5}}>Company</label>
-                <input value={meCompany} onChange={e=>setMeCompany(e.target.value)} placeholder="Acme Corp" style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1px solid #e2e8f0',fontSize:13,color:'#0f172a',outline:'none',boxSizing:'border-box',marginBottom:10}}/>
+                <input value={meCompany} onChange={e=>setMeCompany(e.target.value)} placeholder=\"Acme Corp\" style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1px solid #e2e8f0',fontSize:13,color:'#0f172a',outline:'none',boxSizing:'border-box',marginBottom:10}}/>
                 <label style={{fontSize:11,fontWeight:700,color:'#64748b',display:'block',marginBottom:4,textTransform:'uppercase',letterSpacing:0.5}}>Work email *</label>
-                <input value={meEmail} onChange={e=>setMeEmail(e.target.value)} type="email" placeholder="ahmed@company.ae" style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1px solid #e2e8f0',fontSize:13,color:'#0f172a',outline:'none',boxSizing:'border-box',marginBottom:14}}/>
+                <input value={meEmail} onChange={e=>setMeEmail(e.target.value)} type=\"email\" placeholder=\"ahmed@company.ae\" style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1px solid #e2e8f0',fontSize:13,color:'#0f172a',outline:'none',boxSizing:'border-box',marginBottom:14}}/>
                 <button onClick={meSubmit} disabled={!meName||!meEmail||meSubmitting}
                   style={{width:'100%',padding:12,borderRadius:10,border:'none',background:meName&&meEmail?'#0d9488':'#e2e8f0',color:meName&&meEmail?'#fff':'#94a3b8',cursor:meName&&meEmail?'pointer':'not-allowed',fontSize:14,fontWeight:700,marginBottom:10}}>
                   {meSubmitting?'Sending...':'Book a call →'}
                 </button>
                 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
                   <button onClick={()=>setMeStep(s=>s-1)} style={{background:'none',border:'none',cursor:'pointer',fontSize:12,color:'#94a3b8',padding:0}}>← Back</button>
-                  <a href="mailto:contact@spaciohub.com" style={{fontSize:12,color:'#0d9488',textDecoration:'none'}}>contact@spaciohub.com</a>
+                  <a href=\"mailto:contact@spaciohub.com\" style={{fontSize:12,color:'#0d9488',textDecoration:'none'}}>contact@spaciohub.com</a>
                 </div>
               </div>
             )}
@@ -450,7 +450,7 @@ return (
   </div>
   </div>
 )
-```
+"""
 
 }
 
@@ -459,19 +459,19 @@ return (
 <SEO {...PAGE_SEO.pricing} />
 <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
 
-```
+"""
   {/* ══ HERO ══════════════════════════════════════════ */}
   <section style={{ background: 'linear-gradient(170deg,#f0fdf8 0%,#ffffff 60%,#f8fafc 100%)', borderBottom: '1px solid #e2e8f0', padding: '80px 0 64px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
     <div style={{ position: 'absolute', top: -100, left: '50%', transform: 'translateX(-50%)', width: 600, height: 400, background: 'radial-gradient(ellipse,rgba(0,192,122,0.10),transparent 65%)', pointerEvents: 'none' }} />
     <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(0,192,122,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,192,122,0.025) 1px,transparent 1px)', backgroundSize: '50px 50px', pointerEvents: 'none' }} />
-    <div className="container" style={{ position: 'relative' }}>
-      <span className="tag">Pricing</span>
-      <h1 className="h1 animate-fade-up" style={{ fontSize: 'clamp(36px,5vw,60px)', marginBottom: 16 }}>
+    <div className=\"container\" style={{ position: 'relative' }}>
+      <span className=\"tag\">Pricing</span>
+      <h1 className=\"h1 animate-fade-up\" style={{ fontSize: 'clamp(36px,5vw,60px)', marginBottom: 16 }}>
         Simple, <span style={{ background: 'linear-gradient(135deg,#00c07a,#0090ff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: 900 }}>transparent</span> pricing
       </h1>
-      <p className="lead animate-fade-up delay-1" style={{ maxWidth: 480, margin: '0 auto 36px' }}>Start free. Scale as you grow. No hidden fees, no per-seat surprises.</p>
+      <p className=\"lead animate-fade-up delay-1\" style={{ maxWidth: 480, margin: '0 auto 36px' }}>Start free. Scale as you grow. No hidden fees, no per-seat surprises.</p>
       {/* Toggle */}
-      <div className="animate-fade-up delay-2" style={{ display: 'inline-flex', background: '#f1f5f9', borderRadius: 12, padding: 4, gap: 4, marginBottom: 16 }}>
+      <div className=\"animate-fade-up delay-2\" style={{ display: 'inline-flex', background: '#f1f5f9', borderRadius: 12, padding: 4, gap: 4, marginBottom: 16 }}>
         <button onClick={() => setAnnual(false)} style={{ padding: '9px 22px', borderRadius: 9, fontSize: 14, fontWeight: 600, border: 'none', cursor: 'pointer', fontFamily: 'Inter,sans-serif', background: !annual ? '#fff' : 'transparent', color: !annual ? '#0f172a' : '#64748b', boxShadow: !annual ? '0 1px 6px rgba(0,0,0,0.1)' : 'none', transition: 'all 0.2s' }}>Monthly</button>
         <button onClick={() => setAnnual(true)} style={{ padding: '9px 22px', borderRadius: 9, fontSize: 14, fontWeight: 600, border: 'none', cursor: 'pointer', fontFamily: 'Inter,sans-serif', background: annual ? '#fff' : 'transparent', color: annual ? '#0f172a' : '#64748b', boxShadow: annual ? '0 1px 6px rgba(0,0,0,0.1)' : 'none', transition: 'all 0.2s', display: 'flex', alignItems: 'center', gap: 8 }}>
           Annual <span style={{ background: 'linear-gradient(135deg,#00c07a,#009960)', color: '#fff', fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 100 }}>Save 40%</span>
@@ -482,13 +482,13 @@ return (
 
   {/* ══ PLAN CARDS ════════════════════════════════════ */}
   <section style={{ padding: '56px 0', borderBottom: '1px solid #e2e8f0', background: '#fff' }}>
-    <div className="container">
-      <div className="grid grid-cols-2 md:grid-cols-4" style={{gap: 16, alignItems: 'start'}}>
+    <div className=\"container\">
+      <div className=\"grid grid-cols-2 md:grid-cols-4\" style={{gap: 16, alignItems: 'start'}}>
         {PLAN_CONFIGS.map((p, idx) => {
           const price = p.name === 'Enterprise' ? 'Custom' : annual ? p.annualPrice : p.monthlyPrice || p.annualPrice
           const subline = p.name === 'Enterprise' ? 'Talk to our team' : p.name === 'Basic' ? (annual ? 'billed annually' : 'per year') : annual ? 'per month, billed annually' : 'per month'
           return (
-            <div key={p.name} className="reveal" style={{ animationDelay: `${idx*0.08}s`, background: p.pop ? 'linear-gradient(160deg,#0f172a,#1a2744)' : p.color, border: `1.5px solid ${p.border}`, borderRadius: 20, padding: '28px 24px', position: 'relative', boxShadow: p.pop ? '0 20px 60px rgba(0,192,122,0.2)' : '0 2px 8px rgba(0,0,0,0.04)', transform: p.pop ? 'translateY(-8px)' : 'none' }}>
+            <div key={p.name} className=\"reveal\" style={{ animationDelay: "${idx*0.08}s", background: p.pop ? 'linear-gradient(160deg,#0f172a,#1a2744)' : p.color, border: "1.5px solid ${p.border}", borderRadius: 20, padding: '28px 24px', position: 'relative', boxShadow: p.pop ? '0 20px 60px rgba(0,192,122,0.2)' : '0 2px 8px rgba(0,0,0,0.04)', transform: p.pop ? 'translateY(-8px)' : 'none' }}>
               {p.pop && <div style={{ position: 'absolute', top: -13, left: '50%', transform: 'translateX(-50%)', background: 'linear-gradient(135deg,#00c07a,#009960)', color: '#fff', fontSize: 10, fontWeight: 700, padding: '4px 16px', borderRadius: 100, whiteSpace: 'nowrap', letterSpacing: '0.5px', boxShadow: '0 4px 14px rgba(0,192,122,0.4)' }}>MOST POPULAR</div>}
               <div style={{ fontSize: 28, marginBottom: 12 }}>{p.icon}</div>
               <div style={{ fontSize: 11, fontWeight: 800, color: p.pop ? '#00c07a' : p.accent, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 6 }}>{p.name}</div>
@@ -498,14 +498,14 @@ return (
               </div>
               <div style={{ fontSize: 12, color: p.pop ? '#475569' : '#94a3b8', marginBottom: 28 }}>{subline}</div>
               {p.href ? (
-                <a href={p.href} target="_blank" rel="noreferrer" style={{ display: 'block', width: '100%', padding: '12px', borderRadius: 10, fontSize: 14, fontWeight: 700, textAlign: 'center', textDecoration: 'none', background: p.pop ? '#00c07a' : 'transparent', color: p.pop ? '#fff' : p.accent, border: `1.5px solid ${p.pop ? '#00c07a' : p.border}`, transition: 'all 0.2s', boxShadow: p.pop ? '0 4px 16px rgba(0,192,122,0.3)' : 'none' }}
-                  onMouseEnter={e => { e.currentTarget.style.transform='translateY(-1px)'; e.currentTarget.style.boxShadow=`0 8px 20px ${p.accent}30` }}
+                <a href={p.href} target=\"_blank\" rel=\"noreferrer\" style={{ display: 'block', width: '100%', padding: '12px', borderRadius: 10, fontSize: 14, fontWeight: 700, textAlign: 'center', textDecoration: 'none', background: p.pop ? '#00c07a' : 'transparent', color: p.pop ? '#fff' : p.accent, border: "1.5px solid ${p.pop ? '#00c07a' : p.border}", transition: 'all 0.2s', boxShadow: p.pop ? '0 4px 16px rgba(0,192,122,0.3)' : 'none' }}
+                  onMouseEnter={e => { e.currentTarget.style.transform='translateY(-1px)'; e.currentTarget.style.boxShadow="0 8px 20px ${p.accent}30" }}
                   onMouseLeave={e => { e.currentTarget.style.transform='translateY(0)'; e.currentTarget.style.boxShadow=p.pop?'0 4px 16px rgba(0,192,122,0.3)':'none' }}>
                   {p.cta}
                 </a>
               ) : (
-                <button onClick={openModal} style={{ display: 'block', width: '100%', padding: '12px', borderRadius: 10, fontSize: 14, fontWeight: 700, textAlign: 'center', background: p.pop ? '#00c07a' : 'transparent', color: p.pop ? '#fff' : p.accent, border: `1.5px solid ${p.pop ? '#00c07a' : p.border}`, cursor: 'pointer', fontFamily: 'Inter,sans-serif', transition: 'all 0.2s', boxShadow: p.pop ? '0 4px 16px rgba(0,192,122,0.3)' : 'none' }}
-                  onMouseEnter={e => { e.currentTarget.style.transform='translateY(-1px)'; e.currentTarget.style.boxShadow=`0 8px 20px ${p.accent}30` }}
+                <button onClick={openModal} style={{ display: 'block', width: '100%', padding: '12px', borderRadius: 10, fontSize: 14, fontWeight: 700, textAlign: 'center', background: p.pop ? '#00c07a' : 'transparent', color: p.pop ? '#fff' : p.accent, border: "1.5px solid ${p.pop ? '#00c07a' : p.border}", cursor: 'pointer', fontFamily: 'Inter,sans-serif', transition: 'all 0.2s', boxShadow: p.pop ? '0 4px 16px rgba(0,192,122,0.3)' : 'none' }}
+                  onMouseEnter={e => { e.currentTarget.style.transform='translateY(-1px)'; e.currentTarget.style.boxShadow="0 8px 20px ${p.accent}30" }}
                   onMouseLeave={e => { e.currentTarget.style.transform='translateY(0)'; e.currentTarget.style.boxShadow=p.pop?'0 4px 16px rgba(0,192,122,0.3)':'none' }}>
                   {p.cta}
                 </button>
@@ -524,7 +524,7 @@ return (
       {/* Agency / Coworking note */}
       <div style={{ marginTop: 32, background: 'linear-gradient(135deg,#fdf2f8,#f5f3ff)', border: '1px solid #e9d5ff', borderRadius: 16, padding: '20px 28px', display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
         <div style={{ width: 40, height: 40, borderRadius: 10, background: 'linear-gradient(135deg,#ec4899,#8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          <svg viewBox="0 0 20 20" width="18" height="18" fill="none"><rect x="2" y="6" width="10" height="10" rx="2" fill="#fff" opacity="0.8"/><rect x="9" y="9" width="10" height="10" rx="2" fill="#fff" opacity="0.5" stroke="#fff" strokeWidth="1"/><path d="M7 6V5a2 2 0 014 0v1" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/></svg>
+          <svg viewBox=\"0 0 20 20\" width=\"18\" height=\"18\" fill=\"none\"><rect x=\"2\" y=\"6\" width=\"10\" height=\"10\" rx=\"2\" fill=\"#fff\" opacity=\"0.8\"/><rect x=\"9\" y=\"9\" width=\"10\" height=\"10\" rx=\"2\" fill=\"#fff\" opacity=\"0.5\" stroke=\"#fff\" strokeWidth=\"1\"/><path d=\"M7 6V5a2 2 0 014 0v1\" stroke=\"#fff\" strokeWidth=\"1.5\" strokeLinecap=\"round\"/></svg>
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 14, fontWeight: 700, color: '#0f172a', marginBottom: 3 }}>Running a coworking space or managing multiple clients?</div>
@@ -538,9 +538,9 @@ return (
       </div>
 
       {/* On-Premises callout */}
-      <div className="reveal" style={{ display:'flex', alignItems:'center', gap:20, background:'linear-gradient(135deg,#0f172a,#1e293b)', border:'1px solid #334155', borderRadius:16, padding:'20px 24px', marginTop:12 }}>
+      <div className=\"reveal\" style={{ display:'flex', alignItems:'center', gap:20, background:'linear-gradient(135deg,#0f172a,#1e293b)', border:'1px solid #334155', borderRadius:16, padding:'20px 24px', marginTop:12 }}>
         <div style={{ width:44, height:44, borderRadius:12, background:'rgba(0,192,122,0.15)', border:'1px solid rgba(0,192,122,0.3)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00c07a" strokeWidth="2" strokeLinecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#00c07a\" strokeWidth=\"2\" strokeLinecap=\"round\"><path d=\"M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z\"/><polyline points=\"9 22 9 12 15 12 15 22\"/></svg>
         </div>
         <div style={{ flex:1 }}>
           <div style={{ fontSize:14, fontWeight:700, color:'#fff', marginBottom:3 }}>Need data to stay inside your building?</div>
@@ -548,7 +548,7 @@ return (
             The <strong style={{ color:'#d97706' }}>Enterprise plan</strong> includes full <strong style={{ color:'#fff' }}>on-premises deployment</strong> -- SpacioHub runs on your own server, managed by Riser Technologies. No data leaves your network. UAE PDPL compliant. Live in 48 hours.
           </div>
         </div>
-        <a href="/on-premises" style={{ background:'#00c07a', color:'#fff', border:'none', borderRadius:10, padding:'10px 20px', fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'Inter,sans-serif', whiteSpace:'nowrap', flexShrink:0, textDecoration:'none', display:'inline-block' }}>
+        <a href=\"/on-premises\" style={{ background:'#00c07a', color:'#fff', border:'none', borderRadius:10, padding:'10px 20px', fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'Inter,sans-serif', whiteSpace:'nowrap', flexShrink:0, textDecoration:'none', display:'inline-block' }}>
           Learn about on-prem →
         </a>
       </div>
@@ -557,11 +557,11 @@ return (
 
   {/* ══ PLAN FINDER ═══════════════════════════════════ */}
   <section style={{ padding: '80px 0', borderBottom: '1px solid #e2e8f0', background: '#fff' }}>
-    <div className="container" style={{ maxWidth: 820 }}>
+    <div className=\"container\" style={{ maxWidth: 820 }}>
       <div style={{ textAlign: 'center', marginBottom: 48 }}>
-        <span className="tag reveal">Not sure?</span>
-        <h2 className="h2 reveal">Find your <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>perfect plan</span></h2>
-        <p className="body reveal" style={{ color: '#64748b', marginTop: 10 }}>Answer 4 quick questions and we'll highlight the right fit.</p>
+        <span className=\"tag reveal\">Not sure?</span>
+        <h2 className=\"h2 reveal\">Find your <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>perfect plan</span></h2>
+        <p className=\"body reveal\" style={{ color: '#64748b', marginTop: 10 }}>Answer 4 quick questions and we'll highlight the right fit.</p>
       </div>
       <PlanFinder openModal={openModal} />
     </div>
@@ -569,14 +569,14 @@ return (
 
   {/* ══ COMPARISON TABLE ══════════════════════════════ */}
   <section style={{ padding: '80px 0', borderBottom: '1px solid #e2e8f0', background: '#f8fafc' }}>
-    <div className="container">
+    <div className=\"container\">
       <div style={{ textAlign: 'center', marginBottom: 52 }}>
-        <span className="tag reveal">Compare plans</span>
-        <h2 className="h2 reveal">Full <span style={{ background:'linear-gradient(135deg,#00c07a,#0090ff)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>feature comparison</span></h2>
-        <p className="body reveal" style={{ color: '#64748b', marginTop: 10 }}>Everything you need to choose the right plan.</p>
+        <span className=\"tag reveal\">Compare plans</span>
+        <h2 className=\"h2 reveal\">Full <span style={{ background:'linear-gradient(135deg,#00c07a,#0090ff)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>feature comparison</span></h2>
+        <p className=\"body reveal\" style={{ color: '#64748b', marginTop: 10 }}>Everything you need to choose the right plan.</p>
       </div>
 
-      <div className="pricing-table-wrap reveal">
+      <div className=\"pricing-table-wrap reveal\">
       <div style={{ background: '#fff', borderRadius: 20, overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', border: '1px solid #e2e8f0', minWidth: 620 }}>
 
         {/* Sticky header */}
@@ -589,7 +589,7 @@ return (
             { name: 'Enterprise', color: '#7c3aed', bg: '#f5f3ff', border: '#ddd6fe', note: null },
           ].map(p => (
             <div key={p.name} style={{ padding: '14px 0', textAlign: 'center' }}>
-              <div style={{ display: 'inline-block', background: p.bg, border: `1px solid ${p.border}`, borderRadius: 100, padding: '5px 16px' }}>
+              <div style={{ display: 'inline-block', background: p.bg, border: "1px solid ${p.border}", borderRadius: 100, padding: '5px 16px' }}>
                 <span style={{ fontSize: 12, fontWeight: 800, color: p.color }}>{p.name}</span>
               </div>
               {p.note && <div style={{ fontSize: 9, color: '#94a3b8', fontWeight: 600, marginTop: 4 }}>{p.note}</div>}
@@ -622,16 +622,16 @@ return (
                     <div key={k} style={{ padding: '12px 0', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       {typeof val === 'boolean'
                         ? val
-                          ? <div style={{ width: 22, height: 22, borderRadius: '50%', background: bgs[ki], border: `1px solid ${colors[ki]}30`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                              <svg viewBox="0 0 10 10" width="10" height="10" fill="none"><path d="M2 5l2 2 4-4" stroke={colors[ki]} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                          ? <div style={{ width: 22, height: 22, borderRadius: '50%', background: bgs[ki], border: "1px solid ${colors[ki]}30", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                              <svg viewBox=\"0 0 10 10\" width=\"10\" height=\"10\" fill=\"none\"><path d=\"M2 5l2 2 4-4\" stroke={colors[ki]} strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>
                             </div>
                           : <span style={{ color: '#d1d5db', fontSize: 14 }}>--</span>
                         : val.includes('+')
                           ? <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-                              <span style={{ fontSize: 11, fontWeight: 800, color: colors[ki], background: bgs[ki], padding: '3px 10px', borderRadius: 100, border: `1px solid ${colors[ki]}25` }}>{val.split(' + ')[0]}</span>
+                              <span style={{ fontSize: 11, fontWeight: 800, color: colors[ki], background: bgs[ki], padding: '3px 10px', borderRadius: 100, border: "1px solid ${colors[ki]}25" }}>{val.split(' + ')[0]}</span>
                               <span style={{ fontSize: 9, color: '#94a3b8', fontWeight: 600 }}>+ add-ons available</span>
                             </div>
-                          : <span style={{ fontSize: 11, fontWeight: 800, color: colors[ki], background: bgs[ki], padding: '3px 10px', borderRadius: 100, display: 'inline-block', border: `1px solid ${colors[ki]}25` }}>{val}</span>
+                          : <span style={{ fontSize: 11, fontWeight: 800, color: colors[ki], background: bgs[ki], padding: '3px 10px', borderRadius: 100, display: 'inline-block', border: "1px solid ${colors[ki]}25" }}>{val}</span>
                       }
                     </div>
                   )
@@ -652,12 +652,12 @@ return (
           ].map((btn, i) => (
             <div key={i} style={{ textAlign: 'center', padding: '0 6px' }}>
               {btn.href
-                ? <a href={btn.href} target="_blank" rel="noreferrer" style={{ display: 'block', padding: '8px 4px', borderRadius: 8, fontSize: 11, fontWeight: 700, color: btn.color, background: btn.bg, border: `1.5px solid ${btn.border}`, textDecoration: 'none', transition: 'all 0.15s' }}
+                ? <a href={btn.href} target=\"_blank\" rel=\"noreferrer\" style={{ display: 'block', padding: '8px 4px', borderRadius: 8, fontSize: 11, fontWeight: 700, color: btn.color, background: btn.bg, border: "1.5px solid ${btn.border}", textDecoration: 'none', transition: 'all 0.15s' }}
                     onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
                     onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
                     {btn.label}
                   </a>
-                : <button onClick={openModal} style={{ display: 'block', width: '100%', padding: '8px 4px', borderRadius: 8, fontSize: 11, fontWeight: 700, color: btn.color, background: btn.bg, border: `1.5px solid ${btn.border}`, cursor: 'pointer', fontFamily: 'Inter,sans-serif', transition: 'all 0.15s' }}
+                : <button onClick={openModal} style={{ display: 'block', width: '100%', padding: '8px 4px', borderRadius: 8, fontSize: 11, fontWeight: 700, color: btn.color, background: btn.bg, border: "1.5px solid ${btn.border}", cursor: 'pointer', fontFamily: 'Inter,sans-serif', transition: 'all 0.15s' }}
                     onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
                     onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
                     {btn.label}
@@ -672,15 +672,15 @@ return (
   </section>
   {/* ══════════════════════════════════════════ */}
   <section style={{ padding: '80px 0', background: '#fff', borderBottom: '1px solid #e2e8f0' }}>
-    <div className="container" style={{ maxWidth: 760, margin: '0 auto' }}>
+    <div className=\"container\" style={{ maxWidth: 760, margin: '0 auto' }}>
       <div style={{ textAlign: 'center', marginBottom: 48 }}>
-        <span className="tag reveal">FAQs</span>
-        <h2 className="h2 reveal">Frequently <span style={{ background:'linear-gradient(135deg,#00c07a,#0090ff)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>asked questions</span></h2>
-        <p className="body reveal" style={{ marginTop: 10, color: '#64748b' }}>Can't find an answer? Email <a href="mailto:contact@spaciohub.com" style={{ color: '#00c07a', fontWeight: 600 }}>contact@spaciohub.com</a></p>
+        <span className=\"tag reveal\">FAQs</span>
+        <h2 className=\"h2 reveal\">Frequently <span style={{ background:'linear-gradient(135deg,#00c07a,#0090ff)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>asked questions</span></h2>
+        <p className=\"body reveal\" style={{ marginTop: 10, color: '#64748b' }}>Can't find an answer? Email <a href=\"mailto:contact@spaciohub.com\" style={{ color: '#00c07a', fontWeight: 600 }}>contact@spaciohub.com</a></p>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {FAQS.map((faq, i) => (
-          <div key={i} className="reveal" style={{ background: openFaq === i ? '#f0fdf8' : '#fff', border: `1px solid ${openFaq === i ? '#a7f3d0' : '#e2e8f0'}`, borderRadius: 14, overflow: 'hidden', transition: 'all 0.25s' }}>
+          <div key={i} className=\"reveal\" style={{ background: openFaq === i ? '#f0fdf8' : '#fff', border: "1px solid ${openFaq === i ? '#a7f3d0' : '#e2e8f0'}", borderRadius: 14, overflow: 'hidden', transition: 'all 0.25s' }}>
             <button onClick={() => setOpenFaq(openFaq === i ? null : i)} style={{ width: '100%', padding: '18px 22px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontFamily: 'Inter,sans-serif' }}>
               <span style={{ fontSize: 15, fontWeight: 600, color: '#0f172a', paddingRight: 16 }}>{faq.q}</span>
               <span style={{ width: 24, height: 24, borderRadius: '50%', background: openFaq === i ? '#00c07a' : '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', color: openFaq === i ? '#fff' : '#94a3b8', fontSize: 14, fontWeight: 700, flexShrink: 0, transition: 'all 0.25s', transform: openFaq === i ? 'rotate(45deg)' : 'none' }}>+</span>
@@ -697,17 +697,17 @@ return (
   {/* ══ BOTTOM CTA ════════════════════════════════════ */}
   <section style={{ background: 'linear-gradient(135deg,#0a1628,#0f172a)', padding: '80px 0', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
     <div style={{ position: 'absolute', top: -80, left: '50%', transform: 'translateX(-50%)', width: 600, height: 400, background: 'radial-gradient(ellipse,rgba(0,192,122,0.10),transparent 65%)', pointerEvents: 'none' }} />
-    <div className="container" style={{ position: 'relative' }}>
-      <h2 className="h2" style={{ color: '#fff', marginBottom: 14 }}>Still have <span style={{ background:'linear-gradient(135deg,#00c07a,#0090ff)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>questions?</span></h2>
-      <p className="lead" style={{ color: '#64748b', marginBottom: 36 }}>Talk to our team. We'll help you pick the right plan.</p>
+    <div className=\"container\" style={{ position: 'relative' }}>
+      <h2 className=\"h2\" style={{ color: '#fff', marginBottom: 14 }}>Still have <span style={{ background:'linear-gradient(135deg,#00c07a,#0090ff)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>questions?</span></h2>
+      <p className=\"lead\" style={{ color: '#64748b', marginBottom: 36 }}>Talk to our team. We'll help you pick the right plan.</p>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-        <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow: '0 8px 28px rgba(0,192,122,0.35)' }}>Request a Demo →</button>
-        <a href="mailto:contact@spaciohub.com" style={{ background: 'rgba(255,255,255,0.05)', color: '#fff', padding: '14px 28px', borderRadius: 8, fontSize: 15, fontWeight: 600, border: '1.5px solid rgba(255,255,255,0.12)', textDecoration: 'none' }}>Email Us</a>
+        <button className=\"btn btn-primary btn-lg\" onClick={openModal} style={{ boxShadow: '0 8px 28px rgba(0,192,122,0.35)' }}>Request a Demo →</button>
+        <a href=\"mailto:contact@spaciohub.com\" style={{ background: 'rgba(255,255,255,0.05)', color: '#fff', padding: '14px 28px', borderRadius: 8, fontSize: 15, fontWeight: 600, border: '1.5px solid rgba(255,255,255,0.12)', textDecoration: 'none' }}>Email Us</a>
       </div>
     </div>
   </section>
 </main>
-```
+"""
 
 </>
 )
