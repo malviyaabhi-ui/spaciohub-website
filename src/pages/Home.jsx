@@ -9,7 +9,7 @@ const LOGO = 'https://svksiwnalmrjjnskycqb.supabase.co/storage/v1/object/public/
 
 const FEATURES = [
 { icon: '📅', color: '#ecfdf5', border: '#a7f3d0', title: 'Smart Room Booking', desc: 'Visual time grid, 15-min buffer, AI suggestions, booking tags, and Zoom auto-links on every booking.', tag: 'CORE', link: '/platform/booking' },
-{ icon: '🖥️', color: '#eff6ff', border: '#bfdbfe', title: 'Door Display Panel', desc: 'Real-time status on any tablet. Quick book, check-in, and guest booking — no login required.', tag: 'HARDWARE', link: '/platform/booking#door-display' },
+{ icon: '🖥️', color: '#eff6ff', border: '#bfdbfe', title: 'Door Display Panel', desc: 'Real-time status on any tablet. Quick book, check-in, and guest booking -- no login required.', tag: 'HARDWARE', link: '/platform/booking#door-display' },
 { icon: '📊', color: '#f5f3ff', border: '#ddd6fe', title: 'Analytics & Reports', desc: 'Peak hours, utilisation, no-show tracking, tag breakdowns, and full CSV export.', tag: 'INSIGHTS', link: '/platform/booking#analytics' },
 { icon: '👥', color: '#fff7ed', border: '#fed7aa', title: 'Visitor Management', desc: 'Pre-register guests, self-service check-in kiosk, custom badges, and instant host notifications.', tag: 'ENTERPRISE', link: '/platform/visitors' },
 { icon: '🔗', color: '#fdf2f8', border: '#fbcfe8', title: 'Calendar & iCal', desc: "Subscribe to any room's live calendar in Google or Outlook. Always in sync, automatically.", tag: 'INTEGRATION', link: '/platform/booking#integrations' },
@@ -78,11 +78,11 @@ const USE_CASES = [
 { icon: UC_ICONS.coworking, title: 'Coworking Spaces', desc: 'Member self-booking, guest kiosk, and utilisation tracking to maximise revenue.', href: '/use-cases/coworking', accent: '#00c07a' },
 { icon: UC_ICONS.hotels, title: 'Hotels & Hospitality', desc: 'Conference booking, catering tags, and five-star guest check-in experience.', href: '/use-cases/hotels', accent: '#f59e0b' },
 { icon: UC_ICONS.resellers, title: 'SaaS Resellers', desc: 'White-label for your clients with custom domains and super admin control.', href: '/use-cases/resellers', accent: '#ec4899' },
-{ icon: UC_ICONS_ENTERPRISE, title: 'Government & Enterprise', desc: 'On-premises deployment — data stays inside your building. UAE PDPL compliant, Riser-managed.', href: '/on-premises', accent: '#00c07a' },
+{ icon: UC_ICONS_ENTERPRISE, title: 'Government & Enterprise', desc: 'On-premises deployment -- data stays inside your building. UAE PDPL compliant, Riser-managed.', href: '/on-premises', accent: '#00c07a' },
 ]
 
 const TESTIMONIALS = [
-{ quote: "SpacioHub completely eliminated the 'is this room free?' confusion in our office. Setup took less than a day — everyone loves it.", name: 'Aarav Mehta', role: 'Head of Operations, Nexum Technologies', avatar: 'AM', color: '#00c07a' },
+{ quote: "SpacioHub completely eliminated the 'is this room free?' confusion in our office. Setup took less than a day -- everyone loves it.", name: 'Aarav Mehta', role: 'Head of Operations, Nexum Technologies', avatar: 'AM', color: '#00c07a' },
 { quote: "The door display panels are a game-changer. Our clients see a professional check-in experience from the moment they walk in.", name: 'Fatima Al Rashidi', role: 'Facilities Manager, Dubai Coworking Hub', avatar: 'FA', color: '#3b82f6' },
 { quote: "Analytics revealed we were overbooked on two floors and underusing three others. We reconfigured within a week. Incredible ROI.", name: 'James Okonkwo', role: 'CTO, Meridian Group', avatar: 'JO', color: '#8b5cf6' },
 ]
@@ -90,7 +90,7 @@ const TESTIMONIALS = [
 const STEPS = [
 { num: '01', icon: '🏗️', title: 'Add your spaces', desc: 'Upload your floor plan, add rooms, desks, and resources. Assign rules and capacities in minutes.' },
 { num: '02', icon: '✉️', title: 'Invite your team', desc: 'Send invite links or connect via Google / Microsoft SSO. Permissions auto-apply by role.' },
-{ num: '03', icon: '✅', title: 'Book from anywhere', desc: 'Web, mobile, door panel, or AI chat — confirm a room in seconds from any device.' },
+{ num: '03', icon: '✅', title: 'Book from anywhere', desc: 'Web, mobile, door panel, or AI chat -- confirm a room in seconds from any device.' },
 { num: '04', icon: '📈', title: 'Track & optimise', desc: 'Live analytics reveal peak hours, no-shows, and underused spaces to right-size your real estate.' },
 ]
 
@@ -133,7 +133,7 @@ const run = () => {
 setActiveIdx(i)
 timer.current = setTimeout(() => {
 const ci = i
-setDoneSet(prev => new Set([…prev, ci]))
+setDoneSet(prev => new Set([...prev, ci]))
 i++
 if (i < INTEGRATIONS.length) { timer.current = setTimeout(run, 400) }
 else {
@@ -259,7 +259,7 @@ return () => window.removeEventListener('resize', onResize)
 
 return (
 <>
-<SEO {…PAGE_SEO.home} />
+<SEO {...PAGE_SEO.home} />
 <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
 
 ```
@@ -277,7 +277,7 @@ return (
     {/* Bottom fade */}
     <div style={{ position:'absolute', bottom:0, left:0, right:0, height:200, background:'linear-gradient(0deg,#060d1a,transparent)', pointerEvents:'none' }} />
 
-    {/* Floating card — top left */}
+    {/* Floating card -- top left */}
     {!isMobile && <div className='hero-float-card' style={{ position:'absolute', left:'6%', top:'18%', animation:'heroFloat1 5s ease-in-out infinite', animationDelay:'0.6s', zIndex:2 }}>
       <div style={{ background:'#fff', border:'1px solid #a7f3d0', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 28px rgba(0,192,122,0.15)', display:'flex', alignItems:'center', gap:10, whiteSpace:'nowrap', animation:'heroBounceIn 0.5s cubic-bezier(.16,1,.3,1) 0.4s both' }}>
         <div style={{ width:30, height:30, borderRadius:8, background:'#ecfdf5', display:'flex', alignItems:'center', justifyContent:'center' }}>
@@ -285,13 +285,13 @@ return (
         </div>
         <div style={{ textAlign:'left' }}>
           <div style={{ fontSize:11, fontWeight:700, color:'#0f172a' }}>Board Room booked</div>
-          <div style={{ fontSize:10, color:'#94a3b8' }}>2:00 – 3:00 PM · Sarah J.</div>
+          <div style={{ fontSize:10, color:'#94a3b8' }}>2:00 - 3:00 PM · Sarah J.</div>
         </div>
         <div style={{ width:7, height:7, borderRadius:'50%', background:'#00c07a', animation:'pulse 2s infinite', flexShrink:0 }} />
       </div>
     </div>}
 
-    {/* Floating card — top right */}
+    {/* Floating card -- top right */}
     {!isMobile && <div className='hero-float-card' style={{ position:'absolute', right:'6%', top:'14%', animation:'heroFloat2 6s ease-in-out infinite', animationDelay:'1s', zIndex:2 }}>
       <div style={{ background:'#fff', border:'1px solid #bfdbfe', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 28px rgba(59,130,246,0.12)', display:'flex', alignItems:'center', gap:10, whiteSpace:'nowrap', animation:'heroBounceIn 0.5s cubic-bezier(.16,1,.3,1) 0.7s both' }}>
         <div style={{ width:30, height:30, borderRadius:8, background:'#eff6ff', display:'flex', alignItems:'center', justifyContent:'center' }}>
@@ -305,7 +305,7 @@ return (
       </div>
     </div>}
 
-    {/* Floating card — bottom left */}
+    {/* Floating card -- bottom left */}
     {!isMobile && <div className='hero-float-card' style={{ position:'absolute', left:'8%', bottom:'22%', animation:'heroFloat3 7s ease-in-out infinite', animationDelay:'1.4s', zIndex:2 }}>
       <div style={{ background:'#fff', border:'1px solid #ddd6fe', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 28px rgba(139,92,246,0.12)', display:'flex', alignItems:'center', gap:10, whiteSpace:'nowrap', animation:'heroBounceIn 0.5s cubic-bezier(.16,1,.3,1) 1.0s both' }}>
         <div style={{ width:30, height:30, borderRadius:8, background:'#f5f3ff', display:'flex', alignItems:'center', justifyContent:'center' }}>
@@ -318,7 +318,7 @@ return (
       </div>
     </div>}
 
-    {/* Floating card — bottom right */}
+    {/* Floating card -- bottom right */}
     {!isMobile && <div className='hero-float-card' style={{ position:'absolute', right:'7%', bottom:'25%', animation:'heroFloat1 5.5s ease-in-out infinite 1s', zIndex:2 }}>
       <div style={{ background:'#fff', border:'1px solid #fde68a', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 28px rgba(245,158,11,0.12)', display:'flex', alignItems:'center', gap:10, whiteSpace:'nowrap', animation:'heroBounceIn 0.5s cubic-bezier(.16,1,.3,1) 1.2s both' }}>
         <div style={{ width:30, height:30, borderRadius:8, background:'#fefce8', display:'flex', alignItems:'center', justifyContent:'center' }}>
@@ -343,7 +343,7 @@ return (
       {/* Animated rotating descriptor */}
       <div className="animate-fade-up delay-2" style={{ height:32, overflow:'hidden', marginBottom:28 }}>
         <div style={{ animation:'rotateWords 9s infinite', display:'flex', flexDirection:'column', gap:8 }}>
-          {['Book rooms in seconds. Run every screen in your building.','Visitors check in — hosts get notified instantly.','One platform. Signage, booking, visitors and more.'].map(t=>(
+          {['Book rooms in seconds. Run every screen in your building.','Visitors check in -- hosts get notified instantly.','One platform. Signage, booking, visitors and more.'].map(t=>(
             <div key={t} style={{ height:32, display:'flex', alignItems:'center', justifyContent:'center' }}>
               <span style={{ fontSize:16, color:'rgba(255,255,255,0.6)', fontWeight:500, letterSpacing:'-0.2px' }}>{t}</span>
             </div>
@@ -351,7 +351,7 @@ return (
         </div>
       </div>
       <p className="animate-fade-up delay-3" style={{ maxWidth:560, margin:'0 auto 44px', fontSize:17, color:'rgba(255,255,255,0.55)', lineHeight:1.7, fontWeight:400 }}>
-        SpacioHub brings room booking, visitor management, digital signage, door displays, and AI scheduling into a single platform — with the option to run it entirely on your own infrastructure.
+        SpacioHub brings room booking, visitor management, digital signage, door displays, and AI scheduling into a single platform -- with the option to run it entirely on your own infrastructure.
       </p>
       <div className="animate-fade-up delay-4 hero-cta-row" style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap', marginBottom:56, textAlign:'center' }}>
         <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 0 40px rgba(0,192,122,0.35)' }}>Request a Demo →</button>
@@ -394,13 +394,13 @@ return (
     </div>
   </section>
 
-  {/* PLATFORM PILLARS — 5 modules overview */}
+  {/* PLATFORM PILLARS -- 5 modules overview */}
   <section style={{ padding: '72px 0', borderBottom: '1px solid #e2e8f0' }}>
     <div className="container">
       <div style={{ textAlign:'center', marginBottom:40 }}>
         <span className="tag reveal">The platform</span>
         <h2 className="h2 reveal">Five modules. <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>One login.</span></h2>
-        <p className="body reveal" style={{ maxWidth:440, margin:'12px auto 0', color:'#64748b' }}>Every tool your workplace needs — built to work together from day one.</p>
+        <p className="body reveal" style={{ maxWidth:440, margin:'12px auto 0', color:'#64748b' }}>Every tool your workplace needs -- built to work together from day one.</p>
       </div>
       <div className="reveal" style={{ display:'grid', gridTemplateColumns:'repeat(5,1fr)', gap:12 }}>
         {[
@@ -408,7 +408,7 @@ return (
           { bg:'#fffbeb', border:'#fde68a', col:'#d97706', title:'Digital Signage', desc:'Playlists, schedules, emergency alerts on any screen', icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="2" strokeLinecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> },
           { bg:'#fff7ed', border:'#fed7aa', col:'#ea580c', title:'Visitor Management', desc:'Pre-register, kiosk check-in, badges, host alerts', icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ea580c" strokeWidth="2" strokeLinecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
           { bg:'#eff6ff', border:'#bfdbfe', col:'#2563eb', title:'Door Displays', desc:'Live room status on any tablet, no app needed', icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round"><rect x="9" y="2" width="6" height="20" rx="2"/><rect x="1" y="8" width="8" height="14" rx="2"/><rect x="15" y="5" width="8" height="17" rx="2"/></svg> },
-          { bg:'#fefce8', border:'#fde68a', col:'#ca8a04', title:'Mira AI Booker', desc:'Describe your meeting — Mira finds and books it', icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ca8a04" strokeWidth="2" strokeLinecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> },
+          { bg:'#fefce8', border:'#fde68a', col:'#ca8a04', title:'Mira AI Booker', desc:'Describe your meeting -- Mira finds and books it', icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ca8a04" strokeWidth="2" strokeLinecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> },
         ].map((p, i) => (
           <div key={p.title} className="reveal" style={{ background:'#fff', border:`1px solid ${p.border}`, borderRadius:14, padding:'20px 16px', textAlign:'center', transition:'transform .2s,box-shadow .2s', animationDelay:`${i*0.08}s`, cursor:'default' }}
             onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow=`0 16px 40px ${p.border}80`}}
@@ -422,7 +422,7 @@ return (
     </div>
   </section>
 
-  {/* SCREEN MOCKUP — exact from live site */}
+  {/* SCREEN MOCKUP -- exact from live site */}
   <section style={{ padding: '64px 0', borderBottom: '1px solid #e2e8f0' }}>
     <div className="container">
       <div style={{ position:'relative' }}>
@@ -480,7 +480,7 @@ return (
     </div>
   </section>
 
-  {/* FEATURES — bento grid */}
+  {/* FEATURES -- bento grid */}
   <section style={{ padding: '80px 0', borderBottom: '1px solid #e2e8f0' }}>
     <div className="container">
       <div style={{ marginBottom: 48 }}>
@@ -492,7 +492,7 @@ return (
       </div>
       <div className="bento-grid grid grid-cols-12 gap-4">
 
-        {/* Card 1 — Large green: Smart Room Booking */}
+        {/* Card 1 -- Large green: Smart Room Booking */}
         <Link to="/platform/booking" className="reveal col-span-12 md:col-span-5" style={{  textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#f0fdf8,#dcfce7)', border:'1px solid #a7f3d0', padding:'36px 32px', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:260 }}
           onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(0,192,122,0.15)'}}
           onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
@@ -504,7 +504,7 @@ return (
           <div style={{ marginTop:20,fontSize:13,fontWeight:700,color:'#009960' }}>Explore feature →</div>
         </Link>
 
-        {/* Card 2 — Blue: Door Display */}
+        {/* Card 2 -- Blue: Door Display */}
         <Link to="/platform/booking#door-display" className="reveal col-span-12 md:col-span-4" style={{  textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#eff6ff,#dbeafe)', border:'1px solid #bfdbfe', padding:'36px 32px', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:260 }}
           onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(59,130,246,0.15)'}}
           onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
@@ -512,11 +512,11 @@ return (
           <div style={{ fontSize:36,marginBottom:20 }}>🖥️</div>
           <span style={{ fontSize:10,fontWeight:700,color:'#2563eb',letterSpacing:'1px',textTransform:'uppercase',marginBottom:10,background:'rgba(59,130,246,0.12)',padding:'3px 10px',borderRadius:100,display:'inline-block',width:'fit-content' }}>HARDWARE</span>
           <h3 style={{ fontSize:20,fontWeight:800,color:'#0f172a',marginBottom:12,letterSpacing:-0.5 }}>Door Display Panel</h3>
-          <p style={{ fontSize:14,color:'#374151',lineHeight:1.7,flex:1 }}>Real-time status on any tablet. Quick book, check-in, and guest booking — no login required.</p>
+          <p style={{ fontSize:14,color:'#374151',lineHeight:1.7,flex:1 }}>Real-time status on any tablet. Quick book, check-in, and guest booking -- no login required.</p>
           <div style={{ marginTop:20,fontSize:13,fontWeight:700,color:'#2563eb' }}>Explore feature →</div>
         </Link>
 
-        {/* Card 3 — Dark: AI */}
+        {/* Card 3 -- Dark: AI */}
         <Link to="/platform/booking" className="reveal col-span-12 md:col-span-3" style={{  textDecoration:'none', borderRadius:20, background:'linear-gradient(160deg,#0f172a,#1e293b)', border:'1px solid #334155', padding:'32px 28px', display:'flex', flexDirection:'column', position:'relative', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:260 }}
           onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(0,0,0,0.25)'}}
           onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
@@ -524,11 +524,11 @@ return (
           <div style={{ fontSize:36,marginBottom:20 }}>✨</div>
           <span style={{ fontSize:10,fontWeight:700,color:'#00c07a',letterSpacing:'1px',textTransform:'uppercase',marginBottom:10,background:'rgba(0,192,122,0.15)',padding:'3px 10px',borderRadius:100,display:'inline-block',width:'fit-content' }}>AI</span>
           <h3 style={{ fontSize:18,fontWeight:800,color:'#fff',marginBottom:10,letterSpacing:-0.5 }}>AI Room Booker</h3>
-          <p style={{ fontSize:13,color:'#94a3b8',lineHeight:1.7,flex:1 }}>Describe what you need in plain language — AI finds and books the perfect room instantly.</p>
+          <p style={{ fontSize:13,color:'#94a3b8',lineHeight:1.7,flex:1 }}>Describe what you need in plain language -- AI finds and books the perfect room instantly.</p>
           <div style={{ marginTop:20,fontSize:13,fontWeight:700,color:'#00c07a' }}>Try it →</div>
         </Link>
 
-        {/* Card 4 — Purple: Analytics */}
+        {/* Card 4 -- Purple: Analytics */}
         <Link to="/platform/booking#analytics" className="reveal col-span-12 md:col-span-4" style={{  textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#f5f3ff,#ede9fe)', border:'1px solid #ddd6fe', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220 }}
           onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(139,92,246,0.15)'}}
           onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
@@ -540,7 +540,7 @@ return (
           <p style={{ fontSize:13,color:'#374151',lineHeight:1.65,flex:1 }}>Peak hours, utilisation, no-show tracking, and full CSV export.</p>
         </Link>
 
-        {/* Card 5 — Orange: Visitor Management */}
+        {/* Card 5 -- Orange: Visitor Management */}
         <Link to="/platform/visitors" className="reveal col-span-12 md:col-span-4" style={{  textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#fff7ed,#ffedd5)', border:'1px solid #fed7aa', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220 }}
           onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(249,115,22,0.12)'}}
           onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
@@ -558,7 +558,7 @@ return (
           <p style={{ fontSize:13,color:'#374151',lineHeight:1.65,flex:1 }}>Pre-register guests, self-service kiosk, custom badges, and instant host notifications.</p>
         </Link>
 
-        {/* Card 6 — Pink: Calendar */}
+        {/* Card 6 -- Pink: Calendar */}
         <Link to="/platform/booking#integrations" className="reveal col-span-12 md:col-span-4" style={{  textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#fdf2f8,#fce7f3)', border:'1px solid #fbcfe8', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220 }}
           onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(236,72,153,0.12)'}}
           onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
@@ -572,7 +572,7 @@ return (
           <p style={{ fontSize:13,color:'#374151',lineHeight:1.65,flex:1 }}>Subscribe to any room's live calendar in Google or Outlook. Always in sync, automatically.</p>
         </Link>
 
-        {/* Card 7 — Amber: Digital Signage (NEW) */}
+        {/* Card 7 -- Amber: Digital Signage (NEW) */}
         <Link to="/platform/signage" className="reveal col-span-12 md:col-span-6" style={{ textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#fffbeb,#fef3c7)', border:'1px solid #fde68a', padding:'32px 28px', display:'flex', flexDirection:'column', overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220 }}
           onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(245,158,11,0.15)'}}
           onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
@@ -589,11 +589,11 @@ return (
           </div>
           <span style={{ fontSize:10,fontWeight:700,color:'#b45309',letterSpacing:'1px',textTransform:'uppercase',marginBottom:10,background:'rgba(245,158,11,0.15)',padding:'3px 10px',borderRadius:100,display:'inline-block',width:'fit-content' }}>DIGITAL SIGNAGE</span>
           <h3 style={{ fontSize:18,fontWeight:800,color:'#0f172a',marginBottom:8,letterSpacing:-0.5 }}>Every screen. One dashboard.</h3>
-          <p style={{ fontSize:13,color:'#374151',lineHeight:1.65,flex:1 }}>Create playlists, set schedules, push emergency alerts, and manage every display in your building — from a single admin panel. Works on any TV or tablet, no hardware lock-in.</p>
+          <p style={{ fontSize:13,color:'#374151',lineHeight:1.65,flex:1 }}>Create playlists, set schedules, push emergency alerts, and manage every display in your building -- from a single admin panel. Works on any TV or tablet, no hardware lock-in.</p>
           <div style={{ marginTop:16,fontSize:13,fontWeight:700,color:'#b45309' }}>Explore signage →</div>
         </Link>
 
-        {/* Card 8 — On-Premises full-width dark strip (NEW) */}
+        {/* Card 8 -- On-Premises full-width dark strip (NEW) */}
         <Link to="/on-premises" className="reveal col-span-12 md:col-span-6" style={{ textDecoration:'none', borderRadius:20, background:'linear-gradient(135deg,#0f172a,#1e293b)', border:'1px solid #334155', padding:'28px 32px', display:'flex', alignItems:'center', gap:28, overflow:'hidden', transition:'transform 0.25s,box-shadow 0.25s', minHeight:220 }}
           onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';e.currentTarget.style.boxShadow='0 20px 60px rgba(0,0,0,0.3)'}}
           onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='none'}}>
@@ -604,7 +604,7 @@ return (
           <div style={{ flex:1, position:'relative', zIndex:1 }}>
             <span style={{ fontSize:10,fontWeight:700,color:'#00c07a',letterSpacing:'1px',textTransform:'uppercase',marginBottom:8,background:'rgba(0,192,122,0.15)',padding:'3px 10px',borderRadius:100,display:'inline-block' }}>ON-PREMISES EDITION</span>
             <h3 style={{ fontSize:18,fontWeight:800,color:'#fff',marginBottom:8,letterSpacing:-0.5 }}>Run SpacioHub on your own infrastructure</h3>
-            <p style={{ fontSize:13,color:'#94a3b8',lineHeight:1.65,marginBottom:12 }}>For government, hospitals, banks, and enterprise campuses. Data never leaves your building. Riser Technologies deploys and manages it — your IT team does nothing.</p>
+            <p style={{ fontSize:13,color:'#94a3b8',lineHeight:1.65,marginBottom:12 }}>For government, hospitals, banks, and enterprise campuses. Data never leaves your building. Riser Technologies deploys and manages it -- your IT team does nothing.</p>
             <div style={{ display:'flex',gap:16,flexWrap:'wrap' }}>
               {['Zero software licence cost','Data stays in your building','Live in 48 hours'].map(f=>(
                 <span key={f} style={{ display:'flex',alignItems:'center',gap:5,fontSize:11,color:'#4ade80',fontWeight:500 }}>
@@ -629,13 +629,13 @@ return (
         <p className="lead reveal" style={{ maxWidth: 440, margin: '12px auto 0' }}>No IT department needed. No complex setup. Just add your rooms and go.</p>
       </div>
       <div style={{ position: 'relative' }}>
-        {/* Connecting line — desktop only */}
+        {/* Connecting line -- desktop only */}
         <div className="hidden md:block" style={{ position:'absolute', top:36, left:'12.5%', right:'12.5%', height:2, background:'linear-gradient(90deg,#00c07a,#0F799B,#3b82f6,#8b5cf6)', borderRadius:2, opacity:0.25 }} />
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {[
             { num:'01', icon:'🏗️', color:'#00c07a', bg:'#ecfdf5', border:'#a7f3d0', title:'Add your spaces', desc:'Upload your floor plan, name your rooms, set capacities and rules. Takes about 2 minutes.' },
             { num:'02', icon:'✉️', color:'#0F799B', bg:'#eff6ff', border:'#bfdbfe', title:'Invite your team', desc:'Send invite links or connect via Google or Microsoft SSO. Permissions auto-apply by role.' },
-            { num:'03', icon:'✅', color:'#8b5cf6', bg:'#f5f3ff', border:'#ddd6fe', title:'Book from anywhere', desc:'Web, mobile, door panel, or AI chat — confirm a room in seconds from any device.' },
+            { num:'03', icon:'✅', color:'#8b5cf6', bg:'#f5f3ff', border:'#ddd6fe', title:'Book from anywhere', desc:'Web, mobile, door panel, or AI chat -- confirm a room in seconds from any device.' },
             { num:'04', icon:'📈', color:'#f59e0b', bg:'#fefce8', border:'#fde68a', title:'Track and optimise', desc:'Live analytics reveal peak hours, no-shows, and underused spaces to right-size your real estate.' },
           ].map((step, i) => (
             <div key={step.num} className="reveal" style={{ textAlign:'center', animationDelay:`${i*0.1}s` }}>
@@ -655,7 +655,7 @@ return (
       </div>
       <div style={{ textAlign:'center', marginTop:48 }}>
         <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="btn btn-primary btn-lg reveal">
-          Start your free trial — no card needed →
+          Start your free trial -- no card needed →
         </a>
       </div>
     </div>
@@ -664,7 +664,7 @@ return (
   {/* PLATFORM SHOWCASE */}
   <PlatformShowcase />
 
-  {/* USE CASES — exact from live site */}
+  {/* USE CASES -- exact from live site */}
   <section style={{ padding: '80px 0', borderBottom: '1px solid #e2e8f0' }}>
     <div className="container">
       <span className="tag reveal">Use Cases</span>
@@ -682,7 +682,7 @@ return (
     </div>
   </section>
 
-  {/* TESTIMONIALS — new */}
+  {/* TESTIMONIALS -- new */}
   <section style={{ padding: '80px 0', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
     <div className="container">
       <div style={{ textAlign: 'center', marginBottom: 48 }}>
@@ -715,7 +715,7 @@ return (
       <div style={{ textAlign: 'center', marginBottom: 48 }}>
         <span className="tag reveal">Integrations</span>
         <h2 className="h2 reveal">Connects with <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>everything</span><br />your team already uses</h2>
-        <p className="body reveal" style={{ color: '#64748b', maxWidth: 380, margin: '12px auto 0' }}>Watch SpacioHub connect to your entire stack — one integration at a time.</p>
+        <p className="body reveal" style={{ color: '#64748b', maxWidth: 380, margin: '12px auto 0' }}>Watch SpacioHub connect to your entire stack -- one integration at a time.</p>
       </div>
       {/* Desktop: animated hub */}
       <div className="reveal hidden md:block"><IntegrationHub /></div>
@@ -756,8 +756,8 @@ return (
           <div className="reveal" style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 32 }}>
             {[
               { color: '#00c07a', bg: '#ecfdf5', label: 'TLS 1.3 + AES-256 encryption', desc: 'All data encrypted in transit and at rest' },
-              { color: '#8b5cf6', bg: '#f5f3ff', label: 'Role-based access control', desc: 'Four permission levels — everyone sees only what they need' },
-              { color: '#0F799B', bg: '#e0f2fe', label: 'Cryptographic license protection', desc: 'Server-side validation — keys cannot be forged or shared' },
+              { color: '#8b5cf6', bg: '#f5f3ff', label: 'Role-based access control', desc: 'Four permission levels -- everyone sees only what they need' },
+              { color: '#0F799B', bg: '#e0f2fe', label: 'Cryptographic license protection', desc: 'Server-side validation -- keys cannot be forged or shared' },
               { color: '#f59e0b', bg: '#fefce8', label: '99.9% uptime SLA', desc: 'Automatic failover and daily backups included' },
             ].map((item, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
@@ -799,7 +799,7 @@ return (
           ))}
           <div style={{ marginTop: 14, background: 'rgba(0,192,122,0.08)', border: '1px solid rgba(0,192,122,0.2)', borderRadius: 10, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 8 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00c07a" strokeWidth="2" strokeLinecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span style={{ fontSize: 12, color: '#00c07a', fontWeight: 600 }}>Access granted — app unlocked</span>
+            <span style={{ fontSize: 12, color: '#00c07a', fontWeight: 600 }}>Access granted -- app unlocked</span>
           </div>
           <div style={{ marginTop: 16, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
             {[
@@ -865,7 +865,7 @@ return (
     </div>
   </section>
 
-        {/* CTA — exact from live site */}
+        {/* CTA -- exact from live site */}
   <section style={{ background: 'linear-gradient(135deg,#0f172a,#1e293b)', padding: '96px 0', textAlign: 'center' }}>
     <div className="container">
       <h2 className="h2 reveal" style={{ marginBottom: 16, color: '#fff' }}>Ready to <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>transform your workspace?</span></h2>

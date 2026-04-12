@@ -67,14 +67,14 @@ const FEATURES_TABLE = [
 const FAQS = [
 { q: 'Can I switch plans later?', a: 'Yes. You can upgrade or downgrade at any time. When upgrading, you get access to new features immediately. Downgrades take effect at the next billing cycle.' },
 { q: 'Does the free trial require a credit card?', a: 'No. You can start your 14-day free trial with just your email. No credit card is required until you choose a paid plan.' },
-{ q: 'What counts as a "room"?', a: 'Any bookable space — meeting rooms, conference rooms, hot desks, event spaces, studios, or any resource you want people to book. Each unique bookable space counts as one room.' },
+{ q: 'What counts as a "room"?', a: 'Any bookable space -- meeting rooms, conference rooms, hot desks, event spaces, studios, or any resource you want people to book. Each unique bookable space counts as one room.' },
 { q: 'Can I have multiple organisations?', a: 'Yes. With the Max and Enterprise plans, each organisation is completely separate with its own rooms, users, settings, and analytics. Our Super Admin dashboard lets you manage all tenants from one place.' },
 { q: 'Do you offer discounts for non-profits or education?', a: "Yes. Contact us at contact@spaciohub.com with details about your organisation and we'll work out a suitable arrangement." },
-{ q: 'How does the Door Display work?', a: "You install SpacioHub on any iPad or Android tablet mounted outside your meeting room. It shows live availability, today's schedule, and allows anyone to book or check in — no login required. It installs as a PWA so no app store is needed." },
+{ q: 'How does the Door Display work?', a: "You install SpacioHub on any iPad or Android tablet mounted outside your meeting room. It shows live availability, today's schedule, and allows anyone to book or check in -- no login required. It installs as a PWA so no app store is needed." },
 { q: 'What happens when the trial ends?', a: 'Your account moves to a limited free mode. Your data is preserved. You can upgrade at any time to restore full access.' },
 { q: 'Is my data secure?', a: 'Yes. SpacioHub is built on Supabase (PostgreSQL with row-level security), hosted on secure cloud infrastructure, with all data encrypted in transit and at rest.' },
-{ q: 'Do you offer on-premises deployment?', a: 'Yes — on-premises is available on the Enterprise plan. SpacioHub runs entirely on your own infrastructure, inside your building. Riser Technologies handles installation, updates, monitoring, and backups remotely. Your IT team does nothing. Data never leaves your network — fully UAE PDPL compliant. Typically live within 48 hours of contract signing.' },
-{ q: 'How does Digital Signage work?', a: 'SpacioHub Digital Signage lets you manage content on any screen in your building — lobby TVs, meeting room panels, reception displays — from a single admin panel. Create playlists, set schedules, push emergency alerts, and update any screen instantly without touching the hardware. Available on Pro and above.' },
+{ q: 'Do you offer on-premises deployment?', a: 'Yes -- on-premises is available on the Enterprise plan. SpacioHub runs entirely on your own infrastructure, inside your building. Riser Technologies handles installation, updates, monitoring, and backups remotely. Your IT team does nothing. Data never leaves your network -- fully UAE PDPL compliant. Typically live within 48 hours of contract signing.' },
+{ q: 'How does Digital Signage work?', a: 'SpacioHub Digital Signage lets you manage content on any screen in your building -- lobby TVs, meeting room panels, reception displays -- from a single admin panel. Create playlists, set schedules, push emergency alerts, and update any screen instantly without touching the hardware. Available on Pro and above.' },
 ]
 
 const PLAN_CONFIGS = [
@@ -89,9 +89,9 @@ const QUESTIONS = [
 id: 'rooms',
 q: 'How many meeting rooms do you need to manage?',
 options: [
-{ label: '1–2 rooms',      value: 'basic', icon: '🚪' },
-{ label: '3–5 rooms',      value: 'pro',   icon: '🏢' },
-{ label: '6–15 rooms',     value: 'pro+',  icon: '🏬' },
+{ label: '1-2 rooms',      value: 'basic', icon: '🚪' },
+{ label: '3-5 rooms',      value: 'pro',   icon: '🏢' },
+{ label: '6-15 rooms',     value: 'pro+',  icon: '🏬' },
 { label: '16+ or unlimited', value: 'max', icon: '🌐' },
 ]
 },
@@ -99,9 +99,9 @@ options: [
 id: 'team',
 q: 'How many people will use SpacioHub?',
 options: [
-{ label: 'Just me / 1–5 people', value: 'basic', icon: '👤' },
-{ label: '6–25 people',           value: 'pro',   icon: '👥' },
-{ label: '26–100 people',         value: 'max',   icon: '🏟️' },
+{ label: 'Just me / 1-5 people', value: 'basic', icon: '👤' },
+{ label: '6-25 people',           value: 'pro',   icon: '👥' },
+{ label: '26-100 people',         value: 'max',   icon: '🏟️' },
 { label: '100+ or multiple orgs', value: 'ent',   icon: '🌍' },
 ]
 },
@@ -141,7 +141,7 @@ const [answers, setAnswers] = useState({})
 const [revealed, setRevealed] = useState(false)
 
 const toggle = (qid, val) => {
-setAnswers(prev => ({ …prev, [qid]: val }))
+setAnswers(prev => ({ ...prev, [qid]: val }))
 setRevealed(false)
 }
 
@@ -242,7 +242,7 @@ const [annual, setAnnual] = useState(true)
 const [openFaq, setOpenFaq] = useState(null)
 const { openModal } = useModal()
 
-// ME questionnaire states — must be at top level
+// ME questionnaire states -- must be at top level
 const [meStep, setMeStep] = useState(0)
 const [meAns, setMeAns] = useState({})
 const [meSel, setMeSel] = useState({})
@@ -272,7 +272,7 @@ return (
 <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f8fafc' }}>
 <div style={{ textAlign: 'center' }}>
 <div style={{ width: 40, height: 40, borderRadius: '50%', border: '3px solid #e2e8f0', borderTopColor: '#0d9488', animation: 'spin 0.8s linear infinite', margin: '0 auto 16px' }} />
-<p style={{ color: '#94a3b8', fontSize: 14 }}>Loading…</p>
+<p style={{ color: '#94a3b8', fontSize: 14 }}>Loading...</p>
 </div>
 <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
 </div>
@@ -280,20 +280,20 @@ return (
 }
 
 const ME_STEPS = [
-{id:'size',label:'Rooms',q:'How many meeting rooms?',multi:false,opts:['1–3 rooms','4–10 rooms','11–30 rooms','30+ rooms']},
-{id:'team',label:'Team',q:'How big is your team?',multi:false,opts:['1–10 people','11–50 people','51–200 people','200+ people']},
+{id:'size',label:'Rooms',q:'How many meeting rooms?',multi:false,opts:['1-3 rooms','4-10 rooms','11-30 rooms','30+ rooms']},
+{id:'team',label:'Team',q:'How big is your team?',multi:false,opts:['1-10 people','11-50 people','51-200 people','200+ people']},
 {id:'need',label:'Solutions',q:'What solutions do you need?',multi:true,opts:['Room booking','Door displays','Visitor management','Digital signage','Analytics','Room service']},
-{id:'timeline',label:'Timeline',q:'When to get started?',multi:false,opts:['Immediately','Within a month','1–3 months','Just exploring']},
+{id:'timeline',label:'Timeline',q:'When to get started?',multi:false,opts:['Immediately','Within a month','1-3 months','Just exploring']},
 ]
 
 function meSelectOpt(id, val, isMulti) {
 if (isMulti) {
 const prev = meSel[id] || []
-const next = prev.includes(val) ? prev.filter(v => v !== val) : […prev, val]
-setMeSel(s => ({…s, [id]: next}))
-setMeAns(a => ({…a, [id]: next}))
+const next = prev.includes(val) ? prev.filter(v => v !== val) : [...prev, val]
+setMeSel(s => ({...s, [id]: next}))
+setMeAns(a => ({...a, [id]: next}))
 } else {
-setMeAns(a => ({…a, [id]: val}))
+setMeAns(a => ({...a, [id]: val}))
 }
 }
 
@@ -310,7 +310,7 @@ try {
 await fetch('https://formello.app/api/submit/REPLACE_WITH_FORM_ID', {
 method: 'POST',
 headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({ name: meName, email: meEmail, company: meCompany, …meAns, source: 'Middle East Pricing Page' })
+body: JSON.stringify({ name: meName, email: meEmail, company: meCompany, ...meAns, source: 'Middle East Pricing Page' })
 })
 } catch(e) {}
 setMeSubmitting(false)
@@ -338,7 +338,7 @@ return (
       <div style={{position:'relative',maxWidth:600,margin:'0 auto'}}>
         <div style={{display:'inline-flex',alignItems:'center',gap:8,background:'rgba(13,148,136,0.15)',border:'1px solid rgba(13,148,136,0.3)',borderRadius:100,padding:'6px 16px',marginBottom:24}}>
           <div style={{width:6,height:6,borderRadius:'50%',background:'#0d9488'}}/>
-          <span style={{fontSize:12,fontWeight:600,color:'#0d9488',letterSpacing:0.5}}>Middle East — Custom Onboarding</span>
+          <span style={{fontSize:12,fontWeight:600,color:'#0d9488',letterSpacing:0.5}}>Middle East -- Custom Onboarding</span>
         </div>
         <h1 style={{fontSize:'clamp(28px,5vw,44px)',fontWeight:800,color:'#fff',lineHeight:1.15,marginBottom:16}}>
           Let's build something<br/><span style={{color:'#0d9488'}}>together</span>
@@ -380,7 +380,7 @@ return (
             {ME_STEPS.map((s,i) => {
               const d=i<meStep, a=i===meStep
               const nc=d||a?'#0d9488':'#e2e8f0'
-              const av=meAns[s.id]?(Array.isArray(meAns[s.id])?meAns[s.id].slice(0,2).join(', ')+(meAns[s.id].length>2?'…':''):meAns[s.id]):''
+              const av=meAns[s.id]?(Array.isArray(meAns[s.id])?meAns[s.id].slice(0,2).join(', ')+(meAns[s.id].length>2?'...':''):meAns[s.id]):''
               return (
                 <div key={s.id} style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
                   <div style={{display:'flex',alignItems:'center',gap:9}}>
@@ -426,7 +426,7 @@ return (
               </div>
             ) : (
               <div className="me-q" style={{background:'#fff',borderRadius:14,border:'1px solid #e2e8f0',padding:18}}>
-                <p style={{fontSize:12,color:'#64748b',lineHeight:1.6,marginBottom:14}}>We work closely with our Middle East clients — let's talk!</p>
+                <p style={{fontSize:12,color:'#64748b',lineHeight:1.6,marginBottom:14}}>We work closely with our Middle East clients -- let's talk!</p>
                 <label style={{fontSize:11,fontWeight:700,color:'#64748b',display:'block',marginBottom:4,textTransform:'uppercase',letterSpacing:0.5}}>Name *</label>
                 <input value={meName} onChange={e=>setMeName(e.target.value)} placeholder="Ahmed Al Mansouri" style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1px solid #e2e8f0',fontSize:13,color:'#0f172a',outline:'none',boxSizing:'border-box',marginBottom:10}}/>
                 <label style={{fontSize:11,fontWeight:700,color:'#64748b',display:'block',marginBottom:4,textTransform:'uppercase',letterSpacing:0.5}}>Company</label>
@@ -435,7 +435,7 @@ return (
                 <input value={meEmail} onChange={e=>setMeEmail(e.target.value)} type="email" placeholder="ahmed@company.ae" style={{width:'100%',padding:'9px 12px',borderRadius:8,border:'1px solid #e2e8f0',fontSize:13,color:'#0f172a',outline:'none',boxSizing:'border-box',marginBottom:14}}/>
                 <button onClick={meSubmit} disabled={!meName||!meEmail||meSubmitting}
                   style={{width:'100%',padding:12,borderRadius:10,border:'none',background:meName&&meEmail?'#0d9488':'#e2e8f0',color:meName&&meEmail?'#fff':'#94a3b8',cursor:meName&&meEmail?'pointer':'not-allowed',fontSize:14,fontWeight:700,marginBottom:10}}>
-                  {meSubmitting?'Sending…':'Book a call →'}
+                  {meSubmitting?'Sending...':'Book a call →'}
                 </button>
                 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
                   <button onClick={()=>setMeStep(s=>s-1)} style={{background:'none',border:'none',cursor:'pointer',fontSize:12,color:'#94a3b8',padding:0}}>← Back</button>
@@ -456,7 +456,7 @@ return (
 
 return (
 <>
-<SEO {…PAGE_SEO.pricing} />
+<SEO {...PAGE_SEO.pricing} />
 <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
 
 ```
@@ -545,7 +545,7 @@ return (
         <div style={{ flex:1 }}>
           <div style={{ fontSize:14, fontWeight:700, color:'#fff', marginBottom:3 }}>Need data to stay inside your building?</div>
           <div style={{ fontSize:13, color:'#64748b', lineHeight:1.6 }}>
-            The <strong style={{ color:'#d97706' }}>Enterprise plan</strong> includes full <strong style={{ color:'#fff' }}>on-premises deployment</strong> — SpacioHub runs on your own server, managed by Riser Technologies. No data leaves your network. UAE PDPL compliant. Live in 48 hours.
+            The <strong style={{ color:'#d97706' }}>Enterprise plan</strong> includes full <strong style={{ color:'#fff' }}>on-premises deployment</strong> -- SpacioHub runs on your own server, managed by Riser Technologies. No data leaves your network. UAE PDPL compliant. Live in 48 hours.
           </div>
         </div>
         <a href="/on-premises" style={{ background:'#00c07a', color:'#fff', border:'none', borderRadius:10, padding:'10px 20px', fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'Inter,sans-serif', whiteSpace:'nowrap', flexShrink:0, textDecoration:'none', display:'inline-block' }}>
@@ -625,7 +625,7 @@ return (
                           ? <div style={{ width: 22, height: 22, borderRadius: '50%', background: bgs[ki], border: `1px solid ${colors[ki]}30`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                               <svg viewBox="0 0 10 10" width="10" height="10" fill="none"><path d="M2 5l2 2 4-4" stroke={colors[ki]} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
                             </div>
-                          : <span style={{ color: '#d1d5db', fontSize: 14 }}>—</span>
+                          : <span style={{ color: '#d1d5db', fontSize: 14 }}>--</span>
                         : val.includes('+')
                           ? <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
                               <span style={{ fontSize: 11, fontWeight: 800, color: colors[ki], background: bgs[ki], padding: '3px 10px', borderRadius: 100, border: `1px solid ${colors[ki]}25` }}>{val.split(' + ')[0]}</span>
