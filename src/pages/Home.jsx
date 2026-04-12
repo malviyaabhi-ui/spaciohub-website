@@ -231,7 +231,7 @@ return (
 <div style={{ display:'flex', flexDirection:'column', alignItems:'center', background:bg, border:'1.5px solid ' + border, borderRadius:16, padding:'18px 28px', minWidth:120, transition:'transform 0.3s', cursor:'default' }}
 onMouseEnter={e => e.currentTarget.style.transform='translateY(-4px) scale(1.04)'}
 onMouseLeave={e => e.currentTarget.style.transform='translateY(0) scale(1)'}>
-<div style={{ fontSize:32, fontWeight:900, letterSpacing:-1.5, background:`linear-gradient(135deg,${col},${col}99)`, WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', lineHeight:1 }}>
+<div style={{ fontSize:32, fontWeight:900, letterSpacing:-1.5, background:'linear-gradient(135deg,' + col + ',' + col + '99)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', lineHeight:1 }}>
 {n === '∞' ? '∞' : n === '$0' ? '$0' : n.includes('min') ? `${val} min` : val}
 </div>
 <div style={{ fontSize:11, color:'#64748b', marginTop:5, fontWeight:600, textAlign:'center' }}>{label}</div>
