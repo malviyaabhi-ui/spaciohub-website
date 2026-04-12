@@ -1,140 +1,140 @@
-import SEO from ‘../components/SEO’
-import { PAGE_SEO } from ‘../components/pageSEO’
-import React, { useState, useEffect } from ‘react’
-import { useModal } from ‘../components/ModalContext’
+import SEO from '../components/SEO'
+import { PAGE_SEO } from '../components/pageSEO'
+import React, { useState, useEffect } from 'react'
+import { useModal } from '../components/ModalContext'
 
 const FEATURES_TABLE = [
-{ cat: ‘Booking’, rows: [
-{ name: ‘Active rooms’,              basic: ‘2’,  pro: ‘5 + add-ons’,  max: ‘Unlimited’, ent: ‘Unlimited’ },
-{ name: ‘Users / members’,           basic: ‘5’,  pro: ‘25’, max: ‘Unlimited’, ent: ‘Unlimited’ },
-{ name: ‘Time grid booking’,         basic: true,  pro: true,  max: true,  ent: true  },
-{ name: ‘Booking tags’,              basic: true,  pro: true,  max: true,  ent: true  },
-{ name: ‘15-min buffer enforcement’, basic: true,  pro: true,  max: true,  ent: true  },
-{ name: ‘Booking approval workflow’, basic: false, pro: true,  max: true,  ent: true  },
-{ name: ‘AI Room Booker (Mira)’,     basic: false, pro: false, max: true,  ent: true  },
+{ cat: 'Booking', rows: [
+{ name: 'Active rooms',              basic: '2',  pro: '5 + add-ons',  max: 'Unlimited', ent: 'Unlimited' },
+{ name: 'Users / members',           basic: '5',  pro: '25', max: 'Unlimited', ent: 'Unlimited' },
+{ name: 'Time grid booking',         basic: true,  pro: true,  max: true,  ent: true  },
+{ name: 'Booking tags',              basic: true,  pro: true,  max: true,  ent: true  },
+{ name: '15-min buffer enforcement', basic: true,  pro: true,  max: true,  ent: true  },
+{ name: 'Booking approval workflow', basic: false, pro: true,  max: true,  ent: true  },
+{ name: 'AI Room Booker (Mira)',     basic: false, pro: false, max: true,  ent: true  },
 ]},
-{ cat: ‘Digital Signage’, rows: [
-{ name: ‘Signage screens’,           basic: false, pro: ‘3’,  max: ‘Unlimited’, ent: ‘Unlimited’ },
-{ name: ‘Content playlists’,         basic: false, pro: true,  max: true,  ent: true  },
-{ name: ‘Scheduled content’,         basic: false, pro: true,  max: true,  ent: true  },
-{ name: ‘Emergency broadcast’,       basic: false, pro: false, max: true,  ent: true  },
-{ name: ‘Custom branding on screens’,basic: false, pro: false, max: true,  ent: true  },
-{ name: ‘Multi-location signage’,    basic: false, pro: false, max: false, ent: true  },
+{ cat: 'Digital Signage', rows: [
+{ name: 'Signage screens',           basic: false, pro: '3',  max: 'Unlimited', ent: 'Unlimited' },
+{ name: 'Content playlists',         basic: false, pro: true,  max: true,  ent: true  },
+{ name: 'Scheduled content',         basic: false, pro: true,  max: true,  ent: true  },
+{ name: 'Emergency broadcast',       basic: false, pro: false, max: true,  ent: true  },
+{ name: 'Custom branding on screens',basic: false, pro: false, max: true,  ent: true  },
+{ name: 'Multi-location signage',    basic: false, pro: false, max: false, ent: true  },
 ]},
-{ cat: ‘Door Display’, rows: [
-{ name: ‘Door display panels’,       basic: ‘1’,   pro: ‘5’,  max: ‘Unlimited’, ent: ‘Unlimited’ },
-{ name: ‘Auto no-show release’,      basic: true,  pro: true,  max: true,  ent: true  },
-{ name: ‘Guest booking from display’,basic: false, pro: true,  max: true,  ent: true  },
-{ name: ‘PWA installation’,          basic: true,  pro: true,  max: true,  ent: true  },
+{ cat: 'Door Display', rows: [
+{ name: 'Door display panels',       basic: '1',   pro: '5',  max: 'Unlimited', ent: 'Unlimited' },
+{ name: 'Auto no-show release',      basic: true,  pro: true,  max: true,  ent: true  },
+{ name: 'Guest booking from display',basic: false, pro: true,  max: true,  ent: true  },
+{ name: 'PWA installation',          basic: true,  pro: true,  max: true,  ent: true  },
 ]},
-{ cat: ‘Integrations’, rows: [
-{ name: ‘iCal feed per room’,          basic: true,  pro: true,  max: true,  ent: true  },
-{ name: ‘Email alerts & notifications’,basic: true,  pro: true,  max: true,  ent: true  },
-{ name: ‘Google Calendar sync’,        basic: false, pro: true,  max: true,  ent: true  },
-{ name: ‘Microsoft 365 / Outlook’,     basic: false, pro: true,  max: true,  ent: true  },
-{ name: ‘Zoom auto-links’,             basic: false, pro: true,  max: true,  ent: true  },
-{ name: ‘MS Teams meeting links’,      basic: false, pro: false, max: true,  ent: true  },
-{ name: ‘Google SSO’,                  basic: false, pro: false, max: true,  ent: true  },
-{ name: ‘Microsoft SSO / Azure AD’,    basic: false, pro: false, max: true,  ent: true  },
-{ name: ‘SAML SSO’,                    basic: false, pro: false, max: false, ent: true  },
+{ cat: 'Integrations', rows: [
+{ name: 'iCal feed per room',          basic: true,  pro: true,  max: true,  ent: true  },
+{ name: 'Email alerts & notifications',basic: true,  pro: true,  max: true,  ent: true  },
+{ name: 'Google Calendar sync',        basic: false, pro: true,  max: true,  ent: true  },
+{ name: 'Microsoft 365 / Outlook',     basic: false, pro: true,  max: true,  ent: true  },
+{ name: 'Zoom auto-links',             basic: false, pro: true,  max: true,  ent: true  },
+{ name: 'MS Teams meeting links',      basic: false, pro: false, max: true,  ent: true  },
+{ name: 'Google SSO',                  basic: false, pro: false, max: true,  ent: true  },
+{ name: 'Microsoft SSO / Azure AD',    basic: false, pro: false, max: true,  ent: true  },
+{ name: 'SAML SSO',                    basic: false, pro: false, max: false, ent: true  },
 ]},
-{ cat: ‘Visitors’, rows: [
-{ name: ‘Visitor management’,        basic: false, pro: true,  max: true,  ent: true  },
-{ name: ‘Self-service check-in kiosk’,basic: false, pro: true,  max: true,  ent: true  },
-{ name: ‘Visitor badges’,            basic: false, pro: true,  max: true,  ent: true  },
-{ name: ‘Pre-registration’,          basic: false, pro: true,  max: true,  ent: true  },
-{ name: ‘NDA / digital signature’,   basic: false, pro: false, max: true,  ent: true  },
+{ cat: 'Visitors', rows: [
+{ name: 'Visitor management',        basic: false, pro: true,  max: true,  ent: true  },
+{ name: 'Self-service check-in kiosk',basic: false, pro: true,  max: true,  ent: true  },
+{ name: 'Visitor badges',            basic: false, pro: true,  max: true,  ent: true  },
+{ name: 'Pre-registration',          basic: false, pro: true,  max: true,  ent: true  },
+{ name: 'NDA / digital signature',   basic: false, pro: false, max: true,  ent: true  },
 ]},
-{ cat: ‘Analytics’, rows: [
-{ name: ‘Basic analytics’,           basic: true,  pro: true,  max: true,  ent: true  },
-{ name: ‘Advanced analytics + charts’,basic: false, pro: true,  max: true,  ent: true  },
-{ name: ‘No-show rate tracking’,     basic: false, pro: true,  max: true,  ent: true  },
-{ name: ‘CSV data export’,           basic: false, pro: false, max: true,  ent: true  },
-{ name: ‘Custom reports’,            basic: false, pro: false, max: false, ent: true  },
+{ cat: 'Analytics', rows: [
+{ name: 'Basic analytics',           basic: true,  pro: true,  max: true,  ent: true  },
+{ name: 'Advanced analytics + charts',basic: false, pro: true,  max: true,  ent: true  },
+{ name: 'No-show rate tracking',     basic: false, pro: true,  max: true,  ent: true  },
+{ name: 'CSV data export',           basic: false, pro: false, max: true,  ent: true  },
+{ name: 'Custom reports',            basic: false, pro: false, max: false, ent: true  },
 ]},
-{ cat: ‘Admin & Security’, rows: [
-{ name: ‘Floor plans’,               basic: false, pro: true,  max: true,  ent: true  },
-{ name: ‘White-label branding’,      basic: false, pro: false, max: true,  ent: true  },
-{ name: ‘Custom domain’,             basic: false, pro: false, max: false, ent: true  },
-{ name: ‘On-premises deployment’,    basic: false, pro: false, max: false, ent: true  },
-{ name: ‘Riser-managed server’,      basic: false, pro: false, max: false, ent: true  },
-{ name: ‘Data residency (in-country)’,basic: false, pro: false, max: false, ent: true  },
-{ name: ‘SLA guarantee’,             basic: false, pro: false, max: false, ent: true  },
-{ name: ‘Dedicated support’,         basic: false, pro: false, max: false, ent: true  },
+{ cat: 'Admin & Security', rows: [
+{ name: 'Floor plans',               basic: false, pro: true,  max: true,  ent: true  },
+{ name: 'White-label branding',      basic: false, pro: false, max: true,  ent: true  },
+{ name: 'Custom domain',             basic: false, pro: false, max: false, ent: true  },
+{ name: 'On-premises deployment',    basic: false, pro: false, max: false, ent: true  },
+{ name: 'Riser-managed server',      basic: false, pro: false, max: false, ent: true  },
+{ name: 'Data residency (in-country)',basic: false, pro: false, max: false, ent: true  },
+{ name: 'SLA guarantee',             basic: false, pro: false, max: false, ent: true  },
+{ name: 'Dedicated support',         basic: false, pro: false, max: false, ent: true  },
 ]},
 ]
 
 const FAQS = [
-{ q: ‘Can I switch plans later?’, a: ‘Yes. You can upgrade or downgrade at any time. When upgrading, you get access to new features immediately. Downgrades take effect at the next billing cycle.’ },
-{ q: ‘Does the free trial require a credit card?’, a: ‘No. You can start your 14-day free trial with just your email. No credit card is required until you choose a paid plan.’ },
-{ q: ‘What counts as a “room”?’, a: ‘Any bookable space — meeting rooms, conference rooms, hot desks, event spaces, studios, or any resource you want people to book. Each unique bookable space counts as one room.’ },
-{ q: ‘Can I have multiple organisations?’, a: ‘Yes. With the Max and Enterprise plans, each organisation is completely separate with its own rooms, users, settings, and analytics. Our Super Admin dashboard lets you manage all tenants from one place.’ },
-{ q: ‘Do you offer discounts for non-profits or education?’, a: “Yes. Contact us at contact@spaciohub.com with details about your organisation and we’ll work out a suitable arrangement.” },
-{ q: ‘How does the Door Display work?’, a: “You install SpacioHub on any iPad or Android tablet mounted outside your meeting room. It shows live availability, today’s schedule, and allows anyone to book or check in — no login required. It installs as a PWA so no app store is needed.” },
-{ q: ‘What happens when the trial ends?’, a: ‘Your account moves to a limited free mode. Your data is preserved. You can upgrade at any time to restore full access.’ },
-{ q: ‘Is my data secure?’, a: ‘Yes. SpacioHub is built on Supabase (PostgreSQL with row-level security), hosted on secure cloud infrastructure, with all data encrypted in transit and at rest.’ },
-{ q: ‘Do you offer on-premises deployment?’, a: ‘Yes — on-premises is available on the Enterprise plan. SpacioHub runs entirely on your own infrastructure, inside your building. Riser Technologies handles installation, updates, monitoring, and backups remotely. Your IT team does nothing. Data never leaves your network — fully UAE PDPL compliant. Typically live within 48 hours of contract signing.’ },
-{ q: ‘How does Digital Signage work?’, a: ‘SpacioHub Digital Signage lets you manage content on any screen in your building — lobby TVs, meeting room panels, reception displays — from a single admin panel. Create playlists, set schedules, push emergency alerts, and update any screen instantly without touching the hardware. Available on Pro and above.’ },
+{ q: 'Can I switch plans later?', a: 'Yes. You can upgrade or downgrade at any time. When upgrading, you get access to new features immediately. Downgrades take effect at the next billing cycle.' },
+{ q: 'Does the free trial require a credit card?', a: 'No. You can start your 14-day free trial with just your email. No credit card is required until you choose a paid plan.' },
+{ q: 'What counts as a "room"?', a: 'Any bookable space — meeting rooms, conference rooms, hot desks, event spaces, studios, or any resource you want people to book. Each unique bookable space counts as one room.' },
+{ q: 'Can I have multiple organisations?', a: 'Yes. With the Max and Enterprise plans, each organisation is completely separate with its own rooms, users, settings, and analytics. Our Super Admin dashboard lets you manage all tenants from one place.' },
+{ q: 'Do you offer discounts for non-profits or education?', a: "Yes. Contact us at contact@spaciohub.com with details about your organisation and we'll work out a suitable arrangement." },
+{ q: 'How does the Door Display work?', a: "You install SpacioHub on any iPad or Android tablet mounted outside your meeting room. It shows live availability, today's schedule, and allows anyone to book or check in — no login required. It installs as a PWA so no app store is needed." },
+{ q: 'What happens when the trial ends?', a: 'Your account moves to a limited free mode. Your data is preserved. You can upgrade at any time to restore full access.' },
+{ q: 'Is my data secure?', a: 'Yes. SpacioHub is built on Supabase (PostgreSQL with row-level security), hosted on secure cloud infrastructure, with all data encrypted in transit and at rest.' },
+{ q: 'Do you offer on-premises deployment?', a: 'Yes — on-premises is available on the Enterprise plan. SpacioHub runs entirely on your own infrastructure, inside your building. Riser Technologies handles installation, updates, monitoring, and backups remotely. Your IT team does nothing. Data never leaves your network — fully UAE PDPL compliant. Typically live within 48 hours of contract signing.' },
+{ q: 'How does Digital Signage work?', a: 'SpacioHub Digital Signage lets you manage content on any screen in your building — lobby TVs, meeting room panels, reception displays — from a single admin panel. Create playlists, set schedules, push emergency alerts, and update any screen instantly without touching the hardware. Available on Pro and above.' },
 ]
 
 const PLAN_CONFIGS = [
-{ name: ‘Basic’,      icon: ‘🌱’, monthlyPrice: null,  annualPrice: ‘$30’,   period: ‘per year’,          desc: ‘For small teams getting started’,        cta: ‘Get started free’,  href: ‘https://go.spaciohub.com’, pop: false, color: ‘#f8fafc’,     border: ‘#e2e8f0’,  accent: ‘#64748b’ },
-{ name: ‘Pro’,        icon: ‘⚡’, monthlyPrice: ‘$8’,   annualPrice: ‘$4.99’, period: ‘per month’,         desc: ‘For growing teams with more needs’,       cta: ‘Start free trial’,  href: ‘https://go.spaciohub.com’, pop: false, color: ‘#eff6ff’,     border: ‘#bfdbfe’,  accent: ‘#3b82f6’ },
-{ name: ‘Max’,        icon: ‘🚀’, monthlyPrice: ‘$15’,  annualPrice: ‘$8.99’, period: ‘per month’,         desc: ‘Unlimited everything for large teams’,    cta: ‘Request Demo’,      href: null,                       pop: true,  color: ‘#0f172a’,     border: ‘#00c07a’,  accent: ‘#00c07a’ },
-{ name: ‘Enterprise’, icon: ‘🏢’, monthlyPrice: null,   annualPrice: null,    period: ‘’,                  desc: ‘On-premises or cloud. Custom for regulated industries and complex organisations.’,        cta: ‘Contact Sales’,     href: null,                       pop: false, color: ‘#fefce8’,     border: ‘#fde68a’,  accent: ‘#d97706’ },
+{ name: 'Basic',      icon: '🌱', monthlyPrice: null,  annualPrice: '$30',   period: 'per year',          desc: 'For small teams getting started',        cta: 'Get started free',  href: 'https://go.spaciohub.com', pop: false, color: '#f8fafc',     border: '#e2e8f0',  accent: '#64748b' },
+{ name: 'Pro',        icon: '⚡', monthlyPrice: '$8',   annualPrice: '$4.99', period: 'per month',         desc: 'For growing teams with more needs',       cta: 'Start free trial',  href: 'https://go.spaciohub.com', pop: false, color: '#eff6ff',     border: '#bfdbfe',  accent: '#3b82f6' },
+{ name: 'Max',        icon: '🚀', monthlyPrice: '$15',  annualPrice: '$8.99', period: 'per month',         desc: 'Unlimited everything for large teams',    cta: 'Request Demo',      href: null,                       pop: true,  color: '#0f172a',     border: '#00c07a',  accent: '#00c07a' },
+{ name: 'Enterprise', icon: '🏢', monthlyPrice: null,   annualPrice: null,    period: '',                  desc: 'On-premises or cloud. Custom for regulated industries and complex organisations.',        cta: 'Contact Sales',     href: null,                       pop: false, color: '#fefce8',     border: '#fde68a',  accent: '#d97706' },
 ]
 
 const QUESTIONS = [
 {
-id: ‘rooms’,
-q: ‘How many meeting rooms do you need to manage?’,
+id: 'rooms',
+q: 'How many meeting rooms do you need to manage?',
 options: [
-{ label: ‘1–2 rooms’,      value: ‘basic’, icon: ‘🚪’ },
-{ label: ‘3–5 rooms’,      value: ‘pro’,   icon: ‘🏢’ },
-{ label: ‘6–15 rooms’,     value: ‘pro+’,  icon: ‘🏬’ },
-{ label: ‘16+ or unlimited’, value: ‘max’, icon: ‘🌐’ },
+{ label: '1–2 rooms',      value: 'basic', icon: '🚪' },
+{ label: '3–5 rooms',      value: 'pro',   icon: '🏢' },
+{ label: '6–15 rooms',     value: 'pro+',  icon: '🏬' },
+{ label: '16+ or unlimited', value: 'max', icon: '🌐' },
 ]
 },
 {
-id: ‘team’,
-q: ‘How many people will use SpacioHub?’,
+id: 'team',
+q: 'How many people will use SpacioHub?',
 options: [
-{ label: ‘Just me / 1–5 people’, value: ‘basic’, icon: ‘👤’ },
-{ label: ‘6–25 people’,           value: ‘pro’,   icon: ‘👥’ },
-{ label: ‘26–100 people’,         value: ‘max’,   icon: ‘🏟️’ },
-{ label: ‘100+ or multiple orgs’, value: ‘ent’,   icon: ‘🌍’ },
+{ label: 'Just me / 1–5 people', value: 'basic', icon: '👤' },
+{ label: '6–25 people',           value: 'pro',   icon: '👥' },
+{ label: '26–100 people',         value: 'max',   icon: '🏟️' },
+{ label: '100+ or multiple orgs', value: 'ent',   icon: '🌍' },
 ]
 },
 {
-id: ‘integrations’,
-q: ‘Which integrations do you need?’,
+id: 'integrations',
+q: 'Which integrations do you need?',
 options: [
-{ label: ‘Just iCal / email alerts’, value: ‘basic’, icon: ‘📧’ },
-{ label: ‘Google or Outlook calendar sync’, value: ‘pro’, icon: ‘📅’ },
-{ label: ‘SSO (Google or Microsoft)’,  value: ‘max’,  icon: ‘🔑’ },
-{ label: ‘SAML SSO / custom setup’,   value: ‘ent’,  icon: ‘🛡️’ },
+{ label: 'Just iCal / email alerts', value: 'basic', icon: '📧' },
+{ label: 'Google or Outlook calendar sync', value: 'pro', icon: '📅' },
+{ label: 'SSO (Google or Microsoft)',  value: 'max',  icon: '🔑' },
+{ label: 'SAML SSO / custom setup',   value: 'ent',  icon: '🛡️' },
 ]
 },
 {
-id: ‘usecase’,
-q: ‘What best describes your setup?’,
+id: 'usecase',
+q: 'What best describes your setup?',
 options: [
-{ label: ‘Small office / startup’,       value: ‘basic’, icon: ‘🌱’ },
-{ label: ‘Growing team or business’,     value: ‘pro’,   icon: ‘⚡’ },
-{ label: ‘Coworking / multi-floor corp’, value: ‘max’,   icon: ‘🚀’ },
-{ label: ‘Agency / reseller / enterprise’, value: ‘ent’, icon: ‘🏢’ },
+{ label: 'Small office / startup',       value: 'basic', icon: '🌱' },
+{ label: 'Growing team or business',     value: 'pro',   icon: '⚡' },
+{ label: 'Coworking / multi-floor corp', value: 'max',   icon: '🚀' },
+{ label: 'Agency / reseller / enterprise', value: 'ent', icon: '🏢' },
 ]
 },
 ]
 
 const PLAN_RESULT = {
-basic: { name: ‘Basic’,      color: ‘#64748b’, bg: ‘#f8fafc’, border: ‘#e2e8f0’, desc: ‘Perfect for small teams just getting started. 2 rooms, 5 users, iCal and email included.’,    cta: ‘Get started free’ },
-pro:   { name: ‘Pro’,        color: ‘#0F799B’, bg: ‘#eff6ff’, border: ‘#bfdbfe’, desc: ‘Great for growing teams. 5 rooms + add-ons, 25 users, calendar sync and Zoom included.’,       cta: ‘Start free trial’ },
-max:   { name: ‘Max’,        color: ‘#00c07a’, bg: ‘#ecfdf5’, border: ‘#a7f3d0’, desc: ‘Unlimited rooms and users. SSO, white-label, AI Booker, and full analytics included.’,          cta: ‘Request a Demo’ },
-ent:   { name: ‘Enterprise’, color: ‘#d97706’, bg: ‘#fefce8’, border: ‘#fde68a’, desc: ‘On-premises deployment or cloud. SAML SSO, custom domain, SLA, dedicated support, data residency, and Riser-managed infrastructure.’, cta: ‘Contact Sales’ },
+basic: { name: 'Basic',      color: '#64748b', bg: '#f8fafc', border: '#e2e8f0', desc: 'Perfect for small teams just getting started. 2 rooms, 5 users, iCal and email included.',    cta: 'Get started free' },
+pro:   { name: 'Pro',        color: '#0F799B', bg: '#eff6ff', border: '#bfdbfe', desc: 'Great for growing teams. 5 rooms + add-ons, 25 users, calendar sync and Zoom included.',       cta: 'Start free trial' },
+max:   { name: 'Max',        color: '#00c07a', bg: '#ecfdf5', border: '#a7f3d0', desc: 'Unlimited rooms and users. SSO, white-label, AI Booker, and full analytics included.',          cta: 'Request a Demo' },
+ent:   { name: 'Enterprise', color: '#d97706', bg: '#fefce8', border: '#fde68a', desc: 'On-premises deployment or cloud. SAML SSO, custom domain, SLA, dedicated support, data residency, and Riser-managed infrastructure.', cta: 'Contact Sales' },
 }
 
-const PLAN_SCORE = { basic: 0, ‘pro+’: 1, pro: 1, max: 2, ent: 3 }
+const PLAN_SCORE = { basic: 0, 'pro+': 1, pro: 1, max: 2, ent: 3 }
 
 function PlanFinder({ openModal }) {
 const [answers, setAnswers] = useState({})
@@ -153,16 +153,16 @@ const recommended = (() => {
 if (!allDone) return null
 const scores = { basic: 0, pro: 0, max: 0, ent: 0 }
 Object.values(answers).forEach(v => {
-if (v === ‘basic’) scores.basic += 1
-else if (v === ‘pro’ || v === ‘pro+’) { scores.pro += 1 }
-else if (v === ‘max’) scores.max += 1
-else if (v === ‘ent’) scores.ent += 1
+if (v === 'basic') scores.basic += 1
+else if (v === 'pro' || v === 'pro+') { scores.pro += 1 }
+else if (v === 'max') scores.max += 1
+else if (v === 'ent') scores.ent += 1
 })
 // Pick highest plan with most votes, escalate if any ent/max
-if (scores.ent > 0) return ‘ent’
-if (scores.max > 0) return ‘max’
-if (scores.pro > 0) return ‘pro’
-return ‘basic’
+if (scores.ent > 0) return 'ent'
+if (scores.max > 0) return 'max'
+if (scores.pro > 0) return 'pro'
+return 'basic'
 })()
 
 const result = recommended ? PLAN_RESULT[recommended] : null
@@ -170,28 +170,28 @@ const result = recommended ? PLAN_RESULT[recommended] : null
 return (
 <div>
 {/* Questions */}
-<div style={{ display: ‘flex’, flexDirection: ‘column’, gap: 20 }}>
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
 {QUESTIONS.map((q, qi) => (
-<div key={q.id} className=“reveal” style={{ animationDelay: `${qi * 0.1}s` }}>
-<div style={{ display: ‘flex’, alignItems: ‘center’, gap: 10, marginBottom: 10 }}>
-<div style={{ width: 22, height: 22, borderRadius: ‘50%’, background: answers[q.id] ? ‘#00c07a’ : ‘#f1f5f9’, display: ‘flex’, alignItems: ‘center’, justifyContent: ‘center’, flexShrink: 0, transition: ‘all 0.3s’ }}>
+<div key={q.id} className="reveal" style={{ animationDelay: `${qi * 0.1}s` }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+<div style={{ width: 22, height: 22, borderRadius: '50%', background: answers[q.id] ? '#00c07a' : '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all 0.3s' }}>
 {answers[q.id]
 ? <svg viewBox="0 0 10 10" width="10" height="10" fill="none"><path d="M2 5l2.5 2.5 4-4" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
-: <span style={{ fontSize: 10, fontWeight: 700, color: ‘#94a3b8’ }}>{qi + 1}</span>
+: <span style={{ fontSize: 10, fontWeight: 700, color: '#94a3b8' }}>{qi + 1}</span>
 }
 </div>
-<div style={{ fontSize: 14, fontWeight: 700, color: ‘#0f172a’ }}>{q.q}</div>
+<div style={{ fontSize: 14, fontWeight: 700, color: '#0f172a' }}>{q.q}</div>
 </div>
-<div className=“grid grid-cols-2 md:grid-cols-4” style={{gap: ‘4px 8px’, paddingLeft: 32}}>
+<div className="grid grid-cols-2 md:grid-cols-4" style={{gap: '4px 8px', paddingLeft: 32}}>
 {q.options.map(opt => {
 const selected = answers[q.id] === opt.value
 return (
 <label key={opt.label} onClick={() => toggle(q.id, opt.value)}
-style={{ display: ‘flex’, alignItems: ‘center’, gap: 8, padding: ‘5px 4px’, cursor: ‘pointer’, transition: ‘all 0.15s’, userSelect: ‘none’ }}>
-<div style={{ width: 16, height: 16, borderRadius: 4, border: `2px solid ${selected ? '#00c07a' : '#d1d5db'}`, background: selected ? ‘#00c07a’ : ‘#fff’, display: ‘flex’, alignItems: ‘center’, justifyContent: ‘center’, flexShrink: 0, transition: ‘all 0.15s’ }}>
+style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '5px 4px', cursor: 'pointer', transition: 'all 0.15s', userSelect: 'none' }}>
+<div style={{ width: 16, height: 16, borderRadius: 4, border: `2px solid ${selected ? '#00c07a' : '#d1d5db'}`, background: selected ? '#00c07a' : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all 0.15s' }}>
 {selected && <svg viewBox="0 0 10 10" width="9" height="9" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>}
 </div>
-<span style={{ fontSize: 13, fontWeight: selected ? 600 : 400, color: selected ? ‘#009960’ : ‘#64748b’ }}>{opt.label}</span>
+<span style={{ fontSize: 13, fontWeight: selected ? 600 : 400, color: selected ? '#009960' : '#64748b' }}>{opt.label}</span>
 </label>
 )
 })}
@@ -246,15 +246,15 @@ const { openModal } = useModal()
 const [meStep, setMeStep] = useState(0)
 const [meAns, setMeAns] = useState({})
 const [meSel, setMeSel] = useState({})
-const [meName, setMeName] = useState(’’)
-const [meEmail, setMeEmail] = useState(’’)
-const [meCompany, setMeCompany] = useState(’’)
+const [meName, setMeName] = useState('')
+const [meEmail, setMeEmail] = useState('')
+const [meCompany, setMeCompany] = useState('')
 const [meSubmitted, setMeSubmitted] = useState(false)
 const [meSubmitting, setMeSubmitting] = useState(false)
 
 useEffect(() => {
-const MIDDLE_EAST = [‘AE’,‘SA’,‘QA’,‘KW’,‘BH’,‘OM’,‘JO’,‘EG’,‘LB’,‘IQ’,‘YE’,‘SY’,‘IR’,‘PS’,‘TR’];
-fetch(‘https://ipapi.co/json/’)
+const MIDDLE_EAST = ['AE','SA','QA','KW','BH','OM','JO','EG','LB','IQ','YE','SY','IR','PS','TR'];
+fetch('https://ipapi.co/json/')
 .then(r => r.json())
 .then(data => {
 if (MIDDLE_EAST.includes(data.country_code)) {
@@ -269,10 +269,10 @@ setGeoAllowed(true); // show pricing
 // Show loading spinner while detecting location
 if (geoAllowed === null) {
 return (
-<div style={{ minHeight: ‘100vh’, display: ‘flex’, alignItems: ‘center’, justifyContent: ‘center’, background: ‘#f8fafc’ }}>
-<div style={{ textAlign: ‘center’ }}>
-<div style={{ width: 40, height: 40, borderRadius: ‘50%’, border: ‘3px solid #e2e8f0’, borderTopColor: ‘#0d9488’, animation: ‘spin 0.8s linear infinite’, margin: ‘0 auto 16px’ }} />
-<p style={{ color: ‘#94a3b8’, fontSize: 14 }}>Loading…</p>
+<div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f8fafc' }}>
+<div style={{ textAlign: 'center' }}>
+<div style={{ width: 40, height: 40, borderRadius: '50%', border: '3px solid #e2e8f0', borderTopColor: '#0d9488', animation: 'spin 0.8s linear infinite', margin: '0 auto 16px' }} />
+<p style={{ color: '#94a3b8', fontSize: 14 }}>Loading…</p>
 </div>
 <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
 </div>
@@ -280,10 +280,10 @@ return (
 }
 
 const ME_STEPS = [
-{id:‘size’,label:‘Rooms’,q:‘How many meeting rooms?’,multi:false,opts:[‘1–3 rooms’,‘4–10 rooms’,‘11–30 rooms’,‘30+ rooms’]},
-{id:‘team’,label:‘Team’,q:‘How big is your team?’,multi:false,opts:[‘1–10 people’,‘11–50 people’,‘51–200 people’,‘200+ people’]},
-{id:‘need’,label:‘Solutions’,q:‘What solutions do you need?’,multi:true,opts:[‘Room booking’,‘Door displays’,‘Visitor management’,‘Digital signage’,‘Analytics’,‘Room service’]},
-{id:‘timeline’,label:‘Timeline’,q:‘When to get started?’,multi:false,opts:[‘Immediately’,‘Within a month’,‘1–3 months’,‘Just exploring’]},
+{id:'size',label:'Rooms',q:'How many meeting rooms?',multi:false,opts:['1–3 rooms','4–10 rooms','11–30 rooms','30+ rooms']},
+{id:'team',label:'Team',q:'How big is your team?',multi:false,opts:['1–10 people','11–50 people','51–200 people','200+ people']},
+{id:'need',label:'Solutions',q:'What solutions do you need?',multi:true,opts:['Room booking','Door displays','Visitor management','Digital signage','Analytics','Room service']},
+{id:'timeline',label:'Timeline',q:'When to get started?',multi:false,opts:['Immediately','Within a month','1–3 months','Just exploring']},
 ]
 
 function meSelectOpt(id, val, isMulti) {
@@ -307,10 +307,10 @@ async function meSubmit() {
 if (!meName || !meEmail) return
 setMeSubmitting(true)
 try {
-await fetch(‘https://formello.app/api/submit/REPLACE_WITH_FORM_ID’, {
-method: ‘POST’,
-headers: { ‘Content-Type’: ‘application/json’ },
-body: JSON.stringify({ name: meName, email: meEmail, company: meCompany, …meAns, source: ‘Middle East Pricing Page’ })
+await fetch('https://formello.app/api/submit/REPLACE_WITH_FORM_ID', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({ name: meName, email: meEmail, company: meCompany, …meAns, source: 'Middle East Pricing Page' })
 })
 } catch(e) {}
 setMeSubmitting(false)
@@ -457,7 +457,7 @@ return (
 return (
 <>
 <SEO {…PAGE_SEO.pricing} />
-<main style={{ paddingTop: 64, fontFamily: ‘Inter,sans-serif’ }}>
+<main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
 
 ```
   {/* ══ HERO ══════════════════════════════════════════ */}
