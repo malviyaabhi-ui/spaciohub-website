@@ -154,7 +154,7 @@ export default function OnPremises() {
           <div className="container">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6" style={{ textAlign:'center' }}>
               {[
-                { num:'$0',   label:'Software licence cost',  sub:'Full open-source stack',    color:'#00c07a' },
+                { num:'Lean', label:'Infrastructure cost',    sub:'No bloated licence fees',   color:'#00c07a' },
                 { num:'48h',  label:'Deployment time',        sub:'Contract to go-live',        color:'#3b82f6' },
                 { num:'99.9%',label:'Uptime SLA',             sub:'Riser monitors remotely',    color:'#8b5cf6' },
                 { num:'0',    label:'IT tasks for your team', sub:'We handle everything',       color:'#f59e0b' },
