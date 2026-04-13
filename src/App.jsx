@@ -29,6 +29,7 @@ import PlatformDoorDisplay from './pages/platforms/DoorDisplay'
 import PlatformAnalytics from './pages/platforms/Analytics'
 import PlatformAIBooker from './pages/platforms/AIBooker'
 import PlatformIntegrations from './pages/platforms/Integrations'
+import OnPremises from './pages/OnPremises'
 
 function ScrollTop() {
   const { pathname } = useLocation()
@@ -62,6 +63,7 @@ export default function App() {
           {/* Main */}
           <Route path="/" element={<Home />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/on-premises" element={<OnPremises />} />
           <Route path="/roles" element={<Roles />} />
           <Route path="/contact" element={<Contact />} />
 

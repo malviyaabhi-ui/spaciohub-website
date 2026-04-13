@@ -4,7 +4,6 @@ import { useModal } from './ModalContext'
 
 const LOGO = 'https://svksiwnalmrjjnskycqb.supabase.co/storage/v1/object/public/assets/logo-no-background.png'
 
-// ─── SVG ICONS ────────────────────────────────────────────────
 const I = {
   booking:    <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><rect width="32" height="32" rx="8" fill="#ecfdf5"/><rect x="7" y="9" width="18" height="16" rx="2" fill="#00c07a" opacity="0.15"/><rect x="7" y="9" width="18" height="5" rx="2" fill="#00c07a"/><rect x="11" y="5" width="2.5" height="6" rx="1.25" fill="#009960"/><rect x="18.5" y="5" width="2.5" height="6" rx="1.25" fill="#009960"/><rect x="10" y="18" width="4" height="4" rx="1" fill="#00c07a" opacity="0.6"/><rect x="16" y="18" width="4" height="4" rx="1" fill="#00c07a" opacity="0.6"/></svg>,
   visitors:   <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><rect width="32" height="32" rx="8" fill="#fff7ed"/><circle cx="12" cy="12" r="4" fill="#f97316" opacity="0.8"/><circle cx="21" cy="12" r="4" fill="#f97316" opacity="0.4"/><path d="M4 27c0-4.5 3.5-8 8-8h8c4.5 0 8 3.5 8 8" stroke="#f97316" strokeWidth="2" strokeLinecap="round" fill="none"/></svg>,
@@ -23,15 +22,16 @@ const I = {
   outlook:    <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><rect width="32" height="32" rx="8" fill="#fff" stroke="#e2e8f0" strokeWidth="1"/><rect x="5" y="5" width="10" height="10" rx="1" fill="#F25022"/><rect x="17" y="5" width="10" height="10" rx="1" fill="#7FBA00"/><rect x="5" y="17" width="10" height="10" rx="1" fill="#00A4EF"/><rect x="17" y="17" width="10" height="10" rx="1" fill="#FFB900"/></svg>,
   zoom:       <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><rect width="32" height="32" rx="8" fill="#2D8CFF"/><rect x="5" y="10" width="15" height="12" rx="2" fill="#fff"/><path d="M21 13l7-4v14l-7-4V13z" fill="#fff"/></svg>,
   sso:        <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><rect width="32" height="32" rx="8" fill="#f0fdf4"/><circle cx="14" cy="16" r="5" fill="#16a34a" opacity="0.2"/><circle cx="14" cy="16" r="5" stroke="#16a34a" strokeWidth="1.5"/><circle cx="14" cy="16" r="2" fill="#16a34a"/><path d="M17.5 19.5l7 5.5" stroke="#16a34a" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+  onprem:     <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><rect width="32" height="32" rx="8" fill="#f0fdf4"/><path d="M16 5l10 7v11H6V12L16 5z" fill="#00c07a" opacity="0.15" stroke="#00c07a" strokeWidth="1.5" strokeLinejoin="round"/><rect x="12" y="18" width="8" height="8" rx="1" fill="#00c07a" opacity="0.35"/><rect x="14" y="20" width="4" height="6" rx="0.5" fill="#00c07a" opacity="0.7"/></svg>,
+  signage:    <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><rect width="32" height="32" rx="8" fill="#fffbeb"/><rect x="4" y="7" width="24" height="14" rx="2" fill="#f59e0b" opacity="0.15"/><rect x="4" y="7" width="24" height="14" rx="2" stroke="#f59e0b" strokeWidth="1.5"/><rect x="7" y="10" width="10" height="2" rx="1" fill="#f59e0b" opacity="0.7"/><rect x="7" y="14" width="7" height="2" rx="1" fill="#f59e0b" opacity="0.4"/><rect x="11" y="21" width="10" height="3" rx="1" fill="#f59e0b" opacity="0.4"/></svg>,
 }
 
-// ─── MEGA MENU CONFIGS ─────────────────────────────────────────
 const MENUS = {
   solutions: {
     spotlight: {
       label: 'See it in action',
-      desc: 'Watch how SpacioHub manages rooms, visitors and analytics in one place.',
-      cta: 'Request a demo →',
+      desc: 'Watch how SpacioHub manages rooms, visitors, signage and more in one place.',
+      cta: 'Request a demo',
       href: 'DEMO',
       bg: 'linear-gradient(135deg,#0f172a,#1e293b)',
       accent: '#00c07a',
@@ -40,28 +40,30 @@ const MENUS = {
       {
         label: 'Platform', color: '#00c07a', bg: '#ecfdf5',
         items: [
-          { label: 'Room Booking',      desc: 'Visual grid & smart scheduling', href: '/platform/booking',              icon: I.booking },
-          { label: 'Visitor Management',desc: 'Check-in, kiosk & badges',       href: '/platform/visitors',             icon: I.visitors },
-          { label: 'Door Display',      desc: 'Live room panels on any tablet', href: '/platform/door-display', icon: I.door },
-          { label: 'Analytics',         desc: 'Utilisation & insights',         href: '/platform/analytics',    icon: I.analytics },
+          { label: 'Room Booking',       desc: 'Visual grid & smart scheduling',  href: '/platform/booking',   icon: I.booking },
+          { label: 'Visitor Management', desc: 'Check-in, kiosk & badges',        href: '/platform/visitors',  icon: I.visitors },
+          { label: 'Digital Signage',    desc: 'Every screen, one dashboard',     href: '/platform/signage',   icon: I.signage },
+          { label: 'Door Display',       desc: 'Live room panels on any tablet',  href: '/platform/door-display', icon: I.door },
+          { label: 'Analytics',          desc: 'Utilisation & insights',          href: '/platform/analytics', icon: I.analytics },
+          { label: 'On-Premises',        desc: 'Your data, your building',        href: '/on-premises',        icon: I.onprem },
         ]
       },
       {
         label: 'Intelligence', color: '#f59e0b', bg: '#fefce8',
         items: [
-          { label: 'AI Room Booker',   desc: 'Book in plain language',        href: '/platform/ai-booker',              icon: I.ai },
+          { label: 'AI Room Booker',   desc: 'Book in plain language',        href: '/platform/ai-booker',    icon: I.ai },
           { label: 'Calendar Sync',    desc: 'Google, Outlook & iCal',        href: '/platform/integrations', icon: I.ical },
         ]
       },
     ],
-    footer: { label: 'Explore all platform features →', href: '/platform/booking' }
+    footer: { label: 'Explore all platform features', href: '/platform/booking' }
   },
 
   usecases: {
     spotlight: {
       label: 'Find your fit',
-      desc: 'SpacioHub adapts to any workspace — from a 5-person studio to a 50-floor enterprise.',
-      cta: 'See all use cases →',
+      desc: 'SpacioHub adapts to any workspace -- from a 5-person studio to a 50-floor enterprise.',
+      cta: 'See all use cases',
       href: '/use-cases/corporate',
       bg: 'linear-gradient(135deg,#ecfdf5,#f0fdf8)',
       accent: '#00c07a',
@@ -70,10 +72,11 @@ const MENUS = {
       {
         label: 'By Industry', color: '#3b82f6', bg: '#eff6ff',
         items: [
-          { label: 'Corporate Offices',    href: '/use-cases/corporate',  icon: I.corporate },
-          { label: 'Coworking Spaces',     href: '/use-cases/coworking',  icon: I.coworking },
-          { label: 'Hotels & Hospitality', href: '/use-cases/hotels',     icon: I.hotels },
-          { label: 'SaaS Resellers',       href: '/use-cases/resellers',  icon: I.resellers },
+          { label: 'Corporate Offices',       href: '/use-cases/corporate',  icon: I.corporate },
+          { label: 'Coworking Spaces',        href: '/use-cases/coworking',  icon: I.coworking },
+          { label: 'Hotels & Hospitality',    href: '/use-cases/hotels',     icon: I.hotels },
+          { label: 'SaaS Resellers',          href: '/use-cases/resellers',  icon: I.resellers },
+          { label: 'Government & Enterprise', desc: 'On-prem, PDPL compliant', href: '/on-premises', icon: I.onprem },
         ]
       },
       {
@@ -86,14 +89,14 @@ const MENUS = {
         ]
       },
     ],
-    footer: { label: 'Compare roles & permissions →', href: '/roles' }
+    footer: { label: 'Compare roles & permissions', href: '/roles' }
   },
 
   integrations: {
     spotlight: {
       label: 'Plug in, not rip out',
-      desc: 'SpacioHub works with the tools your team already uses — no new logins needed.',
-      cta: 'View all integrations →',
+      desc: 'SpacioHub works with the tools your team already uses -- no new logins needed.',
+      cta: 'View all integrations',
       href: '/platform/integrations',
       bg: 'linear-gradient(135deg,#fdf2f8,#f5f3ff)',
       accent: '#ec4899',
@@ -110,20 +113,20 @@ const MENUS = {
       {
         label: 'Meetings & Auth', color: '#00c07a', bg: '#ecfdf5',
         items: [
-          { label: 'Zoom',          desc: 'Auto meeting links',    href: '/platform/integrations', icon: I.zoom },
-          { label: 'Google SSO',    desc: 'Sign in with Google',   href: '/platform/integrations', icon: I.gcal },
-          { label: 'Microsoft SSO', desc: 'Sign in with Microsoft',href: '/platform/integrations', icon: I.outlook },
+          { label: 'Zoom',          desc: 'Auto meeting links',     href: '/platform/integrations', icon: I.zoom },
+          { label: 'Google SSO',    desc: 'Sign in with Google',    href: '/platform/integrations', icon: I.gcal },
+          { label: 'Microsoft SSO', desc: 'Sign in with Microsoft', href: '/platform/integrations', icon: I.outlook },
         ]
       },
     ],
-    footer: { label: 'See the full integration list →', href: '/platform/integrations' }
+    footer: { label: 'See the full integration list', href: '/platform/integrations' }
   },
 
   resources: {
     spotlight: {
       label: 'Help and Resources',
       desc: 'Everything you need to get the most out of SpacioHub - articles, updates, and support.',
-      cta: 'Visit Help Centre →',
+      cta: 'Visit Help Centre',
       href: '/help',
       bg: 'linear-gradient(135deg,#f0fdf8,#ecfdf5)',
       accent: '#00c07a',
@@ -132,25 +135,25 @@ const MENUS = {
       {
         label: 'Learn', color: '#00c07a', bg: '#ecfdf5',
         items: [
-          { label: 'Help Centre',  desc: 'Guides & how-tos',        href: '/help',       icon: I.analytics },
+          { label: 'Help Centre',  desc: 'Guides & how-tos',         href: '/help',      icon: I.analytics },
           { label: 'Blog',         desc: 'Tips & workspace insights', href: '/blog',      icon: I.booking },
-          { label: 'Changelog',    desc: 'Latest updates',           href: '/changelog',  icon: I.visitors },
-          { label: 'Security',     desc: 'How we protect your data',  href: '/security',   icon: I.door },
+          { label: 'Changelog',    desc: 'Latest updates',           href: '/changelog', icon: I.visitors },
+          { label: 'Security',     desc: 'How we protect your data', href: '/security',  icon: I.door },
         ]
       },
       {
         label: 'Support', color: '#3b82f6', bg: '#eff6ff',
         items: [
-          { label: 'Contact Us',   desc: 'Talk to our team',         href: '/contact',    icon: I.door },
-          { label: 'Pricing',      desc: 'Plans & billing',          href: '/pricing',    icon: I.ai },
+          { label: 'Contact Us',   desc: 'Talk to our team',  href: '/contact',  icon: I.door },
+          { label: 'Pricing',      desc: 'Plans & billing',   href: '/pricing',  icon: I.ai },
+          { label: 'On-Premises',  desc: 'Enterprise hosting', href: '/on-premises', icon: I.onprem },
         ]
       },
     ],
-    footer: { label: 'Go to Help Centre →', href: '/help' }
+    footer: { label: 'Go to Help Centre', href: '/help' }
   },
 }
 
-// ─── MEGA MENU PANEL ──────────────────────────────────────────
 function MegaMenu({ config, onClose, openModal }) {
   const { spotlight, groups, footer } = config
   return (
@@ -162,13 +165,10 @@ function MegaMenu({ config, onClose, openModal }) {
       minWidth: 580, overflow: 'hidden',
       animation: 'fadeUp 0.15s ease', zIndex: 9999,
     }}>
-      {/* Body: spotlight + groups */}
       <div style={{ display: 'flex', gap: 0 }}>
-
-        {/* Spotlight card */}
         <div style={{ width: 180, flexShrink: 0, background: spotlight.bg, padding: '24px 18px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
-            <div style={{ width: 36, height: 36, borderRadius: 10, background: `${spotlight.accent}22`, border: `1px solid ${spotlight.accent}40`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
+            <div style={{ width: 36, height: 36, borderRadius: 10, background: spotlight.accent + '22', border: '1px solid ' + spotlight.accent + '40', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
               <svg viewBox="0 0 20 20" width="16" height="16" fill="none">
                 <path d="M4 10l4 4 8-8" stroke={spotlight.accent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -177,24 +177,20 @@ function MegaMenu({ config, onClose, openModal }) {
             <div style={{ fontSize: 11.5, color: spotlight.bg.includes('0f172a') ? '#94a3b8' : '#64748b', lineHeight: 1.6 }}>{spotlight.desc}</div>
           </div>
           {spotlight.href === 'DEMO'
-            ? <button onClick={() => { onClose(); openModal() }} style={{ fontSize: 12, fontWeight: 700, color: spotlight.accent, background: 'none', border: 'none', cursor: 'pointer', marginTop: 20, display: 'flex', alignItems: 'center', gap: 4, fontFamily: 'Inter,sans-serif', padding: 0 }}>{spotlight.cta}</button>
-            : <Link to={spotlight.href} onClick={onClose} style={{ fontSize: 12, fontWeight: 700, color: spotlight.accent, textDecoration: 'none', marginTop: 20, display: 'flex', alignItems: 'center', gap: 4 }}>{spotlight.cta}</Link>
+            ? <button onClick={() => { onClose(); openModal() }} style={{ fontSize: 12, fontWeight: 700, color: spotlight.accent, background: 'none', border: 'none', cursor: 'pointer', marginTop: 20, display: 'flex', alignItems: 'center', gap: 4, fontFamily: 'Inter,sans-serif', padding: 0 }}>{spotlight.cta} &rarr;</button>
+            : <Link to={spotlight.href} onClick={onClose} style={{ fontSize: 12, fontWeight: 700, color: spotlight.accent, textDecoration: 'none', marginTop: 20, display: 'flex', alignItems: 'center', gap: 4 }}>{spotlight.cta} &rarr;</Link>
           }
         </div>
 
-        {/* Divider */}
         <div style={{ width: 1, background: '#f1f5f9', flexShrink: 0 }} />
 
-        {/* Groups */}
-        <div style={{ flex: 1, display: 'grid', gridTemplateColumns: `repeat(${groups.length}, 1fr)`, padding: '20px 8px 16px' }}>
+        <div style={{ flex: 1, display: 'grid', gridTemplateColumns: 'repeat(' + groups.length + ', 1fr)', padding: '20px 8px 16px' }}>
           {groups.map((group, gi) => (
             <div key={group.label} style={{ padding: '0 10px', borderRight: gi < groups.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
-              {/* Group pill header */}
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: group.bg, border: `1px solid ${group.color}22`, borderRadius: 100, padding: '3px 10px 3px 6px', marginBottom: 10 }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: group.bg, border: '1px solid ' + group.color + '22', borderRadius: 100, padding: '3px 10px 3px 6px', marginBottom: 10 }}>
                 <div style={{ width: 6, height: 6, borderRadius: '50%', background: group.color }} />
                 <span style={{ fontSize: 10.5, fontWeight: 700, color: group.color, letterSpacing: '0.3px' }}>{group.label}</span>
               </div>
-              {/* Items */}
               {group.items.map(item => (
                 <Link key={item.label} to={item.href} onClick={onClose}
                   style={{ display: 'flex', gap: 10, padding: '7px 8px', borderRadius: 9, textDecoration: 'none', transition: 'all 0.12s', alignItems: 'center', marginBottom: 1 }}
@@ -212,13 +208,12 @@ function MegaMenu({ config, onClose, openModal }) {
         </div>
       </div>
 
-      {/* Footer strip */}
       <div style={{ borderTop: '1px solid #f1f5f9', padding: '10px 20px', background: '#f8fafc', display: 'flex', justifyContent: 'flex-end' }}>
         <Link to={footer.href} onClick={onClose}
           style={{ fontSize: 12, fontWeight: 600, color: '#00c07a', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4, transition: 'gap 0.15s' }}
           onMouseEnter={e => e.currentTarget.style.gap = '8px'}
           onMouseLeave={e => e.currentTarget.style.gap = '4px'}>
-          {footer.label}
+          {footer.label} &rarr;
         </Link>
       </div>
     </div>
@@ -237,14 +232,13 @@ function NavDropdown({ label, menuKey, active, config, onEnter, onLeave, onClose
         display: 'flex', alignItems: 'center', gap: 4,
       }}>
         {label}
-        <span style={{ fontSize: 10, display: 'inline-block', transition: 'transform 0.2s', transform: active ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+        <span style={{ fontSize: 10, display: 'inline-block', transition: 'transform 0.2s', transform: active ? 'rotate(180deg)' : 'rotate(0deg)' }}>&#9662;</span>
       </button>
       {active && <MegaMenu config={config} onClose={onClose} openModal={openModal} />}
     </div>
   )
 }
 
-// ─── MAIN NAV ─────────────────────────────────────────────────
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [menu, setMenu] = useState(null)
@@ -269,19 +263,17 @@ export default function Nav() {
 
   useEffect(() => { setMenu(null); setMobileOpen(false); setMobileExpanded(null) }, [location])
 
-  // Note: no body scroll lock — Zoho SalesIQ sets overflow:hidden on body which conflicts
-
   const handleEnter = (key) => { clearTimeout(leaveTimer.current); setMenu(key) }
   const handleLeave = () => { leaveTimer.current = setTimeout(() => setMenu(null), 120) }
   const handleClose = () => setMenu(null)
 
   const mobileMenuItems = [
-    { label: 'Solutions', key: 'solutions', groups: MENUS.solutions.groups },
-    { label: 'Use Cases', key: 'usecases', groups: MENUS.usecases.groups },
+    { label: 'Solutions',    key: 'solutions',    groups: MENUS.solutions.groups },
+    { label: 'Use Cases',    key: 'usecases',     groups: MENUS.usecases.groups },
     { label: 'Integrations', key: 'integrations', groups: MENUS.integrations.groups },
-    { label: 'Resources', key: 'resources', groups: MENUS.resources.groups },
-    { label: 'Roles', href: '/roles' },
-    { label: 'Pricing', href: '/pricing' },
+    { label: 'Resources',    key: 'resources',    groups: MENUS.resources.groups },
+    { label: 'On-Premises',  href: '/on-premises' },
+    { label: 'Pricing',      href: '/pricing' },
   ]
 
   return (
@@ -301,7 +293,6 @@ export default function Nav() {
               <img src={LOGO} alt="SpacioHub" style={{ height: 52 }} />
             </Link>
 
-            {/* Desktop nav */}
             <div className="hidden lg:flex" style={{ gap: 2, alignItems: 'center' }}>
               <NavDropdown label="Solutions"    menuKey="solutions"    active={menu === 'solutions'}    config={MENUS.solutions}    onEnter={handleEnter} onLeave={handleLeave} onClose={handleClose} openModal={openModal} />
               <NavDropdown label="Use Cases"    menuKey="usecases"     active={menu === 'usecases'}     config={MENUS.usecases}     onEnter={handleEnter} onLeave={handleLeave} onClose={handleClose} openModal={openModal} />
@@ -318,9 +309,7 @@ export default function Nav() {
             </div>
           </div>
 
-          {/* Right side */}
           <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-            {/* Desktop items */}
             <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer"
               className="hidden lg:flex items-center"
               style={{ fontSize: 14, fontWeight: 500, color: '#64748b', textDecoration: 'none', padding: '8px 14px', borderRadius: 7, transition: 'all 0.15s' }}
@@ -336,7 +325,6 @@ export default function Nav() {
               Request Demo
             </button>
 
-            {/* Hamburger — CSS controls visibility */}
             <button className="flex lg:hidden" onClick={() => setMobileOpen(o => !o)}
               style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, flexDirection: 'column', gap: 5, alignItems: 'center', justifyContent: 'center' }}>
               <span style={{ display: 'block', width: 22, height: 2, background: '#0f172a', borderRadius: 2, transition: 'all 0.25s', transform: mobileOpen ? 'translateY(7px) rotate(45deg)' : 'none' }} />
@@ -345,14 +333,11 @@ export default function Nav() {
             </button>
           </div>
         </div>
-
       </nav>
 
-      {/* Mobile menu panel — outside nav so nav overflow:visible doesn't clip it */}
       {mobileOpen && (
         <div style={{ position: 'fixed', top: 64, left: 0, right: 0, bottom: 0, background: '#fff', zIndex: 9999, overflowY: 'auto', borderTop: '1px solid #e2e8f0', animation: 'slideDown 0.2s ease' }}>
           <div style={{ padding: '12px 20px 32px' }}>
-
             {mobileMenuItems.map(item => (
               <div key={item.label}>
                 {item.href ? (
@@ -365,13 +350,13 @@ export default function Nav() {
                     <button onClick={() => setMobileExpanded(mobileExpanded === item.key ? null : item.key)}
                       style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 4px', borderBottom: '1px solid #f1f5f9', background: 'none', border: 'none', borderBottomWidth: 1, borderBottomStyle: 'solid', borderBottomColor: '#f1f5f9', cursor: 'pointer', fontFamily: 'Inter,sans-serif', fontSize: 16, fontWeight: 600, color: '#0f172a', textAlign: 'left' }}>
                       {item.label}
-                      <span style={{ fontSize: 12, color: '#94a3b8', transition: 'transform 0.2s', display: 'inline-block', transform: mobileExpanded === item.key ? 'rotate(180deg)' : 'none' }}>▾</span>
+                      <span style={{ fontSize: 12, color: '#94a3b8', transition: 'transform 0.2s', display: 'inline-block', transform: mobileExpanded === item.key ? 'rotate(180deg)' : 'none' }}>&#9662;</span>
                     </button>
                     {mobileExpanded === item.key && (
                       <div style={{ padding: '8px 0 12px 8px', animation: 'slideDown 0.15s ease' }}>
                         {item.groups.map(group => (
                           <div key={group.label} style={{ marginBottom: 12 }}>
-                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: group.bg, border: `1px solid ${group.color}22`, borderRadius: 100, padding: '2px 8px 2px 5px', marginBottom: 6 }}>
+                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: group.bg, border: '1px solid ' + group.color + '22', borderRadius: 100, padding: '2px 8px 2px 5px', marginBottom: 6 }}>
                               <div style={{ width: 5, height: 5, borderRadius: '50%', background: group.color }} />
                               <span style={{ fontSize: 10, fontWeight: 700, color: group.color }}>{group.label}</span>
                             </div>
@@ -396,7 +381,6 @@ export default function Nav() {
               </div>
             ))}
 
-            {/* Mobile CTAs */}
             <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 10 }}>
               <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer"
                 style={{ display: 'block', textAlign: 'center', padding: '13px', borderRadius: 10, border: '1.5px solid #e2e8f0', fontSize: 15, fontWeight: 600, color: '#0f172a', textDecoration: 'none' }}>
@@ -404,7 +388,7 @@ export default function Nav() {
               </a>
               <button onClick={() => { openModal(); setMobileOpen(false) }}
                 style={{ background: '#00c07a', color: '#fff', padding: '13px', borderRadius: 10, fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer', fontFamily: 'Inter,sans-serif' }}>
-                Request Demo →
+                Request Demo
               </button>
             </div>
           </div>
