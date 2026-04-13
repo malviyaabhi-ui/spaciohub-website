@@ -75,11 +75,11 @@ const MODELS = [
 ]
 
 const WHO = [
-  { icon: '🏛', label: 'Government', desc: 'Strict data residency, full audit trail for inspections, UAE PDPL compliant.' },
-  { icon: '🏥', label: 'Healthcare', desc: 'DHA compliance, patient-adjacent visitor data stays on hospital infrastructure.' },
-  { icon: '🏦', label: 'Banking', desc: 'ADGM and DFSA regulated. Physical access logs tied to security policy.' },
-  { icon: '🎓', label: 'Universities', desc: 'Campus-wide deployment across buildings with centralised admin control.' },
-  { icon: '🏢', label: 'Enterprise campuses', desc: '50+ screens, multi-building, high-availability cluster support.' },
+  { bg:'#eff6ff', col:'#3b82f6', label:'Government',        desc:'Strict data residency, full audit trail for inspections, UAE PDPL compliant.',         icon:<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18M3 10h18M12 3L3 10M12 3l9 7"/><line x1="5" y1="10" x2="5" y2="21"/><line x1="9" y1="10" x2="9" y2="21"/><line x1="15" y1="10" x2="15" y2="21"/><line x1="19" y1="10" x2="19" y2="21"/></svg> },
+  { bg:'#fdf2f8', col:'#ec4899', label:'Healthcare',        desc:'DHA compliance, patient-adjacent visitor data stays on hospital infrastructure.',          icon:<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ec4899" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> },
+  { bg:'#fefce8', col:'#d97706', label:'Banking',           desc:'ADGM and DFSA regulated. Physical access logs tied to security policy.',                   icon:<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg> },
+  { bg:'#f5f3ff', col:'#8b5cf6', label:'Universities',      desc:'Campus-wide deployment across buildings with centralised admin control.',                   icon:<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> },
+  { bg:'#f0fdf4', col:'#00c07a', label:'Enterprise campuses',desc:'50+ screens, multi-building deployments, high-availability cluster support.',              icon:<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00c07a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> },
 ]
 
 export default function OnPremises() {
@@ -201,7 +201,7 @@ export default function OnPremises() {
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               {WHO.map((w, i) => (
                 <div key={i} className="reveal card" style={{ textAlign:'center', animationDelay: i * 0.08 + 's' }}>
-                  <div style={{ fontSize:32, marginBottom:12 }}>{w.icon}</div>
+                  <div style={{ width:52, height:52, borderRadius:14, background:w.bg, display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 14px' }}>{w.icon}</div>
                   <div style={{ fontSize:14, fontWeight:700, color:'#0f172a', marginBottom:6 }}>{w.label}</div>
                   <div style={{ fontSize:12, color:'#64748b', lineHeight:1.6 }}>{w.desc}</div>
                 </div>
