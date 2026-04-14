@@ -236,19 +236,7 @@ export default function Pricing() {
   const [meSubmitted, setMeSubmitted] = useState(false)
   const [meSubmitting, setMeSubmitting] = useState(false)
 
-  useEffect(() => {
-    const MIDDLE_EAST = ['AE','SA','QA','KW','BH','OM','JO','EG','LB','IQ','YE','SY','IR','PS','TR'];
-    fetch('https://ipapi.co/json/')
-      .then(r => r.json())
-      .then(data => {
-        if (MIDDLE_EAST.includes(data.country_code) || MIDDLE_EAST.includes(data.country) || data.city === "Dubai" || data.country === "United Arab Emirates" || (data.ip && (data.ip.startsWith('91.73') || data.ip.startsWith('94.200') || data.ip.startsWith('213.42') || data.ip.startsWith('46.231') || data.ip.startsWith('92.240') || data.ip.startsWith('46.235') || data.ip.startsWith('94.56')))) {
-          setGeoAllowed(false); // hide pricing
-        } else {
-          setGeoAllowed(true); // show pricing
-        }
-      })
-      .catch(() => setGeoAllowed(false)); // on error, hide pricing
-  }, []);
+  useEffect(() => { setGeoAllowed(false); }, []);
 
   // Show loading spinner while detecting location
   if (geoAllowed === null) {
