@@ -238,7 +238,7 @@ export default function Pricing() {
 
   useEffect(() => {
     const MIDDLE_EAST = ['AE','SA','QA','KW','BH','OM','JO','EG','LB','IQ','YE','SY','IR','PS','TR'];
-    fetch('https://ipapi.co/json/')
+    fetch('https://ipwho.is/')
       .then(r => r.json())
       .then(data => {
         if (MIDDLE_EAST.includes(data.country_code)) {
