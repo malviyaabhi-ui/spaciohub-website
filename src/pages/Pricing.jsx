@@ -238,10 +238,10 @@ export default function Pricing() {
 
   useEffect(() => {
     const MIDDLE_EAST = ['AE','SA','QA','KW','BH','OM','JO','EG','LB','IQ','YE','SY','IR','PS','TR'];
-    fetch('https://ipwho.is/')
+    fetch('https://ipapi.co/json/')
       .then(r => r.json())
       .then(data => {
-        if (MIDDLE_EAST.includes(data.country_code) || MIDDLE_EAST.includes(data.country) || data.city === "Dubai" || data.region === "Dubai" || data.country === "United Arab Emirates") {
+        if (MIDDLE_EAST.includes(data.country_code) || MIDDLE_EAST.includes(data.country) || data.city === "Dubai" || data.country === "United Arab Emirates" || (data.ip && (data.ip.startsWith('91.73') || data.ip.startsWith('94.200') || data.ip.startsWith('213.42') || data.ip.startsWith('46.231')))) {
           setGeoAllowed(false); // hide pricing
         } else {
           setGeoAllowed(true); // show pricing
