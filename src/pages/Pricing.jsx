@@ -221,7 +221,7 @@ function PlanFinder({ openModal }) {
 }
 
 export default function Pricing() {
-  const [geoAllowed, setGeoAllowed] = useState(null); // null=loading, true=show, false=hide
+  const [geoAllowed, setGeoAllowed] = useState(false); // null=loading, true=show, false=hide
   const [annual, setAnnual] = useState(true)
   const [openFaq, setOpenFaq] = useState(null)
   const { openModal } = useModal()
@@ -241,7 +241,7 @@ export default function Pricing() {
     fetch('https://ipapi.co/json/')
       .then(r => r.json())
       .then(data => {
-        if (MIDDLE_EAST.includes(data.country_code) || MIDDLE_EAST.includes(data.country) || data.city === "Dubai" || data.country === "United Arab Emirates" || (data.ip && (data.ip.startsWith('91.73') || data.ip.startsWith('94.200') || data.ip.startsWith('213.42') || data.ip.startsWith('46.231')))) {
+        if (MIDDLE_EAST.includes(data.country_code) || MIDDLE_EAST.includes(data.country) || data.city === "Dubai" || data.country === "United Arab Emirates" || (data.ip && (data.ip.startsWith('91.73') || data.ip.startsWith('94.200') || data.ip.startsWith('213.42') || data.ip.startsWith('46.231') || data.ip.startsWith('92.240') || data.ip.startsWith('46.235') || data.ip.startsWith('94.56')))) {
           setGeoAllowed(false); // hide pricing
         } else {
           setGeoAllowed(true); // show pricing
