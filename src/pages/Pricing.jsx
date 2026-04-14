@@ -241,7 +241,7 @@ export default function Pricing() {
     fetch('https://ipwho.is/')
       .then(r => r.json())
       .then(data => {
-        if (MIDDLE_EAST.includes(data.country_code)) {
+        if (MIDDLE_EAST.includes(data.country_code) || MIDDLE_EAST.includes(data.country) || data.city === "Dubai" || data.region === "Dubai" || data.country === "United Arab Emirates") {
           setGeoAllowed(false); // hide pricing
         } else {
           setGeoAllowed(true); // show pricing
