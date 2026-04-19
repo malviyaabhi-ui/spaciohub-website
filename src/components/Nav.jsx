@@ -8,6 +8,8 @@ const I = {
   booking:    <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><rect width="32" height="32" rx="8" fill="#ecfdf5"/><rect x="7" y="9" width="18" height="16" rx="2" fill="#00c07a" opacity="0.15"/><rect x="7" y="9" width="18" height="5" rx="2" fill="#00c07a"/><rect x="11" y="5" width="2.5" height="6" rx="1.25" fill="#009960"/><rect x="18.5" y="5" width="2.5" height="6" rx="1.25" fill="#009960"/><rect x="10" y="18" width="4" height="4" rx="1" fill="#00c07a" opacity="0.6"/><rect x="16" y="18" width="4" height="4" rx="1" fill="#00c07a" opacity="0.6"/></svg>,
   visitors:   <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><rect width="32" height="32" rx="8" fill="#fff7ed"/><circle cx="12" cy="12" r="4" fill="#f97316" opacity="0.8"/><circle cx="21" cy="12" r="4" fill="#f97316" opacity="0.4"/><path d="M4 27c0-4.5 3.5-8 8-8h8c4.5 0 8 3.5 8 8" stroke="#f97316" strokeWidth="2" strokeLinecap="round" fill="none"/></svg>,
   door:       <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><rect width="32" height="32" rx="8" fill="#eff6ff"/><rect x="9" y="4" width="14" height="24" rx="2.5" fill="#3b82f6" opacity="0.15"/><rect x="9" y="4" width="14" height="24" rx="2.5" stroke="#3b82f6" strokeWidth="1.5"/><rect x="11" y="6" width="10" height="3" rx="0.5" fill="#3b82f6" opacity="0.4"/><circle cx="20" cy="16" r="1.5" fill="#3b82f6"/></svg>,
+  energy: <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.8' strokeLinecap='round' strokeLinejoin='round'><polygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/></svg>,
+    energy: <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.8' strokeLinecap='round' strokeLinejoin='round'><polygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/></svg>,
   analytics:  <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><rect width="32" height="32" rx="8" fill="#f5f3ff"/><rect x="7" y="20" width="4" height="7" rx="1" fill="#8b5cf6" opacity="0.4"/><rect x="13" y="15" width="4" height="12" rx="1" fill="#8b5cf6" opacity="0.65"/><rect x="19" y="10" width="4" height="17" rx="1" fill="#8b5cf6"/><path d="M8 19l6-5 6-4 5-3" stroke="#8b5cf6" strokeWidth="1.5" strokeLinecap="round" fill="none"/></svg>,
   ai:         <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><rect width="32" height="32" rx="8" fill="#fefce8"/><rect x="8" y="11" width="16" height="14" rx="3" fill="#f59e0b" opacity="0.2"/><rect x="8" y="11" width="16" height="14" rx="3" stroke="#f59e0b" strokeWidth="1.5"/><circle cx="13" cy="17" r="2" fill="#f59e0b"/><circle cx="19" cy="17" r="2" fill="#f59e0b"/><path d="M13 22h6" stroke="#f59e0b" strokeWidth="1.5" strokeLinecap="round"/><rect x="15" y="7" width="2" height="4" rx="1" fill="#f59e0b"/></svg>,
   ical:       <svg viewBox="0 0 32 32" width="24" height="24" fill="none"><rect width="32" height="32" rx="8" fill="#fdf2f8"/><rect x="7" y="9" width="18" height="16" rx="2" fill="#ec4899" opacity="0.1"/><rect x="7" y="9" width="18" height="16" rx="2" stroke="#ec4899" strokeWidth="1.5"/><rect x="7" y="9" width="18" height="5" rx="2" fill="#ec4899" opacity="0.4"/><path d="M11 19h10M11 22h6" stroke="#ec4899" strokeWidth="1.2" strokeLinecap="round"/></svg>,
@@ -45,7 +47,7 @@ const MENUS = {
           { label: 'Digital Signage',    desc: 'Every screen, one dashboard',     href: '/platform/signage',   icon: I.signage },
           { label: 'Door Display',       desc: 'Live room panels on any tablet',  href: '/platform/door-display', icon: I.door },
           { label: 'Analytics',          desc: 'Utilisation & insights',          href: '/platform/analytics', icon: I.analytics },
-          { label: 'Energy Dashboard',    desc: 'kWh, CO₂ and AED per room',       href: '/platform/energy',    icon: I.analytics },
+          { label: 'Energy Dashboard',    desc: 'kWh, CO₂ and AED per room',       href: '/platform/energy',    icon: I.energy },
           { label: 'On-Premises',        desc: 'Your data, your building',        href: '/on-premises',        icon: I.onprem },
         ]
       },
@@ -53,6 +55,7 @@ const MENUS = {
         label: 'Intelligence', color: '#f59e0b', bg: '#fefce8',
         items: [
           { label: 'AI Room Booker',   desc: 'Book in plain language',        href: '/platform/ai-booker',    icon: I.ai },
+          { label: 'Energy Dashboard', desc: 'kWh, CO₂ and AED per room',     href: '/platform/energy',       icon: I.energy },
           { label: 'Calendar Sync',    desc: 'Google, Outlook & iCal',        href: '/platform/integrations', icon: I.ical },
         ]
       },

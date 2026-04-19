@@ -2,13 +2,22 @@ import SEO from '../../components/SEO'
 import React, { useState } from 'react'
 import { useModal } from '../../components/ModalContext'
 
+const SVG_ICONS = {
+  zap:  `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ca8a04" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+  leaf: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`,
+  globe:`<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+  grid: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ea580c" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>`,
+  cpu:  `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>`,
+  plug: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#db2777" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M18 7V4H6v3"/><rect x="2" y="7" width="20" height="5" rx="2"/><path d="M6 12v4a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-4"/></svg>`,
+}
+
 const FEATURES = [
-  { icon: '⚡', title: 'kWh Estimates per Room', desc: 'Calculates energy used and wasted based on actual booking data and room power profiles — no hardware needed.', color: '#fefce8', border: '#fde68a' },
-  { icon: '🌿', title: 'CO₂ Sustainability Report', desc: 'Tracks carbon emissions from unoccupied rooms using UAE grid intensity (0.45 kg CO₂/kWh). Report-ready for ESG compliance.', color: '#f0fdf4', border: '#a7f3d0' },
-  { icon: '🇦🇪', title: 'UAE Grid Calibrated', desc: 'Calculations use UAE DEWA/ADEWA grid carbon intensity and commercial electricity tariff (0.23 AED/kWh) out of the box.', color: '#eff6ff', border: '#bfdbfe' },
-  { icon: '🔥', title: 'Usage Heatmap', desc: 'See exactly which hours and days drive your energy spend. Spot peak demand at a glance across the full working week.', color: '#fff7ed', border: '#fed7aa' },
-  { icon: '💡', title: 'Smart Recommendations', desc: 'AI-powered suggestions — consolidate underused rooms, flag high performers, and quantify the monthly AED saving.', color: '#f5f3ff', border: '#ddd6fe' },
-  { icon: '🔌', title: 'Hardware Integration Ready', desc: 'Connect Shelly smart plugs, Eastron meters, or any BMS to replace estimates with real kWh per room. Phase 2 roadmap.', color: '#fdf2f8', border: '#fbcfe8' },
+  { icon: 'zap',   title: 'kWh Estimates per Room', desc: 'Calculates energy used and wasted based on actual booking data and room power profiles — no hardware needed.', color: '#fefce8', border: '#fde68a' },
+  { icon: 'leaf',  title: 'CO₂ Sustainability Report', desc: 'Tracks carbon emissions from unoccupied rooms using UAE grid intensity (0.45 kg CO₂/kWh). Report-ready for ESG compliance.', color: '#f0fdf4', border: '#a7f3d0' },
+  { icon: 'globe', title: 'UAE Grid Calibrated', desc: 'Calculations use UAE DEWA/ADEWA grid carbon intensity and commercial electricity tariff (0.23 AED/kWh) out of the box.', color: '#eff6ff', border: '#bfdbfe' },
+  { icon: 'grid',  title: 'Usage Heatmap', desc: 'See exactly which hours and days drive your energy spend. Spot peak demand at a glance across the full working week.', color: '#fff7ed', border: '#fed7aa' },
+  { icon: 'cpu',   title: 'Smart Recommendations', desc: 'AI-powered suggestions — consolidate underused rooms, flag high performers, and quantify the monthly AED saving.', color: '#f5f3ff', border: '#ddd6fe' },
+  { icon: 'plug',  title: 'Hardware Integration Ready', desc: 'Connect Shelly smart plugs, Eastron meters, or any BMS to replace estimates with real kWh per room. Phase 2 roadmap.', color: '#fdf2f8', border: '#fbcfe8' },
 ]
 
 // Live mock dashboard visual
@@ -237,7 +246,7 @@ export default function EnergyPage() {
                 <div key={f.title} style={{ animationDelay: `${i * 0.06}s`, background: f.color, border: `1px solid ${f.border}`, borderRadius: 16, padding: '24px 22px', transition: 'transform 0.25s, box-shadow 0.25s', cursor: 'default' }}
                   onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `0 16px 40px ${f.border}80` }}
                   onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none' }}>
-                  <div style={{ fontSize: 28, marginBottom: 14 }}>{f.icon}</div>
+                  <div style={{ marginBottom: 14 }} dangerouslySetInnerHTML={{ __html: SVG_ICONS[f.icon] }} />
                   <h3 style={{ fontSize: 14, fontWeight: 700, marginBottom: 8, color: '#0f172a' }}>{f.title}</h3>
                   <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.65 }}>{f.desc}</p>
                 </div>
@@ -290,11 +299,11 @@ export default function EnergyPage() {
                   </div>
                   <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
                     {[
-                      { type: 'warning', icon: '⚠️', text: 'Voyager is only 9% utilised — consider consolidating or repurposing to save ~99 AED/month', bg: '#fef9c3', border: '#fde68a', color: '#92400e' },
-                      { type: 'warning', icon: '⚠️', text: 'Test Room is only 8% utilised — consider consolidating or repurposing to save ~48 AED/month', bg: '#fef9c3', border: '#fde68a', color: '#92400e' },
-                      { type: 'warning', icon: '⚠️', text: 'Board Room is only 5% utilised — consider consolidating or repurposing to save ~104 AED/month', bg: '#fef9c3', border: '#fde68a', color: '#92400e' },
-                      { type: 'warning', icon: '⚠️', text: 'Overall utilisation is 7% — scheduling desk-free days or consolidating rooms could significantly reduce energy costs.', bg: '#fef9c3', border: '#fde68a', color: '#92400e' },
-                      { type: 'info', icon: '💡', text: '491 kg CO₂ emitted from unused room time in the last 30 days. Reducing idle time by 20% would save 98 kg CO₂.', bg: '#eff6ff', border: '#bfdbfe', color: '#1e40af' },
+                      { type: 'warning', icon: 'warn', text: 'Voyager is only 9% utilised — consider consolidating or repurposing to save ~99 AED/month', bg: '#fef9c3', border: '#fde68a', color: '#92400e' },
+                      { type: 'warning', icon: 'warn', text: 'Test Room is only 8% utilised — consider consolidating or repurposing to save ~48 AED/month', bg: '#fef9c3', border: '#fde68a', color: '#92400e' },
+                      { type: 'warning', icon: 'warn', text: 'Board Room is only 5% utilised — consider consolidating or repurposing to save ~104 AED/month', bg: '#fef9c3', border: '#fde68a', color: '#92400e' },
+                      { type: 'warning', icon: 'warn', text: 'Overall utilisation is 7% — scheduling desk-free days or consolidating rooms could significantly reduce energy costs.', bg: '#fef9c3', border: '#fde68a', color: '#92400e' },
+                      { type: 'info', icon: 'info', text: '491 kg CO₂ emitted from unused room time in the last 30 days. Reducing idle time by 20% would save 98 kg CO₂.', bg: '#eff6ff', border: '#bfdbfe', color: '#1e40af' },
                     ].map((r, i) => (
                       <div key={i} style={{ padding: '11px 14px', background: r.bg, border: `1px solid ${r.border}`, borderRadius: 10, display: 'flex', alignItems: 'flex-start', gap: 9 }}>
                         <span style={{ fontSize: 14, flexShrink: 0 }}>{r.icon}</span>
@@ -345,13 +354,13 @@ export default function EnergyPage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 reveal" style={{ gap: 16 }}>
               {[
-                { icon: '🔌', title: 'Shelly Smart Plugs', desc: 'Per-device power monitoring via REST API. Low cost, easy install.', badge: 'Roadmap' },
-                { icon: '⚡', title: 'Eastron Smart Meters', desc: 'Sub-meter per room or zone. MQTT or HTTP push to SpacioHub.', badge: 'Roadmap' },
-                { icon: '🏢', title: 'BMS Integration', desc: 'Siemens, Honeywell, Schneider — BACnet or Modbus to REST bridge.', badge: 'Roadmap' },
-                { icon: '🔗', title: 'IoT Middleware', desc: 'Home Assistant, Node-RED, or AWS IoT as a normalised data source.', badge: 'Roadmap' },
+                { svg: 'plug', title: 'Shelly Smart Plugs', desc: 'Per-device power monitoring via REST API. Low cost, easy install.', badge: 'Roadmap' },
+                { svg: 'zap', title: 'Eastron Smart Meters', desc: 'Sub-meter per room or zone. MQTT or HTTP push to SpacioHub.', badge: 'Roadmap' },
+                { svg: 'grid', title: 'BMS Integration', desc: 'Siemens, Honeywell, Schneider — BACnet or Modbus to REST bridge.', badge: 'Roadmap' },
+                { svg: 'cpu', title: 'IoT Middleware', desc: 'Home Assistant, Node-RED, or AWS IoT as a normalised data source.', badge: 'Roadmap' },
               ].map((h, i) => (
                 <div key={i} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 16, padding: '24px 20px', textAlign: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
-                  <div style={{ fontSize: 32, marginBottom: 12 }}>{h.icon}</div>
+                  <div style={{ display:'flex', justifyContent:'center', marginBottom: 12 }} dangerouslySetInnerHTML={{ __html: SVG_ICONS[h.svg] }} />
                   <div style={{ display: 'inline-block', fontSize: 9, fontWeight: 700, color: '#7c3aed', background: '#ede9fe', border: '1px solid #ddd6fe', borderRadius: 100, padding: '2px 8px', marginBottom: 10, letterSpacing: '0.5px' }}>{h.badge}</div>
                   <h3 style={{ fontSize: 13, fontWeight: 700, color: '#0f172a', marginBottom: 8 }}>{h.title}</h3>
                   <p style={{ fontSize: 12, color: '#64748b', lineHeight: 1.6 }}>{h.desc}</p>
