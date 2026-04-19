@@ -149,10 +149,7 @@ export default function EnergyPage() {
 
   return (
     <>
-      <SEO {...(PAGE_SEO?.energy || {
-        title: 'Energy Dashboard — SpacioHub',
-        description: 'Track energy consumption, CO₂ emissions, and AED cost per meeting room. Occupancy-based estimates calibrated to UAE grid. No hardware needed.',
-      })} />
+      <SEO title='Energy Dashboard — SpacioHub' description='Track energy consumption, CO₂ emissions, and AED cost per meeting room. Occupancy-based estimates calibrated to UAE grid. No hardware needed.' />
 
       <main>
 
