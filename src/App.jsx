@@ -29,6 +29,7 @@ import PlatformDoorDisplay from './pages/platforms/DoorDisplay'
 import PlatformAnalytics from './pages/platforms/Analytics'
 import PlatformAIBooker from './pages/platforms/AIBooker'
 import PlatformIntegrations from './pages/platforms/Integrations'
+import PlatformEnergy from './pages/platforms/Energy'
 import OnPremises from './pages/OnPremises'
 
 function ScrollTop() {
@@ -72,6 +73,7 @@ export default function App() {
           <Route path="/platform/visitors" element={<PlatformVisitors />} />
           <Route path="/platform/door-display" element={<PlatformDoorDisplay />} />
           <Route path="/platform/analytics" element={<PlatformAnalytics />} />
+          <Route path="/platform/energy" element={<PlatformEnergy />} />
           <Route path="/platform/ai-booker" element={<PlatformAIBooker />} />
           <Route path="/platform/integrations" element={<PlatformIntegrations />} />
 
