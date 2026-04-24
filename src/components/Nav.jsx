@@ -47,7 +47,6 @@ const MENUS = {
           { label: 'Digital Signage',    desc: 'Every screen, one dashboard',     href: '/platform/signage',   icon: I.signage },
           { label: 'Door Display',       desc: 'Live room panels on any tablet',  href: '/platform/door-display', icon: I.door },
           { label: 'Analytics',          desc: 'Utilisation & insights',          href: '/platform/analytics', icon: I.analytics },
-          { label: 'Energy Dashboard',    desc: 'kWh, CO₂ and AED per room',       href: '/platform/energy',    icon: I.energy },
           { label: 'On-Premises',        desc: 'Your data, your building',        href: '/on-premises',        icon: I.onprem },
         ]
       },

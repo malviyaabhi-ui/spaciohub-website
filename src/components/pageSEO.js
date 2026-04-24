@@ -40,6 +40,12 @@ export const PAGE_SEO = {
     path: '/platform/door-display',
   },
 
+  platformSignage: {
+    title: 'Digital Signage — Every Screen, One Dashboard',
+    description: 'Design slides in the Canvas Editor, build playlists, schedule them across every screen in your building, and push emergency alerts with one click. Scrolling ticker layer and Media Library included. No hardware box — runs on any smart TV, Fire stick or tablet.',
+    path: '/platform/signage',
+  },
+
   platformAnalytics: {
     title: 'Space Analytics — Utilisation Insights & Reports',
     description: 'See exactly how your spaces are used. Room utilisation rates, peak hour heatmaps, no-show tracking, tag breakdowns and CSV export. Make data-driven decisions.',

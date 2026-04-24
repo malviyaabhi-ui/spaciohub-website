@@ -62,9 +62,12 @@ export default function Footer() {
               <ColHead>Platform</ColHead>
               <FL to="/platform/booking">Room Booking</FL>
               <FL to="/platform/visitors">Visitor Management</FL>
+              <FL to="/platform/signage">Digital Signage</FL>
               <FL to="/platform/door-display">Door Display</FL>
               <FL to="/platform/analytics">Analytics</FL>
+              <FL to="/on-premises">On-Premises</FL>
               <FL to="/platform/ai-booker">AI Room Booker</FL>
+              <FL to="/platform/energy">Energy Dashboard</FL>
               <FL to="/platform/integrations">Integrations</FL>
               <FL to="/pricing">Pricing</FL>
             </div>
