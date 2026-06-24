@@ -776,49 +776,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRICING TEASER */}
+      {/* PRICING CTA */}
       <section style={{ padding: '96px 0', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: 56 }}>
+          <div style={{ maxWidth: 680, margin: '0 auto', textAlign: 'center' }}>
             <span className="tag reveal">Pricing</span>
-            <h2 className="h2 reveal">Simple, <span style={{ background:'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>honest pricing</span></h2>
-            <p className="lead reveal" style={{ maxWidth:400, margin:'12px auto 0' }}>Start free. Upgrade when you're ready. No hidden fees.</p>
+            <h2 className="h2 reveal" style={{ marginBottom: 16 }}>
+              Tailored pricing for <span style={{ background:'linear-gradient(135deg,#0d2b6b,#0cb8b6)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>your workspace</span>
+            </h2>
+            <p className="lead reveal" style={{ color: '#64748b', maxWidth: 480, margin: '0 auto 40px' }}>
+              Every workspace is different. Get in touch and we'll put together the right plan — whether you need 2 rooms or 200, cloud or on-premise.
+            </p>
+            <div className="reveal" style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button className="btn btn-primary btn-lg" onClick={openModal}>Get a quote →</button>
+              <a href="mailto:contact@spaciohub.com" style={{ background: '#fff', color: '#0d2b6b', padding: '14px 28px', borderRadius: 8, fontSize: 15, fontWeight: 600, border: '1.5px solid #e2e8f0', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'all 0.2s' }}>
+                contact@spaciohub.com
+              </a>
+            </div>
+            <div className="reveal" style={{ display: 'flex', gap: 28, justifyContent: 'center', marginTop: 36, flexWrap: 'wrap' }}>
+              {['No credit card needed', 'Free 14-day trial', 'Cloud or on-premise', 'GCC pricing available'].map(item => (
+                <span key={item} style={{ fontSize: 13, color: '#94a3b8', fontWeight: 500 }}>
+                  <span style={{ color: '#0cb8b6', marginRight: 6 }}>✓</span>{item}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 reveal" style={{ maxWidth:860, margin:'0 auto' }}>
-            {[
-              { name:'Basic',      price:'$30',    period:'/year',  color:'#64748b', bg:'#fff',    border:'#e2e8f0', features:['2 rooms', '5 users', '1 door display', 'Core booking', 'iCal feed'] },
-              { name:'Pro',        price:'$4.99',  period:'/mo',    color:'#3b82f6', bg:'#fff',    border:'#bfdbfe', features:['5 rooms + add-ons', '25 users', 'Visitor management', 'Google & Outlook sync', 'Advanced analytics'], pop:false },
-              { name:'Max',        price:'$8.99',  period:'/mo',    color:'#00c07a', bg:'#0f172a', border:'#00c07a', features:['Unlimited rooms', 'Unlimited users', 'AI Room Booker', 'Google & Microsoft SSO', 'White-label'], pop:true, dark:true },
-            ].map(p => (
-              <div key={p.name} style={{ background:p.bg, border:`2px solid ${p.border}`, borderRadius:20, padding:'32px 28px', position:'relative', transition:'all 0.25s' }}
-                onMouseEnter={e=>{ e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow=`0 20px 48px ${p.color}20` }}
-                onMouseLeave={e=>{ e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='none' }}>
-                {p.pop && <div style={{ position:'absolute', top:-14, left:'50%', transform:'translateX(-50%)', background:p.color, color:'#fff', fontSize:10, fontWeight:800, padding:'4px 14px', borderRadius:100, whiteSpace:'nowrap', letterSpacing:'0.5px' }}>MOST POPULAR</div>}
-                <div style={{ marginBottom:20 }}>
-                  <div style={{ fontSize:13, fontWeight:700, color:p.dark?'#94a3b8':'#64748b', textTransform:'uppercase', letterSpacing:'1px', marginBottom:8 }}>{p.name}</div>
-                  <div style={{ display:'flex', alignItems:'baseline', gap:4 }}>
-                    <span style={{ fontSize:40, fontWeight:900, color:p.dark?'#fff':p.color, letterSpacing:'-2px' }}>{p.price}</span>
-                    <span style={{ fontSize:13, color:p.dark?'#64748b':'#94a3b8' }}>{p.period} · billed annually</span>
-                  </div>
-                </div>
-                <div style={{ display:'flex', flexDirection:'column', gap:8, marginBottom:28 }}>
-                  {p.features.map(f => (
-                    <div key={f} style={{ display:'flex', alignItems:'center', gap:8, fontSize:13, color:p.dark?'#cbd5e1':'#374151' }}>
-                      <span style={{ color:p.color, flexShrink:0 }}>✓</span> {f}
-                    </div>
-                  ))}
-                </div>
-                <Link to="/pricing" style={{ display:'block', textAlign:'center', padding:'11px', borderRadius:10, background: p.dark ? p.color : 'transparent', border:`1.5px solid ${p.dark ? p.color : p.color+'55'}`, color: p.dark ? '#fff' : p.color, textDecoration:'none', fontSize:13, fontWeight:700, transition:'all 0.2s' }}
-                  onMouseEnter={e=>{ if(!p.dark){ e.currentTarget.style.background=p.color; e.currentTarget.style.color='#fff' }}}
-                  onMouseLeave={e=>{ if(!p.dark){ e.currentTarget.style.background='transparent'; e.currentTarget.style.color=p.color }}}>
-                  {p.dark ? 'Start free trial →' : 'See plan details'}
-                </Link>
-              </div>
-            ))}
-          </div>
-          <p className="reveal" style={{ textAlign:'center', fontSize:13, color:'#94a3b8', marginTop:24 }}>
-            All plans include a 14-day free trial. <Link to="/pricing" style={{ color:'#00c07a', textDecoration:'none', fontWeight:600 }}>Compare all features →</Link>
-          </p>
         </div>
       </section>
 
