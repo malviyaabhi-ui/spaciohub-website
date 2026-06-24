@@ -52,7 +52,6 @@ function PostCard({ post, onClick }) {
       <div style={{ height: 4, background: `linear-gradient(90deg,${post.color},${post.color}88)` }} />
       <div style={{ padding: '28px', flex: 1, display: 'flex', flexDirection: 'column' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-          <span style={{ fontSize: 20 }}>{post.icon}</span>
           <span style={{ fontSize: 11, fontWeight: 700, color: post.color, textTransform: 'uppercase', letterSpacing: '0.8px' }}>{post.category}</span>
         </div>
         <h3 style={{ fontSize: 17, fontWeight: 800, color: '#0f172a', marginBottom: 10, lineHeight: 1.3, letterSpacing: -0.3 }}>{post.title}</h3>
@@ -80,8 +79,8 @@ export default function Blog() {
   return (
     <>
       <SEO
-        title={activePost ? `${activePost.title} — SpacioHub Blog` : 'Blog — SpacioHub Workspace Insights'}
-        description={activePost ? activePost.excerpt : 'Workspace management tips, how-to guides, and product updates from the SpacioHub team.'}
+        title={activePost ? (activePost.seoTitle || `${activePost.title} | SpacioHub`) : 'Blog — Workspace Management Insights for UAE & GCC | SpacioHub'}
+        description={activePost ? (activePost.seoDescription || activePost.excerpt) : 'Tips, guides and insights on meeting room booking, visitor management, office analytics and workspace efficiency for UAE & GCC businesses.'}
         path="/blog"
       />
       <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
@@ -151,7 +150,6 @@ export default function Blog() {
                   ← Back to Blog
                 </button>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-                  <span style={{ fontSize: 22 }}>{activePost.icon}</span>
                   <span style={{ fontSize: 11, fontWeight: 700, color: activePost.color, textTransform: 'uppercase', letterSpacing: '1px' }}>{activePost.category}</span>
                 </div>
                 <h1 style={{ fontSize: 'clamp(28px,4vw,46px)', fontWeight: 900, color: '#0f172a', marginBottom: 20, lineHeight: 1.15, letterSpacing: -1 }}>{activePost.title}</h1>

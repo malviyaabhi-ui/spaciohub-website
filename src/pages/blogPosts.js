@@ -168,3 +168,83 @@ export const POSTS = [
     ]
   },
 ]
+
+// ── NEW POSTS JUNE 2026 ────────────────────────────────────────────────────
+
+POSTS.push(
+  {
+    slug: 'meeting-room-booking-system-dubai',
+    title: 'The Best Meeting Room Booking System for Dubai Offices in 2026',
+    excerpt: 'Most room booking software is built for the US or European market. Here is what Dubai offices actually need — and what to look for when choosing a system.',
+    category: 'UAE & GCC',
+    date: 'June 25, 2026',
+    readTime: '6 min read',
+    color: '#0d2b6b',
+    bg: '#eff6ff',
+    icon: '🏙️',
+    seoTitle: 'Best Meeting Room Booking System in Dubai, UAE (2026 Guide) | SpacioHub',
+    seoDescription: 'Looking for a meeting room booking system in Dubai? This guide covers what to look for, common problems UAE offices face, and how SpacioHub solves them.',
+    content: [
+      { type: 'intro', text: "If you manage a Dubai office, you already know the problem. Someone books the boardroom for 10am, another team assumes it is free, and by 9:50 there are two managers standing in the corridor, both with guests arriving in ten minutes.\n\nIt sounds small. It costs real money." },
+      { type: 'h2', text: 'The Scale of the Problem' },
+      { type: 'text', text: "A 2024 study by JLL found that across GCC commercial offices, an average of 30–40% of booked meeting room time goes unused — either from no-shows, back-to-back conflicts, or rooms booked \"just in case\". For a mid-sized Dubai business running 8 meeting rooms, that is the equivalent of 3 rooms sitting empty for most of the working day.\n\nA proper meeting room booking system eliminates this. But with dozens of options on the market, what should Dubai businesses actually look for?" },
+      { type: 'h2', text: 'What a Dubai Office Needs That Generic Software Misses' },
+      { type: 'text', text: "Most room booking platforms are built for the US or European market. They work — but they miss things that matter here.\n\n**Microsoft 365 integration is not optional.** Many UAE businesses run Microsoft 365, not Google Workspace. Some run both. Your booking system needs to work cleanly with Outlook, Teams, and Azure AD — not treat Microsoft as an afterthought.\n\n**Visitor management cannot be separate.** When a client arrives at your building, the experience from the lobby to the meeting room is part of your brand. A system that handles room booking but has no connection to visitor check-in means two separate tools and gaps in the experience.\n\n**On-premise deployment is a real requirement.** Government entities, financial institutions, and healthcare organisations in the UAE often cannot put workspace data on external cloud infrastructure. Any platform you evaluate needs to offer a genuine on-premise option." },
+      { type: 'h2', text: 'What to Look For' },
+      { type: 'text', text: "When evaluating meeting room booking systems for your Dubai office, check these specifically:\n\n**Real-time availability.** The time grid should update instantly. If a booking made at 9:58am is not visible to another user until 10:02am, you still have double-booking problems.\n\n**Door display integration.** A tablet outside each room showing live status removes all ambiguity. SpacioHub's door display runs on any iPad or Android tablet — no proprietary hardware required.\n\n**No-show auto-release.** If a room is booked but nobody checks in within 15 minutes, the system should release it automatically. This single feature typically recovers 15–20% of lost room time.\n\n**Booking approval workflows.** For high-demand rooms — the executive boardroom, the client presentation suite — you want an admin to approve bookings rather than first-come-first-served.\n\n**Analytics that are actually useful.** Knowing which rooms are most booked, when peak hours fall, and which rooms consistently go unused lets you make real decisions about your office layout." },
+      { type: 'h2', text: 'How SpacioHub Works for Dubai Offices' },
+      { type: 'text', text: "SpacioHub was built for the GCC market. The platform handles room booking, door displays, visitor management, floor plans, and energy intelligence in a single product — available as a cloud platform at go.spaciohub.com or deployed entirely within your own server infrastructure.\n\nSetup takes less than a day. Rooms are added through a simple admin panel, invites go out by email, and door display tablets are paired via QR code in under a minute. The AI room booker — Mira — lets staff book rooms in plain English without navigating a calendar grid.\n\nFor Dubai offices that need Microsoft 365 integration, Azure AD SSO, or an on-premise deployment, SpacioHub handles all three.\n\nOur team is based in Dubai and supports clients across the UAE and GCC directly." },
+      { type: 'cta', plan: 'Request a demo from our Dubai team, or start a free 14-day trial at go.spaciohub.com — no credit card required.' },
+    ]
+  },
+  {
+    slug: 'ai-meeting-room-booking-uae',
+    title: 'AI Meeting Room Booking in UAE Offices — How Mira by SpacioHub Works',
+    excerpt: 'Meet Mira — SpacioHub\'s AI room booker that lets staff book meeting rooms in plain English. No forms, no calendar grid, no conflicts.',
+    category: 'AI & Innovation',
+    date: 'June 25, 2026',
+    readTime: '5 min read',
+    color: '#7c3aed',
+    bg: '#f5f3ff',
+    icon: '✨',
+    seoTitle: 'AI Meeting Room Booking in UAE Offices — How Mira by SpacioHub Works | SpacioHub',
+    seoDescription: 'Meet Mira — SpacioHub\'s AI room booker that lets UAE office staff book meeting rooms in plain English. No forms, no calendar grid, no conflicts.',
+    content: [
+      { type: 'intro', text: "For years, \"AI\" in enterprise software meant a search bar that sometimes autocompleted your text. The gap between the marketing and the reality was wide enough to drive a fleet of cars through.\n\nThat changed. The underlying models became genuinely capable of understanding natural language and taking real actions. The question was no longer whether AI could do this — but which products would build it well.\n\nSpacioHub built Mira." },
+      { type: 'h2', text: 'What Mira Does' },
+      { type: 'text', text: "Mira is not a chatbot with a script. It is a genuine language model integration that understands context, constraints, and intent.\n\nA staff member opens SpacioHub and types something like: *\"Book a room for 6 people tomorrow at 2pm with a screen — we need it for a client presentation.\"*\n\nMira reads that, checks live room availability, filters for rooms with the right capacity and a display screen, finds a slot at 2pm tomorrow, and books it — confirming with the user before committing. The whole interaction takes 15–20 seconds.\n\nNo calendar grid. No scrolling through available slots. No checking which room has HDMI and which has wireless casting only. Mira handles all of it." },
+      { type: 'h2', text: 'Why This Matters More in the GCC' },
+      { type: 'text', text: "The GCC business environment has a particular relationship with time. Meetings are often arranged at short notice. Schedules shift. A request that in London might go into a shared calendar two days in advance often happens here with 30 minutes to go.\n\nTraditional booking interfaces — even good ones — require the user to know the room inventory, check availability manually, and go through a multi-step form. For a PA arranging an urgent client meeting or an exec who just decided to pull the team together, that friction is real.\n\nMira removes it entirely. Staff describe what they need in the same way they would ask a colleague, and the system handles the rest." },
+      { type: 'h2', text: 'How It Is Built' },
+      { type: 'text', text: "Mira runs on Anthropic's Claude API, proxied through a Supabase Edge Function. This means the API key never touches the browser — all requests are server-side. For organisations with data security requirements, this architecture matters.\n\nThe integration is aware of your specific room inventory — names, capacities, floors, amenities, booking rules, and approval requirements. It does not give generic responses; it gives answers specific to your building.\n\nMira is included in the SpacioHub Max plan and above." },
+      { type: 'h2', text: 'What Mira Cannot Do (Yet)' },
+      { type: 'text', text: "Mira is a room booker, not a general-purpose office assistant. It books, cancels, and checks availability for meeting rooms in SpacioHub. It does not manage calendars outside the platform, send emails independently, or integrate with task management tools — those are on the roadmap.\n\nFor complex recurring arrangements or multi-room events, the standard booking interface remains the right tool. Mira is designed for the fast, conversational booking flow that covers the majority of everyday requests." },
+      { type: 'cta', plan: 'Mira is available on SpacioHub Max and above. Request a demo to see it in action with your own room inventory.' },
+    ]
+  },
+  {
+    slug: 'on-premise-workspace-management-uae',
+    title: 'On-Premise Workspace Management Software for UAE & GCC Organisations',
+    excerpt: 'Many UAE organisations cannot put workspace data on external cloud servers. SpacioHub offers full on-premise deployment — same features, your infrastructure, your data.',
+    category: 'UAE & GCC',
+    date: 'June 25, 2026',
+    readTime: '7 min read',
+    color: '#0cb8b6',
+    bg: '#e0f7f7',
+    icon: '🏛️',
+    seoTitle: 'On-Premise Workspace Management Software for UAE & GCC | SpacioHub',
+    seoDescription: 'Many UAE organisations cannot put workspace data on external cloud servers. SpacioHub offers full on-premise deployment — same features, your infrastructure, your data.',
+    content: [
+      { type: 'intro', text: "Cloud software is the default for most business applications in 2026. For the majority of UAE businesses it is faster to deploy, easier to maintain, and cheaper at entry level.\n\nBut not for everyone.\n\nGovernment entities, financial institutions, healthcare providers, and large enterprise organisations operating in the UAE often have requirements that cloud-first platforms cannot meet. Data residency rules, internal IT security policies, air-gapped network requirements, and regulatory frameworks all push toward a different answer: on-premise deployment.\n\nSpacioHub offers both." },
+      { type: 'h2', text: 'Who Needs On-Premise' },
+      { type: 'text', text: "The clearest signal is a policy requirement. If your IT or compliance team has said that operational data cannot leave your physical infrastructure — or cannot be stored on servers outside the UAE — on-premise is not a preference, it is a requirement.\n\nThe sectors where we see this most often in the GCC:\n\n**Government and semi-government entities.** UAE federal and emirate-level entities often have internal policies prohibiting the use of external cloud services for operational data, regardless of the cloud provider's data centre location.\n\n**Banking and financial services.** CBUAE regulations and internal security frameworks frequently mandate that operational systems run on bank-controlled infrastructure — including systems as seemingly low-risk as room booking, because the data includes staff names, meeting details, and visitor records.\n\n**Healthcare.** Patient-adjacent data and visitor records in hospital environments fall under data handling requirements that many cloud platforms do not satisfy without significant contractual arrangements.\n\n**Enterprises with existing on-premise infrastructure.** Some large organisations have made a deliberate decision to run critical systems on their own hardware. Adding a workspace management platform to that estate is a preference, not a hard requirement — but it is a legitimate one." },
+      { type: 'h2', text: 'What SpacioHub On-Premise Looks Like' },
+      { type: 'text', text: "SpacioHub on-premise runs on a Ubuntu virtual machine via Docker Compose. In practice, this means it runs on any virtualisation environment your organisation already operates — Hyper-V, VMware, Proxmox, or bare metal.\n\nThe deployment is handled by our team or a certified channel partner. The full platform — room booking, door displays, visitor management, floor plans, analytics, and AI scheduling — is identical to the cloud version. There is no feature gap between the two deployments.\n\nData never leaves your network. Backups, updates, and maintenance are managed by your IT team or by Riser under a support agreement. The platform is licensed via an HMAC-SHA256 signed key system — tamper-proof, tenant-locked, and revocable instantly if needed." },
+      { type: 'h2', text: 'What On-Premise Is Not' },
+      { type: 'text', text: "**On-premise does not mean unsupported.** Riser provides a dedicated deployment engineer for initial setup and ongoing support under the Annual Maintenance Contract. Updates are delivered as Docker image releases on a schedule that works for your change management process.\n\n**On-premise does not mean more expensive indefinitely.** The initial setup has an associated cost, but the annual licence model means predictable ongoing costs without per-seat fees or usage-based billing surprises.\n\n**On-premise does not mean slower.** The platform performance on a properly provisioned VM is identical to the cloud version. For organisations with fast internal networks, it is often faster for users inside the building." },
+      { type: 'h2', text: 'Next Steps' },
+      { type: 'text', text: "If you are evaluating workspace management software for a UAE organisation with on-premise requirements, the right starting point is a call with our team. We will assess your infrastructure, walk through the deployment architecture, and give you a realistic picture of what implementation involves.\n\nOur team is based in Dubai and works with organisations across the UAE and GCC." },
+      { type: 'cta', plan: 'Contact our team to discuss on-premise deployment for your organisation. We work with government, finance, and healthcare clients across the UAE and GCC.' },
+    ]
+  }
+)
