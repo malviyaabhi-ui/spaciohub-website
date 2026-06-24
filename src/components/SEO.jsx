@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async'
 const SITE = 'SpacioHub'
 const BASE_URL = 'https://www.spaciohub.com'
 const DEFAULT_IMAGE = `${BASE_URL}/og-default.png`
-const DEFAULT_DESC = 'SpacioHub replaces chaotic email chains with intelligent room booking, door displays, visitor management and analytics. Free 14-day trial.'
+const DEFAULT_DESC = 'SpacioHub is a smart workspace management platform for UAE & GCC businesses. Room booking, visitor management, door displays, AI scheduling & energy analytics. Cloud or on-premise. Free 14-day trial.'
 
 export default function SEO({
   title,
@@ -13,7 +13,9 @@ export default function SEO({
   type = 'website',
   noIndex = false,
 }) {
-  const fullTitle = title ? `${title} — ${SITE}` : `${SITE} — Smart Workspace Management`
+  const fullTitle = title
+    ? `${title} | ${SITE}`
+    : `${SITE} — Room Booking & Workspace Management Software | Dubai, UAE`
   const url = `${BASE_URL}${path}`
 
   return (
@@ -31,6 +33,7 @@ export default function SEO({
       <meta property="og:image"       content={image} />
       <meta property="og:url"         content={url} />
       <meta property="og:site_name"   content={SITE} />
+      <meta property="og:locale"      content="en_AE" />
 
       {/* Twitter Card */}
       <meta name="twitter:card"        content="summary_large_image" />
@@ -39,7 +42,7 @@ export default function SEO({
       <meta name="twitter:image"       content={image} />
 
       {/* Extra */}
-      <meta name="theme-color" content="#00c07a" />
+      <meta name="theme-color" content="#0cb8b6" />
     </Helmet>
   )
 }

@@ -65,10 +65,10 @@ const FAQS = [
 ]
 
 const PLAN_CONFIGS = [
-  { name: 'Basic',      icon: '🌱', monthlyPrice: null,  annualPrice: '$30',   period: 'per year',          desc: 'For small teams getting started',        cta: 'Get started free',  href: 'https://go.spaciohub.com', pop: false, color: '#f8fafc',     border: '#e2e8f0',  accent: '#64748b' },
-  { name: 'Pro',        icon: '⚡', monthlyPrice: '$8',   annualPrice: '$4.99', period: 'per month',         desc: 'For growing teams with more needs',       cta: 'Start free trial',  href: 'https://go.spaciohub.com', pop: false, color: '#eff6ff',     border: '#bfdbfe',  accent: '#3b82f6' },
-  { name: 'Max',        icon: '🚀', monthlyPrice: '$15',  annualPrice: '$8.99', period: 'per month',         desc: 'Unlimited everything for large teams',    cta: 'Request Demo',      href: null,                       pop: true,  color: '#0f172a',     border: '#00c07a',  accent: '#00c07a' },
-  { name: 'Enterprise', icon: '🏢', monthlyPrice: null,   annualPrice: null,    period: '',                  desc: 'Custom for complex organisations',        cta: 'Contact Sales',     href: null,                       pop: false, color: '#fefce8',     border: '#fde68a',  accent: '#d97706' },
+  { name: 'Basic', monthlyPrice: null,  annualPrice: '$30',   period: 'per year',          desc: 'For small teams getting started',        cta: 'Get started free',  href: 'https://go.spaciohub.com', pop: false, color: '#f8fafc',     border: '#e2e8f0',  accent: '#64748b' },
+  { name: 'Pro', monthlyPrice: '$8',   annualPrice: '$4.99', period: 'per month',         desc: 'For growing teams with more needs',       cta: 'Start free trial',  href: 'https://go.spaciohub.com', pop: false, color: '#eff6ff',     border: '#bfdbfe',  accent: '#3b82f6' },
+  { name: 'Max', monthlyPrice: '$15',  annualPrice: '$8.99', period: 'per month',         desc: 'Unlimited everything for large teams',    cta: 'Request Demo',      href: null,                       pop: true,  color: '#0f172a',     border: '#00c07a',  accent: '#00c07a' },
+  { name: 'Enterprise', monthlyPrice: null,   annualPrice: null,    period: '',                  desc: 'Custom for complex organisations',        cta: 'Contact Sales',     href: null,                       pop: false, color: '#fefce8',     border: '#fde68a',  accent: '#d97706' },
 ]
 
 const QUESTIONS = [
@@ -76,40 +76,40 @@ const QUESTIONS = [
     id: 'rooms',
     q: 'How many meeting rooms do you need to manage?',
     options: [
-      { label: '1-2 rooms',      value: 'basic', icon: '🚪' },
-      { label: '3-5 rooms',      value: 'pro',   icon: '🏢' },
-      { label: '6-15 rooms',     value: 'pro+',  icon: '🏬' },
-      { label: '16+ or unlimited', value: 'max', icon: '🌐' },
+      { label: '1-2 rooms',      value: 'basic' },
+      { label: '3-5 rooms',      value: 'pro' },
+      { label: '6-15 rooms',     value: 'pro+' },
+      { label: '16+ or unlimited', value: 'max' },
     ]
   },
   {
     id: 'team',
     q: 'How many people will use SpacioHub?',
     options: [
-      { label: 'Just me / 1-5 people', value: 'basic', icon: '👤' },
-      { label: '6-25 people',           value: 'pro',   icon: '👥' },
-      { label: '26-100 people',         value: 'max',   icon: '🏟️' },
-      { label: '100+ or multiple orgs', value: 'ent',   icon: '🌍' },
+      { label: 'Just me / 1-5 people', value: 'basic' },
+      { label: '6-25 people',           value: 'pro' },
+      { label: '26-100 people',         value: 'max' },
+      { label: '100+ or multiple orgs', value: 'ent' },
     ]
   },
   {
     id: 'integrations',
     q: 'Which integrations do you need?',
     options: [
-      { label: 'Just iCal / email alerts', value: 'basic', icon: '📧' },
-      { label: 'Google or Outlook calendar sync', value: 'pro', icon: '📅' },
-      { label: 'SSO (Google or Microsoft)',  value: 'max',  icon: '🔑' },
-      { label: 'SAML SSO / custom setup',   value: 'ent',  icon: '🛡️' },
+      { label: 'Just iCal / email alerts', value: 'basic' },
+      { label: 'Google or Outlook calendar sync', value: 'pro' },
+      { label: 'SSO (Google or Microsoft)',  value: 'max' },
+      { label: 'SAML SSO / custom setup',   value: 'ent' },
     ]
   },
   {
     id: 'usecase',
     q: 'What best describes your setup?',
     options: [
-      { label: 'Small office / startup',       value: 'basic', icon: '🌱' },
-      { label: 'Growing team or business',     value: 'pro',   icon: '⚡' },
-      { label: 'Coworking / multi-floor corp', value: 'max',   icon: '🚀' },
-      { label: 'Agency / reseller / enterprise', value: 'ent', icon: '🏢' },
+      { label: 'Small office / startup',       value: 'basic' },
+      { label: 'Growing team or business',     value: 'pro' },
+      { label: 'Coworking / multi-floor corp', value: 'max' },
+      { label: 'Agency / reseller / enterprise', value: 'ent' },
     ]
   },
 ]
@@ -467,7 +467,6 @@ export default function Pricing() {
               return (
                 <div key={p.name} className="reveal" style={{ animationDelay: `${idx*0.08}s`, background: p.pop ? 'linear-gradient(160deg,#0f172a,#1a2744)' : p.color, border: `1.5px solid ${p.border}`, borderRadius: 20, padding: '28px 24px', position: 'relative', boxShadow: p.pop ? '0 20px 60px rgba(0,192,122,0.2)' : '0 2px 8px rgba(0,0,0,0.04)', transform: p.pop ? 'translateY(-8px)' : 'none' }}>
                   {p.pop && <div style={{ position: 'absolute', top: -13, left: '50%', transform: 'translateX(-50%)', background: 'linear-gradient(135deg,#00c07a,#009960)', color: '#fff', fontSize: 10, fontWeight: 700, padding: '4px 16px', borderRadius: 100, whiteSpace: 'nowrap', letterSpacing: '0.5px', boxShadow: '0 4px 14px rgba(0,192,122,0.4)' }}>MOST POPULAR</div>}
-                  <div style={{ fontSize: 28, marginBottom: 12 }}>{p.icon}</div>
                   <div style={{ fontSize: 11, fontWeight: 800, color: p.pop ? '#00c07a' : p.accent, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 6 }}>{p.name}</div>
                   <div style={{ fontSize: 12, color: p.pop ? '#64748b' : '#94a3b8', marginBottom: 20, lineHeight: 1.5 }}>{p.desc}</div>
                   <div style={{ marginBottom: 6 }}>
