@@ -11,10 +11,15 @@ const STEPS = [
 const DELETED = [
   'Your profile: name, email address, role, and preferences',
   'Your authentication credentials',
-  'Room bookings you created',
-  'Visitor records you registered',
   'Push notification subscriptions',
   'In-app notifications you received',
+  'Device records (mobile app installations)',
+  'Your membership in the workspace',
+]
+
+const ANONYMIZED = [
+  { label: 'Room bookings you created', body: 'The bookings remain in your organisation\'s workspace history for audit and calendar continuity, but your name and email are replaced with "Deleted user".' },
+  { label: 'Visitor records you registered', body: 'Visitor logs remain for compliance and security purposes, but your name and email as the host are replaced with "Deleted user".' },
 ]
 
 const RETAINED = [
@@ -61,6 +66,17 @@ export default function DeleteAccount() {
               <ul style={{ paddingLeft: 20, fontSize: 14, color: '#374151', lineHeight: 1.9, margin: 0 }}>
                 {DELETED.map(item => <li key={item}>{item}</li>)}
               </ul>
+            </div>
+
+            <div style={{ marginBottom: 40 }}>
+              <h2 style={{ fontSize: 18, fontWeight: 700, color: '#0f172a', marginBottom: 12 }}>What is anonymized</h2>
+              <p style={{ fontSize: 14, color: '#374151', lineHeight: 1.8, marginBottom: 12 }}>For workspace continuity and audit compliance, some records are kept in your organisation's workspace, but your personal identifiers are removed:</p>
+              {ANONYMIZED.map(item => (
+                <div key={item.label} style={{ marginBottom: 14 }}>
+                  <p style={{ fontSize: 14, color: '#0f172a', fontWeight: 600, margin: '0 0 4px' }}>{item.label}</p>
+                  <p style={{ fontSize: 14, color: '#374151', lineHeight: 1.7, margin: 0 }}>{item.body}</p>
+                </div>
+              ))}
             </div>
 
             <div style={{ marginBottom: 40 }}>
