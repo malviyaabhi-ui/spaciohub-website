@@ -14,6 +14,7 @@ import HelpCentre from './pages/HelpCentre'
 import Contact from './pages/Contact'
 import Changelog from './pages/Changelog'
 import Privacy from './pages/Privacy'
+import DeleteAccount from './pages/DeleteAccount'
 import Security from './pages/Security'
 import Terms from './pages/Terms'
 import Cookies from './pages/Cookies'
@@ -94,6 +95,7 @@ export default function App() {
 
           {/* Legal */}
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/delete-account" element={<DeleteAccount />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/cookies" element={<Cookies />} />
         </Routes>
