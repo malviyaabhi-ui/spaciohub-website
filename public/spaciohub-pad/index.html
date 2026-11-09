@@ -89,7 +89,7 @@
   #rail li.on{background:var(--led);box-shadow:0 0 10px var(--led)}
 
   html,body{margin:0}
-  #home{position:fixed;z-index:20;left:max(16px,env(safe-area-inset-left,0px));top:calc(14px + env(safe-area-inset-top,0px));padding:8px 14px;border-radius:999px;background:rgba(7,26,71,.7);border:1px solid var(--navy-2);color:var(--text);font:600 .9rem var(--display);text-decoration:none}
+  #home{display:inline-flex;align-items:center;gap:8px;position:fixed;z-index:20;left:max(16px,env(safe-area-inset-left,0px));top:calc(14px + env(safe-area-inset-top,0px));padding:8px 14px;border-radius:999px;background:rgba(7,26,71,.7);border:1px solid var(--navy-2);color:var(--text);font:600 .9rem var(--display);text-decoration:none}
   #home:hover,#home:focus-visible{border-color:var(--teal);outline:none}
   @media (max-width:760px){
     #fit{left:50%;top:36%}
@@ -102,7 +102,7 @@
 </style>
 </head><body>
 
-<a id="home" href="/platform/door-display">&larr; SpacioHub Door Display</a>
+<a id="home" href="/platform/door-display"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>SpacioHub Door Display</a>
 <div id="track">
   <div id="stage">
     <div id="fit"><div id="rig">
@@ -207,7 +207,7 @@
       <div class="cap" data-a=".72" data-b=".775"><p class="eyebrow">Install, step 1</p><h2>The plate goes on the wall</h2><p class="b">Four screws hold the wall plate in place.</p></div>
       <div class="cap" data-a=".795" data-b=".84"><p class="eyebrow">Install, step 2</p><h2>One cable comes through</h2><p class="b">PoE carries power and data over a single Ethernet cable.</p></div>
       <div class="cap" data-a=".86" data-b=".95"><p class="eyebrow">Install, step 3</p><h2>The panel hangs on its plate</h2><p class="b">Plug in the cable, then lower the display onto the hooks.</p></div>
-      <div class="cap" data-a=".97" data-b="1.03"><span class="logo"><img src="assets/logo.png" alt="SpacioHub" width="1000" height="405"></span><p class="eyebrow">Installed</p><h2>Live on the door</h2><p class="b"><a href="/platform/door-display" style="color:var(--teal)">Back to Door Display</a> &middot; go.spaciohub.com</p></div>
+      <div class="cap" data-a=".97" data-b="1.03"><span class="logo"><img src="assets/logo.png" alt="SpacioHub" width="1000" height="405"></span><p class="eyebrow">Installed</p><h2>Live on the door</h2><p class="b"><a href="/platform/door-display" style="color:var(--teal)">Back to Door Display</a></p><p class="b" style="margin-top:4px">go.spaciohub.com</p></div>
     </div>
 
     <div id="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6"/></svg>Scroll</div>
