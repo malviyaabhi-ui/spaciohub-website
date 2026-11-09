@@ -4,18 +4,18 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useModal } from '../../components/ModalContext'
 
 const DOOR_FEATURES = [
-  { icon: '🟢', label: 'Free Room',       title: "Instantly see what's available",    desc:"The display turns green and shows 'Free' with the day's schedule. Anyone can walk up and book — no login needed.", statusLabel:'Free',        statusColor:'#00c07a', bgRight:'linear-gradient(160deg,#00c07a,#009960)', roomName:'Conference Room', detail:'Available all day', detailLabel:null, schedule:null, actions:['Book Now','Guest Booking'], time:'10:30 AM' },
-  { icon: '🟡', label: 'Starts Soon',     title: 'Never get caught off-guard',        desc:'Amber alert shows the upcoming meeting and start time so the current occupant knows to wrap up.', statusLabel:'Starts Soon', statusColor:'#f59e0b', bgRight:'linear-gradient(160deg,#f59e0b,#d97706)', roomName:'Conference Room', detail:'Team Standup', detailLabel:'NEXT UP', detailSub:'Starts 11:00 AM · sarah@acme.com', schedule:{title:'Team Standup',time:'11:00 AM – 11:30 AM',people:'5 people'}, actions:['Book Now','Guest Booking'], time:'10:55 AM' },
-  { icon: '🔴', label: 'In Use',          title: 'Extend or end meetings on the spot', desc:'Red panel shows the live meeting. Staff can extend by 15 mins or end early — no login anywhere needed.', statusLabel:'In Use',     statusColor:'#ef4444', bgRight:'linear-gradient(160deg,#ef4444,#dc2626)', roomName:'Conference Room', detail:'Team Standup', detailLabel:'CURRENT MEETING', detailSub:'11:00 AM – 11:30 AM · 5 people', schedule:{title:'Team Standup',time:'11:00 AM – 11:30 AM',people:'5 people'}, actions:['End Now','+15 min','Guest Booking'], time:'11:05 AM' },
-  { icon: '🔒', label: 'PIN Admin',       title: 'PIN-protected settings entry',       desc:"Tap the gear and a PIN pad appears. Only authorised admins can access settings — guests can't accidentally change anything.", isPin:true, statusLabel:'Admin', statusColor:'#3b82f6', time:'11:05 AM' },
-  { icon: '⚙️', label: 'Settings',        title: 'Full control from the display itself',desc:'Room, Display, Booking and System tabs let you configure everything on-device — themes, permissions, and refresh intervals.', isSettings:true, statusLabel:'Settings', statusColor:'#3b82f6', time:'11:05 AM' },
+  { icon: <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="7" fill="#00c07a"/></svg>, label: 'Free Room',       title: "Instantly see what's available",    desc:"The display turns green and shows 'Free' with the day's schedule. Anyone can walk up and book — no login needed.", statusLabel:'Free',        statusColor:'#00c07a', bgRight:'linear-gradient(160deg,#00c07a,#009960)', roomName:'Conference Room', detail:'Available all day', detailLabel:null, schedule:null, actions:['Book Now','Guest Booking'], time:'10:30 AM' },
+  { icon: <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="7" fill="#f59e0b"/></svg>, label: 'Starts Soon',     title: 'Never get caught off-guard',        desc:'Amber alert shows the upcoming meeting and start time so the current occupant knows to wrap up.', statusLabel:'Starts Soon', statusColor:'#f59e0b', bgRight:'linear-gradient(160deg,#f59e0b,#d97706)', roomName:'Conference Room', detail:'Team Standup', detailLabel:'NEXT UP', detailSub:'Starts 11:00 AM · sarah@acme.com', schedule:{title:'Team Standup',time:'11:00 AM – 11:30 AM',people:'5 people'}, actions:['Book Now','Guest Booking'], time:'10:55 AM' },
+  { icon: <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="7" fill="#ef4444"/></svg>, label: 'In Use',          title: 'Extend or end meetings on the spot', desc:'Red panel shows the live meeting. Staff can extend by 15 mins or end early — no login anywhere needed.', statusLabel:'In Use',     statusColor:'#ef4444', bgRight:'linear-gradient(160deg,#ef4444,#dc2626)', roomName:'Conference Room', detail:'Team Standup', detailLabel:'CURRENT MEETING', detailSub:'11:00 AM – 11:30 AM · 5 people', schedule:{title:'Team Standup',time:'11:00 AM – 11:30 AM',people:'5 people'}, actions:['End Now','+15 min','Guest Booking'], time:'11:05 AM' },
+  { icon: <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0F799B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>, label: 'PIN Admin',       title: 'PIN-protected settings entry',       desc:"Tap the gear and a PIN pad appears. Only authorised admins can access settings — guests can't accidentally change anything.", isPin:true, statusLabel:'Admin', statusColor:'#3b82f6', time:'11:05 AM' },
+  { icon: <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0F799B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>, label: 'Settings',        title: 'Full control from the display itself',desc:'Room, Display, Booking and System tabs let you configure everything on-device — themes, permissions, and refresh intervals.', isSettings:true, statusLabel:'Settings', statusColor:'#3b82f6', time:'11:05 AM' },
 ]
 const PROGRESS_DURATION = 4000
 
 function TabletScreen({ feature, settingsTab, setSettingsTab }) {
   if (feature.isPin) return (
     <div style={{ background:'linear-gradient(160deg,#0f172a,#1e293b)', padding:'28px 20px', display:'flex', flexDirection:'column', alignItems:'center', minHeight:300, animation:'fadeIn 0.35s ease' }}>
-      <div style={{ width:50,height:50,borderRadius:14,background:'#1e293b',border:'1px solid #334155',display:'flex',alignItems:'center',justifyContent:'center',fontSize:22,marginBottom:14 }}>⚙️</div>
+      <div style={{ width:50,height:50,borderRadius:14,background:'#1e293b',border:'1px solid #334155',display:'flex',alignItems:'center',justifyContent:'center',fontSize:22,marginBottom:14 }}><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></div>
       <div style={{ fontSize:18,fontWeight:800,color:'#fff',marginBottom:4 }}>Admin Access</div>
       <div style={{ fontSize:12,color:'#475569',marginBottom:20 }}>Enter your 4-digit PIN</div>
       <div style={{ display:'flex',gap:10,marginBottom:22 }}>
@@ -31,9 +31,9 @@ function TabletScreen({ feature, settingsTab, setSettingsTab }) {
   if (feature.isSettings) return (
     <div style={{ background:'#0f172a',padding:'18px 16px',minHeight:300,animation:'fadeIn 0.35s ease' }}>
       <div style={{ display:'flex',alignItems:'center',gap:10,marginBottom:14,paddingBottom:12,borderBottom:'1px solid #1e293b' }}>
-        <div style={{ width:32,height:32,borderRadius:9,background:'#1e40af',display:'flex',alignItems:'center',justifyContent:'center',fontSize:15 }}>🖥️</div>
+        <div style={{ width:32,height:32,borderRadius:9,background:'#1e40af',display:'flex',alignItems:'center',justifyContent:'center',fontSize:15 }}><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg></div>
         <span style={{ fontSize:13,fontWeight:700,color:'#fff' }}>Door Display Settings</span>
-        <span style={{ marginLeft:'auto',color:'#475569',cursor:'pointer',fontSize:14 }}>✕</span>
+        <span style={{ marginLeft:'auto',color:'#475569',cursor:'pointer',fontSize:14,display:'flex' }}><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#475569" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
       </div>
       <div style={{ display:'flex',gap:4,marginBottom:14 }}>
         {['Room','Display','Booking','System'].map(t=>(
@@ -78,7 +78,7 @@ function TabletScreen({ feature, settingsTab, setSettingsTab }) {
       <div style={{ background:'#0f172a',padding:'16px 14px',display:'flex',flexDirection:'column' }}>
         <div style={{ display:'flex',justifyContent:'space-between',marginBottom:14 }}>
           <div style={{ fontSize:9,color:'#334155',fontWeight:600 }}>Fri, Mar 27</div>
-          <div style={{ fontSize:11,color:'#334155' }}>⚙</div>
+          <div style={{ fontSize:11,color:'#334155',display:'flex' }}><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#334155" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></div>
         </div>
         <div style={{ fontSize:18,fontWeight:900,color:'#fff',lineHeight:1.1,marginBottom:10,letterSpacing:-0.5 }}>{feature.roomName}</div>
         <div style={{ display:'inline-flex',alignItems:'center',gap:5,background:`${feature.statusColor}22`,border:`1px solid ${feature.statusColor}44`,borderRadius:7,padding:'4px 9px',marginBottom:10,width:'fit-content' }}>
@@ -144,27 +144,6 @@ export default function DoorDisplay() {
       <main style={{ paddingTop:64, fontFamily:'Inter,sans-serif' }}>
 
       {/* HERO */}
-      <section style={{ background:'#060d1a', borderBottom:'1px solid #1e293b', padding:'100px 0 80px', overflow:'hidden', position:'relative' }}>
-        <div style={{ position:'absolute', top:'10%', left:'10%', width:500, height:500, borderRadius:'50%', background:'radial-gradient(circle,rgba(59,130,246,0.10),transparent 70%)', animation:'orbFloat1 8s ease-in-out infinite', pointerEvents:'none' }} />
-        <div style={{ position:'absolute', bottom:'5%', right:'5%', width:400, height:400, borderRadius:'50%', background:'radial-gradient(circle,rgba(15,121,155,0.10),transparent 70%)', animation:'orbFloat2 10s ease-in-out infinite 2s', pointerEvents:'none' }} />
-        <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)', backgroundSize:'60px 60px', pointerEvents:'none' }} />
-        <div style={{ position:'absolute', bottom:0, left:0, right:0, height:200, background:'linear-gradient(0deg,#060d1a,transparent)', pointerEvents:'none' }} />
-        <div className="container" style={{ position:'relative', textAlign:'center' }}>
-          <span className="tag animate-fade-up" style={{ color:'#3b82f6' }}>Platform</span>
-          <h1 className="animate-fade-up delay-1" style={{ fontSize:'clamp(36px,5vw,64px)', fontWeight:900, letterSpacing:'-2.5px', lineHeight:1.05, color:'#fff', marginBottom:20, maxWidth:680, margin:'0 auto 20px' }}>
-            Door Display <span style={{ background:'linear-gradient(135deg,#3b82f6,#0cb8b6)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Panel</span>
-          </h1>
-          <p className="animate-fade-up delay-2" style={{ maxWidth:520, margin:'0 auto 40px', fontSize:17, color:'rgba(255,255,255,0.55)', lineHeight:1.7 }}>Real-time room status on any tablet. Let anyone book, check in, or extend a meeting — right from the door. No logins, no apps.</p>
-          <div className="animate-fade-up delay-3" style={{ display:'flex', gap:12, flexWrap:'wrap', justifyContent:'center' }}>
-            <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 0 40px rgba(59,130,246,0.35)' }}>Request a Demo →</button>
-            <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'14px 28px', borderRadius:8, fontSize:15, fontWeight:600, border:'1.5px solid rgba(255,255,255,0.2)', color:'#fff', textDecoration:'none', background:'rgba(255,255,255,0.06)', backdropFilter:'blur(8px)', transition:'all 0.2s' }}
-              onMouseEnter={e=>{ e.currentTarget.style.background='rgba(255,255,255,0.12)'; e.currentTarget.style.borderColor='rgba(255,255,255,0.35)' }}
-              onMouseLeave={e=>{ e.currentTarget.style.background='rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor='rgba(255,255,255,0.2)' }}>
-              Try free for 14 days
-            </a>
-          </div>
-        </div>
-      </section>
       <section style={{ background:'linear-gradient(170deg,#eff6ff,#fff 60%,#f8fafc)', borderBottom:'1px solid #e2e8f0', padding:'88px 0 72px', overflow:'hidden', position:'relative' }}>
         <div style={{ position:'absolute',top:-80,right:-80,width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(59,130,246,0.08),transparent 65%)',pointerEvents:'none' }}/>
         <div className="container" style={{ position:'relative' }}>
@@ -174,13 +153,13 @@ export default function DoorDisplay() {
               <h1 className="h1 animate-fade-up delay-1" style={{ fontSize:'clamp(30px,4vw,52px)', marginBottom:20 }}>
                 Door Display <span style={{ background:'linear-gradient(135deg,#3b82f6,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>Panels</span>
               </h1>
-              <p className="lead animate-fade-up delay-2" style={{ marginBottom:36 }}>Mount any iPad or Android tablet outside every meeting room. Live status, instant booking, guest access — no login required.</p>
+              <p className="lead animate-fade-up delay-2" style={{ marginBottom:36 }}>Mount the SpacioHub Pad or any iPad or Android tablet outside every meeting room. Live status, instant booking, guest access — no login required.</p>
               <div className="animate-fade-up delay-3" style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
-                <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 8px 28px rgba(0,192,122,0.3)' }}>Request a Demo →</button>
+                <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 8px 28px rgba(0,192,122,0.3)' }}>Request a Demo<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ marginLeft:8, verticalAlign:"-3px" }}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
                 <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="btn btn-outline btn-lg">Try free</a>
               </div>
               <div className="animate-fade-up delay-4" style={{ display:'flex', gap:12, marginTop:36, flexWrap:'wrap' }}>
-                {[['Any tablet','iPad, Android, Fire'],['No login','Guests book directly'],['Works offline','Auto-reconnects']].map(([t,s])=>(
+                {[['Our panel or yours','SpacioHub Pad or any tablet'],['No login','Guests book directly'],['Works offline','Auto-reconnects']].map(([t,s])=>(
                   <div key={t} style={{ display:'flex', alignItems:'center', gap:8 }}>
                     <div style={{ width:6,height:6,borderRadius:'50%',background:'#00c07a' }}/>
                     <div><div style={{ fontSize:12,fontWeight:700,color:'#0f172a' }}>{t}</div><div style={{ fontSize:11,color:'#94a3b8' }}>{s}</div></div>
@@ -189,17 +168,7 @@ export default function DoorDisplay() {
               </div>
             </div>
             <div className="animate-fade-up delay-2" style={{ position:'relative' }}>
-              <div style={{ background:'#1a1a2e',borderRadius:28,padding:'16px 12px 14px',boxShadow:'0 40px 100px rgba(0,0,0,0.45), inset 0 0 0 2px rgba(255,255,255,0.05)',maxWidth:320,margin:'0 auto' }}>
-                <div style={{ width:7,height:7,borderRadius:'50%',background:'#2d2d4e',margin:'0 auto 9px',border:'1px solid #333' }}/>
-                <div style={{ borderRadius:13,overflow:'hidden',background:'#0f172a' }}>
-                  <TabletScreen feature={DOOR_FEATURES[active]} settingsTab={settingsTab} setSettingsTab={setSettingsTab}/>
-                </div>
-                <div style={{ width:30,height:3,borderRadius:2,background:'#2d2d4e',margin:'9px auto 0' }}/>
-              </div>
-              <div style={{ position:'absolute',top:-14,right:10,background:'#fff',border:'1px solid #e2e8f0',borderRadius:10,padding:'6px 12px',display:'flex',alignItems:'center',gap:6,boxShadow:'0 4px 20px rgba(0,0,0,0.1)',fontSize:11,fontWeight:700,color:'#0f172a',animation:'float 4s ease-in-out infinite' }}>
-                <div style={{ width:8,height:8,borderRadius:'50%',background:DOOR_FEATURES[active].statusColor,animation:'pulse 2s infinite' }}/>
-                {DOOR_FEATURES[active].label}
-              </div>
+              <img src="/screenshots/spaciohub-pad-panel.webp" alt="SpacioHub Pad door panel showing a free room with its green LED status bar lit" width="1100" height="815" style={{ width:'100%', height:'auto', display:'block', filter:'drop-shadow(0 30px 50px rgba(15,23,42,0.25))' }} />
             </div>
           </div>
         </div>
@@ -248,6 +217,24 @@ export default function DoorDisplay() {
         </div>
       </section>
 
+      {/* SPACIOHUB PAD — 3D TEARDOWN */}
+      <section style={{ background:'linear-gradient(160deg,#071a47,#0d2b6b)', borderBottom:'1px solid #1e293b', padding:'88px 0', overflow:'hidden' }}>
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap:48, alignItems:'center' }}>
+            <div>
+              <span className="tag reveal" style={{ color:'#0cb8b6' }}>SpacioHub Pad</span>
+              <h2 className="h2 reveal" style={{ color:'#fff', marginBottom:16 }}>Take the panel apart, <span style={{ color:'#0cb8b6' }}>then hang it on the wall</span></h2>
+              <p className="reveal" style={{ fontSize:17, lineHeight:1.7, color:'rgba(255,255,255,0.7)', marginBottom:28, maxWidth:480 }}>Scroll through an interactive 3D view of our dedicated door panel: the LED status bar, side speakers, microphones and ports, and how it mounts with a single PoE cable.</p>
+              <p className="reveal" style={{ fontSize:15, lineHeight:1.6, color:'rgba(255,255,255,0.6)', marginBottom:24, maxWidth:480 }}>Already have tablets? The same display runs on any iPad or Android tablet. The Pad adds the LED bar, NFC reader and PoE.</p>
+              <a href="/spaciohub-pad/" className="btn btn-primary btn-lg reveal" style={{ boxShadow:'0 0 40px rgba(12,184,182,0.35)' }}>Explore it in 3D<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ marginLeft:8, verticalAlign:"-3px" }}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <a href="/spaciohub-pad/" className="reveal" aria-label="Explore the SpacioHub Pad in 3D" style={{ display:'block' }}>
+              <img src="/screenshots/spaciohub-pad-exploded.jpg" alt="Exploded view of the SpacioHub Pad: display, LED light bar, Android board, rear housing and wall plate" width="1800" height="1600" loading="lazy" style={{ width:'100%', height:'auto', borderRadius:20 }} />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* FEATURES */}
       <section style={{ padding:'80px 0', borderBottom:'1px solid #e2e8f0', background:'#fff' }}>
         <div className="container">
@@ -257,7 +244,7 @@ export default function DoorDisplay() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3" style={{gap:16}}>
             {[
-              { title:'Works on any tablet',   desc:'iPad, Android, Amazon Fire — any modern tablet. No special hardware.', icon:<svg viewBox="0 0 40 40" width="22" height="22" fill="none"><rect width="40" height="40" rx="10" fill="#eff6ff"/><rect x="11" y="5" width="18" height="30" rx="3" fill="#3b82f6" opacity="0.15"/><rect x="11" y="5" width="18" height="30" rx="3" stroke="#3b82f6" strokeWidth="1.5"/><rect x="13" y="8" width="14" height="3" rx="0.5" fill="#3b82f6" opacity="0.4"/><circle cx="20" cy="30" r="2" fill="#3b82f6" opacity="0.5"/></svg> },
+              { title:'Our panel or yours',   desc:'Use the SpacioHub Pad with its LED status bar, or any iPad, Android or Fire tablet you already have.', icon:<svg viewBox="0 0 40 40" width="22" height="22" fill="none"><rect width="40" height="40" rx="10" fill="#eff6ff"/><rect x="11" y="5" width="18" height="30" rx="3" fill="#3b82f6" opacity="0.15"/><rect x="11" y="5" width="18" height="30" rx="3" stroke="#3b82f6" strokeWidth="1.5"/><rect x="13" y="8" width="14" height="3" rx="0.5" fill="#3b82f6" opacity="0.4"/><circle cx="20" cy="30" r="2" fill="#3b82f6" opacity="0.5"/></svg> },
               { title:'No login required',      desc:'Anyone can book, check in, or extend a meeting directly from the panel.', icon:<svg viewBox="0 0 40 40" width="22" height="22" fill="none"><rect width="40" height="40" rx="10" fill="#ecfdf5"/><circle cx="20" cy="18" r="6" fill="#00c07a" opacity="0.2"/><circle cx="20" cy="18" r="6" stroke="#00c07a" strokeWidth="1.5"/><path d="M14 30c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#00c07a" strokeWidth="1.5" strokeLinecap="round" fill="none"/><path d="M16 18l3 3 5-5" stroke="#00c07a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg> },
               { title:'Auto no-show release',   desc:'No check-in within 15 mins? Room automatically freed for others.', icon:<svg viewBox="0 0 40 40" width="22" height="22" fill="none"><rect width="40" height="40" rx="10" fill="#fff7ed"/><circle cx="20" cy="20" r="9" fill="#f97316" opacity="0.1"/><circle cx="20" cy="20" r="9" stroke="#f97316" strokeWidth="1.5"/><path d="M20 14v6l4 3" stroke="#f97316" strokeWidth="1.5" strokeLinecap="round"/></svg> },
               { title:'PIN-protected admin',    desc:'Settings locked behind a PIN — only authorised staff can change things.', icon:<svg viewBox="0 0 40 40" width="22" height="22" fill="none"><rect width="40" height="40" rx="10" fill="#eff6ff"/><rect x="13" y="19" width="14" height="12" rx="2" fill="#3b82f6" opacity="0.15"/><rect x="13" y="19" width="14" height="12" rx="2" stroke="#3b82f6" strokeWidth="1.5"/><path d="M15 19v-4a5 5 0 0110 0v4" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round"/><circle cx="20" cy="25" r="1.5" fill="#3b82f6"/></svg> },
@@ -282,9 +269,9 @@ export default function DoorDisplay() {
             <svg viewBox="0 0 80 80" width="72" height="72" fill="none"><rect width="80" height="80" rx="20" fill="#eff6ff"/><rect x="20" y="8" width="40" height="64" rx="6" fill="#3b82f6" opacity="0.15"/><rect x="20" y="8" width="40" height="64" rx="6" stroke="#3b82f6" strokeWidth="2"/><rect x="24" y="14" width="32" height="6" rx="1" fill="#3b82f6" opacity="0.4"/><rect x="24" y="24" width="32" height="7" rx="1" fill="#3b82f6" opacity="0.3"/><circle cx="56" cy="62" r="3" fill="#3b82f6" opacity="0.5"/></svg>
           </div>
           <h2 className="h2 reveal" style={{ marginBottom:14 }}>Put a display on <span style={{ background:'linear-gradient(135deg,#3b82f6,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>every room</span></h2>
-          <p className="lead reveal" style={{ marginBottom:36, color:'#64748b' }}>Works on any tablet. Set up in under 5 minutes. No special hardware needed.</p>
+          <p className="lead reveal" style={{ marginBottom:36, color:'#64748b' }}>Use the SpacioHub Pad or any tablet you own. Set up in under 5 minutes.</p>
           <div className="reveal" style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap' }}>
-            <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 8px 28px rgba(0,192,122,0.3)' }}>Request a Demo →</button>
+            <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 8px 28px rgba(0,192,122,0.3)' }}>Request a Demo<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ marginLeft:8, verticalAlign:"-3px" }}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
             <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="btn btn-outline btn-lg">Start free trial</a>
           </div>
         </div>
