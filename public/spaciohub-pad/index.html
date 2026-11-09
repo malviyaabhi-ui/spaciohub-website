@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Take the SpacioHub Pad door panel apart and see it installed: LED status bar, speakers, microphones, ports and wall mounting.">
+<link rel="canonical" href="https://www.spaciohub.com/spaciohub-pad/">
+<link rel="icon" href="/color-wordmark-favicon.ico">
+<title>SpacioHub Pad in 3D | SpacioHub</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+  /* Layout: one pinned 3D stage scrubbed by scroll; captions sit left on desktop and below the device on phones. One dark look in every theme. */
+  :root{
+    color-scheme:dark;
+    --navy:#071a47; --navy-2:#102f73; --teal:#0cb8b6; --text:#f2f7ff; --soft:#b7c7e4;
+    --led:#34e66e; --shell:#17191d; --edge:#23262c; --plate:#6f757e;
+    --display:"Archivo",Arial,sans-serif; --body:"Hanken Grotesk",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--navy);color:var(--text);font-family:var(--body);overflow-x:clip}
+  h1,h2,p{margin:0}
+  #track{height:1100vh;position:relative}
+  #stage{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;height:100dvh;overflow:hidden;perspective:2600px;
+    background:radial-gradient(900px 620px at 62% 42%,#14408f 0%,transparent 72%),var(--navy)}
+  #fit{position:absolute;left:63%;top:50%;width:0;height:0;transform-style:preserve-3d}
+  #rig,.t,#tablet,.part,#shell,#cable,#cable i{transform-style:preserve-3d}
+  #rig{position:absolute;left:0;top:0;width:0;height:0}
+  .c{position:absolute;left:-500px;top:-336px;width:1000px;height:672px}
+  #tablet{position:absolute;left:0;top:0;width:0;height:0}
+  .part{position:absolute;left:-500px;top:-336px;width:1000px;height:672px;border-radius:30px}
+
+  #front{left:-489px;top:-325px;width:978px;height:650px;background:linear-gradient(#17191d,#08090b);border-radius:22px;backface-visibility:hidden}
+  #screenOff{position:absolute;inset:0;border-radius:22px;background:#040506}
+  #led{--c:var(--led);--g:none}
+  #led u{position:absolute;display:block;box-sizing:border-box;backface-visibility:hidden;box-shadow:var(--g)}
+  #led .h{left:30px;right:30px;height:11px;background:var(--c)} #led .v{top:30px;bottom:30px;width:11px;background:var(--c)}
+  #led .k{width:30px;height:30px;border:11px solid var(--c);box-shadow:none}
+  #board{left:-430px;top:-280px;width:860px;height:560px;border-radius:14px;background:linear-gradient(135deg,#0c6e6d,#084f62);box-shadow:0 0 0 3px var(--teal);backface-visibility:hidden}
+  .chip{position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:7px;background:#10161f;box-shadow:0 0 0 2px #2b3a4d;color:#dff8f8;font:700 20px/1.15 var(--display)}
+  #shell{position:absolute;left:0;top:0;width:0;height:0}
+  .face{position:absolute;background:var(--shell);backface-visibility:hidden}
+  #back{left:-500px;top:-336px;width:1000px;height:672px;border-radius:30px;background:linear-gradient(160deg,#3a3f47 0%,#1b1e23 55%,#101215 100%)}
+  #vent{position:absolute;left:330px;top:36px;width:340px;height:90px;background-image:radial-gradient(circle,#050607 3px,transparent 3.5px);background-size:13px 13px}
+  .rs{position:absolute;top:92px;width:56px;height:84px;border-radius:5px;background:#0a0b0d;box-shadow:inset 0 0 0 2px #2c3037}
+  #plateTxt{position:absolute;left:380px;top:270px;width:240px;padding:14px;border-radius:8px;text-align:center;font:700 26px/1.2 var(--display);color:#8d96a3;box-shadow:inset 0 0 0 2px #333840}
+  #recess{position:absolute;left:120px;top:490px;width:760px;height:170px;border-radius:14px;background:#0b0c0f;box-shadow:inset 0 0 0 2px #2b2f36}
+  #ui{position:absolute;left:29px;top:29px;width:920px;height:592px;border-radius:6px;display:block}
+  #cam{position:absolute;left:484px;top:11px;width:10px;height:10px;border-radius:50%;background:#000;box-shadow:0 0 0 2px #2e333a}
+  .edgeV{top:-310px;height:620px;width:40px;left:-20px;background-color:var(--edge);background-image:radial-gradient(circle,#07080a 3px,transparent 3.5px);background-size:12px 12px}
+  .edgeH{left:-470px;width:940px;height:40px;top:-20px;background:var(--edge)}
+  #inner{left:-500px;top:-336px;width:1000px;height:672px;border-radius:30px;background:linear-gradient(160deg,#343941,#15171b)}
+  #power{position:absolute;left:11px;top:430px;width:18px;height:62px;border-radius:5px;background:#2e3238;box-shadow:0 0 0 1px #4b5058}
+  .mic{position:absolute;top:15px;width:10px;height:10px;border-radius:50%;background:#000;box-shadow:0 0 0 2px #3c4047}
+  .ring{position:absolute;top:0;width:40px;height:40px;margin-left:-15px;border-radius:50%;border:2px solid var(--teal)}
+  #portsWrap{position:absolute;left:150px;top:510px;width:700px}
+  #ports{display:block;width:700px;height:auto}
+  .ptag{position:absolute;top:-60px;transform:translateX(-50%);padding:4px 11px;border-radius:999px;background:var(--teal);color:var(--navy);font:700 19px/1.2 var(--display);white-space:nowrap}
+  .ptag::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:22px;background:var(--teal)}
+
+  #plate{left:-375px;top:-250px;width:750px;height:500px;border-radius:12px;background:linear-gradient(135deg,#8a9099,#565b63);box-shadow:0 0 0 3px #2c3036}
+  #plate i{position:absolute;background:#16181c}
+  .slot{width:62px;height:90px;top:52px;border-radius:5px}
+  .hole{width:96px;height:96px;left:327px;top:372px;border-radius:50%}
+  .screw{width:24px;height:24px;border-radius:50%;background:radial-gradient(circle,#d7dde4 0 35%,#7a8088 36% 100%)!important}
+  #wall{position:absolute;left:-1900px;top:-1300px;width:3800px;height:2600px;background:radial-gradient(ellipse at center,#274b94 0%,#1a3a7e 46%,rgba(7,26,71,0) 74%)}
+  #surface{position:absolute;left:-820px;top:-600px;width:1640px;height:1200px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(3,10,30,.82) 0 38%,#2a5bab 39% 44%,rgba(32,74,150,.75) 56%,rgba(7,26,71,0) 72%)}
+  #cast{position:absolute;left:-640px;top:-470px;width:1280px;height:940px;border-radius:70px;background:var(--led);filter:blur(80px)}
+  #cable{position:absolute;left:0;top:0;width:0;height:0}
+  #cable b{position:absolute;left:-7px;top:0;width:14px;background:#d8e2ef;border-radius:7px;transform-origin:50% 0}
+  #cable b+b{transform:rotateY(90deg)}
+  #plug{position:absolute;left:-22px;top:-30px;width:44px;height:60px;border-radius:7px;background:#eaf0f7;box-shadow:0 0 0 2px #93a0b0}
+
+  #copy{position:absolute;left:max(40px,env(safe-area-inset-left,0px));top:50%;transform:translateY(-50%);width:min(430px,34vw);height:0}
+  .cap{position:absolute;left:0;top:0;width:100%;transform:translateY(-50%);opacity:0;pointer-events:none}
+  .logo{display:inline-block;background:#fff;border-radius:12px;padding:7px 13px}
+  .logo img{height:38px;width:auto;display:block}
+  .eyebrow{font:700 .8rem/1.2 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+  .cap h1,.cap h2{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.05;text-wrap:balance;margin-top:12px}
+  .cap h1{font-size:clamp(2.4rem,4.6vw,4rem)}
+  .cap h2{font-size:clamp(1.9rem,3.5vw,3rem)}
+  .cap p.b{margin-top:14px;color:var(--soft);font-size:clamp(1rem,1.35vw,1.2rem);line-height:1.5}
+  .logo+.eyebrow{margin-top:24px}
+  #hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;font:600 .95rem var(--display);color:var(--soft)}
+  #hint svg{width:18px;height:18px}
+
+  #labels{position:absolute;inset:0;pointer-events:none;opacity:0}
+  #labels svg{position:absolute;inset:0;width:100%;height:100%}
+  .lab{position:absolute;font:700 clamp(.82rem,1.15vw,1.05rem)/1.2 var(--display);color:var(--text);white-space:nowrap}
+
+  #rail{position:absolute;right:max(20px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none}
+  #rail li{width:9px;height:9px;border-radius:50%;background:var(--navy-2);box-shadow:0 0 0 1px var(--soft)}
+  #rail li.on{background:var(--led);box-shadow:0 0 10px var(--led)}
+
+  html,body{margin:0}
+  #home{position:fixed;z-index:20;left:max(16px,env(safe-area-inset-left,0px));top:calc(14px + env(safe-area-inset-top,0px));padding:8px 14px;border-radius:999px;background:rgba(7,26,71,.7);border:1px solid var(--navy-2);color:var(--text);font:600 .9rem var(--display);text-decoration:none}
+  #home:hover,#home:focus-visible{border-color:var(--teal);outline:none}
+  @media (max-width:760px){
+    #fit{left:50%;top:36%}
+    #copy{left:max(20px,env(safe-area-inset-left,0px));right:max(20px,env(safe-area-inset-right,0px));top:auto;bottom:calc(84px + env(safe-area-inset-bottom,0px));width:auto;transform:none}
+    .cap{top:auto;bottom:0;transform:none}
+    .logo+.eyebrow{margin-top:14px}
+    #rail{right:max(8px,env(safe-area-inset-right,0px));}
+    #labels{display:none}
+  }
+</style>
+</head><body>
+
+<a id="home" href="/platform/door-display">&larr; SpacioHub Door Display</a>
+<div id="track">
+  <div id="stage">
+    <div id="fit"><div id="rig">
+      <div id="wall"></div>
+      <div id="surface"></div>
+      <div id="cast"></div>
+      <div class="part" id="plate">
+        <i class="slot" style="left:92px"></i><i class="slot" style="right:92px"></i><i class="hole"></i>
+        <i class="screw" style="left:32px;top:32px"></i><i class="screw" style="right:32px;top:32px"></i><i class="screw" style="left:32px;bottom:32px"></i><i class="screw" style="right:32px;bottom:32px"></i>
+        <i class="anc" data-k="plate" style="right:0;top:50%;width:2px;height:2px;background:none"></i>
+      </div>
+      <div id="cable"><b id="c1"></b><b id="c2"></b><div id="plug"></div></div>
+      <div id="tablet">
+        <div id="shell">
+          <div class="face" id="back"><div id="vent"></div><i class="rs" style="left:150px"></i><i class="rs" style="right:150px"></i><div id="plateTxt">SpacioHub Pad</div><div id="recess"></div><div id="portsWrap">
+            <svg id="ports" viewBox="0 0 720 118" role="img" aria-label="Port row: Ethernet, microSD, USB-C, audio, USB 3.0, USB and 12V DC">
+              <defs><linearGradient id="pm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e4e9ef"/><stop offset="1" stop-color="#8f98a4"/></linearGradient></defs>
+              <rect x="1" y="1" width="718" height="116" rx="12" fill="#0d0f12" stroke="#343941" stroke-width="2"/>
+              <g transform="translate(22 19)"><path d="M0 0h84v62h-20v16h-44v-16h-20z" fill="url(#pm)"/><path d="M8 8h68v46h-20v16h-28v-16h-20z" fill="#090a0c"/><g fill="#c7a24a"><rect x="17" y="10" width="4" height="15"/><rect x="24" y="10" width="4" height="15"/><rect x="31" y="10" width="4" height="15"/><rect x="38" y="10" width="4" height="15"/><rect x="45" y="10" width="4" height="15"/><rect x="52" y="10" width="4" height="15"/><rect x="59" y="10" width="4" height="15"/></g><rect x="2" y="65" width="14" height="9" rx="2" fill="#34e66e"/><rect x="68" y="65" width="14" height="9" rx="2" fill="#ffb020"/></g>
+              <g transform="translate(130 44)"><rect width="86" height="24" rx="3" fill="#050607" stroke="#4a505a" stroke-width="2"/><rect x="8" y="9" width="70" height="6" rx="2" fill="#23272d"/></g>
+              <g transform="translate(240 40)"><rect width="68" height="30" rx="15" fill="url(#pm)"/><rect x="5" y="5" width="58" height="20" rx="10" fill="#090a0c"/><rect x="15" y="12" width="38" height="6" rx="3" fill="#aeb6c1"/></g>
+              <g transform="translate(355 55)"><circle r="20" fill="#20242a" stroke="#4a505a" stroke-width="2"/><circle r="10" fill="#040506"/></g>
+              <g transform="translate(404 30)"><rect width="100" height="50" rx="4" fill="url(#pm)"/><rect x="6" y="6" width="88" height="38" rx="2" fill="#090a0c"/><rect x="12" y="24" width="76" height="13" rx="2" fill="#2e7bf0"/></g>
+              <g transform="translate(524 30)"><rect width="100" height="50" rx="4" fill="url(#pm)"/><rect x="6" y="6" width="88" height="38" rx="2" fill="#090a0c"/><rect x="12" y="24" width="76" height="13" rx="2" fill="#d9dee5"/></g>
+              <g transform="translate(672 55)"><circle r="23" fill="url(#pm)"/><circle r="17" fill="#090a0c"/><circle r="5" fill="#d9dee5"/></g>
+            </svg>
+            <span class="ptag" style="left:9%">Ethernet + PoE</span><span class="ptag" style="left:24%;top:-108px">microSD</span><span class="ptag" style="left:38%">USB-C</span><span class="ptag" style="left:49.3%;top:-108px">Audio</span><span class="ptag" style="left:63%">USB 3.0</span><span class="ptag" style="left:79.7%;top:-108px">USB</span><span class="ptag" style="left:93.3%">12V DC</span>
+          </div><i class="anc" data-k="rear" style="position:absolute;left:0;top:50%;width:2px;height:2px"></i></div>
+          <div class="face" id="inner"></div>
+          <div class="face edgeV" id="right"><i id="power"></i></div>
+          <div class="face edgeV" id="left"></div>
+          <div class="face edgeH" id="top">
+            <i class="mic" style="left:32%"></i><i class="mic" style="left:44%"></i><i class="mic" style="left:56%"></i><i class="mic" style="left:68%"></i>
+            <i class="ring" style="left:32%"></i><i class="ring" style="left:44%"></i><i class="ring" style="left:56%"></i><i class="ring" style="left:68%"></i>
+          </div>
+          <div class="face edgeH" id="bottom"></div>
+        </div>
+        <div class="part" id="board">
+          <div class="chip" style="left:320px;top:175px;width:220px;height:190px;font-size:30px">RK3576S</div>
+          <div class="chip" style="left:60px;top:60px;width:170px;height:120px">NFC<br>RFID</div>
+          <div class="chip" style="right:60px;top:60px;width:170px;height:120px">Wi-Fi 6<br>BT 5.4</div>
+          <div class="chip" style="left:60px;bottom:60px;width:170px;height:120px">PoE<br>802.3at</div>
+          <div class="chip" style="right:60px;bottom:60px;width:170px;height:120px">RJ45</div>
+          <i class="anc" data-k="board" style="position:absolute;right:0;top:50%;width:2px;height:2px"></i>
+        </div>
+        <div class="part" id="front"><i id="cam"></i><svg id="ui" viewBox="0 0 920 592" font-family="Archivo,Arial,sans-serif" role="img" aria-label="Illustrated SpacioHub door display showing Board Room free for the rest of the day">
+<defs>
+<linearGradient id="w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#31507f"/><stop offset="1" stop-color="#1b2f55"/></linearGradient>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc4ee"/><stop offset="1" stop-color="#f3cfa6"/></linearGradient>
+<linearGradient id="wood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b87a45"/><stop offset="1" stop-color="#7c4a26"/></linearGradient>
+<linearGradient id="left" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#07142f" stop-opacity=".9"/><stop offset="1" stop-color="#07142f" stop-opacity=".62"/></linearGradient>
+</defs>
+<rect width="920" height="592" fill="url(#w)"/>
+<rect x="330" y="86" width="560" height="225" fill="url(#sky)"/>
+<g fill="#3b6390" opacity=".9"><rect x="370" y="205" width="42" height="106"/><rect x="420" y="170" width="30" height="141"/><path d="M500 311V120l14-40 14 40v191z"/><rect x="548" y="190" width="54" height="121"/><rect x="620" y="150" width="36" height="161"/><rect x="674" y="214" width="62" height="97"/><rect x="760" y="176" width="44" height="135"/><rect x="822" y="226" width="50" height="85"/></g>
+<g stroke="#10213f" stroke-width="7"><path d="M330 86h560v225H330zM470 86v225M610 86v225M750 86v225" fill="none"/></g>
+<rect y="311" width="920" height="281" fill="#22375f"/>
+<g fill="#f2d48f"><rect x="420" y="74" width="150" height="5" rx="2"/><rect x="660" y="74" width="150" height="5" rx="2"/></g>
+<path d="M300 500 L470 345 H850 L905 500Z" fill="url(#wood)"/><path d="M300 500H905V512H300z" fill="#5b3419"/>
+<g fill="#5874a8"><path d="M520 300h74a12 12 0 0 1 12 12v40h-98v-40a12 12 0 0 1 12-12z"/><path d="M660 300h74a12 12 0 0 1 12 12v40h-98v-40a12 12 0 0 1 12-12z"/></g>
+<g fill="#6f8bc0"><path d="M268 372h92a15 15 0 0 1 15 15v95h-122v-95a15 15 0 0 1 15-15z"/><rect x="246" y="478" width="136" height="24" rx="10"/></g>
+<g fill="#2f8a5b"><path d="M660 415q-34-44-8-82 24 34 8 82z"/><path d="M660 415q34-44 8-82-24 34-8 82z"/><path d="M660 415q-48-20-58-58 42 8 58 58z"/><path d="M660 415q48-20 58-58-42 8-58 58z"/></g><rect x="642" y="412" width="36" height="30" rx="5" fill="#e9eef5"/>
+<rect width="920" height="592" fill="#07142f" opacity=".44"/>
+<rect width="318" height="592" fill="url(#left)"/>
+<text x="24" y="46" font-size="13" fill="#dfe7f3">Tue, Nov 10</text>
+<rect x="24" y="66" width="136" height="56" rx="10" fill="#fff"/><image href="assets/logo.png" x="34" y="71" width="116" height="47"/>
+<text x="24" y="172" font-size="42" font-weight="800" fill="#fff">Board Room</text>
+<rect x="24" y="190" width="70" height="28" rx="14" fill="#fff" fill-opacity=".18"/><circle cx="40" cy="204" r="5" fill="#34e66e"/><text x="52" y="209" font-size="14" font-weight="700" fill="#fff">Free</text>
+<text x="24" y="246" font-size="14" fill="#dfe7f3">Available all day</text>
+<rect x="24" y="260" width="70" height="26" rx="8" fill="#fff" fill-opacity=".16"/><text x="59" y="278" text-anchor="middle" font-size="13" fill="#fff">8 seats</text>
+<text x="24" y="556" font-size="30" font-weight="700" fill="#fff">9:41 <tspan font-size="15">AM</tspan></text>
+<rect x="338" y="26" width="76" height="42" rx="8" fill="#46e3d0" fill-opacity="1"/><text x="376" y="43" text-anchor="middle" font-size="10" fill="#06302f">Today</text><text x="376" y="60" text-anchor="middle" font-size="15" font-weight="700" fill="#06302f">10</text><rect x="422" y="26" width="76" height="42" rx="8" fill="#ffffff" fill-opacity="0.14"/><text x="460" y="43" text-anchor="middle" font-size="10" fill="#dfe7f3">Wed</text><text x="460" y="60" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">11</text><rect x="506" y="26" width="76" height="42" rx="8" fill="#ffffff" fill-opacity="0.14"/><text x="544" y="43" text-anchor="middle" font-size="10" fill="#dfe7f3">Thu</text><text x="544" y="60" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">12</text><rect x="590" y="26" width="76" height="42" rx="8" fill="#ffffff" fill-opacity="0.14"/><text x="628" y="43" text-anchor="middle" font-size="10" fill="#dfe7f3">Fri</text><text x="628" y="60" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">13</text><rect x="674" y="26" width="76" height="42" rx="8" fill="#ffffff" fill-opacity="0.14"/><text x="712" y="43" text-anchor="middle" font-size="10" fill="#dfe7f3">Sat</text><text x="712" y="60" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">14</text><rect x="758" y="26" width="76" height="42" rx="8" fill="#ffffff" fill-opacity="0.14"/><text x="796" y="43" text-anchor="middle" font-size="10" fill="#dfe7f3">Sun</text><text x="796" y="60" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">15</text><rect x="842" y="26" width="76" height="42" rx="8" fill="#ffffff" fill-opacity="0.14"/><text x="880" y="43" text-anchor="middle" font-size="10" fill="#dfe7f3">Mon</text><text x="880" y="60" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">16</text>
+<text x="338" y="102" font-size="12" font-weight="700" letter-spacing="1.5" fill="#46e3d0">AVAILABLE</text>
+<text x="338" y="140" font-size="32" font-weight="800" fill="#fff">Free for the rest of the day</text>
+<g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M846 112q9 11 0 22M856 104q15 19 0 38M866 96q21 27 0 54"/></g>
+<rect x="338" y="340" width="280" height="52" rx="12" fill="#fff" fill-opacity=".2"/><text x="360" y="372" font-size="15" font-weight="700" fill="#fff">See whole day</text>
+<rect x="630" y="340" width="262" height="52" rx="12" fill="#fff" fill-opacity=".12"/><text x="761" y="372" text-anchor="middle" font-size="14" fill="#fff">Nothing else today</text>
+<rect x="338" y="404" width="280" height="160" rx="14" fill="#10213f" fill-opacity=".62"/><text x="478" y="478" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">Room is free</text><text x="478" y="504" text-anchor="middle" font-size="13" fill="#dfe7f3">Book it from the options</text>
+<rect x="630" y="404" width="262" height="88" rx="14" fill="#46e3d0"/><text x="761" y="456" text-anchor="middle" font-size="22" font-weight="800" fill="#06302f">Scan to book</text>
+<rect x="630" y="502" width="126" height="62" rx="12" fill="#10213f" fill-opacity=".72"/><text x="693" y="538" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Visitor</text>
+<rect x="766" y="502" width="126" height="62" rx="12" fill="#10213f" fill-opacity=".72"/><text x="829" y="538" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Guest booking</text>
+</svg><div id="screenOff"></div><i class="anc" data-k="screen" style="position:absolute;right:0;top:50%;width:2px;height:2px"></i></div>
+        <div class="part" id="led"><u class="h" style="top:0"></u><u class="h" style="bottom:0"></u><u class="v" style="left:0"></u><u class="v" style="right:0"></u><u class="k" style="left:0;top:0;border-right:0;border-bottom:0;border-top-left-radius:30px"></u><u class="k" style="right:0;top:0;border-left:0;border-bottom:0;border-top-right-radius:30px"></u><u class="k" style="left:0;bottom:0;border-right:0;border-top:0;border-bottom-left-radius:30px"></u><u class="k" style="right:0;bottom:0;border-left:0;border-top:0;border-bottom-right-radius:30px"></u><i class="anc" data-k="led" style="position:absolute;right:0;top:50%;width:2px;height:2px"></i></div>
+      </div>
+    </div></div>
+
+    <div id="labels"><svg id="lines"></svg>
+      <span class="lab" data-t="screen">10.95" touch display</span>
+      <span class="lab" data-t="led">RGB LED light bar</span>
+      <span class="lab" data-t="board">Android board</span>
+      <span class="lab" data-t="rear">Rear housing</span>
+      <span class="lab" data-t="plate">Wall plate</span>
+    </div>
+
+    <div id="copy">
+      <div class="cap" data-a="0" data-b=".055"><span class="logo"><img src="assets/logo.png" alt="SpacioHub" width="1000" height="405"></span><p class="eyebrow">Door Display panel</p><h1>Take it apart. Put it on the wall.</h1><p class="b">Scroll to see what's inside the panel and how it installs.</p></div>
+      <div class="cap" data-a=".075" data-b=".14"><p class="eyebrow">Step inside</p><h2>Lay it flat</h2><p class="b">Keep scrolling and it comes apart, layer by layer.</p></div>
+      <div class="cap" data-a=".16" data-b=".28"><p class="eyebrow">Exploded view</p><h2>Five layers, one panel</h2><p class="b">Scroll back up and it merges again. This is an illustration of the panel.</p></div>
+      <div class="cap" data-a=".415" data-b=".47"><p class="eyebrow">Both sides</p><h2>Speakers in the side grilles</h2><p class="b">Two 2W speakers, with the power button on the side.</p></div>
+      <div class="cap" data-a=".51" data-b=".565"><p class="eyebrow">Top edge</p><h2>Four microphones</h2><p class="b">A quad microphone array with noise reduction and echo cancellation.</p></div>
+      <div class="cap" data-a=".6" data-b=".675"><p class="eyebrow">On the back</p><h2>Every port in one row</h2><p class="b">Ethernet with PoE, microSD, USB-C, audio, USB 3.0, USB and a 12V DC input.</p></div>
+      <div class="cap" data-a=".72" data-b=".775"><p class="eyebrow">Install, step 1</p><h2>The plate goes on the wall</h2><p class="b">Four screws hold the wall plate in place.</p></div>
+      <div class="cap" data-a=".795" data-b=".84"><p class="eyebrow">Install, step 2</p><h2>One cable comes through</h2><p class="b">PoE carries power and data over a single Ethernet cable.</p></div>
+      <div class="cap" data-a=".86" data-b=".95"><p class="eyebrow">Install, step 3</p><h2>The panel hangs on its plate</h2><p class="b">Plug in the cable, then lower the display onto the hooks.</p></div>
+      <div class="cap" data-a=".97" data-b="1.03"><span class="logo"><img src="assets/logo.png" alt="SpacioHub" width="1000" height="405"></span><p class="eyebrow">Installed</p><h2>Live on the door</h2><p class="b"><a href="/platform/door-display" style="color:var(--teal)">Back to Door Display</a> &middot; go.spaciohub.com</p></div>
+    </div>
+
+    <div id="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6"/></svg>Scroll</div>
+    <ul id="rail" aria-hidden="true"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+  </div>
+</div>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id), T=20;
+  //  t: scroll position. rx/ry/rz camera, s zoom, x/y camera shift, e explode, pz plate z, po plate opacity
+  //  wo wall, tx/ty/tz tablet offset, cl cable length (0..1), on screen+LED power
+  const base={rx:0,ry:0,rz:0,s:.8,x:0,y:0,e:0,pz:-30,po:0,wo:0,tx:0,ty:0,tz:0,cl:0,on:1,sc:0,su:0};
+  const K=[
+    [0,    {rx:-4,ry:-16}],
+    [.05,  {rx:-4,ry:-16}],
+    [.115, {rx:60,rz:-30,s:.72,y:40,su:1}],
+    [.135, {rx:60,rz:-30,s:.72,y:40,su:1}],
+    [.215, {rx:58,rz:-32,s:.42,y:40,e:1,pz:-1000,po:1}],
+    [.27,  {rx:58,rz:-32,s:.42,y:40,e:1,pz:-1000,po:1}],
+    [.325, {rx:60,rz:-30,s:.72,y:40,su:1}],
+    [.34,  {rx:60,rz:-30,s:.72,y:40,su:1}],
+    [.375, {rx:-4,ry:-16,rz:0,s:.8,y:0}],
+    [.415,  {rx:0,ry:-76,s:1.05,x:40}],
+    [.47, {rx:0,ry:-76,s:1.05,x:40}],
+    [.51,   {rx:-78,ry:-6,s:.92,x:150,y:110}],
+    [.565, {rx:-78,ry:-6,s:.92,x:150,y:110}],
+    [.615, {rx:8,ry:180,s:.92,x:60,y:-190}],
+    [.68,  {rx:8,ry:180,s:.92,x:60,y:-190}],
+    [.72,  {rx:6,ry:-22,s:.56,x:20,ty:-2200,pz:560,po:1,wo:1,tz:420,on:0}],
+    [.765, {rx:6,ry:-22,s:.56,x:20,ty:-2200,pz:-286,po:1,wo:1,tz:420,on:0}],
+    [.79,  {rx:6,ry:-72,s:.58,x:60,ty:-2200,pz:-286,po:1,wo:1,tz:420,on:0}],
+    [.835, {rx:6,ry:-72,s:.58,x:60,ty:-2200,pz:-286,po:1,wo:1,tz:420,on:0,cl:.82}],
+    [.87,  {rx:6,ry:-72,s:.58,x:60,tx:0,ty:-95,tz:420,pz:-286,po:1,wo:1,on:0,cl:.82}],
+    [.89,  {rx:6,ry:-72,s:.58,x:60,tx:0,ty:-95,tz:420,pz:-286,po:1,wo:1,on:0,cl:1}],
+    [.925, {rx:6,ry:-72,s:.58,x:60,tx:0,ty:-95,tz:-240,pz:-286,po:1,wo:1,on:0,cl:1}],
+    [.95,  {rx:6,ry:-72,s:.58,x:60,tx:0,ty:0,tz:-240,pz:-286,po:1,wo:1,on:0,cl:1}],
+    [.985, {rx:0,ry:-14,s:.74,x:0,tx:0,ty:0,tz:-240,pz:-286,po:1,wo:1,on:1,cl:1,sc:.34}],
+    [1,    {rx:0,ry:-14,s:.74,x:0,tx:0,ty:0,tz:-240,pz:-286,po:1,wo:1,on:1,cl:1,sc:.34}]
+  ].map(([t,o])=>[t,Object.assign({},base,o)]);
+  const ease=u=>u*u*(3-2*u), mix=(a,b,u)=>a+(b-a)*u;
+  function at(p){
+    let i=0; while(i<K.length-2&&p>=K[i+1][0])i++;
+    const [t0,A]=K[i],[t1,B]=K[i+1], u=ease(Math.min(1,Math.max(0,(p-t0)/(t1-t0)))), o={};
+    for(const k in A)o[k]=mix(A[k],B[k],u);
+    return o;
+  }
+  const WALL=-300, HOLE_Y=170;
+  const caps=[...document.querySelectorAll('.cap')].map(el=>({el,a:+el.dataset.a,b:+el.dataset.b}));
+  const rail=[...document.querySelectorAll('#rail li')], stops=[0,.16,.415,.51,.6,.72,.795,.955];
+  const labs=[...document.querySelectorAll('.lab')];
+  const anc={}; document.querySelectorAll('.anc').forEach(a=>anc[a.dataset.k]=a);
+  $('right').style.transform='translateX(500px) rotateY(90deg)';
+  $('left').style.transform='translateX(-500px) rotateY(-90deg)';
+  $('top').style.transform='translateY(-336px) rotateX(90deg)';
+  $('bottom').style.transform='translateY(336px) rotateX(-90deg)';
+  function render(p){
+    const v=at(p), k=Math.min(innerWidth/ (innerWidth<=760?1050:1500), innerHeight/ (innerWidth<=760?1500:880));
+    $('fit').style.transform=`scale(${k})`;
+    $('rig').style.transform=`translate3d(${v.x}px,${v.y}px,0) scale3d(${v.s},${v.s},${v.s}) rotateX(${v.rx}deg) rotateY(${v.ry}deg) rotateZ(${v.rz}deg)`;
+    $('tablet').style.transform=`translate3d(${v.tx}px,${v.ty}px,${v.tz}px)`;
+    $('front').style.transform=`translateZ(${T+v.e*760}px)`;
+    $('led').style.transform=`translateZ(${T+6+v.e*340}px)`;
+    $('board').style.transform=`translateZ(${v.e*-60}px)`;
+    $('board').style.opacity=Math.min(1,v.e*3);
+    $('shell').style.transform=`translateZ(${v.e*-470}px)`;
+    $('back').style.transform=`translateZ(${-T}px) rotateY(180deg)`; $('inner').style.transform=`translateZ(${-T+2}px)`;
+    const installed=Math.min(1,Math.max(0,(v.on)));
+    $('screenOff').style.opacity=1-installed;
+    $('led').style.setProperty('--c',installed>.02?'var(--led)':'#22262c');
+    $('led').style.setProperty('--g',`0 0 ${(40+v.sc*160)*installed}px ${(6+v.sc*24)*installed}px rgba(52,230,110,${.7*installed})`);
+    $('plate').style.transform=`translateZ(${v.pz}px)`; $('plate').style.opacity=v.po; $('plate').style.visibility=(v.po<.01||p>.955)?'hidden':'visible';
+    $('surface').style.transform=`translateZ(${v.pz-12}px)`; $('surface').style.opacity=Math.pow(v.su,3); $('surface').style.visibility=v.su<.01?'hidden':'visible';
+    $('wall').style.transform=`translateZ(${WALL-4}px)`; $('wall').style.opacity=v.wo; $('wall').style.visibility=v.wo<.01?'hidden':'visible';
+    $('cast').style.transform=`translateZ(${WALL-2}px)`; $('cast').style.visibility='hidden';
+    // cable: from the wall opening to the rear of the panel
+    const backZ=v.tz-T, full=backZ-WALL, dz=Math.max(1,full*v.cl), dy=Math.max(v.ty,-95)*v.cl, L=Math.hypot(dz,dy), a=Math.atan2(dz,dy)*180/Math.PI;
+    const show=v.cl>.002&&p<.955;
+    $('cable').style.visibility=show?'visible':'hidden';
+    $('cable').style.transform=`translate3d(0,${HOLE_Y}px,${WALL}px) rotateX(${a}deg)`;
+    $('c1').style.height=$('c2').style.height=L+'px';
+    $('plug').style.transform=`translateY(${L}px)`;
+    // captions
+    caps.forEach(c=>{const f=Math.min(1,(p-c.a+.012)/.012,(c.b-p)/.012), o=Math.max(0,f); c.el.style.opacity=o; c.el.style.visibility=o?'visible':'hidden';});
+    $('hint').style.opacity=p<.04?1:0;
+    let n=0; stops.forEach((s,i)=>{if(p>=s-.001)n=i}); rail.forEach((d,i)=>d.classList.toggle('on',i===n));
+    // exploded labels
+    const lo=Math.max(0,(v.e-.75)/.25); $('labels').style.opacity=lo;
+    if(lo>0&&innerWidth>760){
+      const S=$('stage').getBoundingClientRect(); let h='';
+      labs.forEach(l=>{const r=anc[l.dataset.t].getBoundingClientRect(),x=r.left-S.left,y=r.top-S.top,lx=Math.min(x+110,S.width-250);
+        l.style.left=(lx+12)+'px'; l.style.top=(y-30)+'px';
+        h+=`<polyline points="${x},${y} ${lx-30},${y-20} ${lx+6},${y-20}" fill="none" stroke="#0cb8b6" stroke-width="2"/><circle cx="${x}" cy="${y}" r="5" fill="#0cb8b6"/>`;});
+      $('lines').innerHTML=h;
+    }
+  }
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function prog(){const r=$('track').getBoundingClientRect(),m=r.height-innerHeight;return m>0?Math.min(1,Math.max(0,-r.top/m)):0}
+  let cur=prog(),raf=0;
+  function tick(){const g=prog();cur=reduce?g:cur+(g-cur)*.14;if(Math.abs(g-cur)<.0002)cur=g;render(cur);raf=cur!==g?requestAnimationFrame(tick):0}
+  function kick(){if(!raf)raf=requestAnimationFrame(tick)}
+  addEventListener('scroll',kick,{passive:true});addEventListener('resize',()=>{render(cur)});
+  render(cur);
+})();
+</script>
+
+</body></html>

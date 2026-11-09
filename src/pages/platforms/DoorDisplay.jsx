@@ -248,6 +248,23 @@ export default function DoorDisplay() {
         </div>
       </section>
 
+      {/* SPACIOHUB PAD — 3D TEARDOWN */}
+      <section style={{ background:'linear-gradient(160deg,#071a47,#0d2b6b)', borderBottom:'1px solid #1e293b', padding:'88px 0', overflow:'hidden' }}>
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap:48, alignItems:'center' }}>
+            <div>
+              <span className="tag reveal" style={{ color:'#0cb8b6' }}>SpacioHub Pad</span>
+              <h2 className="h2 reveal" style={{ color:'#fff', marginBottom:16 }}>Take the panel apart, <span style={{ color:'#0cb8b6' }}>then hang it on the wall</span></h2>
+              <p className="reveal" style={{ fontSize:17, lineHeight:1.7, color:'rgba(255,255,255,0.7)', marginBottom:28, maxWidth:480 }}>Scroll through an interactive 3D view of our dedicated door panel: the LED status bar, side speakers, microphones and ports, and how it mounts with a single PoE cable.</p>
+              <a href="/spaciohub-pad/" className="btn btn-primary btn-lg reveal" style={{ boxShadow:'0 0 40px rgba(12,184,182,0.35)' }}>Explore it in 3D →</a>
+            </div>
+            <a href="/spaciohub-pad/" className="reveal" aria-label="Explore the SpacioHub Pad in 3D" style={{ display:'block' }}>
+              <img src="/screenshots/spaciohub-pad-exploded.jpg" alt="Exploded view of the SpacioHub Pad: display, LED light bar, Android board, rear housing and wall plate" width="1800" height="1600" loading="lazy" style={{ width:'100%', height:'auto', borderRadius:20 }} />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* FEATURES */}
       <section style={{ padding:'80px 0', borderBottom:'1px solid #e2e8f0', background:'#fff' }}>
         <div className="container">
