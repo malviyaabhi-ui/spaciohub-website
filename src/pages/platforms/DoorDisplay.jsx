@@ -269,17 +269,19 @@ export default function DoorDisplay() {
       </section>
 
       {/* CTA */}
-      <section style={{ background:'linear-gradient(135deg,#0a1628,#0f172a)', borderTop:'1px solid #1e293b', padding:'80px 0', textAlign:'center', position:'relative', overflow:'hidden' }}>
-        <div style={{ position:'absolute',top:-80,left:'50%',transform:'translateX(-50%)',width:600,height:300,background:'radial-gradient(ellipse,rgba(59,130,246,0.08),transparent 65%)',pointerEvents:'none' }}/>
+      <section style={{ background:'linear-gradient(135deg,#071a47 0%,#0d2b6b 60%,#0a5a78 100%)', padding:'88px 0', position:'relative', overflow:'hidden' }}>
+        <div style={{ position:'absolute', right:'-10%', top:'-40%', width:620, height:620, borderRadius:'50%', background:'radial-gradient(circle,rgba(12,184,182,0.22),transparent 65%)', pointerEvents:'none' }}/>
         <div className="container" style={{ position:'relative' }}>
-          <div style={{ marginBottom:16, display:'flex', justifyContent:'center' }}>
-            <svg viewBox="0 0 80 80" width="72" height="72" fill="none"><rect width="80" height="80" rx="20" fill="#eff6ff"/><rect x="20" y="8" width="40" height="64" rx="6" fill="#3b82f6" opacity="0.15"/><rect x="20" y="8" width="40" height="64" rx="6" stroke="#3b82f6" strokeWidth="2"/><rect x="24" y="14" width="32" height="6" rx="1" fill="#3b82f6" opacity="0.4"/><rect x="24" y="24" width="32" height="7" rx="1" fill="#3b82f6" opacity="0.3"/><circle cx="56" cy="62" r="3" fill="#3b82f6" opacity="0.5"/></svg>
-          </div>
-          <h2 className="h2 reveal" style={{ marginBottom:14 }}>Put a display on <span style={{ background:'linear-gradient(135deg,#3b82f6,#0F799B)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', fontWeight:900 }}>every room</span></h2>
-          <p className="lead reveal" style={{ marginBottom:36, color:'#64748b' }}>Use the SpacioHub Pad or any tablet you own. Set up in under 5 minutes.</p>
-          <div className="reveal" style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap' }}>
-            <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 8px 28px rgba(0,192,122,0.3)' }}>Request a Demo<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ marginLeft:8, verticalAlign:"-3px" }}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
-            <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="btn btn-outline btn-lg">Start free trial</a>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap:48, alignItems:'center' }}>
+            <div>
+              <h2 style={{ fontSize:'clamp(30px,4vw,46px)', fontWeight:900, letterSpacing:'-1.5px', lineHeight:1.1, color:'#ffffff', marginBottom:16 }}>Put a live display on <span style={{ color:'#0cb8b6' }}>every room</span></h2>
+              <p style={{ fontSize:18, lineHeight:1.6, color:'rgba(255,255,255,0.78)', marginBottom:32, maxWidth:460 }}>Use the SpacioHub Pad or any tablet you already own. Set up in under 5 minutes.</p>
+              <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
+                <button className="btn btn-primary btn-lg" onClick={openModal} style={{ boxShadow:'0 8px 28px rgba(0,192,122,0.35)' }}>Request a Demo<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ marginLeft:8, verticalAlign:"-3px" }}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+                <a href="https://go.spaciohub.com" target="_blank" rel="noreferrer" className="btn btn-lg" style={{ color:'#ffffff', border:'1.5px solid rgba(255,255,255,0.45)', background:'rgba(255,255,255,0.06)', textDecoration:'none' }}>Start free trial</a>
+              </div>
+            </div>
+            <img src="/screenshots/spaciohub-pad-front.webp" alt="SpacioHub Pad door panel seen from the front with its green LED status bar lit" width="1100" height="774" loading="lazy" style={{ width:'100%', maxWidth:520, height:'auto', justifySelf:'center', filter:'drop-shadow(0 30px 50px rgba(0,0,0,0.45))' }} />
           </div>
         </div>
       </section>
