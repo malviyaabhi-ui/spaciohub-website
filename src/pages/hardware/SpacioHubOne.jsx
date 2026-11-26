@@ -201,7 +201,7 @@ export default function SpacioHubOne() {
               </div>
               <div className="animate-fade-up delay-2" style={{ position: 'relative' }}>
                 <div style={{ position: 'absolute', inset: '12% 10%', background: '#22e07a', filter: 'blur(80px)', opacity: 0.25, borderRadius: '50%' }} />
-                <img src={A + 'front.webp'} alt="SpacioHub One showing the Voyager room as free" width="1800" height="1191"
+                <img src={A + 'hero-front.webp'} alt="SpacioHub One showing the Voyager room as free" width="968" height="642"
                   style={{ position: 'relative', width: '100%', height: 'auto', display: 'block', filter: 'drop-shadow(0 30px 50px rgba(0,0,0,0.55))' }} />
               </div>
             </div>
