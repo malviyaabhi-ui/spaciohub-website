@@ -91,16 +91,74 @@ const SPECS = [
 const PORTS = [['DC', '12 V in'], ['Serial', ''], ['USB', 'USB-A'], ['⏻', 'Power / reset'], ['Type-C', 'USB-C'], ['Card', 'Card slot'], ['LAN', 'RJ45 · PoE']]
 
 const FEATURES = [
-  { tag: 'LED status bar', title: 'Seen from down the hall', img: A + 'side-right.webp', pos: '50% 35%',
+  { tag: 'LED status bar', title: 'Seen from down the hall', Visual: LedVisual,
     text: 'A light bar wraps the whole bezel and takes the room’s status colour.',
     points: ['Full-perimeter RGB light bar', 'Follows the status set in SpacioHub'] },
-  { tag: 'Power over Ethernet', title: 'One cable, power and data', img: A + 'ports-rear.webp', pos: '50% 50%',
+  { tag: 'Power over Ethernet', title: 'One cable, power and data', Visual: PoeVisual,
     text: 'Run one Ethernet line from a PoE switch. No socket needed at the door.',
     points: ['PoE 48 V · 0.5 A, or 12 V DC', 'Wi-Fi 2.4 / 5 GHz and Bluetooth'] },
-  { tag: 'NFC & scan to book', title: 'Tap a badge or scan', img: A + 'screen-in-use.webp', pos: '50% 50%',
+  { tag: 'NFC & scan to book', title: 'Tap a badge or scan', Visual: NfcVisual,
     text: 'Badge tap confirms the booking. Guests scan the code, register or book.',
     points: ['Built-in NFC reader', 'Visitor and guest booking at the door'] },
 ]
+
+// ── Card mockups ───────────────────────────────────────────
+const C = A + 'cards/'
+function LedVisual() {
+  const items = [['panel-free', '#00c07a', 'Free', -16, 0], ['panel-in-use', '#ef4444', 'In use', 0, 1], ['panel-vip', '#06b6d4', 'VIP', 16, 2]]
+  return (
+    <div style={{ position: 'relative', height: '100%', background: 'radial-gradient(ellipse at 50% 60%,#1e293b,#0b1220 70%)' }}>
+      {items.map(([img, c, label, rot, n]) => (
+        <div key={img} style={{ position: 'absolute', left: `${4 + n * 26}%`, top: `${n === 1 ? 14 : 22}%`, width: '40%', transform: `rotate(${rot / 4}deg)`, zIndex: n === 1 ? 2 : 1 }}>
+          <img src={C + img + '.webp'} alt="" loading="lazy" style={{ width: '100%', display: 'block', borderRadius: 8, boxShadow: `0 0 28px ${c}88, 0 12px 30px rgba(0,0,0,.5)` }} />
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, marginTop: 8, fontSize: 11, fontWeight: 700, color: '#fff', background: 'rgba(255,255,255,.08)', border: `1px solid ${c}66`, padding: '2px 8px', borderRadius: 999 }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: c }} />{label}
+          </span>
+        </div>
+      ))}
+    </div>
+  )
+}
+function PoeVisual() {
+  return (
+    <div style={{ position: 'relative', height: '100%', background: 'linear-gradient(160deg,#0f172a,#111c33)', display: 'flex', alignItems: 'center', padding: '0 22px', gap: 0 }}>
+      <style>{`@keyframes sh1flow{to{stroke-dashoffset:-24}}`}</style>
+      <div style={{ flex: 'none', width: 92 }}>
+        <div style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8, padding: '10px 8px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 4 }}>
+            {Array.from({ length: 8 }).map((_, i) => (
+              <span key={i} style={{ height: 12, borderRadius: 2, background: '#0b1220', border: '1px solid #475569', position: 'relative' }}>
+                <span style={{ position: 'absolute', top: 2, left: 2, width: 3, height: 3, borderRadius: '50%', background: i === 3 ? '#00c07a' : '#334155', boxShadow: i === 3 ? '0 0 6px #00c07a' : 'none' }} />
+              </span>
+            ))}
+          </div>
+        </div>
+        <div style={{ fontSize: 11, fontWeight: 700, color: '#cbd5e1', marginTop: 8, textAlign: 'center' }}>PoE switch</div>
+      </div>
+      <svg viewBox="0 0 100 40" preserveAspectRatio="none" style={{ flex: 1, height: 60, minWidth: 40 }} aria-hidden="true">
+        <path d="M0 20 C 35 20, 65 20, 100 20" stroke="#334155" strokeWidth="5" fill="none" strokeLinecap="round" />
+        <path d="M0 20 C 35 20, 65 20, 100 20" stroke="#00c07a" strokeWidth="2" fill="none" strokeDasharray="6 6" style={{ animation: 'sh1flow 1s linear infinite' }} />
+      </svg>
+      <div style={{ flex: 'none', width: '46%', textAlign: 'center' }}>
+        <img src={C + 'panel-free.webp'} alt="" loading="lazy" style={{ width: '100%', display: 'block', borderRadius: 8, boxShadow: '0 0 24px #00c07a66' }} />
+        <div style={{ fontSize: 11, fontWeight: 700, color: '#cbd5e1', marginTop: 8 }}>1 × Cat6 · power + data</div>
+      </div>
+    </div>
+  )
+}
+function NfcVisual() {
+  return (
+    <div style={{ position: 'relative', height: '100%', background: 'linear-gradient(160deg,#1f0f12,#0b1220)', overflow: 'hidden' }}>
+      <img src={C + 'panel-in-use.webp'} alt="" loading="lazy" style={{ position: 'absolute', right: '-4%', top: '10%', width: '72%', borderRadius: 8, boxShadow: '0 0 28px #ef444477' }} />
+      <div style={{ position: 'absolute', left: '8%', bottom: '10%', width: '42%', aspectRatio: '1.586', borderRadius: 10, background: 'linear-gradient(135deg,#00c07a,#0F799B)', boxShadow: '0 16px 30px rgba(0,0,0,.5)', transform: 'rotate(-12deg)', padding: '10px 12px', color: '#fff' }}>
+        <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '.08em', opacity: .9 }}>SPACIOHUB</div>
+        <div style={{ fontSize: 9, opacity: .75 }}>Staff badge</div>
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" style={{ position: 'absolute', right: 10, bottom: 10 }} aria-hidden="true"><path d="M6 8.5a6 6 0 0 1 0 7"/><path d="M10 6a10 10 0 0 1 0 12"/><path d="M14 3.5a14 14 0 0 1 0 17"/></svg>
+      </div>
+      <span style={{ position: 'absolute', left: '6%', top: '10%', fontSize: 11, fontWeight: 700, color: '#fff', background: 'rgba(255,255,255,.1)', border: '1px solid rgba(255,255,255,.2)', padding: '3px 9px', borderRadius: 999 }}>Tap to check in</span>
+    </div>
+  )
+}
 
 function QuoteForm() {
   const [f, setF] = useState({ name: '', company: '', email: '', phone: '', country: '', qty: '', message: '' })
@@ -206,9 +264,7 @@ export default function SpacioHubOne() {
             <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 20 }}>
               {FEATURES.map(ft => (
                 <div key={ft.tag} className="card reveal" style={{ padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ height: 200, background: '#0f172a', overflow: 'hidden' }}>
-                    <img src={ft.img} alt={ft.tag} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: ft.pos, display: 'block' }} />
-                  </div>
+                  <div style={{ height: 220, overflow: 'hidden' }} aria-hidden="true"><ft.Visual /></div>
                   <div style={{ padding: 24 }}>
                     <span className="tag" style={{ marginBottom: 8 }}>{ft.tag}</span>
                     <h3 style={{ fontSize: 20, fontWeight: 800, letterSpacing: -0.5, color: '#0f172a', marginBottom: 8 }}>{ft.title}</h3>
