@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SEO from '../../components/SEO'
 
@@ -14,12 +14,65 @@ const GRAD = { background: 'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBack
 const Arrow = () => <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 
 const GALLERY = [
+  { src: A + 'states/in-use.webp', alt: 'SpacioHub One on a glass door, room in use', fit: 'cover' },
   { src: A + 'front.webp',                         alt: 'SpacioHub One front view, room free, green LED bar lit', fit: 'contain' },
   { src: '/screenshots/spaciohub-pad-panel.webp',   alt: 'SpacioHub One with its LED status bar glowing green',   fit: 'contain' },
   { src: A + 'back.jpg',                            alt: 'Rear of SpacioHub One with label, fixing points and speaker grille', fit: 'contain' },
   { src: A + 'ports.jpg',                           alt: 'Rear I/O bay: DC, Serial, USB, power/reset, Type-C, card slot, LAN', fit: 'contain' },
   { src: '/screenshots/spaciohub-pad-exploded.jpg', alt: 'Exploded view: display, LED bar, Android board, rear housing, wall plate', fit: 'contain' },
 ]
+
+const STATES = [
+  { key: 'free',        label: 'Free',           color: '#00c07a', desc: 'Anyone can walk up and book. No login needed.' },
+  { key: 'starts-soon', label: 'Starts soon',    color: '#f59e0b', desc: 'Amber warns the current occupant to wrap up.' },
+  { key: 'in-use',      label: 'In use',         color: '#ef4444', desc: 'Live meeting with End now and +15 / +30 extend.' },
+  { key: 'vip',         label: 'VIP meeting',    color: '#06b6d4', desc: 'Only the organiser or an attendee can end it.' },
+  { key: 'dnd',         label: 'Do not disturb', color: '#8b5cf6', desc: 'Tells everyone the room must not be interrupted.' },
+  { key: 'reserved',    label: 'Reserved',       color: '#3b82f6', desc: 'Held by an admin, so nobody grabs it.' },
+]
+
+function StatusShowcase() {
+  const [i, setI] = useState(0)
+  const [auto, setAuto] = useState(true)
+  useEffect(() => {
+    if (!auto || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const t = setInterval(() => setI(n => (n + 1) % STATES.length), 3500)
+    return () => clearInterval(t)
+  }, [auto])
+  const st = STATES[i]
+  return (
+    <section style={{ background: '#0b1220', padding: '96px 0', overflow: 'hidden' }}>
+      <div className="container">
+        <div style={{ textAlign: 'center', marginBottom: 48 }}>
+          <span className="tag reveal" style={{ color: st.color, transition: 'color .4s' }}>LED status bar</span>
+          <h2 className="h2 reveal" style={{ color: '#fff' }}>One glance from <span style={{ color: st.color, transition: 'color .4s' }}>down the hall</span></h2>
+          <p className="reveal" style={{ fontSize: 17, lineHeight: 1.7, color: 'rgba(255,255,255,0.65)', maxWidth: 560, margin: '12px auto 0' }}>The light bar around the panel takes the room's status colour, and the screen shows exactly what's happening.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 32, alignItems: 'center' }}>
+          <div role="tablist" aria-label="Room states" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {STATES.map((s, n) => (
+              <button key={s.key} role="tab" aria-selected={n === i} onClick={() => { setI(n); setAuto(false) }}
+                style={{ display: 'flex', gap: 14, alignItems: 'flex-start', textAlign: 'left', padding: '14px 16px', borderRadius: 12, cursor: 'pointer', fontFamily: 'inherit',
+                  background: n === i ? 'rgba(255,255,255,0.06)' : 'transparent', border: `1px solid ${n === i ? s.color + '66' : 'transparent'}`, transition: 'all .3s' }}>
+                <span style={{ width: 12, height: 12, borderRadius: '50%', background: s.color, boxShadow: n === i ? `0 0 14px ${s.color}` : 'none', marginTop: 5, flex: 'none' }} />
+                <span>
+                  <span style={{ display: 'block', fontSize: 15, fontWeight: 700, color: n === i ? '#fff' : 'rgba(255,255,255,0.6)' }}>{s.label}</span>
+                  {n === i && <span style={{ display: 'block', fontSize: 13, color: 'rgba(255,255,255,0.55)', marginTop: 2 }}>{s.desc}</span>}
+                </span>
+              </button>
+            ))}
+          </div>
+          <div style={{ gridColumn: 'span 2', position: 'relative', borderRadius: 20, overflow: 'hidden', aspectRatio: '3/2', maxWidth: '100%', boxShadow: `0 30px 80px -20px ${st.color}55`, transition: 'box-shadow .5s' }}>
+            {STATES.map((s, n) => (
+              <img key={s.key} src={A + 'states/' + s.key + '.webp'} alt={`SpacioHub One on a glass meeting-room door showing ${s.label}`} loading={n ? 'lazy' : 'eager'} width="1536" height="1024"
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: n === i ? 1 : 0, transition: 'opacity .6s' }} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 const SPECS = [
   ['Display',          '10.1" IPS touchscreen'],
@@ -168,6 +221,8 @@ export default function SpacioHubOne() {
             </div>
           </div>
         </section>
+
+        <StatusShowcase />
 
         {/* ── Gallery ────────────────────────────────────────── */}
         <section style={{ padding: '88px 0', background: '#fff', borderBottom: '1px solid #e2e8f0' }}>
