@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SEO from '../../components/SEO'
+import PanelViewer3D from '../../components/PanelViewer3D'
 
 // Hardware product page — SpacioHub One (SPH-ONE-10)
 // Specs below are the published SPH-ONE-10 specs; keep them verbatim.
@@ -14,6 +15,7 @@ const GRAD = { background: 'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBack
 const Arrow = () => <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 
 const GALLERY = [
+  { src: A + 'on-glass.webp', alt: 'SpacioHub One mounted on a glass meeting-room wall, room free', fit: 'cover' },
   { src: A + 'states/in-use.webp', alt: 'SpacioHub One on a glass door, room in use', fit: 'cover' },
   { src: A + 'front.webp',                         alt: 'SpacioHub One front view, room free, green LED bar lit', fit: 'contain' },
   { src: '/screenshots/spaciohub-pad-panel.webp',   alt: 'SpacioHub One with its LED status bar glowing green',   fit: 'contain' },
@@ -223,6 +225,8 @@ export default function SpacioHubOne() {
         </section>
 
         <StatusShowcase />
+
+        <PanelViewer3D />
 
         {/* ── Gallery ────────────────────────────────────────── */}
         <section style={{ padding: '88px 0', background: '#fff', borderBottom: '1px solid #e2e8f0' }}>
