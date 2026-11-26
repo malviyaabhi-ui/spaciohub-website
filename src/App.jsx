@@ -27,6 +27,7 @@ import RolesResellers from './pages/use-cases/Resellers'
 import PlatformBooking from './pages/platforms/Booking'
 import PlatformVisitors from './pages/platforms/Visitors'
 import PlatformDoorDisplay from './pages/platforms/DoorDisplay'
+import SpacioHubOne from './pages/hardware/SpacioHubOne'
 import PlatformDigitalSignage from './pages/platforms/DigitalSignage'
 import PlatformAnalytics from './pages/platforms/Analytics'
 import PlatformAIBooker from './pages/platforms/AIBooker'
@@ -74,6 +75,7 @@ export default function App() {
           <Route path="/platform/booking" element={<PlatformBooking />} />
           <Route path="/platform/visitors" element={<PlatformVisitors />} />
           <Route path="/platform/door-display" element={<PlatformDoorDisplay />} />
+          <Route path="/hardware/spaciohub-one" element={<SpacioHubOne />} />
           <Route path="/platform/signage" element={<PlatformDigitalSignage />} />
           <Route path="/platform/analytics" element={<PlatformAnalytics />} />
           <Route path="/platform/energy" element={<PlatformEnergy />} />
