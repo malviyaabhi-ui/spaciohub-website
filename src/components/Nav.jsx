@@ -46,6 +46,7 @@ const MENUS = {
           { label: 'Visitor Management', desc: 'Check-in, kiosk & badges',        href: '/platform/visitors',  icon: I.visitors },
           { label: 'Digital Signage',    desc: 'Every screen, one dashboard',     href: '/platform/signage',   icon: I.signage },
           { label: 'Door Display',       desc: 'Live room panels on any tablet',  href: '/platform/door-display', icon: I.door },
+          { label: 'SpacioHub One',      desc: 'Our 10.1" PoE door panel',        href: '/hardware/spaciohub-one', icon: I.door },
           { label: 'Analytics',          desc: 'Utilisation & insights',          href: '/platform/analytics', icon: I.analytics },
           { label: 'On-Premises',        desc: 'Your data, your building',        href: '/on-premises',        icon: I.onprem },
         ]

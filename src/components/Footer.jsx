@@ -64,6 +64,7 @@ export default function Footer() {
               <FL to="/platform/visitors">Visitor Management</FL>
               <FL to="/platform/signage">Digital Signage</FL>
               <FL to="/platform/door-display">Door Display</FL>
+              <FL to="/hardware/spaciohub-one">SpacioHub One</FL>
               <FL to="/platform/analytics">Analytics</FL>
               <FL to="/on-premises">On-Premises</FL>
               <FL to="/platform/ai-booker">AI Room Booker</FL>
