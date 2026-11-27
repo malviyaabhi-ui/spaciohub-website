@@ -14,14 +14,17 @@ const A = '/hardware/spaciohub-one/'
 const GRAD = { background: 'linear-gradient(135deg,#00c07a,#0F799B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }
 const Arrow = () => <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 
+const R = A + 'renders/'
 const GALLERY = [
-  { src: A + 'on-glass.webp',       alt: 'SpacioHub One mounted on a glass meeting-room wall, room free', fit: 'cover' },
-  { src: A + 'back-label.webp',     alt: 'Rear of SpacioHub One with its product label: SPH-ONE-10, 12 V 2 A, PoE 48 V 0.5 A, CE, RoHS', fit: 'contain' },
-  { src: A + 'states/in-use.webp',  alt: 'SpacioHub One on a glass door, room in use', fit: 'cover' },
-  { src: A + 'side-left.webp',      alt: 'Left side: 22 mm body, speaker grille and LED edge', fit: 'contain' },
-  { src: A + 'side-right.webp',     alt: 'Right side with power button and green LED bar lit', fit: 'contain' },
-  { src: A + 'ports-rear.webp',     alt: 'Rear I/O bay: DC, Serial, USB, power/reset, Type-C, card slot, LAN', fit: 'contain' },
-  { src: '/screenshots/spaciohub-pad-panel.webp', alt: 'SpacioHub One with its LED status bar glowing green', fit: 'contain' },
+  { src: R + 'angle-right-starts-soon.webp', alt: 'SpacioHub One from the right, Starts soon, amber light bar', fit: 'contain' },
+  { src: R + 'front-vip.webp',               alt: 'SpacioHub One front view, VIP meeting, cyan light bar', fit: 'contain' },
+  { src: R + 'angle-left-starts-soon.webp',  alt: 'SpacioHub One from the left, Starts soon', fit: 'contain' },
+  { src: R + 'side-right.webp',              alt: 'Right side: speaker grille, power button and LED edge', fit: 'contain' },
+  { src: R + 'side-left.webp',               alt: 'Left side: speaker grille and LED edge', fit: 'contain' },
+  { src: R + 'top.webp',                     alt: 'Top edge with microphone array and LED bar', fit: 'contain' },
+  { src: R + 'back.webp',                    alt: 'Rear housing with speaker, bracket slots and port bay', fit: 'contain' },
+  { src: R + 'ports-edge.webp',              alt: 'Bottom port bay: DC, USB, USB 3.0, audio, Type-C, card slot, RJ45 PoE', fit: 'contain' },
+  { src: R + 'rj45.webp',                    alt: 'One RJ45 cable for PoE power and data', fit: 'cover' },
 ]
 
 const STATES = [
@@ -64,10 +67,11 @@ function StatusShowcase() {
               </button>
             ))}
           </div>
-          <div style={{ gridColumn: 'span 2', position: 'relative', borderRadius: 20, overflow: 'hidden', aspectRatio: '3/2', maxWidth: '100%', boxShadow: `0 30px 80px -20px ${st.color}55`, transition: 'box-shadow .5s' }}>
+          <div style={{ gridColumn: 'span 2', position: 'relative', aspectRatio: '1340/900', maxWidth: '100%' }}>
+            <div style={{ position: 'absolute', inset: '10% 8%', background: st.color, filter: 'blur(70px)', opacity: 0.35, borderRadius: '50%', transition: 'background .5s' }} />
             {STATES.map((s, n) => (
-              <img key={s.key} src={A + 'states/' + s.key + '.webp'} alt={`SpacioHub One on a glass meeting-room door showing ${s.label}`} loading={n ? 'lazy' : 'eager'} width="1536" height="1024"
-                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: n === i ? 1 : 0, transition: 'opacity .6s' }} />
+              <img key={s.key} src={R + 'front-' + s.key + '.webp'} alt={`SpacioHub One showing ${s.label}`} loading={n ? 'lazy' : 'eager'} width="1340" height="900"
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', opacity: n === i ? 1 : 0, transition: 'opacity .6s' }} />
             ))}
           </div>
         </div>
@@ -109,6 +113,63 @@ const FEATURES = [
     points: ['Built-in NFC & RFID reader', 'Visitor and guest booking at the door'] },
 ]
 
+
+// ── Exploded view built from the real render layers ─────────
+const E = A + 'explode/'
+const LAYERS = [
+  { key: 'screen', z: 3, label: '10.95" touchscreen', sub: '1920 × 1200 · 10-point touch · 350 nits' },
+  { key: 'ring',   z: 2, label: 'RGB LED light bar',  sub: 'Takes the room status colour' },
+  { key: 'frame',  z: 1, label: 'Front frame',        sub: 'Built-in camera · NFC & RFID' },
+  { key: 'back',   z: 0, label: 'Rear housing',       sub: 'RK3576S · PoE port bay · speakers' },
+]
+function ExplodedView() {
+  const [open, setOpen] = useState(false)
+  const [auto, setAuto] = useState(true)
+  const ref = React.useRef(null)
+  useEffect(() => {
+    const el = ref.current; if (!el) return
+    let t
+    const io = new IntersectionObserver(([e]) => {
+      clearInterval(t)
+      if (e.isIntersecting && auto && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setOpen(true); t = setInterval(() => setOpen(o => !o), 3800)
+      }
+    }, { threshold: 0.4 })
+    io.observe(el)
+    return () => { io.disconnect(); clearInterval(t) }
+  }, [auto])
+  const gap = 70
+  const layerStyle = z => ({ position: 'absolute', inset: 0, transform: `translateZ(${open ? z * gap : z * 2}px)`, transition: 'transform 1.2s cubic-bezier(.2,.8,.2,1)' })
+  return (
+    <section style={{ background: '#fff', padding: '72px 0', borderBottom: '1px solid #e2e8f0', overflow: 'hidden' }}>
+      <div className="container">
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 32, alignItems: 'center' }}>
+          <div>
+            <span className="tag reveal">Inside the panel</span>
+            <h2 className="h2 reveal" style={{ marginBottom: 20 }}>Four layers, <span style={{ ...GRAD, fontWeight: 900 }}>22 mm deep</span></h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {LAYERS.map((l, n) => (
+                <div key={l.key} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', padding: '10px 12px', borderRadius: 10, background: '#f8fafc', border: '1px solid #e2e8f0' }}>
+                  <span style={{ flex: 'none', width: 22, height: 22, borderRadius: 6, background: l.key === 'ring' ? '#00c07a' : '#0f172a', color: '#fff', fontSize: 12, fontWeight: 800, display: 'grid', placeItems: 'center' }}>{n + 1}</span>
+                  <span><span style={{ display: 'block', fontSize: 14, fontWeight: 700, color: '#0f172a' }}>{l.label}</span><span style={{ fontSize: 12, color: '#64748b' }}>{l.sub}</span></span>
+                </div>
+              ))}
+            </div>
+            <button type="button" className="btn btn-outline" onClick={() => { setAuto(false); setOpen(o => !o) }} style={{ marginTop: 18 }}>{open ? 'Assemble' : 'Take it apart'}</button>
+          </div>
+          <div ref={ref} style={{ gridColumn: 'span 2', position: 'relative', aspectRatio: '1311/871', maxWidth: '100%', perspective: 2200 }} aria-label="Exploded view of SpacioHub One" role="img">
+            <div style={{ position: 'absolute', inset: '6% 10%', transformStyle: 'preserve-3d', transform: open ? 'rotateX(55deg) rotateZ(-32deg) scale(.82)' : 'rotateX(0) rotateZ(0) scale(1)', transition: 'transform 1.2s cubic-bezier(.2,.8,.2,1)' }}>
+              <img src={E + 'back.webp'} alt="" style={{ ...layerStyle(0), width: '100%', height: '100%', filter: 'drop-shadow(0 30px 30px rgba(15,23,42,.25))' }} />
+              <img src={E + 'frame.webp'} alt="" style={{ ...layerStyle(1), width: '100%', height: '100%' }} />
+              <div style={{ ...layerStyle(2), background: '#00c07a', WebkitMaskImage: `url(${E}ring.png)`, maskImage: `url(${E}ring.png)`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%', filter: 'drop-shadow(0 0 12px rgba(0,192,122,.8))' }} />
+              <img src={E + 'screen.webp'} alt="" style={{ ...layerStyle(3), width: '100%', height: '100%' }} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 function QuoteForm() {
   const [f, setF] = useState({ name: '', company: '', email: '', phone: '', country: '', qty: '', message: '' })
@@ -191,11 +252,9 @@ export default function SpacioHubOne() {
                   ))}
                 </div>
               </div>
-              <div className="animate-fade-up delay-2" style={{ borderRadius: 20, overflow: 'hidden', boxShadow: '0 30px 70px -20px rgba(15,23,42,0.35)', border: '1px solid #e2e8f0', aspectRatio: '16/9', maxWidth: '100%', background: '#e2e8f0' }}>
-                <video autoPlay muted loop playsInline poster={A + 'orbit-3d-poster.jpg'} aria-label="SpacioHub One mounted in a meeting room, camera orbiting the panel"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}>
-                  <source src={A + 'orbit-3d.mp4'} type="video/mp4" />
-                </video>
+              <div className="animate-fade-up delay-2" style={{ position: 'relative' }}>
+                <div style={{ position: 'absolute', inset: '14% 12%', background: '#ef4444', filter: 'blur(90px)', opacity: 0.22, borderRadius: '50%' }} />
+                <img src={R + 'angle-left-in-use.webp'} alt="SpacioHub One showing a meeting in progress, red light bar lit" width="1600" height="1200" style={{ position: 'relative', width: '100%', height: 'auto', display: 'block', filter: 'drop-shadow(0 30px 40px rgba(15,23,42,.25))' }} />
               </div>
             </div>
           </div>
@@ -203,6 +262,8 @@ export default function SpacioHubOne() {
 
         {/* ── LED states: list | glass-door shot ─────────────── */}
         <StatusShowcase />
+
+        <ExplodedView />
 
         {/* ── Interactive 3D on glass ─────────────────────────── */}
         <PanelViewer3D />
@@ -240,14 +301,14 @@ export default function SpacioHubOne() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 40, alignItems: 'start' }}>
               <div style={{ minWidth: 0 }}>
-                <div style={{ background: 'linear-gradient(170deg,#f8fafc,#eef2f7)', border: '1px solid #e2e8f0', borderRadius: 16, aspectRatio: '4/3', maxWidth: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                <div style={{ background: '#eff1f7', border: '1px solid #e2e8f0', borderRadius: 16, aspectRatio: '4/3', maxWidth: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                   <img key={g.src} src={g.src} alt={g.alt} className="animate-fade-in" style={{ width: g.fit === 'cover' ? '100%' : 'auto', height: g.fit === 'cover' ? '100%' : 'auto', maxWidth: '92%', maxHeight: '92%', objectFit: g.fit, ...(g.fit === 'cover' ? { maxWidth: '100%', maxHeight: '100%' } : {}) }} />
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: `repeat(${GALLERY.length},1fr)`, gap: 8, marginTop: 10 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: "repeat(auto-fill,minmax(64px,1fr))", gap: 8, marginTop: 10 }}>
                   {GALLERY.map((img, i) => (
                     <button key={img.src} onClick={() => setActive(i)} aria-label={img.alt} aria-pressed={i === active}
-                      style={{ aspectRatio: '1', padding: 4, borderRadius: 10, cursor: 'pointer', background: '#f8fafc', border: i === active ? '2px solid #00c07a' : '1px solid #e2e8f0' }}>
-                      <img src={img.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} />
+                      style={{ aspectRatio: '1', padding: 4, borderRadius: 10, cursor: 'pointer', background: '#eff1f7', border: i === active ? '2px solid #00c07a' : '1px solid #e2e8f0' }}>
+                      <img src={img.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: 6 }} />
                     </button>
                   ))}
                 </div>
