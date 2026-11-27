@@ -577,6 +577,29 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── SpacioHub One hardware ─────────────────────────── */}
+      <section style={{ background: 'linear-gradient(160deg,#060d0b,#0b1220)', padding: '88px 0', overflow: 'hidden' }}>
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 56, alignItems: 'center' }}>
+            <div>
+              <span className="tag reveal" style={{ color: '#00c07a' }}>Hardware · SpacioHub One</span>
+              <h2 className="h2 reveal" style={{ color: '#fff', marginBottom: 16 }}>A door panel built <span style={{ color: '#00c07a' }}>for SpacioHub</span></h2>
+              <p className="reveal" style={{ fontSize: 17, lineHeight: 1.7, color: 'rgba(255,255,255,0.7)', marginBottom: 28, maxWidth: 480 }}>
+                10.1" touchscreen with a light bar people can read from down the hall, NFC check-in and power over one network cable. It mounts flat on glass and boots straight into your room schedule.
+              </p>
+              <div className="reveal" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <Link to="/hardware/spaciohub-one" className="btn btn-primary btn-lg" style={{ boxShadow: '0 8px 28px rgba(0,192,122,0.35)' }}>See SpacioHub One</Link>
+              </div>
+            </div>
+            <Link to="/hardware/spaciohub-one" className="reveal" aria-label="See SpacioHub One" style={{ display: 'block', position: 'relative' }}>
+              <div style={{ position: 'absolute', inset: '15% 12%', background: '#22e07a', filter: 'blur(80px)', opacity: 0.22, borderRadius: '50%' }} />
+              <img src="/hardware/spaciohub-one/on-glass.webp" alt="SpacioHub One mounted on a glass meeting-room wall" loading="lazy" width="1920" height="1080"
+                style={{ position: 'relative', width: '100%', height: 'auto', display: 'block', borderRadius: 20, boxShadow: '0 30px 70px -25px rgba(0,0,0,0.7)' }} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* HOW IT WORKS */}
       <section style={{ padding: '96px 0', background: '#fff', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container">
