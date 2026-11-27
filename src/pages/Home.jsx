@@ -585,7 +585,7 @@ export default function Home() {
               <span className="tag reveal" style={{ color: '#00c07a' }}>Hardware · SpacioHub One</span>
               <h2 className="h2 reveal" style={{ color: '#fff', marginBottom: 16 }}>A door panel built <span style={{ color: '#00c07a' }}>for SpacioHub</span></h2>
               <p className="reveal" style={{ fontSize: 17, lineHeight: 1.7, color: 'rgba(255,255,255,0.7)', marginBottom: 28, maxWidth: 480 }}>
-                10.1" touchscreen with a light bar people can read from down the hall, NFC check-in and power over one network cable. It mounts flat on glass and boots straight into your room schedule.
+                10.95" touchscreen with a light bar people can read from down the hall, NFC check-in and power over one network cable. It mounts flat on glass and boots straight into your room schedule.
               </p>
               <div className="reveal" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
                 <Link to="/hardware/spaciohub-one" className="btn btn-primary btn-lg" style={{ boxShadow: '0 8px 28px rgba(0,192,122,0.35)' }}>See SpacioHub One</Link>

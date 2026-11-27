@@ -77,14 +77,19 @@ function StatusShowcase() {
 }
 
 const SPECS = [
-  ['Display',          '10.1" IPS touchscreen'],
-  ['Processor',        'Rockchip RK3576 octa-core'],
-  ['Memory / Storage', '4 GB RAM / 32 GB'],
+  ['Display',          '10.95" touchscreen · 1920 × 1200'],
+  ['Touch',            '10-point multi-touch'],
+  ['Brightness',       '350 nits'],
+  ['Processor',        'Rockchip RK3576S'],
+  ['Memory / Storage', '4 GB RAM / 64 GB'],
   ['OS',               'Android 14'],
+  ['Camera',           'Built-in camera'],
+  ['NFC / RFID',       'Built-in NFC & RFID reader'],
   ['Wireless',         'Wi-Fi 2.4/5 GHz · Bluetooth'],
-  ['NFC',              'Built-in reader'],
-  ['Ethernet',         'RJ45 · PoE capable'],
+  ['Ethernet',         'RJ45 · PoE'],
   ['Power',            '12 V ⎓ 2 A · PoE 48 V 0.5 A'],
+  ['Mounting',         'Wall-mount bracket included'],
+  ['Colour',           'Black'],
   ['Dimensions',       '260 × 171 × 22 mm'],
   ['Compliance',       'CE (RED 2014/53/EU) · RoHS · WEEE'],
   ['Manufacturer',     'Shenzhen Electron Technology Co., Ltd.'],
@@ -99,9 +104,9 @@ const FEATURES = [
   { tag: 'Power over Ethernet', title: 'One cable, power and data',
     text: 'Run one Ethernet line from a PoE switch. No socket needed at the door.',
     points: ['PoE 48 V · 0.5 A, or 12 V DC', 'Wi-Fi 2.4 / 5 GHz and Bluetooth'] },
-  { tag: 'NFC & scan to book', title: 'Tap a badge or scan',
+  { tag: 'NFC, RFID & scan to book', title: 'Tap a badge or scan',
     text: 'Badge tap confirms the booking. Guests scan the code, register or book.',
-    points: ['Built-in NFC reader', 'Visitor and guest booking at the door'] },
+    points: ['Built-in NFC & RFID reader', 'Visitor and guest booking at the door'] },
 ]
 
 
@@ -157,8 +162,8 @@ export default function SpacioHubOne() {
   return (
     <>
       <SEO
-        title="SpacioHub One — 10.1in PoE Meeting Room Door Display"
-        description="SpacioHub One (SPH-ONE-10): 10.1-inch IPS meeting room panel with LED status bar, NFC, PoE and Android 14. Built for SpacioHub. Request a quote for UAE, GCC and Africa."
+        title="SpacioHub One — 10.95in PoE Meeting Room Door Display"
+        description="SpacioHub One (SPH-ONE-10): 10.95-inch 1920×1200 meeting room panel with LED status bar, NFC & RFID, camera, PoE and Android 14. Built for SpacioHub. Request a quote for UAE, GCC and Africa."
         path="/hardware/spaciohub-one"
       />
       <main style={{ paddingTop: 64, fontFamily: 'Inter,sans-serif' }}>
@@ -171,14 +176,14 @@ export default function SpacioHubOne() {
                 <span className="tag animate-fade-up">Hardware · SPH-ONE-10</span>
                 <h1 className="h1 animate-fade-up delay-1" style={{ marginBottom: 16 }}>SpacioHub <span style={{ ...GRAD, fontWeight: 900 }}>One</span></h1>
                 <p className="lead animate-fade-up delay-2" style={{ marginBottom: 28, maxWidth: 500 }}>
-                  The 10.1" door display built for SpacioHub. Live room schedules, an LED status bar you can read from down the hall, NFC check-in, and power over a single network cable.
+                  The 10.95" door display built for SpacioHub. Live room schedules, an LED status bar you can read from down the hall, NFC check-in, and power over a single network cable.
                 </p>
                 <div className="animate-fade-up delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
                   <a href="#quote" className="btn btn-primary btn-lg" style={{ boxShadow: '0 8px 28px rgba(0,192,122,0.3)' }}>Request a quote <Arrow /></a>
                   <a href="/spaciohub-pad/" className="btn btn-outline btn-lg">Explore it in 3D</a>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 animate-fade-up delay-4" style={{ gap: 12, marginTop: 32 }}>
-                  {[['10.1"', 'IPS touch', '#00c07a'], ['8-core', 'RK3576', '#3b82f6'], ['4+32 GB', 'RAM + storage', '#8b5cf6'], ['PoE', '48 V · one cable', '#f59e0b']].map(([v, l, c]) => (
+                  {[['10.95"', '1920 × 1200', '#00c07a'], ['RK3576S', 'Android 14', '#3b82f6'], ['4+64 GB', 'RAM + storage', '#8b5cf6'], ['PoE', '48 V · one cable', '#f59e0b']].map(([v, l, c]) => (
                     <div key={l} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '12px 14px' }}>
                       <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: -0.6, color: c }}>{v}</div>
                       <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>{l}</div>
